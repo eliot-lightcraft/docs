@@ -1,0 +1,36 @@
+---
+title: 'Adding Scene Locators in Blender'
+description: 'How to use scene locators to specify shooting locations and virtual motion scales.'
+---
+
+## Scene Locators
+
+Scene locators are empty 3D nulls that Jetset uses to navigate through larger scenes, and to rapidly link a live action location to matching virtual location.
+
+Scene locators use the prefix 'sceneloc_' followed by a user-specified name, for example **sceneloc_Front_Door**. 
+
+No spaces are allowed in scene locator names.
+
+## Adding Scene Locators
+ 
+In Blender, set the 3D cursor with Shift-RMB. 
+
+Then hit Shift-A to Add, and select Empty and Arrows. 
+
+F2 to rename the empty, and type 'sceneloc_My_Custom_Name.'
+
+**[See this tutorial for details.](https://share.descript.com/view/uysDMh48xCq?t=431.151)**
+
+## Scene Locator Scale 
+
+Scene locator scales should usually be 1.0. This way, 1 meter of motion by the user will translate to 1 meter of motion in the virtual scene.
+
+If a scene locator has a non-zero scale, the Jetset motion will be amplified by the scale amount. 
+
+For example, a scene locator with an XYZ scale of 25 would result in one meter of motion by the operator translating to 25 meters of motion in the virtual scene.
+
+This will break live action tracking, but can be useful for simulating cranes or drone camera moves in a pure CG environment. 
+
+Scene locators with custom scales should be named appropriately with the specified scale, for example sceneloc_street_crane_25x.
+
+

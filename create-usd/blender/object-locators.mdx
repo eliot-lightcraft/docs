@@ -1,0 +1,56 @@
+---
+title: 'Adding Object Locators in Blender'
+description: 'How to use object locators to specify objects in the scene that can be moved interactively in Jetset.'
+---
+
+## Object Locators
+
+Object locators are empty 3D nulls that Jetset uses to let users interactively move objects in the scene.
+
+Object locators use the prefix 'objectloc_' followed by a user-specified name, for example **objectloc_Actor_Bob**. 
+
+No spaces are allowed in object locator names.
+
+## Adding Object Locators
+ 
+In Blender, select the object you wish to add an object locator to.
+
+Set Blender's 3D cursor to the object position with Shift-S, and then choose 'Cursor to Selected'.
+
+Then hit Shift-A to Add, and select Empty and Arrows. 
+
+F2 to rename the empty, and type 'objectloc_My_Custom_Name.'
+
+Select the Blender object that you wish to move with the object locator, then Ctrl-LMB to select the object locator. Move your cursor into the main viewport area, then press Ctrl-P to Parent the object. Choose 'Keep Transform' to avoid moving the object or the object locator.
+
+The result should look like this in the Outliner.
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/blender/object-locators-blender.JPG"
+/>
+
+Export to USDZ as per usual practice.
+
+## Using Object Locators
+
+In Jetset, after importing the USDZ file, navigate to the 'Object Move' tab. Jetset will parse the list of objectloc_* nulls in the current USDZ file, and provide a list. 
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/blender/objloc-blender-jetset.JPEG"
+/>
+
+Highlight the object you wish to move, in this case 'cube'. 
+
+You can then drag the cube around on the horizontal plane with your finger. 
+
+Tap the visibility icon to show or hide the object.
+
+Tap the rotation icon to interactively rotate the object.
+
+Tap the Z icon to interactively move the object up or down.
+
+Click OK when done moving the objects to return to the main screen.
+
+Object locator positions are stored on a per-take basis in the take metadata, and can be viewed with the 'i' button in Autoshot next to the currently selected take.

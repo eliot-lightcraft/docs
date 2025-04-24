@@ -22,7 +22,8 @@
           {
             "group": "Creating USDZ Files",
             "pages": [
-              "jetset-config/create-usd"
+              "create-usd/blender/scene-locators",
+              "create-usd/blender/object-locators"
             ]
           }
         ]
@@ -33,13 +34,33 @@
           {
             "group": "Introduction to Jetset",
             "pages": [
-              "tutorials/introduction-to-jetset/introduction-jetset"
+              "tutorials/introduction-to-jetset/introduction-jetset",
+              "tutorials/introduction-to-jetset/2d-backgrounds",
+              "tutorials/introduction-to-jetset/animation-controls"
             ]
           },
           {
             "group": "Blender Workflows",
             "pages": [
-              "jetset-config/create-usd"
+              "tutorials/blender-workflows/autoshot-blender-round-trip"
+            ]
+          },
+          {
+            "group": "Unreal Workflows",
+            "pages": [
+              "tutorials/introduction-to-jetset/introduction-jetset"
+            ]
+          },
+          {
+            "group": "Jetset Cine",
+            "pages": [
+              "tutorials/introduction-to-jetset/introduction-jetset"
+            ]
+          },
+          {
+            "group": "Tracking and Compositing",
+            "pages": [
+              "tutorials/introduction-to-jetset/introduction-jetset"
             ]
           }
         ]

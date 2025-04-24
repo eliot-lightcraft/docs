@@ -1,0 +1,506 @@
+---
+title: 'Autoshot Blender Round Trip'
+description: 'A complete round trip workflow from Blender to Jetset and back'
+---
+
+## Video Tutorial
+
+<iframe src="https://share.descript.com/embed/uysDMh48xCq" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+# Transcription
+
+Today we're going to be going through a complete Blender Autoshot Jetset round trip. We're going to install a new set of tools for Autoshot and Autoshot Tools under Windows, and as well as the Blender add on, then we're going to take this really nice Polycam scan, uh, donated by Conrad Curtis and his team. And we're going to pull that into Blender, export it to Jetset, and then take a shoot, a take, and then bring it back into Blender.
+
+And so we'll have a complete round trip of, uh, building a model, shooting with it, and then bringing the tracking data all the way back. Uh, through Autoshot and back into Blender. Along, this time along with the green screen key. 
+
+
+## Downloads
+
+Alright, well let's, uh, let's get going. First we're going to do all the downloads under the lightcraft.Pro downloads page. We're going to first download Autoshot, and Autoshot is the primary post production tool that we use. 
+
+We're also going to install Autoshot Tools. Autoshot Tools is a much larger download. It has the parts of the download that don't change very much. Those are the big AI models and some of the larger DLLs that we use to accelerate the GPU. 
+
+We split Autoshot and Autoshot Tools on Windows so that way Autoshot can be updated rapidly without a big download. On a Mac, it's all part of one thing, as it turns out to be more compact on the Mac.
+
+We're going to download the Blender add on. And that is compatible with the Blender 4 series of Blender releases. Then we'll make sure we have Blender installed. 
+
+
+## Installing Autoshot and Tools
+
+Okay. So those have finished downloading. First of all, we can install Autoshot and accept the agreement. Click next. If you get a little blue warning then go ahead and accept it. Right, finish. 
+
+And we're going to install Autoshot tools. It's again, if we get a blue warning, click more info, click run anyway.
+
+And the defaults are all fine for these. 
+
+
+## Installing Blender Add-On
+
+Then finally we're going to open up Blender and I'm using Blender 4. 1, just the standard release. 
+
+And I'm just going to do the standard practice for installing add ons, going to go to edit preferences, add ons, install, going to go to my Autoshot Blender. And it's going to install, click the install the add on. Again, we leave it as a zip file. All right, and let's make sure that it has installed. There we go, like Craft Technology Autoshot. Make sure that's checked. All right, and let's exit Blender to make sure that that takes.
+
+That's an important step. Sometimes you have to exit Blender to make sure that the add on is correctly installed. 
+
+
+## Setting Autoshot Project Folder
+
+Next what we're going to do is we're going to actually start up Autoshot. 
+
+And I'll full screen this, make it a little bit more clear. And the first thing we're going to want to do is we're going to want to set the Autoshot project folder. And this is the, the folder that all of the take information is going to be downloaded into.
+
+And it's also the folder that the sequences, when we start to generate sequence information, on processing takes, it's going to be in there. It's just going to be the standard folder under which all the information for a given project is going to be automatically put. This would be a different folder for each client or each project.
+
+And we can set it by clicking Browse. In this case, I already made a folder in my D drive. Blender Tutorial. And I'm going to click Accept. 
+
+
+## Project Folder File Structure
+
+It's important to note, as soon as you create one of these folders, you click Open.
+
+Blender Tutorial. We can see that it has created an assets, footage and sequences folder. Footage is where the footage will be stored when we synchronize it from Jetset. Sequences are where it'll generate sequences, again, when we process them later. And assets is just a folder that we can use as a convenience folder for putting some of our USD files when we export.
+
+So we'll come back to that in a little bit. But this gives you a starting idea of how we do our folder structures and our data storage. All right, so now that we've picked our project folder, let's go download a file from Polycam.
+
+
+## Importing Polycam Scan
+
+Okay, so here's a nice, uh, Polycam scan. This is from a project Conrad Curtis did. One of our colleagues, and it's a really nice scan of, uh, a, trench model. We want to bring this into, into Blender first, so we can add some scene locators and then we're going to export it to Jetset.
+
+So first of all, we're going to download it from Polycam. This is using the Polycam free version. So the only option is GLTF. That'll work fine. Click export. All right. So it's exported. 
+
+Now let's go, let's open up our Blender application yet again.
+
+And hit A to select everything, X to delete. We're going to do file import, and we're going to import a glTF. And we're going to go to our, our freshly downloaded file. And we're going to import, and load in the file. And we'll click, uh, Z, and let's take a look at our material preview. 
+
+Okay, 
+
+there is our model. And, uh, it looks like it's about the correct size, but let's just check. Let's do Shift A and add a mesh, and we're going to add a cube. That cube is, uh, 2 meters by 2 meters by 2 meters, so it looks like we have about a 3 foot high trench.
+
+That looks correct. Alright, let's delete the cube.
+
+
+## Setting Materials to Emissive
+
+First of all, let's do some material definition fixes, uh, because the way this is imported, it won't work quite right in Jetset, so let's fix that. 
+
+So we're going to look at it, this in the shading tab. And we're going to want to actually, do some shader changes here to make it more of an emissive color there rather than a standard base material that was expect to be lit because inside the phone, we don't really have much of a lighting system.
+
+So we're going to open up the emissive and change our color to here, change our strength to one and change our base color to zero and going to go to slot two and again, we're going to change our base color to emission and set our strength to one and our base color down to zero. And we're going to go to slot three and once again, open up our emission, change our base color, replug it to a emission, set the strength to one and our color base color down to zero.
+
+So what we've done now is we've changed all of the materials to be a purely emissive material. And that way when we click render, it doesn't really change the appearance. 
+
+
+## Decimating Mesh
+
+The second thing we're going to want to do is we're going to take a look at this mesh, and by default that is a very, that's a pretty heavy mesh.
+
+And that's You know, for the newer phone models that can probably happen. I'm testing with an iPhone 12 pro max. That's a little bit older and that's going to be a bit too much mesh for that. If we look at our statistics and go over here and that is wait for it. Uh, 1. 4 million triangles.
+
+Okay. So that's a little bit much. So let's go over here and click our modifier tab and get to add a modifier. And we're just going to use the decimate modifier. And we're going to do a ratio of a 0. 1 and tell it to decimate. It will take a second to do that.
+
+Okay. And we can check to make sure my material still looks about the same. That's fine. There's going to be a few little holes in the mesh, but that's okay for our preview purposes. 
+
+
+## Adding Scene Locators
+
+Once we've done that, we need to add some scene locators and scene locators are, uh, how we navigate through 3d scenes in Jetset.
+
+And all it is, it's an empty null with a special name. An empty 3D null with a special name. So I'm going to set the 3D cursor in Blender by holding down my Shift key and right clicking here. And I'm going to hit Shift A to add. I'm going add an empty. Uh, and there's our empty. Now we're going to name it.
+
+Let's rename it. We're going to call it scene loke and plank 01. 
+
+
+## sceneloc\_\* prefix
+
+And the important part here is the scene locator name -- the S C E N E L O C prefix underscore. When we export the scene to USD and we read that into Jetset, Jetset is going to look through the scene for all the empties that are named with this sceneloc underscore, you know, whatever name, and it's going to make a list of those. 
+
+That list is going to show up in the scene locator list in Jetset. So when you click that list in Jetset, it's going to snap this location that we pick and this orientation. In the 3D scene to whatever you have picked in your live action view in Jetset.
+
+We're gonna rotate this a little bit. Uh, let's, let's, first of all, let's check which way the axes are pointing.
+
+So while it's highlighted, we're going to go to our object menu and we'll click viewport display and then click show our axes. And. They're a little bit buried in the 3D model, so we're just going to click in front. So we can see that our x axis is pointing to the right. That's, that's fine. 
+
+I'm going to click R and Z, and that lets me rotate this, this minutely. And I'm just going to align it up with the, up with the plank. Uh, and for, for the uses of this, that's a little bit off. Try that again. And we can look at it from a top view if we wanted to get it really, really exact. That's fine. And what I'm doing here is I'm just picking something convenient that will be a flat surface in the model that we may want to match to our live action environment.
+
+In this case, our live action floor. So I picked a plank that we're going to lock to the live action floor. And I may want to pick another scene locator. In this case, I'll just pick, Uh, the spot in this corner. And once again, I'm going to shift, right, click and set my 3d cursor going to do shift a and add an empty.
+
+And I'm going to make sure that we can see its axes. And this time the X axis is pointing this way. I actually want to point it a little bit, a little bit over to our right. So I'm going to look at the top view, which I did with a seven hotkey. And I'm going to type R for rotate Z around the Z axis, and then I can mouse my way around.
+
+And align it with the edge of the trench.
+
+And that lets me, uh, put my x axis, uh, over to the right. 
+
+
+## Scene Locator Orientation In Jetset
+
+And what's going to happen, and we'll see this when we drop this into Jetset, is when you pick a scene locator, it will automatically snap the view of the scene to whatever orientation and position that the scene locator that we set inside Blender.
+
+And so we better, better name it with our special prefix. So again, it's going to be S C E N E L O C underscore. We'll call this corner one. All right. So we've now got a plank and a corner. 
+
+
+## Exporting to USD
+
+I think we're ready to export. So we're going to go to File, Export, we're going to go to Universal Scene Description, and , I'm just going to pick the same Blender tutorial that we used going to go to assets.
+
+So I'm going to make another new folder. I'm just going to call this USD And it'll default to trencho1. usdc, that's fine, that's the compressed version of USD. And, uh, all these defaults, uh, we can leave at their default level. If we are exporting an animated scene, we'd need to check this, or if we were doing something more unusual, we might have to change a couple of these modifications.
+
+But right now, the defaults will work fine. I'm going to click export. And we're going to see it export. Down here at the bottom is our progress bar. 
+
+
+## Saving Blend File
+
+Let's also go ahead and let's save our Blender file. Go to File, Save As, and we can go to the same Blender tutorial project top level folder that we've been using.
+
+And we'll just go to assets, and just make a make a folder here and we'll just call it blender good place to put blender files and we can say a trench 01. blend there
+
+
+## Autoshot USD to USD
+
+Now we're going to switch over to Autoshot. And we're going to go to the models tab in Autoshot. And this part of Autoshot is dedicated to processing USD files to make them into USDZ files so that they'll work with Jetset. 
+
+Jetset requires a USDZ file, which is just a set of USD files that it's wrapped up into an archive and packaged with textures. That's all it is. 
+
+By default, Blender is going to export a USD file. So we're going to set our USD model folder. I'm going to click this.
+
+And we're going to set it into our Blender tutorial and our assets. And we'll pick the USD file. And we'll click select. There we go. And we can see our Trench01. 
+
+This is our source, and the USDZ is going to be our target. So we're going to click set and we're going to go up, up a file and we can just make another file folder.
+
+I'm going to call this USDZ, .. 
+
+
+## Image Texture Compression
+
+Here's another thing we'll have to decide. The default file, and I'm going to go and look at this in Blender so you can see how big the default file is. I'm going to click on this, and there's our image 2, the image that we're working with.
+
+I'm going to go over here and open up image 2. And, image 2 is big. Alright, so, just to get an idea of how big it is, I'm going to right click and hold down my cursor on the resolution. So that is, uh, image 2 is an 8K file. You can see 8, 000 pixels by 8, 000 pixels. 
+
+With a newer phone, that might be okay. I'm testing with an iPhone 12 Pro Max. So we're going to have to cut down the textures quite a bit. So I'm going to set the texture size max. You could have it as original if you have a very new phone that can handle the 8K texture. For the most part, we're going to want to downsample our textures pretty heavily to get them into the phone.
+
+And so, Autoshot has a tool that lets us do that. And I'm going to downsample it to about 512. And I'm going to click Make USDZ. And it's going to process the USD file tree as well as the textures. And this exit value zero tells you that it's finished successfully. And we can now see a trench01. usdz file in our USDZ model folder.
+
+
+## Pushing Files to Jetset
+
+The next thing we're going to want to do is actually push this to Jetset. Now, we can't do this right now because up here in our Jetset link area, we don't actually see any Jetset devices. Uh, however, if I turn on a Jetset device,
+
+then all of a sudden we can see it show up here . The Jetset devices are automatically detected under our Jetset link folder. And here you can see the, the, uh, phone that I'm using. And this only will detect the devices when Jetset is actually running. 
+
+You can only push, uh, files to Jetset when Jetset is actually on, which makes sense. We can see that it's currently set to the project name as Blender Tutorial. I created the Blender Tutorial project on the phone before I started recording this.
+
+And next we're going to click Push USDZ to Jetset. Over here we can see the progress. And the overall model is about 10 megabytes, so it's going to push over pretty quickly. And in general you want to keep the, the model size, you know, modest. So this iPhone 12 Pro Max, can handle models up to around 100, 150 megabytes.
+
+Sometimes it'll, it'll start to have some frame drop issues when it gets hot and when it has a big model. So I've, uh, decimated the model and cut down the textures a bit to make sure it fits. So if you're, if you're seeing a lot of dropped frames in your models, Uh, just, you know, decimate and, and cut down the, cut down the textures and you should be fine.
+
+
+## Loading Model in Jetset
+
+Okay, so now we're gonna move over to Jetset. And, uh, as we noted before, we have our project set to Blender tutorial. And so that way when we pushed our USDZ file over to Jetset, it knew where to put it, it knew to put it in the model subdirectory of the Blender Tutorial, uh, project. So we can now click our model, uh, menu item, click open, and there's our trend and there's our trench.
+
+So we're going to open up our trench. 
+
+
+## Setting Jetset Origin and Scene Locator
+
+We're going to be shooting in a little portable green screen here, and we're going to go through the steps to set up and align things. So the first thing we do always is we select our, select our origin, click origin, and we're going to click reset. And we're going to start, uh, we'll start to start a new map.
+
+It's going to initialize our session. It's going to detect our floor plane. You can see the natural features in the floor that it's detecting. And we're going to click on the grid for the floor plan. We're going to drag it over here.
+
+And that's a, that's a, we'll just pick a spot to align it, to align this. Okay. 
+
+We can slide our Ghost slider up and down to see the mix between the live action and the 3D world. And, so we can look down here, and we're going to want to make sure that we pick our Plank 01. Remember that we made a scene locator in our Blender file, brought it over, and now Jetset can detect those scene locators.
+
+So if we click corner, it would go to the corner. We're going to click plank, it's going to go to the plank, and we can see that that is now aligned correctly with the spot on the origin of the, on the floor that we defined as our origin. We can click okay. 
+
+
+## Scanning Location
+
+Next we're going to want to scan the scene. We're going to go to our set tab, and scanning is available with Jetset Pro and Cine, and it's phenomenally useful if you're going to later on do subpixel tracking refinement.
+
+If you can, you always want to do a scan of the physical area before you're recording. So we're going to click start, and you can see immediately. It's using the onboard LiDAR scanner to very, very rapidly map some geometry onto the surrounding area. There's a little chair over there, there's a little floor, back wall there.
+
+Okay, and so it does a very quick, kind of a rough scan of the the the area and we can come up a little bit closer and it'll get a bit more fine grained. 
+
+So now we can click stop when we have enough scan and we're actually going to change it and hide it Uh, so we can click okay. 
+
+
+## Setting Keyer
+
+And finally we're going to click set and i'm going to pick our green screen color with our keyer and click okay And we're going to set our matting to green There we go.
+
+Now, right now, all of a sudden, you can see our green screen key is working. We're going to want to set our 3D garbage mats. So we're going to go back to set, and we're going to go to our infinite green screen. I'm going to click start. And what it's doing is it's detecting the vertical plane or the horizontal plane of the green screen, and it makes a perimeter of the detected edge of the green screen.
+
+So we can actually go ahead and click add a plus sign to add a mat, come down here and add another plus sign. And come down here and detect the floor plane, add a plus sign here. 
+
+Okay, so now what we have is we have an infinite green screen mat. Uh, so that when we're in front of the green screen, Um, I'll put my hand in here, then it's going to key correctly on the green screen, and then if we go off it, right now it's going to stop at an edge there. 
+
+
+## Recording a Take
+
+And so then we can see our, uh, see our, uh, full view of the, of the trench. Okay. So once we've set our origin, we've scanned, we set our, uh, set our green screen area and then let's actually go ahead and shoot. So I'm just going to click roll and then I can come in and do a little move on the green screen.
+
+Come back around. All right, I'm going to cut. All right. We'll do one more roll, hit roll, and they're going to come down like we're running through the trench walls. There we go. Hit cut. 
+
+
+## Reviewing Takes for Dropped Frames
+
+Now, what we're going to do is, uh, go to the review tab.
+
+And with the review tab, we can see that for every shot, it's recorded both the camera original with our portable green screen, and it's recorded the real time composite. So if we can click play, we can see the actual shot that we just did and review it. Okay. See if we like it. We can full screen it if we want to click full screen.
+
+There we go. So we can look at it full screen and see if we like the shot. All right. It looks like good and we'll go back to the normal display and there we go. 
+
+And what we want to look for in review is we want to make sure we haven't skipped a lot of frames. So over here we can see that we duplicate, duplicated zero frames. That means that the phone didn't overheat and the GPU didn't overrun. And, uh, we had zero dropped frames. So that means we'll have really good tracking.
+
+
+## Dashboard Warning Lights
+
+The things that we're watching while we're shooting is our dashboard lights that are down in the lower right hand corner. Uh, there are three dashboard lights. You can see the temperature gauge is warming up a little bit. Uh, but there is also a navigation. Which is the compass that's toggling between red, uh, between green and yellow there.
+
+So it's tracking pretty well. And then the GPU, which is the tachometer. And right now that's also green. So it means that we're shooting pretty well. You can see the motion is pretty smooth, uh, but that the phone starting, starting to warm up a bit, uh, because it is an iPhone 12. Uh, 12 Pro with, uh, without a cooler, and it's going to get warm over time.
+
+All right, so let's, uh, let's go pull this take back over.
+
+
+## Syncing Takes in Autoshot
+
+Here we are back in, uh, in Autoshot. And instead of the Models tab, now we're going to go back over to the Takes tab. 
+
+Here we can see we still have Jetset running, so in our In our sync, uh, area, we can see that the iPhone is, is there and is recognized. And we can see that our project name that it's currently set to is Blender Tutorial. 
+
+
+## Project Folder Verification
+
+And Autoshot actually checks to see if the project name here matches the project folder name here.
+
+If it doesn't, it'll throw up a little red warning here. You can keep going, it's just telling you to watch out because it's trying to help you to not synchronize your takes into the wrong project. You can ignore that warning if you want to. 
+
+
+## Sync Selection
+
+And here we have, uh, a couple of things. Jetset stores takes, uh, on a per day basis. So for every shooting day, it's going to make a new folder, and that's going to be a complete folder that we can synchronize with all the takes of the day. 
+
+We can also just Sync All, but usually you just want to sync a one day's worth of, of takes.
+
+When we click sync, this is going to pull the data, the takes from Jetset, and it's going to put them inside the project folder inside the takes directory. 
+
+
+## Sync Info
+
+And if you want more information, you can just mouse over this and this will show you exactly what's going to be stored there.
+
+So you can see that it's going to store the footage assets and sequences in the project folder. 
+
+We have a couple other things here that you can look up in the documentation if you need more information. Check sizes just makes sure that the file sizes are exact from the original to the source because it's doing a clone operation, and that helps make sure that your files are correct.
+
+You'd only leave that unchecked if you're trying to synchronize to a Google Drive shared folder . Google Drive does some weird things. So for now, we're just going to sync to a normal hard drive, and we're going to leave that checked. 
+
+I'm going to click Sync.
+
+And over here we can see it's actually pulling the files over. It's pulling them over Wi Fi, so it's going to do a reasonably quick job. 
+
+
+## Select Day and Take
+
+The next thing we're going to do is, here we have our shooting days. This is take selection, and this is referencing what we have synchronized in our project folder. So we have synchronized one day of takes, so if we pull down our day, we have the only day that we've shot, which is today, on the project.
+
+And on takes, if we pull that down, we can see a whole list of takes, because we shot several takes today, and we can pick any of them. So we can pick, for example this last take that we worked with, or the second to last take that we worked with.
+
+
+## Take Information Button
+
+And we can click over here, the I button, and this opens up a little information window, so you can see thumbnails of the take, so you have an idea of what was on the take.
+
+And here's some information about the take, uh, some of the details of it. So, we had normal tracking, and the mapping was mapped. Thermal was fair. It's getting a little bit warm, but it wasn't causing huge problems. And in general, it looks like it's fine. Uh, we're recording at 1280 by 720. And that's, that's about it. Can exit that. 
+
+
+## Take Model and Scene Locator
+
+And here we have the take USDZ. So what this shows is that when this was being recorded the USDZ file that we had loaded was called trench\_01, and this is really helpful when you're trying to go back on a shoot and figure out what happened, where, you know, you always know this is embedded in the take metadata, you know which take USDZ was used to record a given take.
+
+And we know which takes scene locator. It was sceneloc plank one, right? We remember that was selected. And so we, in our take metadata, we know that that's automatically set. 
+
+And this was the equivalent iOS focal length. That's just a super 35 millimeter equivalent for the iOS camera. The default Jetset camera is pretty wide. 
+
+And Cine Calibration is off because this wasn't a Jetset take. Likewise, the Cine Footage Match, that's all grayed out because this was just a normal Jetset take and not a Jetset Cine take.
+
+So there's no Cine Footage to match. 
+
+
+## Picking the Blender Executable
+
+Down here the program we're using as Blender. We have a choice between Blender, Unreal, and several others. Right now we're going to pick Blender. 
+
+We're going to click pick executable and I'm going to click here and we're going to take this in this case to C:\\Program Files\\Blender Foundation\\Blender4.1 and then double click on the Blender. exe. And what that's doing is telling Autoshot where your Blender executable is, which we're going to use that in just a moment. 
+
+
+## Picking Blender Scene File
+
+The scene blend file, likewise, we're going to click set. And remember we put that into the Blender tutorial and then assets and then in our Blender file trench01.blend. 
+
+Something interesting is happening over here. If we, if we look down here, what it's doing is it's retrieving the scene locators from trench 01. blend. And that means that in the background, it's actually a running Blender very briefly and quietly in the background to open up that file and to make a list of the scene locators that are available in that scene.
+
+
+## Picking Scene Locators
+
+And here are the possible scene locators to use, sceneloc corner 01 and Plank 01. And what it did, is it actually read the original Blender scene to give us a list to work from. By default it'll match what was in the take scene locator, Plank01.
+
+So let's do that. But we can also override it. If we wanted to pick the corner, we can override that here. So we'll click Plank01. 
+
+
+## Created Blend File Types
+
+What Autoshot is going to do when we hit run is it's actually going to reference that original blend file, and it's going to make a new blend file.
+
+It will not overwrite the, the original Blender scene file because that, that needs to stay untouched because you might be changing that all the time. 
+
+What Autoshot is going to do is it's going to make a new Blender file And that Blender file will contain the camera tracking data and the frames, and it will reference the original Blender file in one of a couple of different ways. 
+
+
+## Append Scene
+
+The easiest way is just to use Append Scene. What that means is that it will append --it'll open up that blend file and it'll copy all of the information in that original Blender file in trench01. blend, into our new Blender file and then add the collection that has the camera tracking data onto it. 
+
+Now, if you have a large Blender original scene file, and they can be multiple gigabytes, and you have a lot of shots, you don't want to copy that information into each shot because you're gonna burn up all your file space. 
+
+
+## Link Scene
+
+In that case, you can use the link scene. And what this will do is it will, again, reference that Blender original file, but instead of copying the data, it's going to link that Blender original scene file as a background scene in your newly generated Blender file.
+
+That's very efficient and it's a good production methodology when you have dozens of shots. In our case, we can just append the scene. 
+
+
+## Empty Comp Starter
+
+The third option is to use the empty comp starter. And that actually does not append any of the data from the original trench file.
+
+It actually makes an empty comp starter, and that's usually used if you're going to just be doing compositing, and you don't want to be dealing with the, the large scale original file. 
+
+In our case, we're just going to pick the append scene. We want to use this pretty simply. 
+
+
+## Camera Media
+
+And we can either use the original file which is the MP4 file that recorded, or we can generate a PNG file sequence, or we can pick EXRs. In this case, I'm just going to use the original file. Blender is one of the few programs that can work with an MP4 file and have everything come out right. 
+
+Most of the other post production software tools really need to be using an image sequence, but Blender actually works pretty well with the camera original. 
+
+It looks like we had 388 frames in there. Since we know it's just a Jetset take we know what the default gamma and color are, and we're not going to use an AI roto model. We would need to use an EXR or PNG to use that. But it's sometimes very useful if you want to use AI Roto, and we'll leave these at our defaults.
+
+Then up here under options, most of these you can leave alone. There's a couple of useful things to remember. 
+
+
+## Import LiDAR Scan from Set
+
+One is that here where it's going to automatically import the LIDAR scan from the set. This USDZ file is the original LIDAR scan that the phone took of the living room. And this checkbox means that it's going to go into the Blender file.
+
+
+## Camera Image Plane
+
+We're also going to tell it to add the camera image plane, and that will have the camera original imagery, you know, the video show up in our scene. So we're going to leave that. Those are all checked by default. 
+
+
+## Running the Sequence
+
+We're going to leave them there and we're going to click save and run. And it's going to cook for a bit.
+
+Okay. So here, here is our newly created blend file. 
+
+
+## Sequence File Location
+
+And to see where it was created, we're going to go back to Autoshot, and next to our take dropdown, we're going to click open and what this does, this is a very important button because this gives you a shortcut to open your file explorer to the file inside our project directory. 
+
+Here's our Blender tutorial, here's sequences, and here is the date and here are all the sequences that we've processed from this date. And so very quickly you can get confused pretty fast of, Which sequence was I working on? They all have an individual hex ID, but sometimes it's easier to just go over here and click open and open up a file explorer, and it'll take you right to the top directory for this particular processed take, and we can see in here that it contains all the different pieces of the processed files that are generated by Autoshot for this take.
+
+Source data has copied over the original shot files, the video files, as well as the tracking data from the, the original shot. 
+
+Likewise, we can look into the blend directory and that is where our newly generated blend file is. You can see that it has the project prefix, the current take and the unique take ID of the take that we just picked and is with a suffix called render, because we usually use these files for rendering,
+
+
+## Blender File Contents
+
+Back to Blender, here is our newly created file. I can go ahead and hit play and you can see that it has. The track shot in it as we're going to come in and let's, let's back up to see a little bit of what, what all is going on here. So I'm going to, I'm going to mouse click and rotate back.
+
+
+## Scene Collection
+
+I'm going to hide these one at a time so we can see it. The scene collection was appended from our original scene. So if I turn that off, we're left with. The collection that has the the camera tracking information in and the scan collection.
+
+
+## Scan Collection
+
+So here's the scan collection. This has the scan information from the original scene so you can see The shape of the, the green screen wall. I'm going to turn off the the camera tracking collection so you can see the shape of the the green screen, the opening next to it, and a little bit of the chair leg over here.
+
+And this is all from the original scan. 
+
+
+## Camera Collection
+
+And then we drop in the, the camera tracking onto it. Here's our tracked camera. So as we're moving through the shot it's moving as well. And there is a image plane that has the contents of the live action image. 
+
+
+## Material Keyer
+
+You'll see that it's doing a bit of a partial key. Let's take a look over at our shader network. I'm going to shading tab and we're going to click on that plane to highlight it. And you can see something pretty cool here, which is we have by default a, a nice little material color keyer here. And it's set to a default green level that works okay. But we want to actually set it to the actual green level that we have shot.
+
+So we're going to hold down shift, control and click onto our camera original tab. This runs a wire directly from our camera original tab over to our material output. So we can see the true color of the image. And we can see here that the color space is an sRGB image, which is correct. And we're going to click our key or color, grab our eyedropper and then click on there.
+
+And now we're going to, again control shift, click on our principled shader and Voila! So now we have a nice clean key, and we can go back to our layout, and here we have it. Now we can see the keyer working. So if I click zero to to frame our, our, our scene then we have our, our green screen key and we can extract people from there, if we have people in the scene.
+
+
+## Combining Collections
+
+And now we can layer on another piece. So here's our camera and here's our scan and we can add in our scene.
+
+Okay. So there's our scene. And so frequently what you'll want to do is you may want to use your scan for reference, but then we can turn it off for now. 
+
+Okay, so here we can see as we move through the shot, you can see that the live action plate is connected pretty well to the CGI plate. And the keyer is working. If we had someone in there, then they'd be keyed out. 
+
+
+## Adjusting the Camera Tracking Origin
+
+And then we want to look at a couple other useful things. One is that we're going to look at how the hierarchy of the camera track is constructed.
+
+So we have a camera with motion, but it's parented to this shim. And this shim is a 3D shim. Let's, let's look at that real quick, quick in the 3D space. Alright, so here's our, here's our, our 3D shim. This is located exactly where the scene locator is, but it's actually, it's not this, it's not the same as the scene locator. 
+
+So the interesting thing now is we can move it. If we frame up with zero and we have our, our, our shim located, if we hit GX, you know, and we can actually move our camera track, uh, back and forth in the scene.
+
+And that we can actually, and then, then wherever we put it, it'll still track, find the scene. So we can actually adjust, uh, where our camera tracking origin is after we shoot, which is, which is quite useful. 
+
+
+## Adjusting Image Plane Scale/Distance
+
+So the other useful thing here is here's our camera and we look at our image plane, going to hide the scene for a second to make, make it more clear. Here's our image plane and our image plane shows the live action plate that is part of this. So as we move along, and it's set at a distance that's automatically set from the camera by the onboard LIDAR sensor if you have an iPhone Pro or an iPad Pro, or if you have a non Pro iPhone, then it's going to do a rough optical approximation. 
+
+But either way, this plane is set at a distance that is automatically measured by the iPhone or if you go into Autoshot, you can also set the depth manually to a, a given distance.
+
+And this case one meter. But for this take, it was set automatically. But what happens when you want to adjust that? So the neat thing is that we can actually go to our. our plane, click our object and right click on our scale and we're going to clear all of our keyframes and now the interesting thing is if we hit s for the scale you'll see that our frustrum is made so that it is parented around the same Ian Hubert style origin of the camera so we can actually adjust the image plane further and backward from the camera and then, you know, as, as you move around.
+
+Then it'll just stay there, or you can keyframe the locations. And Hubert does that a lot in his tutorials, is he keyframes the depth of the camera, and we wanted to enable it, so, that's how it works by, by default. So we can turn back on our scene collection.
+
+
+## Fast Viewport Render
+
+Okay. Uh, and now, we got, here's our scene collection, and let's say if we wanted to, uh, render a quick take of that. We can go hit N. And we have a tool in Autoshot that lets us do a fast viewport, uh, render. And it's just going to render what you can see through the viewport. So we can click fast viewport, and it'll render it actually quite quickly, several frames per second. 
+
+
+## Rendered Files Location
+
+Okay, we'll set our layout back to 3D viewport. So that generated a preview. So let's go see where the preview is. Let's go to Autoshot. Once again, we're going to open up our handy dandy Take window opener. And we're going to go to Preview. And here is our rendered preview in mp4 format and we can look at and see how it tracks through the scene.
+
+Now this is with viewport render settings, so it's not a finish quality. So if you want a higher quality shot, then you'll go, uh, we're going to click standard render, render settings. And what this will have done is we're going to look here and we're going to look at our output and it'll have set it to, uh, the correct, uh, sub directory we want to put it to, which is cg renders.
+
+And it's going to render it out as an open EXR multi layer file. You'll use that if you want to render high quality frames. 
+
+
+## Render File Summary
+
+But the key thing here is that Autoshot has generated this, this Blender render file with all of the settings up front. So that when you, when you want to render something, it's going to the right place with the right name.
+
+It has the correct scene referenced in, it has the mesh and the scan referenced in, if you want to use the scan and the mesh. And everything is aligned correctly to the same origin that we set with our original live action origin, and then matched to our scene locator.
+
+So everything lines up by default, and that's the key to going fast, is to have everything show up where it's supposed to be.
+
