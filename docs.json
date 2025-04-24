@@ -7,72 +7,46 @@
     "light": "#07C983",
     "dark": "#15803D"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/lightcraft-logo-icon-black.png",
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Jetset Checklist",
         "groups": [
           {
-            "group": "Get Started",
+            "group": "Jetset Configuration",
             "pages": [
-              "introduction",
-              "quickstart",
-              "development"
+              "jetset-config/create-project"
             ]
           },
           {
-            "group": "Essentials",
+            "group": "Creating USDZ Files",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/settings",
-              "essentials/navigation",
-              "essentials/reusable-snippets"
+              "jetset-config/create-usd"
             ]
           }
         ]
       },
       {
-        "tab": "API Reference",
+        "tab": "Video Tutorials",
         "groups": [
           {
-            "group": "API Documentation",
+            "group": "Introduction to Jetset",
             "pages": [
-              "api-reference/introduction"
+              "tutorials/introduction-to-jetset/introduction-jetset"
             ]
           },
           {
-            "group": "Endpoint Examples",
+            "group": "Blender Workflows",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "jetset-config/create-usd"
             ]
           }
         ]
       }
     ],
     "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
+     
     }
   },
   "logo": {
@@ -82,14 +56,14 @@
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "label": "Email Support",
+        "href": "mailto:support@lightcraft.pro"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Lightcraft Forums",
+      "href": "https://forums.lightcraft.pro"
     }
   },
   "footer": {
