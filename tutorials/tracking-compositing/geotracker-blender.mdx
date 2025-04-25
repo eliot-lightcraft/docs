@@ -1,0 +1,227 @@
+---
+title: 'Tracking Refinement in GeoTracker for Blender'
+description: 'Jetset’s on-set capture of 3D scan geo, camera motion, and cine lens calibrations makes a perfect match with KeenTools’ GeoTracker for an incredibly easy way to refine on-set tracking data while remaining inside Blender. This tutorial is a game changer for anyone interested in moving their camera.'
+---
+
+## Video Tutorial
+
+<iframe src="https://share.descript.com/embed/rmdGk1N1G6x" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+# Transcription
+​​
+This is a short tutorial that nonetheless helps change the tracking game. Jetset tracking is good, but it's not a sub pixel track, and in fact no real time tracking is really a sub pixel track. Alignment wise, it's too hard to get things to line up.
+
+So we want to have a refinement pipeline that can take our onset tracks all the way into a high quality sub-pixel post production track when we have ground contact like this. In this case, we have a very visible ground and floor contact. We have an existing refinement pipeline with SynthEyes, which is very powerful, but it's very complex. And that's frequently overkill, when you just want your shot to stick. 
+
+
+## GeoTracker Tracks Different
+
+Today we're going to look at GeoTracker. And GeoTracker is a special Blender add on from Keen Tools. It enables a geometry based tracking refinement workflow. And that's different than what you've traditionally seen in most tracking.
+
+Most tracking is a feature based workflow. Track a bunch of features in the scene, and you tell the solver to solve, and it works out the solve. That's how Blender's Internal tracking system works, and it's how SynthEyes works, and how most trackers work.
+
+And GeoTracker's different. GeoTracker is actually using the geometry of the scene, as well as the optical flow analysis of the video, and coupling those together. And it makes for a very interesting and powerful workflow that's also really easy. 
+
+
+## Jetset Output = GeoTracker Input
+
+To make this work, GeoTracker needs two things. It needs to have a piece of geometry that matches a part of the scene geometry and it needs to have an initial alignment. And so one of the great things about using Jetset Pro and Jetset Cine that have LiDAR scanning built into it, is that they provide both.
+
+And this makes for a very fast, very simple tracking workflow. So let's go ahead and actually walk through that.
+
+
+## Creating New Shot in Autoshot
+
+\\ Let's start off as usual in Autoshot.
+
+We're going to create a a new shot to start off with using our new shot naming workflow. Go to shot, add shot, and we can name this shot 01.
+
+All right, and we're going to click add. Okay, and so now here you can see that we've added a shot to this, and what the shot naming workflow does again is it lets us extract multiple shots from a single take without overriding any names so we can just name your shots whatever you want to name them.
+
+We've already done our Cine Calibration, we already have our Cine Footage Match as we've seen in other tutorials, we're going to pick Blender as our export tool.
+
+And, for right now we can just use the empty comp starter, that'll just give us an empty Blender scene. And we're going to want to set in our clip in and out frame, so we can do 1200 and 1250. And this was shot on a Sony S Log3, S Gamut Cine.
+
+And we're going to use our InSpyReNet roto model cause that gives us a really high quality roto model that we're going to use for masking in this case. And we're going to go ahead and save and run, and we'll let this go through and extract our frames.
+
+And now InSpyReNet will start up and generate our AI mattes.
+
+
+## Blender Scene Setup
+
+Okay. Autoshot has just finished generating a Blender shot file and, since it's one of the empty comp starters, let's actually turn off the viewport compositor. And by default we bring in our footage on an image plate with the footage added as a material.
+
+And that's fine for most cases. In this case, we want to see the image through GeoTracker's interface. We're just going to go ahead and highlight our image plane and go ahead and delete that. 
+
+And then frame up again. 
+
+
+## GeoTracker Setup
+
+Now what we're going to do is make sure we have Keen Tools installed. So preferences, add ons, and we can type in Keen Tools. So I've already gone through the installation process. Keen Tools has a really good overview of this on the site.
+
+So I'm on a floating license over my license server port. And so that is all working. And then when I come over and hit N I can come down to GeoTracker and I can create a new GeoTracker. So let's go ahead and do that. And it's going to highlight this as red. It's asking us for a source clip. So we're going to click this, and we'll just go up one directory level, and then we can see that our shot, our CineCam EXR files are in this directory with the suffix shot001. That's, there we go. And highlight all those, and load the clip. And there is our tracking footage.
+
+
+## Setting Sequence Start Frame
+
+At first you think something's going wrong. If we scroll back and forth, we see the footage does not match the camera tracking data. And the answer is found down here. KeenTools has automatically set our playback to start off with 1001.
+
+And that is because our images are named starting with 1001. By default, it set our start frame in the Blender timeline to 1001. We actually don't want that. Our Blender timeline is starting at 1. So we're just going to hit the number 1. And now things align correctly.
+
+
+## Setting Color Profile and Analyzing Clip
+
+Then we're going to set our color interpretation to ACEScg since by default Autoshot generates all of its EXR files in ACEScg formatted file with AP1 primaries. So now we have the shot coming in, and the color's correct, and it looks like it should, and things are lining up.
+
+Now, this is still with the original Jetset tracking data, so it's good, but it's not a subpixel lock but that's what we're going to be going through in this tutorial. So now, what we're going to want to do is we're going to want to analyze this. First of all GeoTracker needs to do a optical flow based analysis of the scene.
+
+We're going to first pick out a place where we're going to put in our file. We can just go, once again, go up one directory, right click, and make a new folder. We'll just call it Geo. And we can just use the pre existing file name.
+
+Just click an analysis file. Okay, and now we need to analyze it. So we're going to click analyze. Starting with frame 1, going to frame 51, and click OK. And now what it's doing here, is it's not tracking yet. It's actually going through and mapping the optical flow for each pixel in the scene , as it goes through the shot.
+
+And this is one of the neat features of this, because we're depending less upon individual feature detection. As again, most trackers work with. And now we're just working with optical flow. Now it's going to analyze backwards through the shot again.
+
+Again, calculating the optical flow forwards and backwards.
+
+
+## Camera Parameters
+
+Now we have our analysis. And now we can actually, we can open up our camera. And what we see here is we currently have a fixed lens and we have our focal length at 23. 94 millimeters and our sensor width at 24. 9. And these values are coming in from our Jetset calibration, so we don't need to change them. It has already populated the camera with an accurate default lens setting, which is important as we're going to see for setting our first keyframes.
+
+And likewise, down under tracking GeoTracker can be set to, as its name says, track either geometry, or we can actually track camera. And it's the same math, it's just simply a choice of whether you have a stationary camera and are tracking moving geometry or stationary geometry in our case and are tracking a moving camera. We want to track the camera.
+
+
+## Setting Alignment Keyframes
+
+And we're going to go ahead and start pin mode. And this is the alignment process inside GeoTracker. The more standard GeoTracker workflow is to pull in a model and to set its location with pins and then to set a keyframe. Now, the great thing with the incoming Jetset data is that it's already pre aligned.
+
+We already have the correct model, we already have the correct alignment. All we have to do is drop a keyframe. So I'm just going to open up This little bit in our timeline so you can see what I'm editing so it becomes more clear. We've got our camera selected, and here's the existing keyframes from the Jetset track.
+
+So we have both keyframes from our object transform for the camera, and that's our position and orientation. And down here we have keyframes for the camera aspect of the camera, right? So we have the object of the camera and then the camera specific aspects of it. This is just how Blender stores camera information. So down here under the camera specific info, we've got the focal length, et cetera. 
+
+And KeenTools has already automatically picked our geometry, which is our mesh and our camera. Now we can actually come down here, and we're on frame one, and we're just going to delete all the forward looking keyframes from there. So here we've deleted our object transforms, and we kept our camera, our focal length, we're not changing that. But now, all of a sudden, if I move the camera through the scene, you'll see the geometry is no longer moving because we've removed all of our camera keyframes except our initial position.
+
+
+## Tracking The Shot
+
+All right, so we just set a GeoTracker keyframe here because things are aligned and we're going to tell it to track forward. So now GeoTracker is tracking forward with this initial pose estimate from Jetset, but now it's using the optical flow data along with the geometry data that we entered and told GeoTracker to use to track the shot.
+
+And so it's going to do so pretty quickly. And there it is. Everything is moving correctly. This is great! We just tracked a shot inside Blender. The mesh did not move. We tracked the camera to move relative to the mesh. And so our camera is still in the same coordinate space.
+
+
+## Using AI Generated Tracking Masks
+
+In this case, we did not mask out the actor. And it tracked fine even with doing that. Which is really impressive, because usually on a feature based tracker you have to use roto mattes on the actor. Otherwise the actor generates a lot of features and throws off the tracker.
+
+And, KeenTools didn't blink. Now, there are cases where you do want to mask out the actor. And fortunately, we generated AI mattes for this. So let's go ahead and learn how to do that. We're going to go back to frame 1. And we're going to go ahead and delete our keyframes again.
+
+So no keyframes. So we, yep, so the geometry is no longer moving. We'll go back to frame 1. And we're going to go down to masks. And KeenTools has a number of different mask types it can use, surface masks, compositing masks that you can build in Blender. We actually just want the sequence mask, because we have an image sequence.
+
+We're going to click our folder icon, go up one level, and under AI mattes, shot 001, we have a conveniently generated set of AI mattes. And I'm going to load our mask sequence. Now, wait a second, we don't see it. Why don't we see it? It's the same sort of thing. Autoshot automatically names the frame starting with 1001, a VFX standard.
+
+And GeoTracker assumed that we wanted to have our start frame also at 1001. But no, in our timeline we have our start frame as 1. And, so I'm going to enter that. And then all of a sudden, here's our mask. 
+
+And as we move forward in the shot, you can see the mask is following and tracking the person. Now you'll notice the geometry is not tracking, so that's what we're going to do next. We'll go back to frame one, where our alignment is correct. 
+
+Now we can go back up, add a keyframe, and we can tell it to track forward. And it's going to go track forward, and add in all the keyframes that we want for the position and orientation of the camera.
+
+And you can see that GeoTracker is using the AI generated mask to ignore the motion estimation under the actor. It's only looking at the rigid body transform of the actual scene. All right, that was quick. Adding the mask slows down GeoTracker a little bit.
+
+So if you don't need to use the masks, you don't need to, but in some cases it'll be very useful to have that. So once again, we have a nicely tracked shot and now you can just work forward in your scene, render out and have an accurately matched image, or we can actually do a few other nifty tricks here. So I'm going to, going to click back to 3D. So we're out of the pin mode now, and we're viewing the normal Blender viewport.
+
+
+## Texture Projection Setup
+
+You can actually use GeoTracker to project textures onto geometry from multiple angles. And this can come up really useful if you're trying to make a clean plate for something, or if you just want the texture projected onto geometry. And we already have geometry that closely matches the scene, which is our scan data from Jetset.
+
+Let's see how to do that. Before we jump into anything else, we want to make sure that our projected textures are displayed.
+
+By default, Autoshot sets up the mesh to be displayed as a wire frame. So you can see how it overlays the footage. So if we go over to our object panel, and we have our mesh selected, and we can come down and look at our viewport display, and we see that is displayed as a wire.
+
+Now, in order for it to display textures, we need to tell it to display as textured. Okay, so then all of a sudden we see our we see our tracking mesh displayed with a kind of a gray scaled texture. Now, let's take a quick look at the textures over there. If we look at our material, and I'll pull this down, and this is the scan that's coming from Jetset.
+
+
+## Removing Scan Materials
+
+And so the way that works is that as you s you map around the room, it's actually automatically adding a bunch of different pieces of geometry and materials. So what you end up with is a ton of different materials with a gray shader on it, just for one piece of geometry.
+
+And if we leave these on here, we're not going to be able to see the texture . So we can just come up here and and I, the minus button was hiding, so I just clicked up here and then down here. Now I can see the minus button. Start up at the top and then go ahead and click the minus button a bunch of times. And that gets rid of all the the extraneous materials that are, that were applied to this. Okay. So now we've removed the unneeded materials. 
+
+
+## Creating UV Maps
+
+So back to GeoTracker under our texture tab, it's telling us that it is missing UVs because the scan data from Jetset's LiDAR doesn't generate UVs by default. So we are going to tell it to create a Smart UV. So it created a smart uv. And what that is doing is if we click under UV editing you can actually see that it's made a UV map for the scan.
+
+And the scan's going to be a little bit rough, so our results will be a little bit rough but it'll be enough to see what's going on.
+
+
+## Choosing Projection Frames
+
+And If we now go under texture, now we're tracking through the scene. And we can pick out the frames that we want to sample texture from. And it's going to project from the camera view.
+
+Remember we've solved the camera point of view in GeoTracker. It's going to project the image that it has for that frame onto the geometry. So over here, we can have a pretty good view of the geometry. So we're going to, we can add a frame 51. And if we wanted to come back over to the side, we can add, frame 31 and come back over here and frame 13 and maybe back to frame one.
+
+So we'll add all those frames as sampling points, and then we can actually tell it to create the texture. And it's going to give us a warning that it has overlapping UVs, and that's just a factor of having data from these real time scanners.
+
+Sometimes the UVs are overlapping. So we can just click OK, we'll project that, it's going to work through, and bake. All right, so it has gone through and projected and baked onto that material, so let's Come out to the side. So we can see that it has projected onto our 3D geometry from multiple viewpoints.
+
+And of course the camera was only on one side so the other side is in shadow, so that's not projected. But you can see that the projections are matching pretty well to the underlying geometry. Things are lining up. And you can see how the different overlapping projections have different, slightly different incident lighting.
+
+But they're all lining up. So this is a nice way of making if you need something like a textured piece of geometry then you can achieve that pretty easily.
+
+
+## Rendering Wireframe Animation
+
+Now if we want to check the quality of the shot and to see how well it's sticking, then we're going to want to render out a preview. And it's frequently convenient to see the preview with the wireframe overlaid on top of the geometry.
+
+So if we want to generate a rendered preview then we actually come down and click on the render wireframe and we can once again go up to our geo folder and type in shot one
+
+
+
+The controls for the display of the wireframe while rendering are actually in the render output panel. So this is important to note. If we want to, for example, increase our line width to a larger point, that control is only over here. If we want to change our color to something else other than bright green, this is the area where we would actually adjust those controls. We just go ahead and click on Render Wireframe.
+
+And it's gonna start chugging through the frames to render it.
+
+
+
+
+## Viewing PNG Sequence
+
+Okay, it has rendered out a series of PNG images, and we can actually go next to our take. We'll just click open and That will show us our directory of all the subfolders in that take. Here's our geo subfolder So we can see those are the PNG images and if we want to be able to actually see those in a real time player I'm just using mrv2, but you can use your player of choice Open a sequence And paste this in.
+
+And there is our sequence. We'll tell it to open. There we go. So now we can look back at the playback, and we can see that the plate is sticking really nicely to the wire frame which is exactly what we want.
+
+
+## Workflow Wins
+
+There's a lot of wins here. The first win, of course, is that we didn't need an external tracking app. We got a really tightly locked shot right inside Blender. And we also didn't need to move the mesh. One thing you have to watch out for when tracking is that the camera tracker can throw out position, orientation, and scale information, and you have to go guess and recreate that.
+
+And we didn't do that since our underlying wireframe mesh didn't change position, and we tracked the camera with reference to that mesh, then we maintained the position and orientation of the camera that we had in Jetset all the way through post production, and only changing that a tiny incremental amount to get a sub pixel shot versus the on set shot. And so if you have 50 shots in the same space, then everything lines up.
+
+The other win is that we are less dependent on tracking individual features. Since they are doing the optical flow over the entire block at once, we didn't have to worry about a feature going behind someone's leg or going behind a pole or something like that, which is normally an enormous amount of work to fix if you're depending upon individual tracked features in a more traditional tracking application.
+
+
+## Limitations
+
+Now there's some limitations as well. GeoTracker assumes undistorted footage. And in our case, Our footage didn't have that much distortion in it, and so it tracked fine. This will work fine for quite a few shots. And if you really want to use the traditional undistort, render oversize, then redistort pipeline and compositing, you can certainly do that.
+
+We have that working in SynthEyes. But for a lot of shots where you just want your track to stick, and you're not dealing with a wide angle lens with a lot of very visible barrel distortion, this will just work.
+
+
+## Bridging the Gap
+
+So this is an unusual bit of serendipity In that the on set tracking data generated by Jetset, the camera position, orientation, cine calibration, and the scan data, turns out to be exactly the input data that GeoTracker needs to generate a finished shot.
+
+So this is great. Jetset builds part of the bridge, GeoTracker built the other part of the bridge, you put them together, and all of a sudden you can track a lot of shots of complex moving 3D camera work without actually having to go into one of the traditional tracking apps.
+
+
+## Nuke Workflow
+
+In addition, KeenTools has GeoTracker built into other hosts. We've been working with GeoTracker for Blender, but there's also a GeoTracker for Nuke. And the exact same data that we're bringing in, which is the camera original, the initial camera track camera optics the lens calibration, and the scan data that we brought into Blender is exactly the same data that we bring into Nuke via the Autoshot Nuke exports. So we're going to go through and do the same tutorial in Nuke using the Jetset input into GeoTracker.
+
+
+## A Complete High Speed Tracking Pipeline
+
+So this is really exciting, so now we can bring this high speed workflow, taking on set tracking data all the way into post production without throwing away data or starting over. If you've been wanting to do 3D tracked camera shots, but have been scared of the time and difficulty of doing it in a more traditional manner, this is how you want to start. 
+

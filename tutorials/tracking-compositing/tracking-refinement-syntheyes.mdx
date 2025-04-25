@@ -1,0 +1,457 @@
+---
+title: 'Tracking Refinement in SynthEyes'
+description: 'Jetset’s tracking and scanning data capture can be used along with AI roto mattes to dramatically increase the speed of post production tracking refinement, including overscan rendering in Blender and matched distortion nodes in Nuke.'
+---
+
+## Video Tutorial
+
+<iframe src="https://share.descript.com/embed/PgJMiYSMhdJ" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+# Transcription
+​​​
+In this tutorial we'll go through our tracking refinement process with SynthEyes. We'll also show how to integrate InSpyReNet, a state of the art AI rotoscope matting generator, and we're going to use that to avoid automatically putting tracking markers on the people in the shot, because that'll mess up the solver.
+
+We'll take this all the way through Nuke and Blender, including an overscan workflow and bring it back. So let's start off. 
+
+
+## Installing InSpyReNet
+
+First of all, we're going to download InSpyReNet and I'll put the link below.
+
+And we'll put that into our downloads. This is a, quite a large AI model to do automatic rotoscopes, but the quality level is very, very high. So this could also be used for exterior work, where you're trying to rotoscope out a person in the middle of an environment. So we'll let that download for a second. 
+
+Okay, so that has finished downloading, and we're going to click here to open it. 
+
+We're going to want to unzip this into a particular directory. So I'm going to right click, and we're going to extract all. And we're going to browse.
+
+And we're going to go to our program files.
+
+iCraft Technology. We're going to extract into here. Go ahead and click extract. 
+
+Provide permission. 
+
+All right, and let it extract. It's going to be quite a few gigabytes as it's containing the AI model weights. 
+
+
+## Verifying Installation
+
+And so just to double check to make sure that it's in the right spot, we're going to go over to C:\\ Program Files. And, Lightcraft Technology, and you can see that in the Lightcraft Technology folder, it should be at the same folder hierarchy level as Autoshot and Autoshot Tools. And this way, InSpyReNet will be recognized correctly when we start up Autoshot. 
+
+So now we can start up Autoshot. And if we go to our AI Roto model, We can see that now it includes InSpyReNet. 
+
+
+## Take Color Space
+
+We're going to process this take from the barn shot, the barn shoot. And we only want a couple hundred frames of this. So I'm going to go from start in frame at 1150 and out frame at 1320. This was originally shot ProRes RAW and then transcoded to ProRes 4444 XQ with the Sony S Log3, S Gamut Cine color spaces. So just to make sure we pick Sony and we're going to use our S Log3, S Gamut 3, or S Gamut Cine color space. 
+
+And it's going to be converting that over to ACEScg. And we're going to use our extracted EXRs and we'll just do our first test in Blender so you can see how it's going to work and let's click save and run.
+
+
+## Generating AI Roto Mattes
+
+We have already extracted our EXRs and in addition what's going to happen is InSpyReNet is going to start calculating the AI Roto images for this. And that's going to take actually a little bit of time. Here it's going to first start loading up the model weights to run the AI processing. 
+
+And that can take a few minutes actually to load up the model weights. 
+
+Okay, and here you can see it's going to start processing the frames. We can see it's at 0 percent right now. And as it processes the frames, you can see the increment of the frame number out of the total number of frames and the percentage completion. So we'll let that go and complete our 171 frames.
+
+And it's working at about a frame and a half per second. 
+
+InSpyReNet is the slowest of the AI matte generators that we're using, but it's also the highest quality. It only works at this point on Windows. On the Mac Autoshot platform, there are two other AI Roto models, ModNet and PPNet.
+
+And those, those are both faster, but the segmentation is not as, quite as high of a quality. So we wanted to show you what InSpyReNet is capable of doing. 
+
+
+## Blender Render File
+
+Here is our generated Blender render file. So as we scroll through, we can see we have a moving camera and we have the moving image sequence. And because we generated the AI rotomattes with InSpyReNet, we are automatically using those to cut out the actor from the background.
+
+All right. So this is good. This as we know, has the Jetset real time track in it, and we're going to replace the Jetset real time track with the refined track a little bit later on. All right, so we've got this. Let's go ahead and click Save and save it.
+
+
+## Generating Autoshot Scripts
+
+And now we're going to go back over to Autoshot. And we're going to go from Blender and we're going to move to Others. And we're going to go ahead and keep the same values. Click Save and Run. Okay, so it went through and generated all the different scripts that we are going to need. 
+
+And the first one we're going to want is the SynthEyes script. So we'll go ahead and click on this, and that will just open the directory that the SynthEyes file was created in. So here's our SynthEyes file, and we're actually just going to want to click up here and grab the path control C to copy and go over to SynthEyes. 
+
+
+## Running SynthEyes Script
+
+And now we can click a script and run script and go ahead and come up here and hit paste.
+
+And that way we know we're in the correct directory. Then we can pick that Sizzle script and open it. All right. So it imported it and we can just click our camera view. And here is our imported shot. Has all the different, has the individual frames and has the the Jetset based camera tracking data, as well as the Jetset generated 3D scan of the scene.
+
+And we're going to use all of these to make our shot. Okay. First thing we can do is we can click Rotomask because this is the automatically generated AI roto matte that InSpyReNet generated and that Autoshot automatically put into the scene. The file and that will prevent trackers from being placed on the person.
+
+
+## Set Color Space
+
+First thing, let's click P for the image preprocessor. And let's set our color. We're going to use a ACES to 709 as we're using ACES CG files as a standard. Click okay. Before we go any further, let's go ahead and click file and save as, and we're just going to go up a directory and back to SynthEyes.
+
+The script automatically saves a SynthEyes file. We just need to click on ,it and click save. That's fine. And that way it will automatically save to the correct location. 
+
+
+## Syntheyes Feature Settings
+
+What we want to do next is we want to actually get as many good points as we can. And we could just run the autotracker, but that'll just run it with the default settings that we set in the script. 
+
+We want to actually go through a few different settings, and I'm borrowing this technique from yet another of Matt Merkovich's SynthEyes Tutorials, and if you have the thought that I'm simply going through all of his tutorials and borrowing the techniques, that would be correct! Ha, ha, ha. 
+
+So let's go to Features, and we're going to click Advanced, and we're going to do a set of small, medium, and large. So I'm going to start off with 12 and 24. And this is actually the small setting, because we're on a 4k plate the pixel counts slightly larger.
+
+And I'm going to click Auto Re-Blips. So you can actually see which things are being detected when we do this. So here we have all these will be detected on on this round. And we're going to click blips all frames.
+
+All right. And. Then we're going to click Peel All, and so that got a set of trackers for the small features. 
+
+We're going to go up to a medium set of features, and we'll just do 16 and 32. And once again, we're going to do Blips All Frames.
+
+And then Peel All. 
+
+And what this process is doing is that Blips All Frames finds all the the features with these sizes that are good features to track through the range of motion, and then Peel All grabs the best of those and keeps those as trackers. 
+
+And we're going to finish off with the large ones, which is going to be 20 and 40.
+
+And once again, we're going to do Blips All Frames.
+
+And then we can do Peel All. 
+
+Okay, so now what we have, and I'll we can exit our feature control panel, and I'll turn on, on our display, we can turn off our meshes for a second, and we'll turn off our image display, so you can actually see what's going on. And actually, we'll move into our tracker tab.
+
+So you can actually see, we have a set of small, medium, and large features all being detected. Now these are all still 2D features, and we're going to need to get 3D data from them in the next step. 
+
+
+## Creating Survey Data
+
+So we're going to display our, turn it back on our image and our mesh, because the next step we want to see where we have a scan mesh.
+
+We want to have several fairly stable trackers to work from. So I'm going to pick out a wide area of the shot that has trackers spread out over the areas that we want. And every once in a while, when you see a tracker that's doing strange things, just go ahead and delete it at this phase.
+
+Because it's going to cause, it can cause problems later on. It's like this tracker here that's, that's following his foot. We can just go ahead and delete that. 
+
+We'll get rid of more of them later on, but right now what we're looking for is a place to set our scale. And so we want several trackers that are acting stably over a range.
+
+So this, this looks all right. So we can actually just grab a few of our, a few of our trackers. 
+
+We can actually just lasso select a few of these. And we can click track and drop onto mesh. 
+
+And what that has done is converted those into survey tracker marks. And that locks the 2D position of that onto the 3D location of the mesh. It doesn't completely lock it, it's kind of a soft lock that SynthEyes uses, but it'll be really useful for the next phase.
+
+We can only drop onto the mesh in places where we have a scanned mesh. So that's why I picked this area of the floor to drop onto mesh We don't actually have any mesh on the the vertical background so we can't do it there. 
+
+
+## Initial 3D Solve
+
+Once we've dropped the markers onto the mesh, We established those as survey data, we can go over to our solver And we can click go and it crunches and it has solved our camera in 3d space. 
+
+
+## Enabling Tracker Radar
+
+One thing we're going to want to turn on to give us an assist in this next step is our radar.
+
+So you just right click and do view and then show tracker radar. The tracker radar is these red rings that show the error for a given tracker on a particular frame. So some of these you have just huge error, right? 
+
+
+## Refining the Solve
+
+So what we're going to do real quick is just go Shift C.
+
+And we're going to just remove our bad frames and hit Disable instead of Clear. And we can just click Fix. And we'll click, change this from Automatic to Refine. And then we can click Go. And what this is doing is it's refining the solve. It's, it's keeping our 3D orientation, but now we can focus on getting rid of the trackers that are causing lots of error. 
+
+So if we, we click here to deselect all of our trackers, we can see as we go through some of the trackers have a pretty large error, and the easiest way to, to catch these is to hit shift C, and just keep getting rid of the high order, high error trackers, and hit re, and re solving. And sometimes as you're going through, one of them will be particularly egregious.
+
+You just, you can just manually delete that. We're down below a pixel of error. Let's hit shift C, and here we can actually start coming in and lowering our threshold for our high error trackers. We're going to go down to, say, 18, fix those, and click go, and again, we're still in refine, so we're just systematically kind of walking down our error by getting rid of all the, the, the worst trackers.
+
+And refine, and we have a lot of trackers, so we can actually get rid of quite a few trackers that we're not, we're not breaking our solve. All right. So our solve is mostly green and we can kind of go through and look at, at some of the different, different pieces of it. I'm just going to hit this and get rid of a few more of the errors.
+
+And we're, you know, getting down to a reasonable level of, of error here. So shots, mostly green, and we still have plenty of trackers. Let's just look at one of the areas where we still have some yellow here. See if there's any trackers that are just really leaping out at us. I'll hit shift C again and get rid of a few more of these, the higher trackers and we're down to, okay.
+
+So the shots basically green at this point. So we have a three D solve and trackers that are, that are working out pretty well. 
+
+
+## Setting Sensor Width
+
+This is a good place to set our sensor width. With the current workflow the sensor width is set during lens calibration in Autoshot. And so this should already be set. This is an older take, so it doesn't have the sensor width integrated into that.
+
+So either way, if it, if it's wrong, you can fix it here. And so you can click this to open shot, and the sensor size of a Sony FX3, the width of it is actually 35. 6. And as we click here, you can see that it's automatically adjusted the sensor height to match the image size. 
+
+And we'll remember this 35. 6 millimeter dimension for later, when we start transferring things to Blender. So we can click OK. 
+
+
+## Verifying Focal Length
+
+Now we can see that our focal length is about 34 millimeters. If we look back at the shot in Autoshot, the Cine calibration is for a 35 millimeter lens. And so that's, that's a good way to verify that you're actually reasonably close to what the actual lens was.
+
+If you have put the correct sensor back in and solve, then you'll get a focal length that's reasonably close to what you had marked on the barrel.
+
+
+## Solving Lens Distortion
+
+Okay, so we want to actually then start to solve for lens distortion. This was shot with a slightly wide angle lens, a 24mm lens, so it has some distortion. So we can go ahead and click Calculate Distortion, and click Go to refine. And it hasn't changed that much here. It's a fairly subtle amount of distortion in this.
+
+SynthEyes now uses a much more modern lens distortion system. So instead of classic, we can switch to standard radial fourth order. And this exposes several parameters here. We don't want to just turn them all at once. The solve in SynthEyes is iterative. So we want to turn on a parameter and calculate it and see if it's dropping the dropping the solve values.
+
+We'll turn on U2 and V2 and calculate those. All right, so it's dropped off the solve a little, the error a little bit and calculate C4. And that's that's actually increased it a little bit. So we may not need to do that. So just go back to manual, set that to zero and recalculate. Okay, so we are in the green.
+
+Okay, so that is probably sufficient for our lens distortion calculations.
+
+
+## Adding Chisels
+
+So each one of these points is now solved in 3D space. To make it easier to see how things are really aligning, we're going to add some geometry through the scene.
+
+Since we are aligning the top edge of the platform here with our CG later on, then we want to have our markers where we're going to be aligning the CG to. So we can pick some of our markers and pick the ones that are aligned here. 
+
+It's a little hard to see, but they're closely following the, the top scan of the surface. Now we're going to go to Script and we're going to go Mesh and Duplicate Mesh Onto Trackers. We're going to set our chisel size to five and leave this part empty as no name will produce chisels and we'll click okay. All right. So that generated eight meshes onto there. 
+
+
+## Hiding Scan Mesh and Rendering Preview
+
+So there are our chisels and we're going to use those to be able to kind of see how things are aligning. One of the last things we're going to do is once we have our ground mesh,
+
+We can go ahead and go into 3D and just click hide that. That way we won't, we won't see it. It's a good time to save. 
+
+Let us do a render so we can make sure that our 3D points are sticking correctly. To do that, we're going to do a render preview. So we're going to go to shot and then save sequence.
+
+And we can just set our file name. Once again, I'm going to hit control V to save to put us into the correct SynthEyes folder. And then this default file name is fine, click save, and we're going to include the meshes. Let's change our compression settings. And, we can go up to 20, 000. All right, let's click start. 
+
+There is our shot going through. So we can see our chisels rendered on top of our CG object. In general those look like they're staying put. Okay, that's good. So I'm going to exit out of here. All right, that's a good time to save.
+
+
+## Setting Lens Distortion Workflow
+
+Before we export to Blender, we need to run a lens workflow and this will generate our overscan, and we'll talk about what exactly that means. So let's go ahead and click our lens workflow. 
+
+The way we're going to work is to render an image in Blender with overscan, and then we're going to re add the distortion to it back into our Nuke composite.
+
+So, we're going to use the number two lens workflow. We're going to use a 5 percent margin so we can have a standard margin here. And we're going to set our maximum rounding error as 1. And that will prevent too large of a border from being generated. So then we can click OK. 
+
+What it's going to do is crunch through and undistort the image, and pad the outside of the image, there we go, to handle the undistortion level. So, we only have a small amount of distortion in the image, and that's why we used a 5 percent margin. 
+
+But you can see the image has now been undistorted, and it's stretching slightly outward in the corners. That's because we had a slight amount of barrel distortion, and then when we undistorted it, it pulls it slightly outward. And this black border on this is the 5 percent margin that we entered.
+
+Now, an important thing is, let's go look at we'll hover over here, and we can see that we have our original sensor size, 35. 6, but now below that we have an effective size of 37. 8, and we're going to want to remember that number because that is the sensor width that we're going to send to Blender. That is how we're going to handle overscan in this workflow. All right, so that, now that's working. Hit save.
+
+
+
+
+## SynthEyes Blender Export
+
+So now let's go to our Blender export. We're going to go to file and export, and we're going to go to Blender Python, and we can just accept the default name. Let's go ahead and highlight here, hit paste. And we can just leave this in, in SynthEyes for now, in the SynthEyes directory. That's fine. We're going to click save. 
+
+There's a few setup things we need to do here in the exporter. First thing we want to do is we want to export the entire shot, and we're going to go with starting frame of 1. And lots of different ways to do this, but this is how we'll do it for now.
+
+We're going to use the Blender version 4. 0 plus, because we're on Blender 4. 1. We're going to create a new scene, and we're going to rescale the scene to .01 because the data in SynthEyes, as you saw was in centimeters, and in Blender it's in meters, so we need to rescale the scene to 01.
+
+And we'll set our tracker size to 5. We're also here going to want to open up in Blender automatically. And to do that, we need to find our Blender executable. Fortunately, we can go just back to SynthEyes and go back to Blender. Pick our executable here. Grab our path. Let's cancel out of there.
+
+Come back to come back to SynthEyes and come in here and highlight this and control V to paste it. And that will take it right to the Blender executable. Now we can click OK. And it's going to work on it for a second and generate a whole new Blender scene. 
+
+All right, here is our tracked Blender scene. So here is the SynthEyes generated scene with our 3D markers and our chisels. And I've left the chisels in here cause we're going to use those for reference. All right, so now we can just go ahead and click save and you can just save it into the blend into the Blender directory as a tracked camera, this is a temporary file. So it doesn't matter what we name it. So I'm going to save it.
+
+
+## Disabling Collections
+
+Now we're going to go back to our other Blender file. Here is our original Blender render file. And before we bring in the SynthEyes information, let's turn off some things to avoid confusing ourselves. 
+
+This initial collection has the Jetset tracked camera in it, as well as the image plane. We're not going to need that. So we're going to turn off that collection. 
+
+This is the scan collection. And so if I highlight the scan that has the, that has the the geometry from the LiDAR set. We're actually going to bring in a, our new geometry along with this from SynthEyes, so we don't want this either.
+
+So I'm going to turn off the scan collection. I'm going to highlight scene collection because when we append the SynthEyes scene, we want it to come in under the scene collection. All right. So let's go ahead and save that. 
+
+
+## Appending Refined Camera to Render Scene
+
+Go over to file. And we're going to append our tracked camera file that we just created and we're going to pick a collection and we're going to pick the SynthEyes collection. We're going to append that. And here they are! They appear inside our scene in the correct orientation and almost the correct position. This is the SynthEyes tracked scene that is now in our main scene.
+
+
+## Rough Alignment of Tracked Camera and Points to Scene
+
+So before we do anything else, let us align this mesh and our trackers with our CG environment. And you can see that on set we were a little bit misaligned here, so we're going to fix that. And we're going to highlight our SynthEyes world null and hit G X and Blender's usual move command and G X and G X.
+
+And what we're doing is we're moving it so that the edge of our physical scan, which correlates which with our actual live action world is going to line up with the edge of our CG world. And that way things are going to all line up correctly. And we can click GZ to bring it down a little bit until our the edge of our markers here are just in contact with the top of the CG world.
+
+And we're going to want to align these closely. So this is pretty close, but you'll notice back here that our markers are now poking down through there. And we want to make this very precise. The mesh has, has done all we need it for. So we can highlight that come over to, to the outliner, hit period to highlight it and hide it both from the viewport and from the render.
+
+
+## Fine Alignment of Tracked Camera and Points to Scene
+
+And now let's do something kind of fun. This side is, is correctly oriented so we can highlight that. And we're going to hit Shift S and move our cursor to our selected. And that moves the Blender 3D cursor here. Now we can actually tell things to manipulate around that 3D cursor.
+
+So, I'm going to highlight our SynthEyes world, and we can do R Y. And this is rotating our entire scene. I'm only adjusting the SynthEyes world top level null, but I'm adjusting it around the point that's correct. So we're not, like, fiddling around a lot. And I'm actually going to move over here, and I'm going to do RY again, so I have more finer control.
+
+We just want those to exactly pop into the top surface of that. These points were calculated from the, from the actual optical solve of the top edge of our live action, you know, walkway. And now we've made those align perfectly with our CG walkway. So things are lined up now. 
+
+
+## Rendering Sequence
+
+Now we are going to want to control click on the SynthEyes camera to select it. And then we can hit numpad zero to look through it. Okay, there's our shot. And now we're going to click on the, the camera and the camera settings. And we can look in the sensor.
+
+And we can see our sensor size. And our width is 37. 38 millimeters. And that's going to look really familiar because if we're in SynthEyes, we hover over our shot. This is the effective size of 37. 38 millimeters by 21. 06.
+
+And remember, this is the overscan size. This is, this is the key thing that is going to let our our redistorted footage come in and match. 
+
+So we have already told Blender we're going to render this view with overscan. Now we need to add a few more pixels to, to the overscan so we're going to go over to our output and we're going to change that to 105 percent so we'll have a few more pixels to work with.
+
+
+## Hiding Foreground Guardrail
+
+And also before I do this, I'm going to hide these two pieces of it. Normally we would render this in a separate layer but this tutorial is just for, for showing alignment. So I'm going to highlight our guardrail and highlight over here and hide it from the viewpoint and the render And maybe this one as well.
+
+Period to highlight, and there we go. 
+
+
+## Rendering Blender Image Sequence
+
+Okay. Hit 0 to go back to our view, and go ahead and render our animation. 
+
+And we're just rendering a quick EV animation here. This is not the, the actual final model, but it's a good reference to verify our lineup. And also I'm, I'm rendering the chisels into the final image. Normally you would not do this. I'm just going to do this to to verify the correct alignment in Nuke as we bring all the images together. 
+
+
+## Renumbering Blender Image Sequence
+
+Okay. So we've finished rendering. There's one other thing we need to do before we move on. Next to our take, we're going to click open. And we're going to look in our render EXR. That's where our renders have gone. 
+
+And we have a nice EXR sequence, except they start with 001 and all of our other files for example, our EXR files start with 1001, 1002 because that's the standard for visual effects work.
+
+So we need to renumber those. So we'll go back to our render EXR. And fortunately we have a tool in Autoshot to do that. Let's go over to File, Renumber Image Sequence, and Autoshot has actually already brought us over to the correct place. So we're going to go to render EXR and pick our first file, click open and it recognizes that as a sequence.
+
+And we're going to have our new starting number as 1001, going to run it. And then we can look at what our, Numbers have turned into, and there we are, 1001, 1002, etc. Great, now we can move on.
+
+
+## SynthEyes Nuke Export
+
+Okay, so we're going to move back to SynthEyes. We already wrote out an export to Blender, now we need to write a matching export into Nuke. We're going to go to File, and Export, and we're going to go to Nuke, We're going to use current because that's the most modern version of this.
+
+Again, the default location for this in the SynthEyes directory is fine. I'm going to click save and our settings for Nuke is a little bit different. We are going to use the same five percent overscan here. It's called Maya overscan, but that's the same one for all the devices.
+
+In this case we'll do match frames because that works better to drop it into Nuke. We're going to come down here and we're going to tell it, to export it to a clipboard, and that will load all the generated Nuke nodes into the clipboard copy. And we're going to click OK. 
+
+And that has now loaded all the the nodes into our buffer. 
+
+
+## Pasting SynthEyes Nodes into Nuke
+
+we're going to open up Nuke and make sure our node graph is here and we can hit control V to paste it. All right. So a lot of nodes came in here. Let's move the title up over here.
+
+And what these are is a set of undistortion and redistortion nodes. So if I double click here for our cam viewer this shows our, cam viewer. camera original footage, and all of these are our chisels that are then routed into with our a 3D scene, connected to a 3D camera and it rendered and then overlaid on top of our footage. 
+
+When we bring in the background video, we're going to verify that those all line up. So let's go ahead and grab a hold of all these, and let's move it over here. 
+
+And we have a problem here is, is that right now the default frame starts here from 1. And, you know, see, nothing's happening. And that's because our actual frames go from 1001 upwards to about 1171 in this case. That'll get fixed when we do our Autoshot export.
+
+So, let's go ahead and click save. And we'll, you can save it as whatever you want. There we go.
+
+
+## Autoshot Nuke Export
+
+Let's go back to Autoshot, and now our Nuke script is here. So let's go ahead and click on that. It's going to open up a directory and. We'll highlight that, click control C, and we'll go back to Nuke, and we'll hit Alt X, and that lets us run a script.
+
+You can also do this with the file and then run script, same thing, and let's go ahead and hit paste, and that brings us to a Nuke directory, and there is our Nuke script that Autoshot generated. We can open this, and we can see where it created some nodes. Let's grab our nodes, and bring them all.
+
+Fairly close together so we can see what's going on. And this is a set of nodes that Autoshot generates, and it has a couple of other pieces that are very useful.
+
+
+## Corrected Start/End Frames
+
+And as we imported it, you'll notice something quite useful, which is it has reset our frame timing and our frame timing now matches from 1001 to 1171 which is the correct number of frames in our shot. There we go. That's good.
+
+
+## Original and Overscan Resolutions
+
+Now that we have our shot working let's go through a couple of the resolution sizes. Let's double click on our camera one viewer, this is the undistorted viewer, and highlight our merge node and hit one.
+
+And what this is, is we can follow the pieces coming through. These are all the geometry of our chisels. They are feeding with our tracked camera, going into a scene, and being rendered. And if we highlight on our render, we can see this is our undistorted size of our footage. You know, if we, if we go back over here and hit one on our camera original, we see we are at 4264 by 2408.
+
+And we come down to our I'll double click our undistorted viewer, and hit, highlight merge, and hit one. This is our undistorted size of our camera original footage. And go back, double click on our redistorted viewer, highlight the merge, hit 1. Okay, so now we are looking at our camera original footage, but with the chisels composited onto it.
+
+And the set of nodes that does the redistortion are this set of vertical nodes here. Okay, so now we've got chisels. 
+
+
+## Loading Blender Renders
+
+So let's actually bring in our actual blender rendered footage. So we're going to hit R for a reader node, and this is our render EXR file. And we're going to click on this sequence.
+
+There's our rendered images. Looks a little bit funny now, but we're going to fix that. And if we just highlight this and hit one to link it to the viewer, we don't see anything. And that is because by default, Blender drops it into a specially named layer. So we're going to highlight this, hit tab, and pick out a shuffle node.
+
+And then in our shuffle channel, we can set our input layer to the V layer combined. There we go. Now we can see our image. It's a little dark, so let's hit tab and add a grade node. That's probably a better way to do this, but we'll do this for now. I'm going to up our gain and our multiply by quite a bit so we can make this brighter.
+
+Again, this is not a finished compositing tutorial. We just want to show how things are going to line up correctly.
+
+
+## Reformatting Blender Renders
+
+Okay, so now we're going to highlight a grade node, hit 1, and here we see this is a resolution coming out of Blender 2116 by 1134, but that's quite a bit smaller than what we need to redistort it.
+
+So we're going to highlight this, and we're going to hit tab, and we're going to add a reformat node, and we're going to pick on our reformat, and we're going to go down to SynthEyes, gives us a couple of choices. Let's double check which one we need.
+
+Highlight this. 4478 by 2528. So I'm going to go back to reformat, double click that and pick 4478 by 2528. There we go. Okay. Now that's the correct one. Now we can see we have our full frame of rendered footage, and it has reformatted to 4478 by 2528. 
+
+
+## Verifying Alignment
+
+We'll move these up here, and I'm going to highlight this node, and I'm going to add a merge node onto that, and we want to actually merge the chisels, A, over our reformatted node, B. And here we can see these are lining up correctly. 
+
+Hit one to make sure merge is going to the viewer, and And highlight merge nodes, merge node, and if we hit D to disable and enable it, we can see that our chisels rendered in Nuke are now dropping perfectly on top of the 3D chisels we rendered in Blender.
+
+And again, normally you wouldn't do this in a production situation, but this is just to show our lineup is precise. 
+
+Now we actually want to see how the composite's going to, going to look. Over here we took our chisels, and we rendered, and we brought it through the distortion, and rendered them on top of our image.
+
+
+## Compositing Camera Original
+
+And we're going to do something very similar. We are going to actually redistort our footage instead of the chisels, and then render the image on top of that. Let's unhook our resize, and from here, and hook it to our reformat node. And so now we are busily resizing our footage.
+
+And if we highlight our merge, we can see that our resize is on top of that. But we actually, we don't want that. We want the keyed footage on top of our CG background. So to do that, we're going to let's go ahead and control C and control V. Let's grab our cam original footage and highlight this and hit tab.
+
+We want a Keylight keyer and bring this down and let's, let's highlight Keylight and hit one. And we're going to enable this, and this is not a King tutorial, so this is going to be a pretty rough key. So we'll just pick a spot here, and get a very fairly ugly looking key. But enough for our purposes.
+
+And we're going to want bring our viewer down, and we have our merge node again. This time around, we want to merge this over that, so we're going to unhook our two nodes, and there is our B, and our A is here, and highlight this and hit one. There we go, and there is our composite and we can look at it, see how it's going together.
+
+There we go, that looks like it is matched. Let's save here for a second. That's fine.
+
+
+
+
+## Rendering Flipbook
+
+And we're going to want to see how this actually looks when we render it together. Make sure it's actually doing what we expect it to be doing. So we can make a flipbook very quick, very quickly. 
+
+And let's go ahead, highlight our merge node, and do render. And we're going to do a flipbook on the selected. And make sure our frame range is correct, which is fine; let's do okay. And it'll calculate through and render our frames out.
+
+
+
+Alright, so here is our flipbook. And I'm going to hit space and run it full frame. There we go. And what we want to see here is just to make sure that our shot is tracking correctly. And that things are not floating. There we go, and in general it looks like it is matching up. 
+
+This would be the starting point where we actually go in and do a little bit better job of keying and compositing.
+
+But this, this shows that the things are lining up correctly, and that our distortion is being correctly reapplied to the shot. Okay, good. So we have a, a flip book check is working. 
+
+
+## Writing EXRs
+
+So now we actually want to write the nodes out. So, move our cam viewer here. And over here from our Autoshot generated, generated script, we have a write node.
+
+And we'll bring that over here and wire that into the merge node. And double click on that. And this is already set up to write EXRs into the correct directory. So change this to EXR and set our compression to DWAA. And there we go. And now we can actually highlight our write node, save and render our selected write node.
+
+That's the correct frame range. Let's click. Okay. And it's going to go through and render our frames. 
+
+Okay, and then we can see that we have generated our EXR series into the correct subdirectory. And we can go and bring them into Resolve or another package for finishing. 
+
+
+## Review
+
+It's important to understand what we're doing here. We started with our Jetset onset data, we created our initial Blender render file. We then exported a script into SynthEyes with our onset information on it including our scan and our track data.
+
+We generated a new solve and pinned it to the original onset tracking data, information, and scan information so that when we solved it, we maintained our coordinate system. We maintained our scale in our frame, so it just drops back into the 3D frame. 
+
+We exported from SynthEyes back to Blender with an overscan with a wider sensor back and a larger pixel count to downsample from. 
+
+We also exported a node group from SynthEyes to Nuke that had the redistortion nodes, and we combined the camera originals with the overscanned Blender background rendered files in Nuke. 
+
+Inside Nuke, we loaded in our render file, and we reapplied our distortion, and then recomposited it with the original live action plate. And here we have a clean match. So things are lined up and working at a sub pixel level. And now we can actually take this to a farther level of composite.
+
+But this is the, this is sort of the the base piece you need if you have a shot with ground contact, is to have correctly matched distortion brought all the way through the pipeline and then brought back into the 3D model.
+

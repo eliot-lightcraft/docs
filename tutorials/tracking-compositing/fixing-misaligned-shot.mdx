@@ -1,0 +1,129 @@
+---
+title: 'Fixing a Misaligned Shot'
+description: 'Minor bumps and misalignments are part of any real production. With Jetset Cine’s integrated scan and tracking data, it’s easy to tweak the recorded camera keyframes to re-align shots rapidly. We also introduce Matt Merkovich’s Multi-Peel script for quickly finding all the trackable points in a scene.'
+---
+
+## Video Tutorial
+
+<iframe src="https://share.descript.com/embed/4QBuJ3YYa6a" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+# Transcription
+​​​​
+In this tutorial we're going to go over a Jetset Cine shot that had a lens calibration and a scan, but the iPhone got moved at some point, so things aren't quite lining up.
+
+It's really easy to fix as the usually the change is more angular instead of position. If the phone got bumped by a centimeter or two, it's not that big of a deal, but if the angular setting is off, then it really throws things off. But fortunately, that's really easy to fix.
+
+And we're also going to use the multi peel Synthia script from Matt Merkovich of SynthEyes Tracking fame that really speeds up the process of finding good markers. 
+
+
+## Importing Shot Script
+
+We already generated the output script in Autoshot, just as we did before in the previous SynthEyes tutorial.
+
+Just going to go to script, and run the script, and pick out our Sizzle script and open that. There we go. And we'll switch to our camera view.
+
+I'm going to dial down our gamma a little bit. So we can immediately see. That there's our mesh, and there's the edge of our of our cardboard boxes over here, so clearly that's misaligned. Now fortunately we can make a pretty easy fix here.
+
+
+## Viewing Camera Motion Graphs
+
+So we can just go over to setting our cameras and graphs. And we're going to open up our cameras and objects. And we're going to go ahead and open up camera01. And we're just going to hide the solved velocity path. Actually, let's first save our file. 
+
+Let's uncheck our solved velocity because we don't need to see that for now. We're going to open up our solved path. This is where Autoshot will at first write in our Jetset real time tracking data. So for example, if we go to our tilt and we highlight our tilt angle this is all the key frames from our tilt.
+
+And if we went over to our X, Y, or Z, we could actually see where all those different key frames are. 
+
+
+## Correcting Camera Angles
+
+So for now we're going to fix first a tilt angle, and we're going to come over here and we're just going to drag and select all of our key frames. And we're going to just pick on a key frame and drag adjust up down just very slightly until we can actually see that.
+
+Now our bottom our scan is now lining up correctly with this stack of cardboard in the back. And it's not lining up with this set of pads here. I think that's just because the pads got moved and I'm picking things that in the background that probably were not moved from shot to shot.
+
+So that's how I'm making that decision. So I'm going to go over and our tilt is fixed. I'm going to go switch our pan angle. Once again, I'm going to down here. I can either drag select from here or upward into the left drag, select these, and then we can adjust our pan and till there we go.
+
+Now we're lining up pretty well with with here, the edge of our edge of our cardboard stack. You can see. This is aligning up over here with the edge transition here. And things are generally looking about like they should look. That'll help our alignment.
+
+
+## Installing Multi-Peel Synthia Script
+
+So now we're going to go and find our tracking points, just as we did before, except this time we're going to use a nice automated process. First of all, we're going to go to our webpage, our download web page. And we're going to click SynthEyes Multi-Peel. And this will bring up the Multi-Peel script. It is a Synthia script by Matt Merkovich. And it's quite interesting to see this. We're going to click download.
+
+And go ahead and download this. And we're going to open it up to get an idea of how it's set up. So if we open up the the script, we can see that it's actually written in plain English. SynthEyes has a couple of different scripting systems. The default Autoshot script is written in SizzleScript, which is a, a more regular scripting language for handling mathematical work.
+
+And this is Synthia, which is more of a natural language interface. It has a voice interface, And we don't really need that but this text interface is actually quite useful. And so you can see we're going to make the current camera's small blip density 0. 8, 0. 04, and we're going to tell it to do blips all frames, and we're going to peel all buttons. We're going to change the blip size to 12 and 24. Again, we're going to do blips all frames and peel all. And so it's going to go through four separate sets of blip sizes and increase each one on each size, and then peel all the trackers. 
+
+And this actually is going to automate a task that would otherwise be pretty tedious for us to do. So we'll go back to SynthEyes, and the next question we have is, how do you install that? And so we're going to go to script, and I'm going to open our user script folder. And this will open up the script, and we'll just drag and drop our multi peel script over here. Now, it actually, I already have one there, so I'm going to skip this for the time being. Normally you would just do that.
+
+And once we've got it loaded, we'll go to file and pick find new scripts and that will reload the scripting directory into SynthEyes. And now we can actually use the script. 
+
+
+## Using Alternative AI Rotomattes
+
+So before we do this, we're going to go over to camera. And we're going to see, look at the Rotomask. In this case, we used, instead of InSpyReNet, we used PPMatte, which is available by default on both Windows and Mac.
+
+And it has some advantages in this case over InSpyReNet. InSpyReNet is much more precise, but it acts on the foreground objects. Usually it picks the person, but sometimes, in this case, it picked the exercise mats. PPMatte and ModNet are both designed to do human segmentation, so they only recognize the people.
+
+So they are automatically rotomasked out and sometimes it misses background people, so we may have to delete a couple of frames from that, but we can work that out. 
+
+
+## Running Multi-Peel Script
+
+And we're just going to go to script, and we'll go down to a multi peel MattMerk style and run that.
+
+And that is going to drive SynthEyes through a series of calculations. I can move the, it's going to pop up a little Synthia window. We can move that over for the time being. And so it's running through the frame calculations and it's going to first start with the smallest feature sizes.
+
+It's going to go through all the frames and 'compute the blips' in SynthEyes speak and look for all those trackers at the smallest scale. And it's going to go through this and repeat the process for the small, medium, large, and extra large trackers that we described in that file. 
+
+Okay, and so you can see that it has detected very tiny features. These little green diamonds. Those are the smallest feature points that it detected. And it's going to go through and detect the the smaller ones. And now it has slightly larger green diamonds. Now I'm moving on to the medium sized features.
+
+All right, there's another set of larger diamonds. And now we're going to the largest features. I'll go through and sweep through these 200 frames and detect those features. All right. Those are the extra large features. All right. So now as we scroll through, we can see that it is has detected all these features in the shot.
+
+
+## Picking Initial Survey Frame
+
+And, we're going to go look through, and, sometimes the tracking shifts around a little bit in the middle of the shot, and that's fine. When we're doing this retracking work, the nice thing is we only really need to find one frame ideally fairly early on where our tracking lines up correctly and where there are plenty of features that are located on top of the mesh.
+
+And remember, we are going, we're going to use the track drop onto mesh feature to set our survey data for this. So I'm going to move over here, find a spot where we've got a few different markers. There's a few on both the floor and on this background stack of cardboard and that should be pretty reliable.
+
+
+## Picking Survey Markers
+
+So we're going to click between the mesh, drag around, find all of our feature points. I'm going to pick them here. I'm not going to pick them on here because I think this set of mats got shifted between when it was scanned and when the shot happened, so I don't think that's going to be reliable and I'm going to hold down my shift button, and I'm going to click and drag around these here, and I'm also going to hold down my shift button and drag around a few over here.
+
+Over here on the wall, I'm looking for just ones that should be at reliable distances that are scattered somewhat around the frame so we have a reasonable combination of tracking points across the frame. So I'm going to do track and drop onto mesh. And maybe I'll grab a couple more of these.
+
+I'm going to hold down shift and grab a couple of the, more of these tracking points that I think are going to be nice and reliable spots and track and Drop on the mesh. 
+
+
+## Solving and Refinement
+
+Okay. Now we can go to our solver and Go to here. I'm going to click go and our solver is going to crunch away and it's going to Start doing its iterations There we go.
+
+All right, so it did an initial solve, and we have a 2. 6 pixel error, which is a fair amount of error, but we're going to reduce this. So the most important thing is, you can see that we've retained our mesh alignment. You can see that our mesh is still pretty well aligned with the floor. And that we can see where the mesh transitions up to match with the wall, wall pieces.
+
+And it looks like this is actually reasonably well aligned. So great, so now we're going to do our usual Shift C, get rid of our bad frames, and our high error trackers, which there are 551 of them. And since we did that complete sweep between our small, medium, and large trackers, we can get rid of quite a few trackers, switch to refine, and our solve will still work.
+
+All right now we're good, and we're down to 1. 2 pixels of error, and again, I'm checking to make sure that our that our mesh is still reasonably well lined up. Again, our floor contact, our floor intersections look like they are largely correct and yeah, that looks like it's pretty good. I'm going to hit shift C and remove 18 more high error trackers, and click go to refine that again.
+
+There we go. And we're actually just going to keep removing these kind of higher trackers. And we're just going to eliminate the worst offenders first. And, just make sure as we go through this that we're not, we haven't deleted too many trackers, and that we're still retaining our alignment with our 3D mesh.
+
+As you can see, our camera is still staying in the correct general location. So let's let's Hit shift C again, and now we've run out of our high error trackers at 30 pixels of error. We're going to start lowering this down to 20 pixels of error. And until we start to find some high error trackers going to fix that hit go to refine it.
+
+And we're just going to keep removing the worst worst defenders and refining our solve. And going through it and dialing down our error. And we're down under a pixel. And go. All right, and things are tightening up. 
+
+
+## Solving for Lens Distortion
+
+And we can actually, in here, we can actually start calculating distortion.
+
+And once again, we're going to pick our standard radial fourth distortion enable our C2 and UV, V2, U2 and V2. And calculate that. And that's dropped our distortion. Now it's going to start iterating. All right, we're down to 8 tenths of a pixel. And maybe one more, one more run of our bad trackers.
+
+Okay. And we can actually keep going through this and working through it. But you get the idea. The key important thing here is that as we scroll through, our mesh is staying reasonably aligned with our 3D scene. We can see that our mesh is, that our floor is tracking correctly.
+
+Along with the mesh.
+
+There we go. And we can hit play and walk through that. So we actually have it looks like a reasonably tracked shot with about three quarters of a pixel of error. There we go. Our active trackers are not on the people. They are around them, but not on them in general.
+
+All right. That's a good example of fixing a shot where you calibrated and you were operating on set and then something got knocked out of whack and now you need to fix it in post. But fortunately we can fix it in post in in a short period of time if we have that scan and the Jetset data.
+

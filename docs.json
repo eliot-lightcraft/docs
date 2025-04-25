@@ -78,7 +78,9 @@
           {
             "group": "Tracking and Compositing",
             "pages": [
-              "tutorials/introduction-to-jetset/introduction-jetset"
+              "tutorials/tracking-compositing/tracking-refinement-syntheyes",
+              "tutorials/tracking-compositing/fixing-misaligned-shot",
+              "tutorials/tracking-compositing/geotracker-blender"
             ]
           }
         ]
