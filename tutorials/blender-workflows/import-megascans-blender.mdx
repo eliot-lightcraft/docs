@@ -1,0 +1,74 @@
+---
+title: 'Import Megascans to Blender'
+description: 'Megascans are a set of high quality free and photorealistic scanned assets available on Fab.com. Use this free Blender add-on to batch import them and create clean Blender assets for use in your projects.'
+---
+
+## Video Tutorial
+
+<iframe src="https://share.descript.com/embed/nhBm4loezId" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+# Transcription
+
+We are going to go through a quick script today that does a neat job of doing batch import of Megascans FAB assets into Blender. And normally those are a little bit tricky. You can download in FBX, but it's hard to get it in. So we made a script that automates it. So this way you can go into your Blender Asset Manager and drag and, just drag and drop things in.
+
+So if we have make a plane, we can actually drag and drop a material onto the plane and have it turn into our material preview, have it either turn into an overlay or an underlying material. This is from the Unfinished Building Megascans and it looks great. \\
+
+So this is just the mid level. There's two higher levels of resolution you can go to but let's let's go through it. 
+
+
+## Installing Batch Asset Import Add-On
+
+We're going to need to download a Blender add on from the Lightcraft Git repository. I'll put the link down below.
+
+Okay, so here we are at the batch import Blender assets repository and we just want one of the releases. This is the most recent. Just click latest and we're going to click batch asset importer. We want the zip file. All right and just saving your downloads for now. 
+
+We'll open up Blender and we're going to go to edit, preferences add ons, and click this little downward facing arrow, and to install from disk, go to your downloads let's see, it's batch, there you go, batch asset importer, and that's the one we just downloaded here, so install from disk, alright, so then we can look at this over here, and Here is our batch import add on and it says you must save the file before you can import assets.
+
+That's great. Let's go get some assets to import.
+
+
+## Downloading Assets from Fab.com
+
+Okay, so we're going to go to fab. com, the new Epic marketplace for all these all the items.
+
+Okay. So we started off in fab and first we're going to go to environments and we'll type in Quixel. There we go. And that gives us a list of different Quixel environments. We'll be using the unfinished building for this one today. Okay.
+
+We can see that included formats include Unreal and FBX. Click download. All right. And we're going to pick the unfinished building mid. You can go to a higher level, but it works the same. So let's go ahead and download that one. I'm going to put it in my put in my Unreal projects and I have a fab folder for this.
+
+Okay. All right. So it downloaded that. So then let's let's go to that directory.
+
+And here's our unfinished building mid. I'm actually going to delete the old folder. There we go. And I'm going to click, right click on this, and I'm going to extract all to unfinished building mid. The default file is fine.
+
+All right. And what I'm going to do is copy this. This is the directory where the unfinished building mid is. 
+
+
+## Setting Blend File to Defaut Asset Folder
+
+We're going to go back to Blender now. I'm going to make a new file. And we're going to hit A and X just to remove all the pieces from here. And type N and open up our batch import.
+
+It says you must save the file before you can import assets. Let's save the file. And I'm going to save it in a very specific place, under Documents. And this is Windows, Documents, Blender, Assets. And I'm going to name it I'm going to save over this old file, unfinished building mid. There we go. And we're doing this for a very specific reason.
+
+And that particular file folder is the default location for Blender to look for asset files. And that means if you put your asset file in there, then wherever you start up Blender, in whatever other directory, it can still read those. 
+
+
+## Selecting Megascans Folder and Import Options
+
+Let's go to our folder path. And click our folder path.
+
+And we're going to hit paste. To, for our building mid. There we go. Accept that. And I usually click use displacement. And I usually set my model asset type to objects instead of collection assets. You can, if you really want to use collection assets, you can do that as well. Alright, and then we're going to click import assets.
+
+
+
+
+## Blender Asset Viewer
+
+All right, so that's fairly quick, but if you wanna see the assets being formed, we can go here and hit shift F1 twice and we can go see the current file. And this is the Blender asset viewer. So this is the file, this is the assets that are in the current file, and it's created both material and 3d assets. The 3d assets are, you can tell that they're 3d assets as they're on a particular shape and the material assets are automatically rendered on a material sphere. So let's, uh, let's go ahead and hit save. And we can actually, uh, also external data. Let's pack our resources.
+
+It packed 328 files. There we go. And we have just saved that back into the Blender. Assets directory. So what's really nice about that now is that now we can hit a completely new file. And we can say, delete this object. If I wanted to just start dragging and dropping in assets, it's really simple to do that.
+
+So for example, hit my material preview and I'll move this up, shift F1 a couple of times to get our asset viewer. And we can see that we have unfinished building automatically shows up. And so we can either pick in our materials, so I can drag and drop materials onto this and you can just pick whatever materials you want which is really nice.
+
+They make great materials. And we can also go to our models and you can actually drag and drop in models into the scene. And again, this is the mid level resolution. You can actually go to two higher level resolutions if you want.
+
+They're considerably larger files. So we just did that for today. But you can actually drag and drop and all the material shaders are connected up. And now things just work. Alright, so that's pretty much it.
+

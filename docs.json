@@ -42,13 +42,23 @@
           {
             "group": "Blender Workflows",
             "pages": [
-              "tutorials/blender-workflows/autoshot-blender-round-trip"
+              "tutorials/blender-workflows/autoshot-blender-round-trip",
+              "tutorials/blender-workflows/gaussian-splat-setup",
+              "tutorials/blender-workflows/in-phone-rerender",
+              "tutorials/blender-workflows/import-megascans-blender",
+              "tutorials/blender-workflows/gaussian-splat-from-blender",
+              "tutorials/blender-workflows/export-xgrids-scans-jetset",
+              "tutorials/blender-workflows/convert-unreal-scenes-blender",
+              "tutorials/blender-workflows/exporting-animated-characters",
+              "tutorials/blender-workflows/render-scene-viewport-composite",
+              "tutorials/blender-workflows/render-farm-export",
+              "tutorials/blender-workflows/patching-ai-mattes"
             ]
           },
           {
             "group": "Unreal Workflows",
             "pages": [
-              "tutorials/introduction-to-jetset/introduction-jetset"
+              "tutorials/unreal-workflows/autoshot-unreal-round-trip"
             ]
           },
           {

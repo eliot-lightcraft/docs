@@ -1,0 +1,62 @@
+---
+title: 'Exporting Animated Characters'
+description: 'Use this workflow to solidify skinned characters in Blender for easier export to Jetset.'
+---
+
+## Video Tutorial
+
+<iframe src="https://share.descript.com/embed/bsOzSxp8bcR" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+# Transcription
+​​Animated characters from motion capture or other sources are frequently rigged to have their limbs deform according to an internal rig or skeleton. This looks really good for post production, but trying to export this to USD can cause problems for previewing the animation inside Jetset.
+
+
+## Default Animated USD Export Problems
+
+This is because by default, Blender will export an animated skinned mesh as a vertex animation cache. And that means it will write out the position of every single vertex in every animated mesh for every single frame. This can result in huge files, even for very short animations. They're hard to load and render, it slows things down, and it's also overkill for the kinds of lightweight preview animation that we usually want in a Jetset scene. 
+
+
+## Skin 2 Solid Blender Add-on
+
+So we built a Blender add on to assist in this called Skin to Solid. It's on the Lightcraft. pro downloads page. So go ahead and download it and install with the usual add on process.
+
+We'll go to Edit, Preferences, Add ons, and click Install. We'll do Skin to Solid, and install the most recent one. And then let's go check, type in skin, and just make sure that it's enabled. And then we can come over here and we can see that there's now a skin2solid tab in the sidebar.
+
+
+## Importing Move.One FBX
+
+Now we'll clear the scene. We'll import an example FBX file written by the move. one app. By going to file, import FBX.
+
+And picking the FBX file.
+
+Alright, now hover the mouse over the timeline and hit home to scale the timeline out to the extents of the frames of the recorded take. And this has 1800 plus frames, so we'll set the end of the timeline to 1860 to get all the frames.
+
+If we open the armature, we find that the figure is composed of several pieces of geometry. But, for example, if we open up the fingers. We'll zoom in. The fingers are a single piece of geometry, but they're moving independently. And that's because the fingers are defined by vertex groups of that piece of geometry, and that's all adjusted to individual bones.
+
+
+## Skin to Solid Conversion
+
+Now this is the standard method for animating figures inside Blender, but it causes the problems we mentioned above when exporting to Jetset. So we'll use the Skin to Solid app to make a rigidbody copy of the original. This will have the geometry separated into individual rigid pieces of geometry, with the animation baked into the motion of the individual pieces.
+
+In the Skin to Solid panel, we'll pick the collection that the object is in, and we'll pick the rig, the armature that the object uses, and then we can click Prepare Objects. Okay, and so then we can see that it's created a whole second collection.
+
+And then we'll set our start frame and end frame to match the animation. And then we can click Bake Animation.
+
+Okay, so then when we scroll back and forth, we can see that our two collections have matched animation. And we can actually now disable the original collection. So now this collection is all rigid body objects, which we'll find if we click on an individual finger. We can see over here that now we've actually split every piece of geometry up into a separate individual piece of geometry, with the animation baked into that geometry.
+
+And we can now export our usual animated USDZ for Jetset.
+
+
+## Converting Mixamo Animation
+
+.The same technique will work with animation sourced from Mixamo. We'll start with a new scene, clear it out. And we'll do file import FBX. And this time we'll pick our source object. We'll switch and turn on our materials, and we can see that we have an animated character, in this case we're running in a circle.
+
+And we can see that, as before, this is a skinned character with smooth deformations on the joints. And we can see that for example the body, has separate vertex groups that cover all the different components. And so we're going to need to split all that up. We'll then open up our Skin to Solid panel, and pick our objects collection, and we'll pick our rig, and we'll prepare our objects.
+
+And then we'll pick our frame beginning and frame end, in this case 179, and we'll bake our animation. And we can see the animation now matches. So we can disable the original collection and we can see our new rigid body animated character. Now we'll come in and you can see some of the issues with this approach.
+
+Since the minimum weight removed any pieces of geometry that are weighted more than a certain level. That means that the geometry will get clipped at the edges of knees and elbows and shoulders and other areas that have a lot of deformation.
+
+And this is okay for its purpose as an exported character preview in Jetset. When shooting an actual shot the recorded camera tracking data, would actually come back into Blender via Autoshot, then it would be rendered with the original skin character visible, instead of the rigid body character. That's just for a preview in Jetset. 
+
+Alright, so we can now export an animated USDZ with our usual process, and load the animated scene into Jetset.

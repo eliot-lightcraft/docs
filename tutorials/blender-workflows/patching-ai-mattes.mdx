@@ -1,0 +1,73 @@
+---
+title: 'Patching AI Mattes'
+description: 'Use Blenders built-in image sequence editing to fix glitches on AI-generated matte sequences.'
+---
+
+## Video Tutorial
+
+<iframe src="https://share.descript.com/embed/fp8kEdqfELF" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+# Transcription
+
+In this tutorial we'll see some common problems with the gray scale AI matte sequences that Autoshot generates, and how to go about fixing them with Blender's built-in image sequence painting tools. 
+
+As you saw previously, for our green screen shots, we primarily use AI mattes as a core matte or for use with a transparent image plane.
+
+For compositing, it's eroded a bit and plugged into the core matte section of the keyer . 
+
+However, AI mattes can flicker, which then shows up as a flickering key as we see here in frame 786, and going forward in our timeline.
+
+
+## Trying Different AI Matte Tools
+
+Different AI matting tools have different results on a given piece of footage. So your first step would be to try changing the AI Matte tool selection in Autoshot, change from Monet to PPNet, and rerunning the shot. You'll still probably have a couple of flickers or unwanted areas, however that need some hand retouching.
+
+
+## AI Matte Greyscale PNG Files
+
+So, fortunately, Autoshot generates the AI mattes as a series of gray scale PNG files that are easy to do small paint fixes with inside blender. So as you see there, it's just a series of PNG files. 
+
+
+## Blender Scene Setup
+
+We'll open up another instance of Blender and we'll hit A to select everything, X to delete, and then we're going to do shift A to Add Images as Planes.
+
+And then we're going to browse to the directory where those AI mattes are stored.
+
+And we'll click A to select all of the files and we'll click Animate Image Sequence to bring that in as an animated image sequence. We're going to set our material type to emit and then click Import Images as Planes. Okay, great. So Z for material preview.
+
+Give it a second. Okay. There's Josh. Thanks Josh. And then we can scroll along the timeline to see the image animating. Great. That's our gray scale image. 
+
+
+## Blender Texture Paint Tab
+
+Next we're going to change to our texture paint image tab. And then we're going to make a horizontal split, and add a, a timeline to the bottom. That's shift F 12 and zoom out until we can move our timeline over to the area we cared about. That was about frame 780.
+
+And then N to open up our side controls and click image.
+
+
+## Setting Sequence Numbers
+
+And we're going to set frames to the number of frames in the AI matte directory, in this case, 976. Start is one and Offset is 1000, as all of our image sequences start at 1001. All right, so then we can jump to Frame 786. Let's actually change to our timeline, so then we can jump to frame 786 to see same frame where the flickers start. 
+
+We'll bring this a little bit water so we can paint more easily. For filling in AI matte patches, it's easier to turn off pressure sensitivity, so I'm gonna turn that off here. Now we can work through the image sequence patching the holes.
+
+
+## Painting Out Flickers
+
+We can right click and pick our radius.
+
+All right, there's our radius. Then we can paint that and then hit right arrow to move to the next frame, right arrow and work our way through painting, painting the fixes pretty quickly.
+
+All right. You get the idea. 
+
+
+## Saving Edits Back to PNG Sequence
+
+And now we're going to choose Image and Save Sequence to save out the updated PNG files. 
+
+
+## Refreshing Mattes in Blender
+
+We're going to toggle back to the original Blender. When we move back and forth in the timeline, all the flickers are gone. So then you can exit and discard the temporary blend file you made to edit the sequence as the image information is now saved in the PNG sequence. All right. That's it.
+

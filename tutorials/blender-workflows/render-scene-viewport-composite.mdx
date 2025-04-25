@@ -1,0 +1,151 @@
+---
+title: 'Blender Viewport Compositor'
+description: 'The Empty Comp Starter option for Blender in Autoshot automatically creates a sophisticated viewport composite. Watch this to see how to access and adjust it.'
+---
+
+## Video Tutorial
+
+<iframe src="https://share.descript.com/embed/6WXdavD8kx3" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+# Transcription
+
+In this tutorial, we're going to take a tour through our newly created render scene, as well as the basics of the viewport compositor. 
+
+
+## Why Viewport Compositing?
+
+First of all, why viewport compositing? We think that being able to work simultaneously in 2D is a huge advance to making visual effects shots.
+
+And Blender is, is really unique with this respect, with its newly integrated realtime view Port Compositor. For the first time there's a fast c compositing system under the same hood as the real render engine in, you know, this case blender EEVEE or Cycles.
+
+So you can actually see how the whole shot's gonna come together and interact with both the 2D and the 3D at the same time to match things. So for our workflow, we'll first use the Viewport Compositor to help refine alignment of 3D objects with the live action footage and the timing of the CG and live action.
+
+And later, we'll use the traditional 2D blender c compositor to do the fine tuning of the composite shot, including matching black and white points, detailed keying and, and the environmental matching work. 
+
+
+## Render Scene Tour
+
+all right, so let's look at our render scene. So first of all, press Z and go down for material preview.
+
+We're going to middle mouse button, click and drag to rotate the scene. Uh, and if you see a doubled scene like this just make sure to go over to here and set your composite to camera. Should be that by default. Uh, we'll scroll back out and here you can see, uh, the, here you can see the image plane that Autoshot created in the scene.
+
+And go ahead and click on it and then use the period key in the outliner to highlight that. And you're gonna see that that image plane is set to render in the view port, but not render in the final render. So we can see it, but it won't be rendered in the final image. And that is because we generally use the image plane just to kind of figure out where our person is in the 3D scene.
+
+But we use the c composing system to actually composite them into the 3D scene because we have much more control in that way. 
+
+This is fun. We can scroll, move forward and we can see our actor walking and then running through the scene. And, and it's not perfectly accurate because the, the depth of, of the actor is set from a combination of the AI mattes and our realtime depth image from LiDAR. Uh, so it's not perfect, but it gives you a decent approximation of where they are in the scene and everything's one to one scale matched, so they are roughly their correct size. 
+
+
+## Correcting Animated Material Texture Display
+
+And sometimes if you see your texture acting a little strange here; every other frame will be missing or something like that.
+
+So in 
+
+case you run into that behavior, here's how to fix it. So we're going to right click here, we're gonna do a horizontal split, move that a bit down. So we've got two timelines. Then we're gonna go over here and, hit Shift F3 until we have our material shading node group.
+
+So here you can see how the material group is built for the image plane. Note this is not the, the C composing group. This is just the image plane. If you have Node Wrangler installed, you can hold down shift control and click on, your different image inputs to the Principled BSDF shader.
+
+And then you can see them show up in the view port. You can see the, the little node line relining. So we can see we have our camera originals that don't have any alpha channel. And then we have our AI mattes. So as we go through it, you can see our AI mattes animating and working. And this is great because it lets us put together the system in the the material nodes without having to try to key things out.
+
+There are limits to the AI mattes. They only see people instead of objects. So if there's an object you're not going to see it in the AI matte, but again, it's, it's great for an approximation. 
+
+
+## Viewport Composite Node Graph
+
+All right, so now we'll look closer at the Viewport Compositor system. So go up here and type Numpad 0 to go back to the camera view. And we can actually hide for a little while the doubled view from the image plane and shift F three in the lower area until we get our compositing nodes.
+
+Now you can see the three original main nodes, the render layers, the Zipline node group, which will be renamed Autoshot soon, and the composite node. 
+
+
+## O for Output Node Shortcut
+
+The Viewport Compositor displays what's connected to the composite node. The shortcut for this node is to hit the letter O for output. To see this, highlight the renderer layers and hit O for output. 
+
+One layer of the actor disappears as well as the non-green screen area of the set. The image plane is still there, but since the AI matte only recognizes the person, we don't see the set. So go ahead and highlight the Zipline node group and hit O, and our full composite is back.
+
+
+## Disabling the Image Plane
+
+We can temporarily turn off the view port visibility of the image plane to avoid confusion here. Just click this and now it's just the Viewport composite. So if we click this, you know, he disappears, click this, and he reappears.
+
+
+## Expanding the Autoshot Node Group
+
+We want to dive into the Zipline Autoshot node group, but we want to use our magic O button shortcut, so the easiest ways to ungroup the Autoshot group. So we're gonna right click on the Autoshot group and choose Ungroup. We'll scroll back out with the scroll wheel.
+
+All right, so the node tree will expand. Uh, the render layer group is in the middle, causing some confusion. So go ahead and, and highlight that here. Hit G for grab and move it over here into, its, its blank area. And now we can navigate through the comp. 
+
+The two main areas of the comp are the render layers, which is the output of the rendering system, and we already saw that, and the keyer and live action areas, which take the original footage and key it and bring it together. 
+
+
+## Viewing Camera Original Footage
+
+We already saw the render layer output earlier, so let's look at the live action and keyer side. So go ahead and, and highlight the camEXR node and hit O.
+
+Now we can see our original image at full resolution. It's big because it has not yet gone through a scale node to fit it to the rendering resolution, in this case, the viewport size. But we can do something important here, which is to pick our core green background color.
+
+So scroll down and click the sourceGreenPick green node bar and click the eyedropper. And then go ahead and pick an area of the greenscreen next to the actor. 
+
+And while we're on the topic of color, we should understand how the render scene color management is set up. So let's go over here.
+
+
+## Color Management
+
+Let's click our render properties and scroll down to color management.
+
+So note that the view transform is set to standard and the look is set to none. And this is important to keep the live action footage looking like you'd expect it to look. We're not adding any other filters or view transforms over the original live action footage here.
+
+
+## Filmic in Compositing Node
+
+Now note that this means that we will need to use a node in the C compositing tree instead to use things like Blender Filmic to get the 3D rendering to look photographic. You'll want to look at the settings of your original scene file, and then transfer those settings to the correct node in the compositor.
+
+We'll get into that in a later tutorial. Now that we've seen the original footage and we picked a green color, we want to look at the keyers. There are two keyer blocks here. There is the live key and the post keyer. We need two keying pathways at this time because the blender key node, which is this has not yet been ported to the view port compositor, so it won't work in real time.
+
+
+## Live Keyer Nodes
+
+So inside the live keyer block, highlight the screen compensation live node and go ahead and press O. And you'll notice that the background green screen turns a single color green. And this node group and the matching node group in the post keyer block do some special processing to remove color variations from the background before sending them to the actual keyer nodes.
+
+We'll go through the screen compensation nodes in more detail in the post C compositing tutorials. And in this case, in this shot, this can make some strange artifacts like his white shirt. So we don't need to use this green correction group in all cases. We can highlight the screen comp live group and hit m to mute it and the node grays out and you can see the effect goes away.
+
+So then we can go to our live keyer, and hit the O key. And we can see he's being keyed out, but there's still quite a bit of green spill and fringe. So we're gonna move on to the color spill node hit O and that has removed most of our color spill. Great. Again, this is a rough keyer done for the realtime viewport keyer, and then we have another pathway that lets us do more fine-grained keying. We'll go through that in the post c compositing workflow.
+
+So note that the output of the color spill node goes to the keyer live switch node. It's set to on right now. So the node pathway we've been working on is active, which is the live keyer. We'll flip this off when we go to the post-compositing keying. 
+
+
+## Scaling the Comp
+
+So now highlight the Scale node next to this and press O. Now the composite is scaled to fit the render size of the view port, so we're fitting our render size. If we scroll back and forth in the timeline, we can now see him walking through a gray void. All right, so he's been keyed and, and extracted from the live action.
+
+Go ahead and highlight the Match Focal Length next and hit O. If the original shot was zoomed in to simulate a given focal length, here's where the adjustment to the 2D comp would be applied. Our original shot was at the native phone resolution, so it doesn't have any effect.
+
+
+## Combining Key with Background
+
+Then we're gonna highlight alpha over and press O. Alright. This composites the scaled comp over our render layers output from the 3D rendering engine and the render engine is already at the correct scale because it's rendering the view port.
+
+
+## Cryptomatte Node
+
+Finally select the used Cryptomatte node and press O, and we can move our composite output node back here. There we go. Cryptomatte is not active yet in the viewport compositor, but it's good practice to leave the composite node at the end of the node tree for actual renders
+
+
+## Fast Viewport Render
+
+it's also really fast and quick to make a viewport render of the shot. Go ahead and click N in the, in the viewport. If you don't see it, you can scroll up and down here to go through different options. There's our Zipline panel. And you can click Fast Viewport video, and this will make a viewport render of the scene to a MP4 video in the / preview directory.
+
+This gives you the fastest possible render of the scene. And it will be just using the viewport preview to render it. So depending on your scene complexity, it could be a frame a second, two frames a second or up to nearly real time. 
+
+These are 4K frames we're dealing with, but if you have 720p or HD resolution, then Viewport Render can go nearly real time. 
+
+
+## Resetting Output to EXR Settings
+
+And then after it's done, go ahead and click Standard R ender Settings to reset the OUT directory variable back to the EXR settings. And those are set here. 
+
+Okay. That should do it for our little tour of our viewport compositor and our blend file.
+
+Next we'll look at building a 3D garbage matte.
+

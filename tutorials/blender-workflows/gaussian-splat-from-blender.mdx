@@ -1,0 +1,158 @@
+---
+title: 'Gaussian Splats from Blender'
+description: 'Creating Gaussian splats from your Blender models lets you transfer complex lighting and scene geometry to Jetset.'
+---
+
+## Video Tutorial
+
+<iframe src="https://share.descript.com/embed/FpfBIla3oEp" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+# Transcription
+​
+
+Okay, in this tutorial, we are going to go through our Blender Gaussian Splat creation process. And this will let us take a fully rendered Blender scene, and actually crunch it down into a Gaussian Splat that can then be rendered in real time on Jetset, retaining all the original lighting and reflections and information of the Blender scene, which is quite a remarkable process.
+
+And in Blender, the Gaussian Splat doesn't actually display quite as well, but in Jetset it will display quite well. 
+
+Let's get started.
+
+
+## Installing Autoshot Blender Add-on
+
+First of all, in our Blender scene in this case it's a photogrammetry scene so it can render pretty quickly. But the same use pattern will work for pretty much any Blender scene. And we're going to first download and install our normal Autoshot Blender add on.
+
+So we will go to our downloads file, and we'll go down to our Blender add on, and we're going to click download, and it'll download that to our downloads file, okay, there we go, and then we're going to go to Blender, and we're going to go to our edit, preferences, and then add ons, and go to our little install from disk, and go pick out our, type in Autoshot, There you go, there's Autoshot Blender, and there's the most recent 1. 16 version we want. Okay, so that says it's installed, we can check for it. There we go. And we can see that we have the current version installed. All right, great. That's what we need.
+
+
+## Creating Capture Geometry
+
+And, in order to generate a Gaussian splat, we actually have to first generate a series of images of your existing 3D scene.
+
+So we can see here in our Autoshot tab here, you can hit N to make this appear. There's the tab. And under our Splat Training, you may have to open up this, we can see that there's a series of steps that we can go through to create our camera paths. And we actually first create geometry to represent where all the cameras are going to be.
+
+In this case, I'm going to click on make a an icosphere pattern mesh. I'll pick the default radius and the subdivisions. And it'll make an icosphere. And we can see that it's just dropped it into the scene depending on where I had the last object selected.
+
+We actually want to un parent it. So I'm going to hit Alt P. And I'm going to clear the parent and keep the transformation. And then we can just hit G and move it around the scene to the locations where we want. And what we're looking for is some centralized locations so that we can avoid intersecting geometry while still getting pretty complete coverage.
+
+And, in fact, what we're also going to want to do is, you'll see this scene has Multiple areas in it. We're going to be generating the cameras based on all the faces of the mesh. In this case if we generated all the cameras, There's no mesh faces anywhere over here, and we're actually going to want some of those so let's go ahead and we're going to hit tab for edit mode, hit a to copy all the faces, and then Shift D to duplicate, and then we're going to move our duplicated mesh over to here, and we'll just move it around with the usual grab, grab commands usual Blender grab commands. Then if I hit tab again we go back out of edit mode.
+
+And so you can see that I've turned our single camera icosphere into two camera icospheres that can be distributed around the range that you want to cover. And we can do three, but you get the idea. And this way we can actually have complete camera coverage in all these different areas.
+
+
+## Creating Camera Path
+
+Okay, so now we've got our icospheres, our kind of our geometry reference to position where our cameras are going to be. Note that we have unparented this, so we're not, parenting underneath something else in this scene. We're going to go ahead and click the camera track from the face normals.
+
+We can pick our default focal length, and we'll use both directions, so it'll have a camera facing inward and outwards from each of these surface normals. And it's going to generate a splat camera. And as we can see down here, there's the animation of the splat camera. So it's, as we run through the animated sequence we can see where that camera is going to show up anywhere, here, we can turn off the icosphere, so we can see that a little bit better.
+
+But the camera is now taking a, an image of the scene from every one of those icosphere polygons. Great, so that's gonna give us 300 and some images, which will give us a very good reference for this scene. So once we've generated that, that camera we then need to tell it where we're going to be rendering the images.
+
+
+## Setting Output Directory
+
+And this is an important step. So we're going to go down to our output panel. And I'm going to open up our folder and we have our inside our model file. I just created a separate splat folder to hold some of the splat information. We're going to right click, make a new folder and call it Images. There we go. 
+
+And we can actually name this output folder something besides images we'll just use that name for now. Just remember that as we're going to be dragging and dropping that folder into Postshot later.
+
+And then we're going to call the file We can just call it chamber and then an underscore. By putting chamber underscore, it will number the files after chamber with the frame number, and that's going to be important later on. And then we're putting it into the images subfolder. So I'm going to click accept. Okay. 
+
+
+## Rendering Frames
+
+And then the rendering frame rate doesn't matter. We're just going to render 320 frames of this. So we can just go over and click our render and render animation.
+
+Oops. I have it set to cycles. It's going to take a long time. Go ahead back and set that to EEVEE. We're running Blender 4. 2. So this is Eevee Next. So it will render very quick. All right, so there we go So it's going to go through and render 320 of these animation images of the scene. So we'll let it go ahead and do that.
+
+, so we've rendered all 300 and some images. 
+
+
+## Generating Camera Path
+
+Okay, now once we have rendered our images, we're going to go back up to our splat training, and now we need to export our cameras. txt and images for COLMAP. We're going to be using the built in COLMAP solver inside Autoshot to actually generate our sparse point cloud.
+
+So in order to do that we just click on the splat camera to select the camera path. And then we're going to click export cameras dot text for COLMAP.
+
+Now, if you look at our renders directory we can see there are two new files, a cameras. txt and an images. txt file down here. And those are going to be the input files that we're going to use to load into COLMAP. So in order to load into COLMAP, we're going to switch back over to Autoshot.
+
+
+## Creating Sparse Point Cloud in Autoshot
+
+And we're just going to go under Splat Training, and we're going to click Generate Points 3D text from images. txt So we'll click on this, and we're going to paste our path to our Saved Images folder. And there is our images. txt . Going to highlight images. txt.
+
+COLMAP is going to go through,, crunch down the data for all of the images. 
+
+So once it has completed that , we can look in our directory again, we can refresh and we'll see that in addition to our previous images and cameras.txt file, we now have a points 3D text and that is the sparse point cloud solve. So now we have all the pieces of information that we're going to need to bring this all into Postshot. 
+
+
+## Generating Gaussian Splat in Postshot
+
+So let's go ahead and go open up Postshot and we're going to open up our file, explore, and we're just going to drag in our entire images folder right into Postshot and we'll uncheck start training. We're going to click import and there is our model. So we'll zoom back out a little bit, and we can see that our camera spheres are correctly aligned with our sparse point solve.
+
+So we now have a have an initial solve and we can tell Postshot to just start training. And we're gonna let it crunch for a little while. 
+
+Okay, and we've trained it for a while and we can train it for quite a bit longer, but this will be enough to show that we basically have the correct splat building. So we're just gonna click pause training. 
+
+And we're just going to go over here and we're going to export our radiance fields.
+
+And we're going to enter in our our path once again. And we can just call this ChamberSplat. ply. I'm going to save that. 
+
+
+## Importing Gaussian Splat into Blender
+
+Now we can go back into our Blender scene. Let's go ahead and hide our camera iconosphere so we have a clear view of what's going on. We're going to go up to our 3D Gaussian splatting add on that we've covered in an earlier tutorial.
+
+And we're just going to click Import Gaussian Splatting. And we're going to go to our our usual directory in Images. I'm going to open up the Chamber Splat that we just saved. Click Import Gaussian Splat. Okay. And you're going to see, first of all, that it looks like it's misaligned. And as we showed in our previous Gaussian Splat tutorial, by default the 3D Gaussian Splatting importer imports this with a negative 90 degree offset in the X. So we're just going to click 0 to that. Okay. And that's looking much more correct. 
+
+
+## Creating Splat Locator
+
+As before, we're going to actually make a splat locator. Let's go ahead and set our cursor with Shift S to cursor to world origin. Gonna hit Shift A, and we're going to create an empty with arrows.
+
+And we're going to rename that to splat loc, and we'll call that chamber chamber. Splat. And for the splat locators, the suffix doesn't matter so much. That's just a reference to tell us which splat we're going to load. I'm going to click on the Gaussian Splatting, I'm gonna hit M and move that into splat exports we have in the same collection.
+
+And then I'm going to control, hold down control. Click that, and now hit Ctrl P to parent, and I'm going to parent it to the object without an inverse. So it has no additional transforms on it. And so now there is our splat locator, and it is locating our Gaussian splat. In this case, the Gaussian splat is already at the correct scale, because we preserved the scale with the images and cameras. txt exports through the COLMAP and Postshot process. 
+
+
+## Verifying Splat Alignment
+
+So now when we zoom into the scene, and we can actually see that our Gaussian splat is cleanly overlaying our original image. Again, we only trained the splat for a couple of minutes, so it's still fuzzy, but we can turn off and on the Gaussian splat and see that in general things are lining up.
+
+
+## Exporting USD 
+
+And now we can actually move to exporting this scene. And in this case, we're going to turn off our original geometry collection, and we only want to export our scene locators and our splat export. We can go ahead and go to file, and then export.
+
+And we're going to export a universal scene description. And we're going to go into a a USD folder to store our USD file. We're going to call it Great Chamber Splat, in this case. 03, export USD. And we're going to go to Autoshot and refresh.
+
+There is our newly created Great Chamber Splat 03. 
+
+
+## Compressing and Embedding Splats in USDZ
+
+We're just going to click our normal and make USDZ. Now we're going to actually embed the splat file in there. And to do that, let's put the splat file in the same USD model folder. So we're going to go back to here, and we're going to go into our images folder, and we're going to just
+
+we're going to copy our chamber splat, and bring it over to our USDZ folder, so we have everything in one place. Come back over here, and we're going to refresh. And now Autoshot has been updated so that we can now read the PLY files. So to embed that, we can actually click the USDZ file that we just created, and hold down control and click the chamber.
+
+splat, and click embed images. We've also checked convert dot PLY to splat. This converts the PLY image to a splat format, which is a highly compressed version of the Gaussian splats that take up much less space.
+
+You can see this in the chamber splat dot PLY was originally 110 megabytes and then when compressed into a splat file that is only 14 megabytes, which is a nearly 10x reduction. Then it created a new great chamber splat 03m USDZ with those two files combined. And you can see that it's much smaller than the original splat.
+
+
+## Transfer Combined USDZ to Jetset
+
+Now what we want to do is push this to Jetset. And we're going to be pushing the renamed underscore M file. The M is the one with the embedded image in it.
+
+
+## Opening Combined USDZ in Jetset
+
+Now we can move over to Jetset. In Jetset we can go to our gear icon. And now we can click on model. And we'll clear our model. We can go to model, open, and we'll scroll down to our great chamber splat 03, which we just pushed over. There we go, and we're going to load it up. And as you can see it now loads up our great chamber splat and our USDZ file combined.
+
+So we have all of our scene locators from our USDZ file, while retaining all the imagery from the Gaussian splat. And this Gaussian splat we only cooked for about five minutes, so it's still a little fuzzy.
+
+But you can see that it's retaining the color and information from the overall room very well.
+
+
+## Summary
+
+Okay, so that shows how we can actually compress a full 3D scene in Blender into a Gaussian splat and bring that in along with scene locators in a integrated USDZ file and preview it in Jetset.
+

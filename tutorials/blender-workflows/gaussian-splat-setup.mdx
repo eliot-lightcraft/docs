@@ -1,0 +1,232 @@
+---
+title: 'Gaussian Splat setup'
+description: 'Importing and scaling Gaussian splats into Blender. Adding splat locators and scene locators, then exporting to Jetset.'
+---
+
+## Video Tutorial
+
+<iframe src="https://share.descript.com/embed/HbuyjULMgxn" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+# Transcription
+
+​
+
+We are going to work through our new Gaussian splat authoring workflow to construct composite models that can include both USDZ 3D information and Gaussian splat information.
+
+And this will let us do a lot of neat things. Gaussian splats by themselves have some fantastic properties, but they don't inherently contain scale or orientation information. So if you want to use them in the real world, you need to provide them with scale and reference, and that's what we're going to do in this.
+
+
+## Installing Gaussian Splat Add-on
+
+First thing we're going to do is install a 3D Gaussian Splat Blender add on. This is forked from the original Reshot AI Gaussian Splatter Blending add on with a release package to make it easier to install. I'll put the link below.
+
+So you just go to releases, click latest, and click on the Blender add on. And just go ahead and download that. And once it's downloaded, then we're going to go over to Blender, and we're going to go to edit, and preferences. And we'll go to add ons, click on this little arrow here and go install from disk.
+
+And then under our downloads we can just type in star zip, star period zip. And we can just get our blender add on. Double click that and then we can see we have 3D Gaussian splatting installed. Once we have done that, then we get a new panel. We hit N. We have a new panel over here called 3D Gaussian splatting.
+
+
+## Importing Gaussian Splat
+
+And what we're going to do is we're going to import a Gaussian splat. And for our test today, we're going to use one from our colleague Josh Che over in Beijing who did a great job of putting together these really nice looking Gaussian splats as a test case. So we're going to go to our splats, and we're going to load in our Coffee02. ply. And we're going to actually make sure we remember that name, Coffee02, and double click on that.
+
+And it's gonna take a second, and then the Gaussian splat's gonna load in, and it's gonna look really weird. And that is because to display it in Blender the plug in basically displays an approximation of the splat. So viewed in solid form, it's going to be really confusing.
+
+
+## Viewing Splat
+
+So we can click Z and go to our material preview and then it'll look a little bit better. Again, this is not the final version of the splat, but this is a reasonably convenient way to view it. So we're going to go in here, and we're going to realize a bunch of things. One, here's our default cube, hanging out in the middle of the the coffee shop.
+
+And we're going to realize that cube is two meters tall, so our scale is going to be a little bit off. But we can roughly see where things are. Now, trying to work with this in this mode is pretty tricky, so we're just going to hit Z, go to wireframe mode. And now we're in a point cloud, and that's going to be a lot easier to work with.
+
+We've got a few things here. We're going to go to our view. We can see, first of all, that things are kind of funny. They've got a funny scale and a slightly funny rotation. We typically are going to want to set the Gaussian splat to match a given reference in 3D.
+
+
+## Adding Splat Locator
+
+So in order to do that, I'm just going to turn off our Gaussian splat display for a second. And what we're going to do is we're going to hit Shift A and going to add an empty. We're going to go to its object and set its viewport display and show its name and axes and hit period to zoom in on that.
+
+And we are going to rename this, and we're going to use what's called a splat locator. We already have scene locators, now we have splat locators. So we're going to type in splatloc, S P L A T L O C, and then capital C, offee. O2. And this is important because this Coffee02 name is how Jetset is going to know which file to load.
+
+So before we loaded in the Gaussian splat named Coffee02, and so we're going to name our splatloc splatloc underscore Coffee02. And Jetset will see this when we import the USD file into Jetset. Jetset will recognize the SPLATLOC underscore prefix, and then when we load in the Coffee02 file, it knows where to go.
+
+
+## Parenting Gaussian Splat to splatloc
+
+Right now, our SPLATLOC is at the origin. And we're going to re enable our Gaussian SPLAT. And again, right now it's randomly located. We're going to click on our Gaussian splat, and we're going to control click on our splatloc, and move our cursor over here and hit control P and parent it to the object.
+
+So if you look in our hierarchy, what we've done is we've just parented the Gaussian splat under the splatloc. So that way, we're not changing the scale of the Gaussian splat, but we can change the scale and position of the splatloc, and that's how we're going to control the position, orientation, and scale of the Gaussian splat within our Blender scene.
+
+And we're going to show you how that works next. 
+
+
+## Transferring Rotation from Splat to Splatloc
+
+We need to do one more thing to set our orientation correctly. The Gaussian splats, by default, came into Blender with a minus 90 degree rotation on the x axis, and that's so that they show upright in Blender by default. But in order for our splat locators to work correctly, we need to remove that minus 90 from the Gaussian splat, and then put it into the splat loc.
+
+And that way Jetset will understand what to expect. So I'm going to switch that to zero, and I'm going to go up to our splat look, and I'm going to highlight that, and hit minus 90. There we go. Now things are correctly oriented, so that all the rotations are now out of our Gaussian splat, and are all contained inside our our splat locator where we want them. 
+
+
+## Creating 3D Reference Geo
+
+Okay, so say we've got our Gaussian splat parented to our splatloc. Now we need to know what we're going to move it to.
+
+Let's hit Z and then go to a wire, a material preview again. And we're going to zoom in here and let's take a look at our scene. So what we have here is a nice coffee shop. And so we want to scale reference. So one of the good scale references is a counter because those are a fairly standard height.
+
+And at least in the U S that is a 42 inch tall counter for a normal restaurant bar and that works out to 1. 07 meters. So what we're going to do is we're going to change our cube to be 1.07 meters tall and use that as a reference. So let's go ahead and turn off our Gaussian splat. Then we can see our reference cube.
+
+And let's hit one. So we can look at this from a front orthographic view. And we can see by default each one of these cross segments in the grid is one meter. So our cube is actually two meters wide and two meters tall and two meters deep.
+
+That's not what we want yet. So let's scale it. We're going to highlight our cube and hit S 0. 5 and what we have just done is we've made our two meter Cube into a one meter cube. S is the keyboard shortcut for scale and then we just typed in 0. 5 and hit return and now we have a one meter cube.
+
+We actually want a 1. 07 meter cube. So now we can, with a cube still highlighted, we can actually hit S again and then type 1. 07. Now we have a 1. 07 meter cube. And finally, we're going to hit G and move it up along the axis. To isolate it to vertical motion, I held down my middle mouse button and slid up and that way that isolates.
+
+And then we can align the bottom of the cube to our actual ground origin. All right, that's fine. But now say we want to align our splat to, something far off the origin. So we're just going to grab and middle mouse button, click and drag, and put it over here somewhere out here on the x axis.
+
+
+## Rough Splat Location
+
+That's fine. This is for just a reference. Okay now we, let's turn on our splat again. And our splat is nowhere near there. And we're going to hit Z and go to wireframe so we can actually see what we're doing. And in this case we're going to select our splatloc. We're going to hit G for the grab shortcut.
+
+Middle bounce button click and Drag in the, in that direction, that isolates into one direction, and we can see our cube a little bit. It's gonna be a little bit noisy in there and we've dragged it roughly over to our cube. So let's let's click our cube hit period to highlight it.
+
+So we're, we're kind of in the right, in the right place, but but our splat, we're gonna scroll back here. We can clearly see that our splat is the wrong scale the wrong position, wrong height, wrong everything. 
+
+Alright, what are we gonna do about that? We know our cube is actually in the right position.
+
+Our cube is, it's on Z equals zero, so it's on the floor. We want to move the splat upwards. Let's go ahead and grab our splatloc. As soon as we grab that, of course, we can't see our cube anymore. Let's go ahead and change our viewport display.
+
+
+## Setting Wireframe Display
+
+We're gonna go up to here, and for the viewport shading, for the wirecolor, we're gonna pick object. And that way, when we pick our splat locator, we can still see our cube wireframe. And we're going to hit GZ, that's going to isolate the motion of our splat locator to the vertical axis.
+
+And let's see when we've aligned to the floor. I'm going to hit hit one on the numeric keypad and let's scroll back. And actually we see we've got a couple problems here. So before we even do that, we can see we've got the splat is a little bit misaligned rotary wise.
+
+
+## Fixing Splat Orientation
+
+It's not really flat. So let's do a couple of things. Our splat locator is still highlighted. We can hit R and since we're in an orthographic view, it's going to restrict it to just the the head on view. So now we can get that fairly straight in that direction and shift over to the side number pad one.
+
+And once again, let's hit R and rotate that roughly. So it's at least flat. There we go, and go back to our three. Okay. So now at least it's fairly flat, and let's zoom in so we can see our floor. And with splatloc still highlighted, we're going to hit GZ. And that way we can bring up the floor of our splat to align with our cube.
+
+
+## Fixing Splat Scale
+
+Alright, so now we if we go, if we pull out here, we can see that our cube is fairly decently aligned with our floor. But we've got a problem, which is that our cube is the correct height, but our splat counter frame is not. Now we could go back and forth and adjust a bunch of times and fuss our way into position, but there's a much better way to adjust this with Blender's 3D cursor.
+
+And it's a really cool trick, so I want to show this to you. We're going to turn off our Gaussian splatting for a second. And I'm going to zoom in on our cube, which is on the floor. I'm gonna hold down shift and right click to set our 3D cursor right on the corner of that.
+
+You can make it snap to the vertex, but we don't need to be quite that precise for this. And what that has done is set our 3D cursor in Blender to be here. And then we can re enable our Gaussian splatting. And we can, to make this work, we're going to change our action center, our transform pivot point from the median point, which is a default to our 3D cursor.
+
+And now if we highlight the splat locator and we hit S for scale, we see something pretty cool, we're scaling just the splatloc with respect to the cube ground, but it's taking the splat with it. 
+
+
+## Avoiding Splat File Changes
+
+And the reason we do this is that we don't actually want to scale the splat.
+
+Because we're going to have to sideload the the Gaussian splat later in Jetset. So we don't want to scale the actual splat file. We don't wanna modify it.
+
+We just want to modify the splat locator so that it causes the splat to load into Jetset correctly scaled. So let's hit three as a side view or one as a orthographic view. Three is gonna work better and we're gonna zoom in a little bit, and with splatloc still highlighted, we're gonna hit s.
+
+And we're going to shrink our shrink our splat until we just barely aligned. And I accidentally selected the splat. Go ahead and select the splatloc. And now you can see we're starting, it's starting to work. All right. 
+
+
+## Verifying Splat Scale
+
+So we have, we can come down here and we can see that our floor the wireframe points that correspond to the Gaussian splat center points are aligned with the floor.
+
+And we come up here to our countertop, And the Gaussian splat centers are roughly aligned with the top of our cube. So that's in the correct size. And we can go ahead and switch to material preview. And we can see that, yep, our cube is intersecting the top of the Gaussian splats.
+
+And it's coming in at the floor level where it should be. Now our Gaussian splat is scaled correctly. Okay. Okay that's good. Hit save, and we'll just name that Coffee Shop Interior 02. That's fine. 
+
+
+## Adding Scene Locators
+
+We've got that, but now we need to add our scene locators, because we need to be able to move around our scene in the way we're used to moving around in Jetset.
+
+So we're going to want to have a scene locator say by this front door. Now if we just hit shift and right click, And try to put it there, it's going to get hit on the first Gaussian Splat cloud that's between it and the door.
+
+So that's not going to work. So what we actually want to do is we're going to hide our Gaussian Splat, once again shift right click on our cube. And that sets our 3D cursor. So then what we do is we can re enable our splats and hold down, go to our wireframe, hit shift a, and we're going to add in another empty, we're going to rename it.
+
+And this time we're going to name it as a scene loc, S C E N E, scene loc, and we're going to do say front door inner. All right. And so now we're going to show the name and show our, and our axes. And now we can actually switch to top view, hit G, and move that over to line up with our front door. We can hit R.
+
+Oh, and if we hit R, look, we're going to try to rotate it, but it's rotating around the wrong axis. It's rotating around back around the, where the 3D cursor is. We're going to shift our view back to individual origins, our transform pivot point to individual origins. Now when we hit R then we can rotate correctly.
+
+Now we can align our scene locator closely to the floor. Again, this is a little bit of an approximation because the Gaussian splats are a bit more statistical. And while we're looking at this, we can get it to line up closer. Let's go ahead and adjust along the local transform.
+
+And that way, when I hit G and I can move along these axes. So I can come up to here, hit R Z, and align this with the edges of the door precisely. And then we can see that we are pretty well aligned in 3D space. There we go. And it is the scene loc front door inner. Okay, that's good. Let's add another scene locator on the top of the bar.
+
+Again, gonna hide our Gaussian splat. Shift Right Click to set our 3D cursor, Shift A to add. Rename that to SceneLoc, and that is BarTop, and change our, show our name and our axis so we can see what we're looking at, and let's show our Gaussian splats, and now we can actually say if we wanted to move that to a corner of the bar, see that inside corner of the bar, hit G, middle mouse button over to, to isolate the axis, G, middle mouse button, isolate that axis, and period to zoom in, and center.
+
+And we can see that we are, zoom out a little bit, sometimes it's harder to see it. All right, we're decently, it's a little on that corner of the bar. And then of course we can hit R Z and align it so that the X axis aligns up with the bar. Again, this is, it'll all depend on how you want to set it up.
+
+But this is just an example of how we're going to align things. All right. And let's also align things so that we have say a view of this room coming in. So once again, hide the splat. Shift Right Click on, on the on the cube, Shift A, Empty, Add a Plane Axis, Scene, Loc, and we'll do Sliding Door, okay?
+
+And going to turn on our Splats, and turn on our Name and our Axes, and then we can hit G, and Middle Mouse Click and Drag to isolate the Axes, and pretty quickly isolate it to the Door. Period to get close. Alright, and then we're going to move our x axis around. We're going to rotate our x axis with R Z 180. There we go, hit return. 
+
+And then we'll fine tune it a little bit more. We'll do G and isolate the axes. In this case, it looks like the floor is a little bit lower here, so we're going to do G Z. Bring it down just a little bit. Because of course the floor is going to vary from point, from different points in your scan.
+
+Even if we try to level it out a little bit. But now we're actually reasonably well aligned with the edge of the door. All right, and then we can hit RZ and rotate that in. Okay that's a good start. 
+
+
+## Hiding Reference Geometry
+
+Now it's time to export this. And we're going to want to hide the cube, so that doesn't show in our final result. So we'll go hide it in both the viewport and the render view. But it turns out we actually do need to have a piece of geometry somewhere in the scene, so that the Jetset loader knows what to do here.
+
+I'm actually going to come over here and put a tiny little Shift A and a little cube here. Scale it down. And, there we go. We just need to have a little bit of geometry in the scene, but we don't want it to interfere with the visuals on the rest of it. 
+
+We'll just rename that Cube; we'll just call this Geo. And we'll call this cube the Counter. Height. There we go. 
+
+
+## Exporting to USD
+
+Okay we're just going to go File, and we're going to go Export. And we're going to go Universal Scene Description, as before. We'll just name this Coffee Shop Interior 03, in this case. And we're exporting only the visible pieces.
+
+And we'll just export our USD. And we're going to go to our Autoshot, and refresh. There's our new Coffee Shop Interior. I'm going to click make USDZ and it'll make a USDZ. 
+
+
+## Pushing Multiple File Formats
+
+We can see down here something important, which is we see our USDZ files as we've always seen them down here. Now we can also see our PLY files.
+
+And that is because in this updated version of Autoshot we can actually push both US DZ files as well as uh, .ply and other splat file formats, as well as image files, and it'll tell it to go to the right place. So let's push our coffee shop interior, and that'll go very quickly.
+
+And we're also going to push the coffee shop O2 dot ply. We'll push that to Jetset and it'll take a few seconds as it's a larger file.
+
+Okay so now we've pushed that over to Jetset, so let's move over to Jetset.
+
+
+## Loading USDZ File
+
+All right, and here we are in the Jetset scene, and we can just go File, and we'll do Open, and we're going to pick our Coffee Shop 03, so all the way loaded. All right, and so right now we don't see anything. We have the scene locators, there's the board top, there's the front door inner, there's the sliding door but we don't see anything.
+
+And that's because we haven't yet loaded the PLY file, and we have to sideload that. 
+
+
+## Loading .PLY File
+
+So we're just going to open our models file again. Click open. And over here we're going to scroll to the Coffee02. ply. And so remember that our USD file has a splatloc underscore Coffee02.
+
+And so when we load Coffee02, it recognizes that and it knows where to put it. So it's going to take a second to load, and now it's displaying our Gaussian splat file. 
+
+
+## Switching Scene Locators
+
+So if we set it out at the origin we don't see anything. If we set it to our scene locator of the front door inner then we can actually see our front door.
+
+That was from that we set our scene locators earlier. And if we move it to our sliding door, Then we can see our sliding door, and it's the same way the scene locator is set correctly to locate that. Now, this is really cool, because now we have a full 3D scene that we can handle transparency.
+
+
+## Reflection Handling
+
+We're looking through pieces, panes of glass, and we can handle, and it handles reflections. So look at that. The reflections are shifting as we change our angle of view, and as we move forward to the floor, and it captures the material, the feel of that is shiny leather, and these are things that photogrammetry just does not capture.
+
+The reflections from the light, and all these reflections are accurate. These are from the original photography. We can capture the look of plants in the scene, and this is a full 3D scene, so we can get up and move around, and this is all being rendered inside the phone in real time.
+
+And we'll do another video shortly that has the rest of the workflow where we re render this inside the phone at a higher quality and then we composite it inside the editorial timeline with camera original footage matched by timecode. 
+
+So that's going to be a really exciting tutorial because it's a whole new way of working in virtual production. We don't need to have all the large scale equipment to get a good looking render out of this. So this is really exciting.
+
+All right. Happy rendering.
+

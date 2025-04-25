@@ -1,0 +1,228 @@
+---
+title: 'In-Phone Re-Rendering'
+description: 'Jetset can re-render a clean background of recorded shots. This can be used to render Gaussian splats at high quality for post compositing.'
+---
+
+## Video Tutorial
+
+<iframe src="https://share.descript.com/embed/8E6oajTDahL" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+# Transcription
+
+For this video, we're going to be going through our new in phone re rendering workflow. And this is a really interesting new way of doing virtual production that lets you recomposite shots in an editor without having to go through the traditional visual effects process of extracting EXR files and re rendering individual frames, etc.
+
+
+## Self-Contained Re-Rendering
+
+And for this, we actually will use the tracking data that's already stored in Jetset on the iPhone when you record. And especially when working with a Gaussian splat, we may have to dial down the quality settings to make that work well enough in real time. 
+
+But then we can go back and using the same tracking data on the take we just recorded, we can actually re render and generate an extremely high quality image. You can see this image in Fusion. 
+
+And we can see that this image is then correctly tracked with the camera original motion. And we can just re render a MP4 clip with it and then drop it into your editor. In this case we're using Fusion, but you could just as easily use Premiere or Final Cut or Avid.
+
+And then the take is the same length as the camera original footage, so you just drop one on top of the other and do a composite. And pull a key, and then you actually have a fully composited shot. And so this can actually be used for either a very simple visual effects process where you're just going to rekey your camera original footage over the rendered and tracked footage, or you can use this as a proxy workflow.
+
+If you're working on a larger project, you might want to actually just do a quick proxy render of your shot cine files, and use these for editing, since they will have the same number of frames and motion as the camera original files.
+
+So this has a lot of potential for a lot of different use cases, and it's very easy to use because everything happens inside the phone. Let's get started. 
+
+
+## Capturing Tracked Takes
+
+For this example we're going to be shooting with Jetset Pro, so the green screen footage will be recorded in the iPhone at 30p, and Pat is both modeling and operating the camera, so that's a little bit of parallel processing.
+
+
+## Capturing the Source Take
+
+I'll do a separate tutorial for re rendering with Jetset Cine as there are many more moving parts. We have the same coffee shop scene loaded as before, and we'll use the sliding door 2 scene locator. So we can go ahead and roll our take. And to move around a little bit in our coffee shop, see a little bit of the background.
+
+And this is being rendered at fast mode for the real time processing work. And then we can go back and rerender at a higher quality for the Gaussian splats. Okay. So we can move around a little bit, see the tracking, et cetera. Let's see a bit of our coffee shop. Okay. That's a good take. Let's cut that.
+
+
+## Re-Rendering Settings
+
+All right. So go to our review panel. Okay, so there we have our recently shot camera original, and on the right we have our real time composite. You can see Pat's shoulder in the real time composite. 
+
+And now we have a one additional button, and that is the filmstrip button on the lower left of the live comp.
+
+And when we click that, this is going to trigger our re-rendering workflow. And here we can see the settings that we're going to set for the background render. And right now, since we just shot this take, our current settings all match the current take. We don't need to do anything here.
+
+
+## Re-Matching Previous Takes
+
+Now, if we had shot a bunch of takes over the course of the day, and then we were going back and re rendering after we had moved scene locators and changed splats, et cetera, then we'd have the opportunity where we could hit match and force all those things to, to line up again before we re render.
+
+
+## Rendering Clean Tracked Background Clip
+
+They already match in this case, so we can just move forward. And we can see that we're re rendering at 1080p, we're going to be re rendering at 30 frames per second, which is correct, as we're shooting in this case in Jetset Pro. And we can go ahead and click render. And it's going to pull up a background render button, and it's going to work through the take that we just shot, and it's going to re render all of that and this time using a higher quality setting of the Gaussian splats, but with the exact same camera tracking motion.
+
+And this is going to generate a clean tracked background plate. In this case we're using a Gaussian splat for the background render. But this will actually work with any 3D model. Okay, so it is now tracked and we can see that it has generated a new clean plate and now that clean plate has the suffix back. 
+
+Now we can move to the next part of this where we'll transfer the takes over with Autoshot and recomposite the shot in Resolve.
+
+
+## Transferring Takes
+
+Now we're going to go through the process of recompositing those files in Resolve. And in this case, Patrick already synchronized the takes over to Autoshot on his machine and sent me a take zip file which is this zip file. So when I unzip it, it creates a small a project folder subset with just the files that we need.
+
+In this case, we'll go into the project folder. And we can find the actual videos in this folder.
+
+Here you can see the four videos that will come over. And we can see our normal zlcam, that's our cam original. We can see our normal zlcomp, that was our live composite, and our zldepth. And now we have a new file, which is our zlback. That is, again, the background render file.
+
+
+## Loading Takes Into Resolve
+
+The ones we want are actually just zl back and zl cam. I'm going to grab those, drop those into Resolve. And then we can double click on this, and we can see our, here's our cam original file. And we can see that it's 1920 by 1080 at 30 frames per second. So that's a file typical of recorded inside a Jetset.
+
+And there's our background re render file. So we page through it. There's a nice re render of the Gaussian splat all re- rendered completely inside the phone. And it has the same setup. All right, so let's go through this. So we're going to start with our zlcam file.
+
+I'm going to right click and I'm going to make a new timeline. And let's just double check to make sure that our timeline frame matches the the actual clip, 30 frame per second, 1920, we had 10 80 hd and we're going to create that . We can double click on that one, and then we can go and see our file and in the timeline. We're going to be doing our compositing in Fusion so we can just highlight this and then go click on the Fusion tab.
+
+
+## Replacing Duplicate Frames in Fusion
+
+In this particular case we were shooting with a Gaussian splat loaded on an older iPhone 13 Pro, so we had a few duplicated frames in the cam original file. And we're going to want to go ahead and fix those first. 
+
+Ideally, you avoid duplicating frames on your capture, but just in case it happens, here's how to fix it.
+
+We can actually type in control space, and type in frame, and we're going to want the frame replacer node. We'll add that, hold down shift, drag it into the timeline. We're going to highlight it, hit 2, so we can display the output in the second viewer here in Fusion.
+
+And as we go through it I already know a couple of the frames that were problems. We can zoom in a little bit and see where it happened. Frame 618, I believe. So there's 617, 618, and then 619 is the same as 618. So that's going to cause a visual glitch in the composite.
+
+So we want to repair that. We can use the frame replacer, and the way it works is that you click replace this frame. Now you have to be a little bit careful because this is a keyframed behavior, so you have to set your keyframes to turn this both on and off.
+
+It took me a little while to figure this one out. We're on the central frame that is the problem. This is the duplicated frame. So 18 has motion. 19 has no motion. Before we replace the frame, we're actually going to click our keyframes on that frame. I'm going to go 2 back and set a keyframe, and 1 back, set a keyframe, and then go forward to 620.
+
+And set a key frame and 6 21. So we've now set a the key frame on the center problem frame, and we've set key frames on the two frames before and after. And the reason we're going to do that is we're going to go back to six 19 and we're going to set this to optical flow because that does the best job.
+
+We're going to click replace this frame, and we're going to go to the previous frame. And forward to to 620, as well, and replace that. And we're replacing three frames in a row. And that will smooth it out the best. You'll notice that we've keyframed it off when we go back to 617.
+
+Alright, we have a key, we have turned off the keyframing. And we go forward to 618. And now we've turned on replace that frame. We replace the frame on 619, we replace it on 620, and then keyframe that off on 621. And then it behaves the way you'd expect it to. If you don't keyframe the behavior to be off, you're going to get some strange looking results.
+
+And the other one we had a problem with was 620, 628. There we go. So 626, 627, 628. The duplicate. So we're, once again, we're going to go back 2, and add a keyframe. Go forward one, replace this. Two, add a keyframe, and 629, replace this, and turn off, and replace, and add the keyframe there. So we should have the central the central one which is 628, and on either side we replace the the frame on 629, 628, 627, and then on 626 we keyframe it to be off, Three, three frames on, and then once again off. And then it behaves the way you'd expect it to behave.
+
+Alright. And so you just do that for the different frames that you have a problem with.
+
+
+## Keying with Fusion's Delta Keyer
+
+Okay, so once we've repaired our keyframes, we're going to want to key this. So I'm going to point you toward the tutorial I used for reference. If you want to go deeper into this by VFX Study, I'll put the link below. He did a great job with this, so I'm going to be following a lot of his process. 
+
+So we're going to hit control and shift, and we're going to type Delta. We're going to be using the Delta Keyer here. That's the main keyer we use in Fusion. Hold down shift drop it into the flow. We're going to be branching this frame replaced video out to multiple places so we're going to hold down alt and click here and that'll make a junction node here. Then what we're going to want to do is highlight our Delta Keyer, hit 2, so we see the result of it, and we're also going to hit 1, so we have the Delta Keyer on both of our viewers.
+
+And why are we doing this? We want to change this viewer to show the alpha, so we can show the reaction, the behavior of the Delta Keyer while we're doing this. So then we can highlight our Delta Keyer, and come over here, grab our eyedropper and as we move around we can see what it's doing with the alpha channel on the Delta Keyer.
+
+And depending on where we pick, then we can pick a, some reasonable area for it to pull the key from. And this is 4. 2. 0 compressed 8 bit h. 264 footage, so we're going to run into some limitations, but we'll go as far as we can.
+
+
+## Making the Core Matte
+
+Okay, so we've pulled the key and If we zoom in here, we're going to notice that we have some transparency in his pants, etc. And we could either try to really crank in that key but we're going to use a neat technique of using both a soft and a hard key, a hard core matte. So instead of just crunching in on this key, what we're going to do is actually make another Delta Keyer here and I'll just copy this and paste it. And so this Delta Keyer now has the same color pick as the first one.
+
+We're going to feed in our feed from our frame replaced footage. And we're going to hold down alt and drag onto here. And we want to bring this into the input. That's a neat trick from VFX Study. 
+
+Over here, our second Delta Keyer is highlighted. We're going to type in both 1 and 2. And what we have done is we have just routed this to the left and right viewers in Fusion. And it doesn't look any different yet because we just copied the node, but we're going to change the keying settings on this one to just do a core matte. So to do that, we're, we can crank up our gain, and then we can go into our matte.
+
+And we can up our thresholds to, to get rid of some more schmutz there. We can zoom in here. We have transparency on his arm. We're going to drop our threshold all the way down. So then we've got this very solid matte. Now this would look really terrible if we just used that as the matte because we have all these chunky edges.
+
+We're actually going to erode it. So we're going to erode it and dial it down a little bit. And that gets rid of both some of the other schmutz in the scene and also cuts our matte back. So that's great. But how do we get back into the original Delta Keyer? 
+
+We're going to highlight this Delta Keyer and type in two. And we're going to zoom in here, and so we can see here, we have transparency in, in, in lots of the areas of the matte because we didn't pull it in like we did the second keyer. We're actually going to take the output of Delta Keyer, hold down alt, drag it into Delta Keyer one. And we're going to bring that in as the solid matte. All right. So that has just filled in the solid matte of the core of it. So we haven't crunched in the edges hard yet. We're still going to be working on that, but we now have a solid matte for that inner portion of it.
+
+
+## Tracking a Garbage Matte with Planar Tracker Node
+
+Great. That's a good step forward. And one of the next things we have is, of course, we have schmutz in the scene, right? So as we move over, We have a, we have a ladder over here that we're going to want to get rid of. And in order to do that, we're actually going to add yet another node.
+
+And we're going to track a garbage matte around him. And this is a decent place to start. Let's look at the shot where he's walking through the scene.
+
+Kind of walking over there. Okay, so there's a good spot where we care most about the garbage matte. So we're actually going to hold down control and we're going to type in our PLAN for and get our Planar Tracker. I'm going to add that there. And if it goes in the wrong place, just hold down shift and drag it.
+
+And once again, we're going to drag in our feed from our junction node. Hold down alt, drag it in here, and we're going to pick Background which is that contains the region to track. Okay, and we're going to highlight this press 2 so we can actually see Our Planar Tracker interface and it's already put the kind of the center of the tracking area on him That's fine We can actually move that around a little bit To get a little closer to center on him And then what we're going to do is we're going to click and drag around him and we're going to make a rough garbage matte all right, and You don't want it to be like too tight for reasons we're going to see.
+
+I'm going to drag that out a little bit. Okay, so we're going to come over here and we're instead of our point tracker using the hybrid point area is much more robust. For the motion, we don't actually want it to have perspective. We just want it to do translation, rotation, and scale. And we're going to click set here to set our reference time for the tracker.
+
+It's a frame 290. So now we're going to track forward and it's going to track our garbage matte nicely around our shot to the rest of it. There we go. And we'll go back to 290 and then we're going to track backwards. So now we're going to go through the rest of the shot. And as he walks around, there's our garbage matte tracking him nicely, we may have to do a couple of adjustments. You'll see that it's translating and adjusting to scale as he moves around closer and further away from the camera.
+
+So this is a really convenient way to get a fast tracking garbage matte around the subject moving around.
+
+All right, so I just tracked a thousand frames, very quickly. That's pretty cool. Okay, so now, we have a tracked matte, but we need to change the output to be a mask. Alright, so now we have a white mask how do we tell that to the Delta Keyer?
+
+Once again, we're going to hold on to the output of the Planar Tracker, hold down alt, drop it into the Delta Keyer. In this case, we want it to send it as a garbage matte. Alright, let's highlight our Delta Keyer, hit 2 so we can see our output. Okay, it just disappeared haha, we just garbage matted out the person we wanted to keep.
+
+We're actually going to go over to our matte or over to our mask, and we're going to come down to garbage matte and click invert. There we go, there he's, now he's back. 
+
+
+## Adjusting Keyer Edges
+
+Okay, so now we have a garbage matted shot, where he's walking through the scene. But we need to tune this a little bit. There's a lot of things we can do on Delta Keyer, and for the more detailed stuff, I'll point you toward VFX Study, or one of the other people out there.
+
+We're going to do some simple things here. I'm going to highlight our Delta Keyer, and come over to our matte, and I'm just going to get rid of some of our threshold. Here, I'm going to zoom in a little bit and get rid of some of the fringe here.
+
+And note, we can actually drop our thresholds without causing transparency to happen in the core matte. And that's because we're using a core matte to drive the center, and that way we can adjust the edges of this separate from the center.
+
+We can walk through the shot, and it looks like we've got rid of most of the various bits and schmutz the ladder, etc. 
+
+
+## Adding Re-rendered Background
+
+So now we want a background. And to do that we're just going to go over to Highlight Media Pool, and here's our tracked background.
+
+And I'm going to drag this down and it'll come in as a media in node. I'll highlight one so we can actually see the process. Now it looks bright white. That's because we still have this set as an alpha channel. So let's go ahead and change this to color. There we go. There's our There's our nice tracked background and we're going to adjust the color of the background just a bit.
+
+So I'm going to hit control space and type in color. We're going to get our color corrector and we'll bring that over here. And press one to highlight the color corrector in the left hand node. And this one, I'm just going to do a couple of simple things. I'm going to up the contrast just a little bit to make it closer to the photographic image.
+
+And I'm going to also dial down our saturation a little bit because it's very saturated. All right. Next we're going to want to try merging this. We can actually do a shortcut hover your mouse over the central area, hit M for merge, there's a merge node, and we're going to drag our output of the color corrector, hold alt over the merge node, we're going to put that in the background, and we're going to take the output of the Delta Keyer,
+
+and move that over. Once again, Alt click to get a junction node, take the output of the junction node, hold down Alt over the merge node, and we're going to put that in the foreground. And we're going to route the output of this into the I'll put this into the media out.
+
+Okay. So now the key thing here is let's take a look at our merge node, highlight it too. So here we can see our composite put together for the first time. All right. And so that's, it's tracking, it's matched. That's good. But of course he's, he doesn't look like he's there yet. The color is really far off.
+
+So let's go ahead and fix that. And so once again, we're going to hit ctrl space and give ourselves another color corrector node. There's a bunch of ways to do this. I'm just going to show a simple way. We're going to put this in right here. 
+
+Let's do some organization. Bring this down a little bit. Bring these down.
+
+
+## Matching Foreground to Background Color 
+
+The color corrector has a bunch of different capabilities and one of the abilities it can take in is a match reference. So we're actually going to take in the output from this and just go hold down alt, bring it in, go to the match reference.
+
+We're going to highlight our merge node, hit two, then we're going to highlight our color corrector. So we're modifying our color corrector node, but we're going to see the output on the merge node and for the color corrector, what we can then do is under the menus, we can just go to our histogram and we have a bunch of different tools we can use for this.
+
+This shows the histogram of the background and foreground feeds, basically of what's coming into the match reference, as well as what's coming into the input. So we can see how the histograms compare and they're quite far off.
+
+If we just click the match tool, it's going to do some strange things. So it, one, it affected the entire image and to fix that, let's go up to our options and we're going to click pre divide and post multiplying. That way we're only affecting our foreground image.
+
+And this is, this really clearly took it way too far. You, there's a couple things we can do here. We can actually dial down our match RGB until it's something closer to what we'd expect to see. And there's a ton of layers we can go into on this. I'm just going to do a basic thing here, to show how the pieces go together.
+
+Let's take a closer look, and we still have a lot of edge in our key, and I'm going to go back to our Delta Keyer here, and I'm going to adjust our threshold a little bit more. And cut back into that. But there we go. So now we have our composite put together.
+
+
+## Exporting Composited Take
+
+And so once we have our comp put together, now we can actually go and write it out. So we have the output of the merge going into the media out node. So that if we go back to our editorial timeline, we scroll back and forth, we are seeing the the finished composite in the timeline.
+
+And we can set our in and out points here. The very first frame was black on the cam original, so we're going to have a kind of a strange frame 1.
+
+But we can click I to set our in frame, and O to set our out frame. Now, One thing we have to watch out for here is when we render out this clip, on the very last frame we see something that says, no frame available for media out one. So what's going on there is we go over to here, and media out one is this key here.
+
+And so in this case it looks like there is no frame data for the very last frame. And that, that can actually cause a few problems. Usually you're using this clip for editing, so we can just trim one frame off the back end. That's fine. So we can actually come back one and hit O. And that sets our output to a frame range that's valid.
+
+
+## Matching Clip Name
+
+For the frequent case where you are rendering a proxy, we're just going to keep the name matched. And let's just double click on our name. Let's copy on that, and come over to our output. And go to the file name CTRL A, CTRL V to paste.
+
+And let's change the file name on this from ZL back. We can just change it to recomp. There we go. And we can write it to the same directory folder we were at before.
+
+We can just go over to our our user files click here to grab our directory, come back here, control A, control V to paste. Okay. And then we can add that to the render queue and render.
+
+
+
+All right. So we can go back and let's take a look at our folder. And we have rendered in our recomp file back into our folder. We'll drag this back into Resolve, take a look at it. 
+
+You can use this in editorial work, and the frame numbers, et cetera, will match back and forth between your camera original. And this isn't so important for this shot done with Jetset Pro because the real time composite is already 30 frames a second and makes a good editing proxy.
+
+But we'll do another tutorial using re rendering with Jetset Cine which this should be extremely useful for making rendered proxies with because the proxy will have the same frame count and frame rate as the 24 frame per second or 25 per second uh, original.
+

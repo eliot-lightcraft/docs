@@ -1,0 +1,131 @@
+---
+title: 'xGrids Scans to Jetset'
+description: 'Use this workflow to bring in xGrids scans to Blender, add scene locators, and export a self-contained USDZ file containing compressed splats and scene locators to Jetset.'
+---
+
+## Video Tutorial
+
+<iframe src="https://share.descript.com/embed/WijetKolOMN" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+# Transcription
+​​
+In this tutorial, we are going to go through exporting a scan created with the X grids K one scanner into the Gaussian splat ply format and bringing that into Jetset. The scanner that can do some really remarkable work. This is a scan done by Roberto Schaeffer, ASC with a walkthrough in this part of the city.
+
+The results are actually really remarkable. So we're going to bring this all the way into Jetset. We're reviewing it right now in the Lixel CyberColor viewer app. But let's go through the process. 
+
+
+## Exporting .ply from Lixel Cyber Color Studio
+
+The first thing we're going to need to do is we're going to need to export. 
+
+We're going to go to the. Plaza Del Duomo and I'm going to make a new export directory. Call this export ply two.
+
+And we're going to export the official Gaussian Splat PLY format. We're going to export all the PLY formats, including the downsampled versions of the Gaussian splat that we can actually run in real time in Jetset. And the attached mesh, which is the OBJ mesh. And we're going to show you how to use that to place Scene locators. We'll click okay. And close this. 
+
+
+## Importing OBJ and PLY to Blender
+
+So we're going to go to Blender. We have already installed our 3D Gaussian Splat add-on as seen in other tutorials. We're just going to clear the scene with hitting A to select all and X to delete, and we're going to go to file and import, and we're going to import our OBJ file first. 
+
+We'll go into export ply two, going to go into our mesh files, and I'm going to pick our OBJ file and import that. And as by default, it comes in rotated 90 degrees and we're actually going to select our rotation, and zero out our rotation so that it is correctly vertical and we have no transformations in the X, Y, or Z.
+
+So we'll just lock those, make sure they don't get moved around. Next, we're going to import our Gaussian Splatting, and this time we'll go to Point Cloud iteration 100. And we're actually going to pick our point cloud two. The full quality one is point cloud do ply Point Cloud one is the first level of down sample, and we usually want the second level down sample.
+
+So we're going to import that as a Gaussian splat. And we're going to see that Gaussian splat is also rotated by default. We're going to remove that rotation and then we can see that our OBJ geometry and our Gaussian splat are now correctly aligned and we can hit Z and go to our mirror material preview so we can see the colorized version of this.
+
+And we can toggle on our Gaussian splatting so we can see that they are in correct alignment. Okay, we're going to save this. 
+
+
+## Adding Scene Locators
+
+Okay, now we can start to add scene locators into the scene. we're clearly going to want to add a scene locator near the front. This is going to be the main view of the duomo. I'm going to hit shift and right click to set our 3D cursor. I'm going to hit shift A into an empty with arrows and let's hit period to zoom in on that.
+
+And I'm going to hit Z to wire frame so we can see things a little bit more clearly. Okay. And so this has placed a scene locator right at our front area, and we can actually switch into workbench and see things a little bit more clearly. So that's a reasonable spot. I'm going to actually move our, going to move our scene locator back a little bit. I'm going to hit shift and right click here and while our empty is still selected, I'm going to hit shift s and I'm going to move our selection to the cursor.
+
+There we go. So now we're on flat ground. Going to hit. Seven to go to vertical rz so we can rotate a little bit. I'm going to shift our x axis to face directly at the entrance of the Duomo. I'm going to change our transforms to local and hit G and x move it up so it's more or less centered. Okay, so now we have a reasonable spot for our first scene locator, and we're going to hit F two to rename it, or we're going to name it. Scene loc. We'll call this Duomo
+
+Front. All right?
+
+
+## Duplicating and Snapping Scene Locators
+
+That's one locator. And we're probably going to want to have a few different locators on this. Let's set our 3D cursor again. Shift right click. We'll set this as at the entrance to the plaza and I'm going to hit shift D to duplicate our scene locator.
+
+Doesn't matter where you place it. We're going to hit shift S and move our selection to the cursor and that way we've snapped another scene locator there. We can f two to rename this and we can call this scene LOC Plaza.
+
+All right. And this, you can just repeat these to for however many different shooting locations you want. I'm going to put one more over here to the right of the plaza. I'm going to shift, right click, place it here, shift D to duplicate our existing scene locator, and then shift s put our selection to the cursor.
+
+So then period to zoom in and it looks like it actually put it below, below the surface. So let's hit shift. Right click again. Shift S, selection of cursor. The Blender 3D cursor is really useful. RZ 180 8 to move the X xa. Actually that's RZ 90. There we go. And that moves the x axis over here.
+
+Let's go. We have our scene locator selected. Go to viewport visibility and put AEs and in front, and that way we can actually see the X axis so it's not buried under there. And seven to go vertical. Okay. That's, that should be reasonable. That's a reasonable spot to look at the side of the duomo.
+
+Okay. And F two to rename it. And we're going to go scene Lo Plaza side oh one. Okay. So that should do the trick for scene locators. 
+
+
+## Adding Splat Locator
+
+Now we also need to locate the Gaussian splat. We'll switch on the display of the Gaussian splat. 
+
+And by default, we have no position, no transformations on it. And this is what we want in this case because we want our positions to reference back to our original scan geometry. But we do need to tell Jetset where to load it. And the way we do that is with a splat locator.
+
+To make this a little bit easier to see, we're going to hit Z and we're going to go to wire frame. So then we see our point cloud overlaid on top of our scan geometry. And I'm going to hit shift s and I'm going to move our cursor to the world origin.
+
+Here's our world origin. And the scan happened to show up over there. And what we're going to do is we're just going to put a splatloc at our world origin with no transforms. We actually don't wanna move this splat in this case. We just want to tell Jetset where to load it, which is at the origin.
+
+But we have to specify that for the automatic loading to work, which we're going to use later. So we're just going to hit shift A and add an empty with arrows. F two to rename it, name it a splatloc and then point cloud two. Okay.
+
+
+## Splatloc Naming and PLY File
+
+Now, where did Point Cloud two come from? Now remember that is the name that LCC studio automatically generated when we exported. So when we export it to Export Ply two and we go down into our. Point cloud iteration 100, we can see that it generated the original point, cloud point, cloud one, and point cloud two. And as we recall, point cloud two was the second most downs sampled one.
+
+And a little bit later on we're going to embed our Gaussian splat into our USDZ file for automatic loading and we just need to tell Jetset that we're going to be loading point cloud two and hooking it to this splat locator. So splatloc under score point cloud two.
+
+We will let it do that. And once again, we're going to have no position and orientation on this. No transforms and so I'm going to lock those. Then I'm going to select the Gaussian Splat. Control. Click on the splatloc and then control p to parent. I'm going to pick object without inverse.
+
+And again, all this is doing is maintaining consistency between in Blender where we expect things to show up with our scene locators and in Jetset. 
+
+To reiterate we are loading the the Gaussian splat at its default location, but we're just keeping Blender up to date on that and Jetset up to date on that in case we had to transform it. Okay. So once we have those in place, we have this, we have our three scene locators and the different parts of our scene.
+
+
+## Moving Geometry to Collection
+
+So before we export, we wanna make sure that our geometry is not exported along with our point cloud, because our geometry doesn't have a texture and it'll show up as a, an ugly purple color in Jetset. 
+
+So we're going to go ahead and right click and make a new collection, and let's call this geo.
+
+I'm going to select our Plaza duomo hit M and move that to geo and then we're going to disable our geo collection. Hit save. That way we can make sure that it's not being exported. 
+
+
+## Exporting USDZ
+
+Now we can go to file and export. We're going to export a universal scene description. In this case we're going to export it into a specific spot. We're going to export it A-U-S-D-Z, right into the point cloud directory, and we're going to actually name it in this case, A-U-S-D-Z because Blender can actually directly write A-U-S-D-Z file. So we don't need to bother with the intermediate step of writing out a USD file and then turning it into A-U-S-D-Z.
+
+You only really need to use that if you have to reprocess textures or something like that from Unreal. And we don't need to do that here. We're going to export USDZ and then we're going to open up Autoshot. 
+
+
+## Compressing and Embedding Splats Into USDZ
+
+We're going to go into our models directory and I'm going to set our USDZ model folder and we're going to set this to just where we located our previous model Plaza Duomo and export PY two. And our point cloud. And then I'm going to pick that folder and as you can see, it can see our Plaza del VMO one US dz, and it can also see our point cloud two.
+
+Now the key thing we're going to do here is we're going to actually embed. We're going to hold down control and click point cloud two and we're going to click embed images. And that is actually going to do two things. One, it has converted that point Cloud 0.2 PL, LY to a point cloud two dot splat with, and you'll see that it's shrunk by a factor of two it.
+
+And that is converting it from the floating point format into a much more efficient splat format. And it has now created a new USDZ file with the suffix m for embedded, and it has placed that splat into the USDZ file. What this does is it lets us open it all at one shot.
+
+Earlier iterations of our point cloud process required us to separately first load, the USDZ file, then the point cloud. And now this process lets us actually just load everything at once because it's embedded, which is usually far better to do this. 
+
+And we have Jetset up and running, so now we can just click push file to Jetset and it'll go through and push the file over.
+
+And then we can go to Jetset and open it up.
+
+
+## Opening Embedded USDZ in Jetset
+
+Okay, so here we are in Jetset. We're going to go to our settings and then model. And then open our model.
+
+And once we've loaded our model, we can click our scene locator, go to our duomo front, so there we can see the front of the duomo and pan around.
+
+And see our, and we can move back further to our plaza entrance so we can see our nice Duomo overhead.
+
+And then we can move over to our side plaza so we can actually see the view of the Domo from the side. All right. So that way we can actually move around in our newly generated splat. 
+

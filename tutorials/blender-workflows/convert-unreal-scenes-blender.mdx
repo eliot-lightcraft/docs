@@ -1,0 +1,91 @@
+---
+title: 'Convert Unreal to Blender'
+description: 'Use this workflow to convert entire Unreal scenes to Blender, using USD and Blenders integrated asset system.'
+---
+
+## Video Tutorial
+
+<iframe src="https://share.descript.com/embed/mAYZ5rQmckT" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+# Transcription
+​​Alright, I am excited to show you a clean new way of importing Unreal scenes into Blender. Instead of starting from scratch in Blender, we can get something from the Unreal Marketplace or a custom created Unreal scene. People have tried to export between software packages before, and it usually doesn't work well.
+
+The two big problems were that the material conversion didn't work well, and the asset systems from one 3D world don't usually come across to another one. And two new things make this work. One is that we're using NVIDIA's Omniverse and their MDL material definition language to do accurate materials conversion.
+
+This simply didn't exist before, and the material conversion just didn't work. And the second thing we're doing is to approach this in two stages. We're going to export USD out of Omniverse into a standardized file format. And then our Custom Blender Asset Importer processes that USD file into Blender formatted assets, making full use of blender's new asset browser so that we don't duplicate texture and geometry memory. And then we can work in a standard blender Asset workflow. 
+
+
+## Exporting to USD with Omniverse
+
+I'm using Unreal 5.2 and I've already installed an NVIDIA's omniverse launcher and the Omniverse Unreal connector for Unreal 5.2.
+
+So we're gonna convert this free polar sci-fi facility linked to in the comments. so first of all, we're just going to do a File, Export All, pick USD, and we'll, we'll go to our USD exports directory and I created a directory called polar sci fi. I'm going to hit save and that will pop up our exporter window.
+
+
+## Modular Export
+
+And what we're going to want to do is first, we need to pick modular export. What this does is it separates each individual Unreal asset into its own separate directory in the USD file tree. And our asset importer is actually going to look at each separate directory.
+
+So this, this helps keep things clean. It makes for a larger export, but that's only temporary since when we go back into Blender, we'll avoid redundancy. 
+
+
+## Combining USD Preview and MDL Material
+
+And we're going to, pick include USD preview surface and uncheck include Unreal materials. We need the USD preview surface as a backup for MDL. But we're only going one way to Blender, so we don't need to include the Unreal materials. And that's pretty much it. 
+
+We'll also click the Use Texture Source as Export Resolution to make sure we have the original texture source. And click OK. And this is going to take a while, as it's going to write out each individual asset to disk, and then when this is done we'll come back and run our Blender Importer.
+
+So that can take actually quite some period of time, but we only have to do that once and then we're off to the races. 
+
+Okay, so let's take a quick look at how this file is structured and what it's written out. It's written out a top level file, Polar Facility Example Map Sunset. It's created a props subdirectory. Double click that, and you'll see that inside here, for each prop or each object in here, it's created as a separate folder.
+
+If we double click in here, we can see that there's the materials, there's the MDL files, the preview surface textures, and the actual USD file. 
+
+
+## Blender Import
+
+Next we're going to open up Blender. We'll press N to open up the side panels and click on the AutoShot add on.
+
+
+## Asset Browser View
+
+It's useful here to drag up the UI and change this to a asset browser view.
+
+And we'll change that to the current file. And that way we'll be able to see the assets as they're created by the add on.
+
+
+## System Console
+
+You can also enable the system console with window toggle system console. And that way you can see the progress of what's going on. Alright, so then we go back over to our add on. 
+
+
+## Top Level USD File
+
+I'm going to pick the top level USD file. Click the folder, and we'll browse to where we wrote out our U US D export and polar sci-fi, and we'll pick out our top Polar, Example Map sunset file, click accept. We'll go to the scene, click A for all X to delete, and that way we clear out our scene.
+
+
+## Make Assets
+
+Then we can click make assets and it'll start making assets. And I'm gonna bring up our console window so we can see that. So it's bringing in the USD import, and then it's going to start creating all the individual assets. And so you can see the assets being rendered and populated in the asset list below.
+
+It's automatically packed and saved the asset file to a new asset blend file. So we're actually going to just copy this file name because that'll be useful later. 
+
+
+## Make Scene
+
+And we're going to go back over to here and hit CTRL N for new.
+
+Once again we can hit A for all, X to delete. And open up our panel again. And we're going to click on AutoShot open this out again. And we'll just paste that file name of the asset blend file. 
+
+Once again, let's click on our top level uSD scene file.
+
+Now we'll click make scene. And we'll bring up our console. And what that's doing is it's now parsing through that entire USD file, finding the 3D locations of each individual asset in that and then repopulating the blend file using the recently created Blender assets.
+
+And so that way we will actually have a cleanly generated recreation of the original Unreal scene, but now in Blender, built with Blender assets. And this will take a little bit of time to run.
+
+Alright, so there it's created our file. And we can move around in it. Let's shift to material preview.
+
+There's our scene. Now we can go inside.
+
+And here is our internal scene. Fantastic.
+

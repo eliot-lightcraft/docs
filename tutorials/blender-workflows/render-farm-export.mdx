@@ -1,0 +1,103 @@
+---
+title: 'Render Farm Export'
+description: 'Autoshot can wrap up the files needed for a render farm export into a zip file ready for upload to SheepIt.'
+---
+
+## Video Tutorial
+
+<iframe src="https://share.descript.com/embed/OkMk7WTjaFY" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+# Transcription
+
+Now that we have the 2D composite working, we want to render out a shot and rendering with cycles can take some time, so it's useful to be able to farm out the shots. And there are two major ways we'll look at doing this. 
+
+One is to set up Blender's, Flamenco render farm system on your own machines. This is pretty easy if all the machines are in a local network, but it's trickier if they're distributed. We'll go over setting up Flamenco on a distributed VPN based network in the Blender shared workflow section. 
+
+Here we're going to focus on using Autoshot's built-in shot packaging system to wrap up our shot into a self-contained zip file that can be sent to SheepIt or similar Blender based render farms.
+
+
+## Default Render Settings
+
+First of, we'll check that our Render Out file output is set up the way we want. And under our render properties, you can see that Autoshot defaults to 128 render samples, with the denoiser checked, and it does that for all of the generated render files. You can increase this if you want, but the render times go up quickly and SheepIt requires your per frame render times to be under 20 minutes, so it's good to be careful on samples. 
+
+Under the Output Properties, we have the resolution set to 50% of our incoming U H D images for an output of 1920 by 10 80 hd, which is fine for this case. Jetset by default records to 30 frames per second, so that's fine here. 
+
+
+## Setting Frame Range
+
+And this is the frame start and stop point that we set in Autoshot. You can of course change this before submitting the file. In our case, we're gonna change this to from frame four 60, uh, to frame four 70, just for a small example case 
+
+Our output is set to half float multi-layer EXRs with D W A A compression. And this is the required compression for EXR files in SheepIt, and it's a very good compression system. It retains the dynamic range of EXR files while giving jpeg like compression ratios. 
+
+
+## Trimming Layer Count
+
+And next, let's look at the View Layers tab.
+
+Sheepit has a maximum of six layers or passes. So we'll need to remove a couple of our default enabled passes to fit. So we'll scroll down, we'll turn off Cryptomatte, if it's checked as we're not using it for this scene. And that adds three more layers. We'll also come up, and if the Z depth layer is checked, we're going to uncheck it, as we're not using it for this scene.
+
+The Mist pass is very similar and it's more useful for compositing. 
+
+
+## Matching Scene Render Engines
+
+One thing you want to make sure you do is to go up to your garbage matte scene if you've made one, and make sure you switch the engine to Cycles. 
+
+SheepIt requires that the render engines for all your scenes be identical. So if you're rendering the main scene in Cycles, you need to set your garbage matte scene to Cycles as well.
+
+
+## Keep \_rndr File Suffix
+
+You're going to want to rename your working file back to \_rndr, even if you've made a couple of updates and incremented the file name. So we'll do that. Save as, and we're going to resave it as render.
+
+
+## Autoshot Render File Pick
+
+So then we'll pull up Autoshot. Now Autoshot is going to look for the render file that it's going to process based on the shoot day and take selection that you have set in the UI. if you haven't processed a different shot, the previous settings are retained, but just check. 
+
+We can see up here we're on scene 101 take 017 on the 01/21 shoot day. So 1 21 shoot day. Scene 1 0 1, take 17. All right, so we're matched. 
+
+In this case the scene blend file and the scene locator, we don't use that for the farm file setup, so that doesn't matter. That information is already baked into the render file that we've been working with. 
+
+
+## Farm File Output
+
+This process will write the farm output data into this D:\\tmp\\tempfiles area, our temporary files directory. So we're gonna pull that up so we can see the output happening.
+
+And we're going to pick File, Export Render Farm Zip, and the default is fine and we're gonna see a lot of things happening. 
+
+When Autoshot makes the linked \_rndr file, it bases it on EXRs with D W A A image compression for the camera originals. For most visual effects work image sequences are heavily preferred over dealing with movie type files like MP4 or mov, as it's much simpler to debug and make work reliably with image sequences.
+
+
+## Re-Extraction of Camera MP4 Files
+
+However, SheepIt has a file upload limit of 750 megabytes before zip compression and the DWAA compressed EXRs, or almost any EXR file, is much too big for this. So Autoshot to solve this is going to re extract the user selected frame range, what we picked above from 460 to 470, directly from the camera original MP4 file, and write it into a new MP4 file that just has the frame beginning and end selected by the user.
+
+It's then going to relink the camera original follow reader in the Blender Compositor to this newly created MP4 file, so the \_farm file composite will render the same way it did when you had the \_rndr file open.
+
+And this is done with a direct ffmpeg conversion, so there isn't much data loss or recompression, and then we can easily fit 4K videos into the farm file 750 megabyte upload limit. 
+
+If we double click in here, can see the generated camera original MP4 file. The AI mats, uh, are brought in over at as image sequences as they are black and white or gray scale image sequences, and they compress very efficiently, so it's fine to leave those as an image sequence. 
+
+Same thing with the depth files. They're very small, so bringing them over as a sequence is fine. 
+
+
+## Packing Linked Blend Files
+
+Autoshot will also work through the linked scene files that were referenced in the render file and link all of that together into a single blend file in the farm directory so it has all the information packed into it.
+
+We can check our size here. We can get to properties and we can see that before we start zipping, our folder size is, 663 megabytes, so we're fine under the 750 megabyte limit. 
+
+And finally it zipped it up into a zip file, that can be uploaded to SheepIt. So let's go to SheepIt.
+
+
+## Uploading to SheepIt
+
+We're on the SheepIt page under Get Started and we'll scroll down and we, we've already logged in. We can add your project, we can click choose file, and we'll go to where we wrote the file out tempfiles. There's our farm file. Double click that and we'll say send this file.
+
+It's going to process that.
+
+You can see that it accepted the file and it's giving us a couple of choices. We want to use Blender 3.4 right now as that's the most recent Blender build. We can add GPU to the compute method and it has the correct start and end frames and then we can click add this Blend.
+
+Okay, now it's starting. And this will show, the progress of the frames as those, uh, 11 frames come in. And that's it.
+

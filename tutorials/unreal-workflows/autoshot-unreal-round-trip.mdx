@@ -1,0 +1,554 @@
+---
+title: 'Autoshot Unreal Round Trip'
+description: 'A complete round trip workflow from Unreal to Jetset and back'
+---
+
+## Video Tutorial
+
+<iframe src="https://share.descript.com/embed/eRm1ycjpIRR" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+# Transcription
+
+We are going to do an Unreal Jetset Autoshot roundtrip. We're gonna make a project with this free Fantasy Castle. We're gonna download it from the Unreal Marketplace, add some scene locators, export it to Jetset, shoot a green screen take, and bring the tracked shots in back into Unreal.
+
+
+## Creating Jetset Project
+
+As usual, before we do anything else, let's go to our main menu, our project folder, and let's create a new project. And I'll scroll down and I'm going to call that, change the name, call that fantasy.
+
+And call that Fantasy Castle. And we can go over here and again click the edit button and just change our prefix. To, fantasy Castle. Done. Let's delete this one. There we go. All right, and we'll set it as our current project. Okay, so we can see on the bottom we have Fantasy Castle selected as our current project. 
+
+
+## Installing Autoshot Tools & Autoshot
+
+And let's go back to our desktop and we need to install the set of tools for Unreal, Jetset and Autoshot. So let's first go to the lightcraft. pro slash downloads page. I'll have the link below and we're going to download both Autoshot and we're going to download the Autoshot tools
+
+Okay, and once those are downloaded we can just go up to here and go ahead and install our Autoshot tools; it doesn't matter which order you install them in just install both of them and Autoshot tools is a larger download that doesn't change as often. It contains the large DLLs and AI model weights that we use for our AI processing.
+
+There we go. So install that. If you get a blue, a warning just go ahead and click okay on that.
+
+Okay. And then let's install Autoshot itself.
+
+
+## Create Matching Autoshot Project Folder
+
+Let's go ahead and start up Autoshot. . So the first thing we're going to want to do is make a new project folder. So we're going to click Browse, and we're going to go to our D drive. And I can make, we can put it anywhere. I'm going to right click, I'm going to make a new folder. And I'm going to name it Fantasy Castle. And I'm going to name it the same name that I named our project in Jetset, just for convenience.
+
+And later on, Jetset and Autoshot will check back and forth to make sure that those projects match, so we don't end up accidentally synchronizing footage into the wrong directory. 
+
+
+## Project Folder Organization
+
+So after we've created this directory, we can click open, and that'll open a file explorer that will go directly to that.
+
+And it's automatically created three subfolders, assets, footage, and sequences. And each one of those is used for pretty much exactly what you'd expect to use it for. When we write out our USD and USDZ assets, we're going to put them in assets. 
+
+When we're synchronizing takes from Jetset over to our desktop, Autoshot will automatically put that into the footage folder. And when we generate processed sequences from our takes, that's going to automatically go in the sequences folder. So those are all automatically set up.
+
+All right, so we're going to, let's just click on here, going to go into assets and let's copy our file path for the time being. That'll come in useful later.
+
+
+## nVidia Omniverse Setup
+
+And next we'll go to Omniverse. And we're going to be using the NVIDIA Omniverse USD exporters. They are really, really good. Unreal has a built in USD exporter, but it frequently misses things, whereas the Omniverse exporters will catch everything. What you want to install is the Omniverse launcher.
+
+We'll put these links below. So we can go click here and go through the process of adding the various bits of information and we can click submit. Great. 
+
+
+## Omniverse Launcher Download
+
+We actually just want the launcher right now. We're going to click the launcher for Windows. It's going to download, pretty small download, and we're going to click Omniverse launcher win, and that's going to set up the Omniverse launcher.
+
+Okay. And here we have the NVIDIA Omniverse launcher. And you'll probably need to create a NVIDIA account and do all the login, et cetera for that, and then this is what the launcher will look like. And this controls the installation of a number of really useful tools.
+
+
+## Installing USDView
+
+This is the front page of Omniverse and we can go to the library to see what tools we already have installed. I've already installed USD Composer before. We actually are going to need two other tools, so to get those tools we'll go to the exchange, go to click to apps, and we want to have I'm going to scroll down.
+
+We want USD view and we can click install. I don't know why there are two of those, but go ahead and install this. 
+
+
+## Installing Unreal Connectors
+
+And then while that's installing, we can go over to our connectors and we can type in Unreal. And to narrow our search, and we're going to want the Unreal 5. 3 connector, because we're using Unreal 5.3 to click install. We'll look at how some of those are used a little later. 
+
+
+## Unreal Plugin Setup
+
+Let's go back to Unreal for now. And here's our Unreal scene and let's do some plug in setup. We're going to go to plugins and let's go first check to see that, you know, Omniverse, there we go.
+
+So NVIDIA Omniverse is installed. We don't need the groom plugin because we're not dealing with air right now. We are also going to want the We're going to want the USD plugin, USD importer. That's actually both an importer and exporter, exporter. We're going to want the image plate. Make sure you check these if they're not checked.
+
+And we're going to want the Composure plugin, that one. And we're going to want the Python, Python. And we will want both the Python editor. script plugin as well as the sequencer scripting and we're going to want to type in movie render queue and we're going to want both the movie render queue and the movie render queue additional render passes.
+
+This will let us render out things like EXRs with Cryptomatte later on. Okay, and if you need to restart now that now is a good time. 
+
+
+## Installing Castle Scene
+
+We should talk about a little bit where this came from. This is the Infinity Blade Castle. Here's where we got it from. This is a free asset on the Unreal store. And we'll provide a link below.
+
+If you click open the launcher, it'll open in the Epic Games launcher. There we go. And then you can add it to your project. And I've already done that, but just to show you how it works, we can go down to our project and add the project, and I already added this so I won't, I won't click yes, but this is where you would add it to the project.
+
+And then inside the Unreal project, you would find it in inside your content directory, and you'd go to, so you can go into the environment pack, and then Infinity Blade, and then the maps, and we're using the terrain demo. 
+
+
+## Adding Scene Locators
+
+I'm going to hold down my right mouse button and slide the scroll wheel forward so I can move around quickly. But we can see that this is actually quite a large, large scene, right?
+
+So this, there's a full castle here. And so in Jetset, we're going to want to be able to move around to several places in this environment very quickly. And to do that, we're going to add scene locators. And a scene locator is just an empty, it's just a named null that we place in, in a particular location.
+
+So let's, let's put a couple of them in here. So I'm just navigating with WASD as usual in Unreal. So I'm going to first come over here and I'm going to, let's right click here and we're going to make a new folder. I'm going to call them, I'm going to call it scene locators. This name isn't that important because it's just us storing them in a folder.
+
+The actual name of the scene locator is important and we'll go into that in just a second. So, then we're going to add an empty actor. I'm going to go click here, and I'm going to click basic, and actor, and there's our actor showing up in the scene. 
+
+
+## sceneloc\_\* Prefix
+
+Let's hit F2 and rename him real quickly, and we're going to name him a special name, and that name starts with the prefix sceneloc, S C E N E, L O C, then our own name for whatever locator we want. And in this case, we're gonna call it Castle Approach. 
+
+
+## Aligning Scene Locator
+
+And we want to make sure that he is right on the ground.
+
+What the scene locator is going to do is it's going to pin this part of the 3D scene to wherever we pick as our live action origin in Jetset. So we want to be precise about where we put this. So, I've moved this up and down. We're going to do a couple things. We're going to make sure our snapping is set down to one, and we're going to set our our axes to display our object axes.
+
+And that shows us which direction the object is pointing, and therefore the scene locator is pointing. We can see that by, if we click our rotate axis, and we move move here, we've shifted our red x axis this direction, and we'll hit W and switch back to position. We can see that we've actually rotated the object.
+
+And we can see that because our object coordinate systems are being displayed. If we click to world, then it's going to display the world coordinate systems, which line up with this World Coordinate System indicator down here. And for here, when we're editing scene locators, we want it to be in object space, so we know which direction they're pointed. 
+
+We can move this over here. I can drag this so that our X axis, our red axis is pointing off to the right. Hit W again to bring back the translation handles. And I'm going to move this up and down until you can see that they just intersect with the ground.
+
+
+## Organizing Scene Locators
+
+There we go, there's our first, our first scene locator. And let's actually put it in the scene locator folder just for organization purposes. I just type in SCE into the search bar and that puts them right next to each other. So now I can drop one right into the other.
+
+There we go. So that's one. And so let's let's fly around our, our environment. Let's, and find another, another one. Let's look over here. That's kind of a neat environment. Let's put one on the bridge. That looks like a good place to put one on. So I'm going to speed up a little bit and we'll come down here.
+
+
+## Additional Scene Locators
+
+Okay, this is a good place to put one. Pick a little wide spot on the bridge. I'll remove our filter so we can see it. I'm going to add a a basic actor here. There's our scene locator. Gonna move him over to the center of the road. You can see carefully that it's dark when it's below the level of the surface. And just as we bring above, above it, it comes into the light. I'm gonna hit F to frame it so we can see that more closely and we can move that around. We want it to be exactly on the level part of the surface. And once again, we're gonna hit F two and we're gonna name that S-C-E-N-E-L-O-C, and we'll call it bridge.
+
+All right? Again, we're gonna type in SCE and the, and the search panel. And just drag and drop that in here. Save the scene. All right, let's find another one. Let's find another location. Zoom! All right, let's come up to one of these turrets. This looks like a good spot.
+
+Okay. So, I'm gonna There we go. I'm gonna come down a little bit. And I'm going to add an actor. And I'm going to remove our filter. Add an actor. There we go. And You can see he kind of came in a little bit below the world. We're gonna bring him over here and bring him up. I'm going to look for the point, yep, there, there, now it's emerging, right through the stone.
+
+And I'm going to hit F to frame up, and I'm going to move him over here a bit, and move him this way. Now, the red axis is the X axis, and by default in Jetset when we drop an origin, the red axis is going to point off to the right. If we do that in here and we snap our scene locator, we're going to be looking right at the wall instead of at the pretty view.
+
+So let's click our, our rotation. And we're going to rotate that around 180 degrees. And hit W again to show our to show our our translation axes. And hit F to frame. I'm going to move, and I'm going to move that over just a little bit more.
+
+
+## Object Axis Hotkey
+
+Okay. And once again we are in our object axes. You can cycle back and forth with Ctrl Tilde. If you need that shortcut. All right. And so let's take a look at where we're at. Let's take a look at the view we'll have here. I'm going to slow, slow this down a little bit when I'm moving around in Unreal.
+
+It looks kind of like a neat view and we're going to double check that we're exactly on the surface. There we go. Okay. That looks good. He's highlighted in the outliner, hit F2, S C E N E L O C, and we're going to put this overlook. All right. And once again, type in SCE in the search bar, drag and drop that into scene locators. Okay. That's a, that's good for our scene locators right now. 
+
+
+## Export Layer
+
+The next thing we're going to want to do is actually go get a layer window. So under window, we can bring up layers. There we go. There's our layers window. And, what we're going to do with the layers is we're going to select all the pieces that we want to export, and, only that. 
+
+Typically, an Unreal scene can be really large. And, I'll speed up so you can see this. So, an Unreal scene can be very large. And, we don't, we don't want to export all of that. Right? That there's a lot of terrain in there and a lot of these things aren't really going to help us that much when we're, when we're trying to do our our tracking, which the things we see are more local.
+
+So, but we can actually export a pretty decent amount of the castle. 
+
+
+## Selecting Export Items
+
+So let's switch to our top view, which is alt J and hit F to frame and scroll out a little bit. And here we can see our top view of our castle and we can actually just click and drag and pick the whole castle.
+
+Now in this case We've picked all of the underlying terrain if we try to export that it's going to take It's going to be quite a large model, and we don't actually really need the terrain So I'm going to hold it down control I'm going to click on the terrain and that gets rid of that I'm going to hold down control and click this as well
+
+
+## Adding to Layer
+
+And and I think that should actually that should do it for now. So those are all selected and we're going to do a right click, and we're going to add the selected actors to a new layer. We can name that USD export. It doesn't need to be that name, but just a convenient name for it.
+
+Then we can go back here and alt G back to our perspective. We'll hit escape to unselect everything. Once you've created a layer, you can actually select all the items on that layer by just double clicking it.
+
+
+## USD Export Directory
+
+Now, before we export, let's go find out where we're going. Let's go back to Autoshot and we're going to go to our project folder and we can actually copy that.
+
+And let's go back to Unreal. Again, we're going to double click our USD export. We're going to go to file export selected and we're going to pick USD. And we're going to come up here and just enter in our, our fantasy castle path, and that brings us right to our project folder and we can double click on assets and I'm going to right click and I'm going to make a new folder.
+
+I'm going to call that USD and inside that folder, we can actually save this castle one. That's fine. And I click save. Okay. 
+
+
+## USD Export Settings Speed Comparison
+
+Now this is the Omniverse exporter pop up, and there's lots of different controls on here. Now, one of the interesting things is we have a lot of control over how we export it, and we have simpler ways, and we have more complex ways that we can do this.
+
+So one of the things that I want to show you is that geometry is fast and textures are quite a bit slower, but after you export them once it goes pretty fast. So at first I'm going to do an export where I just unclick MDL and unclick include materials. We're going to export as a Y up axis, because the phone uses Y up.
+
+And I'm going to click OK. And it's going to start exporting. And boom, that was it. So it just exported. That's pretty fast. 
+
+So next I'm going to go ahead and I'm going to Export Selected. And this time I'm going to do the same thing. I'm going to go to USD I'm going to put it under Castle O2 this time.
+
+And this time around, we don't need the MDL cause we're going to the phone and I'm going to include the USD preview surface. We don't need the Unreal materials. We still want the export as YUP. And this is probably going to be the way you, you usually export. You're going to use your, your materials so you can see what it looks like.
+
+You're going to use your YUP axis and we won't, we don't really have any landscape grass, but we don't need that. I'm going to click OK, and this is going to take considerably longer, and what it's doing is it's actually exporting the physically based textures for each individual object in that castle.
+
+And so this can actually take several minutes to honestly, to on a big file, it can take quite some period of time. But the useful thing is, you only have to do this once.
+
+
+## Inspecting Export with USDView
+
+Now one of the things we can do here is we can go down to our Omniverse launcher, and we're going to go over to our library, which is where all of our installed tools are. I'm going to click on USD view, and we're going to launch it.
+
+And USD view is a really good tool to check to see how your your assets have exported. And we're just going to go here again. We're going to hit paste to go to our fantasy castle, go to assets USD, and we're going to open up our castle three USD. Take a second to load.
+
+And we can open this up a little bit and hit F to frame. Okay, so there is our there is our Fantasy Castle. 
+
+USDView is an excellent tool to check your core export to see if things have come through. It's the default verification tool that Pixar built for exactly this purpose. And if it comes into USD view, you can be certain that it exported correctly.
+
+Okay, so clearly things are there, and we can search for our prim.
+
+And we can see that we actually forgot to export one of our scene locators. That's a good way to check. 
+
+
+## Fixing Export
+
+Okay, so let's go back to Unreal. Let's go back to our outliner. There, oh, yep, see? We had our Selection selected, but we missed our bridge. 
+
+So we're going to select our bridge actor, go to layers, right? Click and add selected actor to selected layers. . Now, when we double click our export, there we go. Look at our outliner. All of our scene locators are selected along with the other material.
+
+So we can go back and file export selected, USD. We'll do Castle 04
+
+and again, no MDL, USD preview surface, no unreal materials, Y up, no landscape grass. Okay. Export that. Okay. Back to USD view.
+
+File, open, paste in our path, assets, USD. Let's look at Castle 04. There we go. And again, we can just type in scene loc. Hey, and all three scene locators are on for the ride. Okay, so that's, that's good. Now we can move on.
+
+
+## Converting from USD to USDZ
+
+Now we're going to bring up Autoshot next, and we're going to go into the Models tab. In this tab, we have a real time view of whether our Jetset client is connected, which it currently is. We can see that the current project name is, is Fantasy Castle. And if we push files over to that, it's going to be storing them in this folder, which is currently in the iCloud Jetset Fantasy Castle models subfolder.
+
+That's, that's where when we generate models, it's going to go. And we have the USD file already set to our. USD Fantasy Castle Assets USD folder. We're going to set our USDZ model. Gonna hit come here. And this may be already created for you, if not, you can right click and folder and type in USDZ. Again, this is just a convenient place to put the assets when they're processed.
+
+
+## Downsampling Textures
+
+We're gonna pick our Castle 4. And This is a texture downsampler, so if we use the original size textures, it will probably be too big for the phone. The phone can handle quite a bit of geometry, but we have to downsample the textures pretty heavily to fit. However, we can downsample it to just 512 pixels for each texture, and that should, that should help quite a bit.
+
+So I'm going to click Make USDZ, and over here you can see it working on it. It's doing all the resizing of the different textures in that model down to 512 pixels.
+
+Okay. 
+
+
+## Verifying Export and Pushing to Jetset
+
+And down here we have an exit value of zero. And so you can see that it's finished successfully and it created the Castle Four U S D Z file. And we can click over here to push that to Jetset. Once again, we are pushing it to the project name Fantasy Castle that we created, and it's going to go into this folder, which is in Jetset Fantasy Castle models.
+
+And so we can push USDZ to Jetset. And it's going to send that file over and we can see it sending it over via the wifi version and it's making it across. 
+
+
+## Wired Network Transfer
+
+Now this is a fairly small model. And so that, that came over successfully. If you start processing larger models and especially if you're running an iPhone 15 pro that has a USB connector, you can use a USB to gigabit ethernet connector and directly connect your phone to a network. 
+
+So in this case, I have this on my iPhone 12, so it's only a Lightning port. I'm going to connect that, and I'm going to refresh this to make sure that I'm, there we go. That I, that I'm seeing the Jetset device on the new IP address because now it's directly wired.
+
+So then I can click push USDZ to Jetset and you can see that it's going quite a bit quicker. And that's just limited to a 100 megabit line. So if you have a, an iPhone 15 Pro with that USB C port, really, you're going to want to make more use of this if you start working with large files. And also very useful for downloading files.
+
+Okay, so that, that brought it over. And, now we can load it up.
+
+
+## Model Setup in Jetset
+
+So back in Jetset, as we noted before, we're already in the Fantasy Castle project. We're going to click our main menu, go to Model, and going to go to Open. And we can see that our Castle 4 model is already here for us. We're going to click that, it's going to open it up.
+
+
+## Set Live Action Tracking Origin
+
+And at first it doesn't look like anything because we're starting off a bit in the middle of nowhere on the model. Let's first set our live action tracking origin. So, we're going to click go to origin. And we're going to go reset. Going to start a new map. And we move back and forth. We can detect parts of the ground plane and we can pick a good spot for our origin.
+
+I'm going to pick this over here and I'm just going to align it with something convenient in the, in the scene. There we go. And we can see already where things are going to line up. Ghost slider up. If I move over to clicking our scene locator If I pick our castle approach, then we can actually see that we are at the castle approach. 
+
+
+## Greenscreen Setup
+
+I'm going to set our green screen. So I'm going to go to set, and I'm going to set our green screen color, and I'm going to set our garbage matting. So I'm going to click start, and it's going to detect a, the plane, vertical plane of the garbage matte.
+
+I'm going to click plus to set a matte there. Now scroll down on the ground, come back a little bit so I can detect the green. I'm going to click plus. Then I'm going to click stop. Then I'll reselect our green color. That has set our garbage mattes. So now we can pan around the scene and we can both set our key and it'll automatically matte out the other parts of the scene. So even if you have a small green screen like I do here then it can work to show the, the wider world.
+
+Okay, so now our green screen is working, can put my hand in front of that, then move off to the side It's gonna go to the garbage math, but that's okay.
+
+
+## Recording Takes
+
+Okay, so we've loaded our model. We set our tracking origin. We set our green screen matte. We've added a subject for the green screen. All right, so now we can shoot.
+
+It's important to note that all my dashboard markers are green. Over on the right, my tracking is green. My GPU usage is green and my temperature is green. I'm running a cooler on this. That's really important.
+
+Especially when you're running a slightly heavier scene, it's really important to be running a cooler. Otherwise, you're going to start seeing red pulses on your GPU monitor, which is the Round device that looks like a little bit like a speedometer and then you're gonna get dropped frames So right now we've got green on everything.
+
+So let's let's roll the take There we go Framing up coming down
+
+Back
+
+And we'll roll another take starting high and coming low.
+
+
+## Reviewing Takes
+
+And now that we've recorded, let's go check our review. And that way we can see how our recent takes went. And we can see here that we had just a couple of frame drops in this one. Couple of frame, one frame drop, zero frame drops. Okay, good. So we have, we have a pretty small number of frame drops going on, going on here.
+
+Okay, good. Okay, so that, that means that our, our tracking is going to be reasonably good, and the phone didn't overheat while we were shooting, and we should get some good results.
+
+
+## Project Folder Name Check
+
+Okay we're going to go to our Takes tab and as we noted before we can see here that on our current connection on our Jetset Client, we have the project name as Fantasy Castle, and as we noted, we already set our project folder to Fantasy Castle.
+
+Now I want to show you something if we, if we set the project folder to something that doesn't match the project name on, on Jetset Client. I'm going to hit shift and click browse. And that will list a set of other projects that we, that we've used.
+
+So, here we picked a different project. If I click open, it has the correct assets, footage, and, and sequences directory. It's an Autoshot project directory. However, since this name here does not match the project name, we're getting the error here that says does not have same folder name as current Jetset project.
+
+And it will still sync. If I, we hit sync, it's still going to pull the takes. You can override it. But we have this warning here just to help you avoid accidentally synchronizing takes from the wrong project.
+
+
+## Previous Projects List
+
+So, All right, we're going to hold down shift. And go back to Fantasy Castle. And the list of previous projects is also under the file menu. We can look under the recent project folders. But the shift click on the browse is also a hotkey, or a shortcut. Okay, so, we have these, these synchronized.
+
+
+## Picking Sync Date
+
+Now we can pick our synchronization date. This is the date that we're shooting. You can also pick all. That's going to sync all the takes under that project. But you usually don't want that, you typically want to synchronize just a day's worth of takes.
+
+So we're gonna click today, and going to click sync. All right, and that was quick, because we already had some of those synchronized. 
+
+
+## Manually Setting Jetset IP Address
+
+It's important to note that typically, Autoshot can automatically detect the Jetset clients on the network and those will just appear.
+
+However, if yours is not automatically appearing in the client list then we, you can actually manually enter it with the IP address of Jetset. And the way you do that is we'll go, we'll go to Jetset briefly.
+
+And in Jetset, we can click the main menu, and show the IP address with this toggle at the bottom. And it'll show you the current IP address of this Jetset client. I'll toggle back
+
+And you can manually enter that into this IP address line here and click connect and it will link up to your Jetset connection and it'll show it here. 
+
+
+## Viewing Takes in Resolve
+
+Okay, so we've synchronized our takes, and we want to pick which take we're going to use and we want to pick which frames from that take that we want to work with. And for that, we're going to jump into Resolve and we can go and do a file and we'll do, go to the project manager and we can just create a new project
+
+and we'll call that trip three. 
+
+Okay. And what we're going to do here is to look at our takes as we remember our project file was under the D drive. And we're just going to go to We're going to Fantasy Castle. We're going to look in our footage folder, and in the takes. And here we can see the take that were today's takes that were synchronized over here.
+
+We'll look in videos. And here we see a whole list of videos. And we can actually just grab all these and drag them into our media page here. 
+
+
+## Matching Project Frame Rate
+
+And it's asking us if we want to change the project frame rate. The default project was probably 24 frames a second. These are iPhone clips, so they are all 30 frames per second.
+
+So we're going to change the project to 30 frames a second. And it's important to do that if you're just dealing with the straight Jetset clips that are 30 frames per second. 
+
+If you're shooting Jetset Cine, then of course your project frame rate is whatever you're shooting your Cine footage at, typically 23. 98 or 24 or 25 frames per second. In this case, we're just dealing with Jetset clips, and so those are 30 frames per second. 
+
+
+## Sorting Files with Smart Bins
+
+For each Jetset take, it stores the real time composite, it stores the camera original, and it stores a depth pass for that.
+
+And right now we just want to look at the live composites that we recorded, as we can edit with those. So we'll go down to a smart bin here, going to right click and add a smart bin, and we can just name this live comps. And the important part is here, where we're in our media pool properties, we're going to filter that our filename contains underscore comp, because all of our composites have an underscore comp suffix.
+
+So we're going to click create, and here we can see our four composites. Live action takes. And here we can, we can quickly review which one that we like. And we can sort them. They start from take 54, to take 55, take 56, take 57. And we can look at take 54, and take 55. Kind of look at the, the motion, how we want, want to do this.
+
+
+## Setting In and Out Points
+
+I think I like the last one, which is take 57. Yeah, it's kind of a nice move. Looks up at the, looks up at the castle. Okay, so we'll work with take 57. Gonna right click and make a new timeline with that clip. And we'll create that. And let's go to that timeline in editorial. And and actually let's let's remove that clip for now.
+
+Because we actually wanted to pick our in and out points for that. Let's pick our smart bin. And pick our take 57. And here we want to pick our in and out points of the frame. And there we go. So that's kind of a nice shot. So I'm going to come in right where the camera starts to come down.
+
+There we go. I'm going to hit I for my in point and come down and there's the end of the shot. Hit O for your out point. And we're going to drag our clip down to here. Okay. 
+
+
+## Finding In and Out Frames
+
+Now to process this clip correctly in Autoshot, we want to know what our in point, our in frame and our out frame exactly were.
+
+And there's a couple different ways of doing this, but for our purposes, we're going to click on the Fusion tab. And we can see in the Fusion tab over here, that our in point, our in frame was 57 and our out frame was 212. And so what we can do is immediately we're going to go back to Autoshot.
+
+
+## Take Selection in Autoshot
+
+We are going to pick the, the current, the date we were shooting on in terms of our take selection. And we're going to pick the take that we wanted and that was take 57. And we'll note that each take has both a scene, a take number, and a roll number. Those are traditional kind of human friendly names.
+
+It also has this 10 digit hex ID over here. That hex ID is unique on every single take. And so you can shoot for years and you will never have the same hex ID. And this is really ideal because it lets you identify takes automatically very, very quickly, even if you have hundreds or thousands of takes.
+
+
+## Selected Take Metadata
+
+And so here we can see different pieces of information from that take. So here we can see that the USDZ file that we had loaded was Castle\_04. The scene locator was the sceneloc castle approach, as we know. The equivalent focal length on this was the iOS Native Focal Length on that phone which turns out to be about 18. 5 millimeter as a super 35 equivalent with a 68 degree field of view. This was not a Cine take. This was just a straight Jetset take. So there is no Cine calibration file and there's no Cine footage match. 
+
+
+## Setting Run Values and In/Out Frames
+
+And down here under our run values we can pick different programs.
+
+And in this case, we're, we're going to use Unreal. Our scene locator that we will use will default to the sceneloc castle approach, and we are going to use extracted pngs. EXR files are typically for when you are working with raw or log footage, where you have to manage an extended dynamic range of a modern camera, you know, 15 or 16 stops.
+
+For ours, we are working with 8 bit compressed footage from the iPhone, so we just, we just use PNGs, and that keeps the color science simpler. 
+
+And over here, we have our clip in frame and out frame, and as we saw from Resolve, we want 57 and 212. So we're going to enter 57 and 212.
+
+We do not need an AI roto model here, and we'll just use our camera original and default. For our gamma and color, since it is a normal Jetset clip we set it by default to a standard rec 709 color space. And then we can save and run.
+
+And it will go through and it'll extract our frames. And it gives us its command set that we can paste into the Unreal Editor console command box.
+
+
+## Take Info Window
+
+And before that, one other additional little bit is next to our take, we can click our take ID and we can see some thumbnails of our take, as well as how many duplicated and dropped frames we have. So we can see that our tracking was was normal. We had a good mapping. So basically this looks like a reasonable take and we should get some good values out of it.
+
+
+## Creating Unreal Level Sequence
+
+Okay. So let's move to Unreal. Here we are in Unreal, and we're going to click on our command console here, and hit control v to paste, and hit enter, and it's going to run the automated script to create a level sequence. You can see where it has created that inside the Autoshot folder. Here is our, the name of the subfolder with the elements in it. And here is our level sequence. Again, all named after the take. So we can double click our level sequence here.
+
+And here's our level sequence. So, you can see here that here is our preview of the motion of the clip. And up here you can see the you can see the tracked camera placed correctly in the scene, next to the the sceneloc castle approach. So everything is going to match up correctly inside the Unreal scene to what we had it here in our, our live action scene.
+
+
+## Level Sequence Organization
+
+Okay, so let's take a quick look at this level sequence. So we have the tracked camera, and we have the camera animation data and down here we have the image plate, and that is where we are bringing our live action image into Unreal with, and we also have the scene locator of the castle approach, and importantly the way that we are parenting the camera to the castle.
+
+That scene locator is with this. This is an attach track, and the script has added the attach track to the camera and set it to sceneloc castle approach. And that is how we are correctly and automatically parenting that into the scene.
+
+
+## Changing Scene Locator Parenting
+
+And if you wanted to parent this to a different scene locator, if we wanted to put this, for example, on the bridge we could add a track, and we could add the actor to sequencer, and we want sceneloc, bridge. All right, and so here's our sceneloc bridge. We'll hit the up arrow key to bring it back to frame one. 
+
+And then we can go to our attach track right click that, edit that, and we'll change that to the sceneloc bridge. And then all of a sudden, that has now moved. So let's go see where it went. Let's go find our Cine camera actor, hit F to frame. And there it is. We have just moved our camera back over to the bridge.
+
+And we can actually process it there if we wanted to. Well, okay, that's, that's fine, but let's, let's go back to our original one. So we'll go back to our attach track again. Let's go back to frame one. So we don't have any timing issues. Right click on the attach track and we'll do edit and go back to scene loc castle approach.
+
+All right. That's back where we are. Select the camera, F to frame. There we are. 
+
+
+## Green Screen Material Keyer
+
+Okay. Well, now we have a green screen. We want to remove the green screen so we can see the, the element in the green screen. And by default Autoshot has added in the content browser, a nice material keyer. 
+
+This is based on a lesson by the Pixel Professor on YouTube. I'll add the link below, but this is a custom color difference keyer that is included in Unreal's Composure stack, and we have it applied as a material. This is located in the content Autoshot folder. 
+
+So we can right click on that, and we're going to make a material instance, and we're going to drag and drop that into this folder, move that here, double click on the folder, and then we're going to double click on that material instance.
+
+And what we're doing is, each material instance is driven by a separate camera texture, so we want to keep the material instance in with the rest of the elements from that particular sequence. So we're going to enable the color plate and the key color, as well as our blue and red weights. And you can do more with this.
+
+This is just the defaults. We're going to make sure that it's set to a, a plane, and we're going to drag and drop the camera texture onto the color plate. And we're going to click on the color picker on the key color and pick our eyedropper and go pick over here on our plate and click. Okay. All right.
+
+And so then we can see we've got a decent key going so far. We may adjust our. blue weight these a little bit but we don't need to do much there. We adjust our alpha offset just a little bit and we'll, we'll check against more when we have our actual little tiger in the frame. So we'll click save and we can exit this
+
+and we're going to come back out to our sequencer and pick our image plate. And then come over to the details and we can type MAT into the, into the search bar and click on our content browser and drag and drop our color difference keyer back onto the material. And all of a sudden it's keyed. 
+
+
+## Fixing Image Plane Distance
+
+And so now in our sequencer, we can start to look how that shot's going to work. And there's our little, there's our little tiger. And we can come up to here and click our camera cuts icon and see that he's locked in. There we go, and so we've got a fairly decent track going on there. 
+
+Now, something's funny is going on, so let's check what that is. Let's unlock our camera cut. And let's rotate around here, let's see what's going on. And what's going on is that the distance of this image plate from the camera is determined by the real time data we have from the LiDAR, from the iPhone LiDAR. And so it, it basically looks at a, an approximation of the scene, and sets the, the focus distance to that distance derived by the LiDAR.
+
+And sometimes we want to be able to override that in, in cases like this. So, we can do that pretty easily. We're gonna come down to our image plate. We're going to drag all around our transform nodes, and our transform keyframes, and we're going to click delete. And it disappears, so then we're going to open up our transform.
+
+And we're going to open up our location. And we're going to drag our X location out. Until he's just a little bit in front of the plane. Let's see how, where he starts to cut off here. So I'm going to click our camera cuts. There he is, there's our little, there's our little fellow. There we go, that looks like he's sitting sitting nicely on the virtual plane and we're going to do a little bit of garbage masking out of him later on in Resolve, but we want to just want to make sure that he's he basically works through the shot Yeah, it looks pretty good. I like it. 
+
+And we can just go back to the first frame here now that we have we have a nice position and we'll just click add keyframe for X to lock it in place and we can save this. 
+
+
+## Hiding the Image Plate in Renders
+
+Now before we start rendering, since we're going to be compositing in Fusion to give us more control over this and to be able to garbage matte out, the, the stands and the floor, etc., then we want to actually not render the little tiger in here or the live action plate. 
+
+So to do that, we set this usually by default we can go over to our image plate and go into our, let's remove the search, go into our rendering, and we're going to click actor hidden in game. And that will, that will hide the actor when we start rendering.
+
+
+## Rendering Background EXR Frames
+
+So let's go down to our movie render queue. And here it has automatically generated a job with the name of the current take, we can look at our settings and the configuration. It's creating an EXR sequence. And we can look at that, all the individual settings. We're going to compress that with DWAA compression.
+
+We can look at the different rendering settings. And the camera settings. And the frame color. And that will give us an idea of how this is all going to come out. And there's, there's our output. We can see where it's going to be rendering this. And the file name format into the slash render EXR directory, the correct resolution and the frame rate. Okay, so we can accept and just click render and it's going to spool up and warm up the engine and then start rendering frames. Okay, and it's going to render its way through and render our 155 frames.
+
+all right, now we can move into Resolve.
+
+
+## Making Sequences Bin in Resolve
+
+Okay, we are going back into Resolve. We're going to do a little bit of compositing here. We're going to need to go get those image sequences. In order to do that, let's first create a new bin for those. And we'll call that sequences. And what we're going to do here is we're just going to use this to store the image sequences that we extracted in Autoshot of the PNG files and also of the rendered EXR sequences.
+
+And the reason we do this is that it's much more reliable to work with image sequences for a visual effects shot inside Fusion. 
+
+
+## Dragging in Sequences
+
+Now actually first we're going to drop back to Autoshot. And here's our selected take. We're at take 57. There we go, and we're going to click the open button next to the take dropdown. And that'll open up, as we know, the list of subdirectories for our processed sequence. And we're actually going to want two of these.
+
+So we'll go over to Resolve and toggle up our Windows Viewer. And now we can see that we can actually just click on our camera PNG. And click control A to highlight all of them and drag and drop them over into our sequence. It is automatically detected as a numerical sequence of image files.
+
+Go back up, over to our render DXR, control A to select all, drag and drop. 
+
+Alright, so now we have our two sequences. And we can actually now drop these into the timeline. Right on top of our original live action image. And we'll do that with our Green screen take as well.
+
+
+## Creating Fusion Clip
+
+So now we actually want to create a composite with these two. So we're gonna click on these two, right click and create a new Fusion clip and now we can highlight that new Fusion clip and go into our Fusion panel. And here we have a very simple composite with our background and our foreground. And if we highlight our background and click one we, it'll put into viewer one and highlight this and hit view two and it'll put this in viewer two and we can see how our live action and CG clips are going to link up. 
+
+
+## Ultra Keyer Setup
+
+The first thing we're going to want to do is let's actually do a key on this fellow. So we're going to hit shift spacebar, and we're going to type in the ultra keyer. And that's a good simple keyer for this. The ultra keyer has an input here.
+
+So we're gonna drag our output of our green screen plate into the input of the Ultra Keyer. And with the Ultra Keyer selected, we're gonna come over here and grab our eyedropper, and pick a spot nice and close to the tiger, and let's, and let's highlight this and hit 2. And you can see, alright, so we have the beginnings of a key there.
+
+
+## Planar Tracker as Garbage Matte
+
+And we're going to be doing some more work with that. But the next obvious thing we're going to need to do is we need to garbage matte this. So, let's once again come down here. I'm going to hit shift space bar, and I'm going to get a tracker. We want a PLA planar tracker in this case because it has a nice built in mask.
+
+We can highlight over the different inputs of the tracker. All right, so we want to put this into the background. Put that here and let's go over and we're going to track from the end of the frame because in the beginning he's out of frame. So we're going to use the garbage man on the end of frame. All right, so we're going to click set to set a reference time and I'm going to move this little guy down to his center and we're going to let's just use a hybrid point area and in our case we can actually just pick translation, rotation, and scale to kind of keep it simple. And we'll drag a little matte around this guy.
+
+I'm going to try to keep some shadows in there. And close it off. And now we can track backwards. There we go. And we actually want him to, instead of being the output of the background, we actually want him to be the output as a mask. So we highlight this, click 2, and there we see that he's being output as a mask.
+
+
+## Connecting Mask to Ultra Keyer
+
+Then we can actually feed that mask into the Ultra Keyer. So we're going to take our output from here, and we're going to go to our garbage matte. Let me click over this in the Ultra Keyer. Alright, and so let's take a look at the Ultra Keyer. And come down here. Highlight that. And let's take a look at our matte.
+
+And we want to the garbage matte. We can invert that. And we can tell it to post multiply the image. Alright, so now we have a nice garbage mat around our little tiger. All right, so as we scroll back and forth, the mat's tracking along with him. 
+
+
+## Blurring Matte Transition
+
+It's a little bit harder to see through compression, but we can have kind of a harsh edge on the outline.
+
+So let's go ahead and move this over and shift space and type in B L U and add a blur. And I'm going to hold down shift, drop that right in here. There we go. And for our blur, we're going to just give it a bit of a blur here and that helps to feather in everything. And once we have that, and we can actually then bring our merge node over here.
+
+and unhook, unhook the old merge node and hook our output to the input of our merge node and type in 2, and then we can see our merged composite. So there's our little tiger in his little castle world. And we can see the the shot comes down nicely. flows over it. There he is.
+
+
+## Rendering in Place for Timeline Playback
+
+So now we want to go back up to the editorial timeline and to make sure he plays back correctly at speed, we're just going to hit right click and we're going to render him in place. And this is a, just a good way to render a temporary file, so he'll play back in an editorial speed at a good, at a good rate.
+
+And we can just go into our resolve cache and just it doesn't matter where we're going to put this for the night right now. So I'm just going to put it into the cache clip directory. And select that folder. So it's going to render out that clip internally into a Fusion kind of cache. And then we can play it back on the timeline and he'll play back at the correct speed.
+
+
+## Summary
+
+We started off with our castle in Unreal. We added a few scene locators. We exported a proxy file, converted it into USDZ, brought that into Jetset, picked our scene locators and our origin, shot a couple shots, pulled the files back into Autoshot, picked out our shot in Resolve, set our in and out points, and rendered our frames.
+
