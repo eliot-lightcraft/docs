@@ -58,7 +58,11 @@
           {
             "group": "Unreal Workflows",
             "pages": [
-              "tutorials/unreal-workflows/autoshot-unreal-round-trip"
+              "tutorials/unreal-workflows/autoshot-unreal-round-trip",
+              "tutorials/unreal-workflows/export-usd-unreal-plugin",
+              "tutorials/unreal-workflows/rendering-360-backgrounds",
+              "tutorials/unreal-workflows/exporting-animated-scenes",
+              "tutorials/unreal-workflows/importing-animated-takes"
             ]
           },
           {

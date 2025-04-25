@@ -1,0 +1,91 @@
+---
+title: 'Export USD Unreal 5.4+'
+description: 'Unreal 5.4 features a much-improved USD exporter which is now the standard export technique as the Omniverse Unreal connector is deprecated.'
+---
+
+## Video Tutorial
+
+<iframe src="https://share.descript.com/embed/4yyzv2YhmEA" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+# Transcription
+​
+Alright, in this tutorial we are going to go through exporting from Unreal to USD using Unreal's default USD importer. In some cases this can work differently than how the Omniverse export, exporter can work, but it has some advantages as well, including being able to simplify the meshes upon export, and that can actually work to make a very large scene like this much more tractable inside Jetset.
+
+
+## Adding Scene Locators
+
+So let's get started. So this is a Temples of Cambodia scene. It's a really nice scene, has lots of detail in different places. As usual in our Unreal workflow, we've added a scene locator for the front table.
+
+And we've added one for a walkway. And just to reiterate how those work that's just a an empty actor object. So We'll just come back here to one of these to one of the rooms here. Watch out for the skull. And I'm just going to drag and drop an empty actor. Basic actor there.
+
+And frame up on him. And then what we immediately see if we hit W. We want to make sure that it's intersecting with the floor. So as we go up and down, we can see where it intersects with the floor. I'll move it closer to us with the, by just dragging on the various axis arrows.
+
+And let's, is he on the floor? Nope, not yet. So let's drop him down a little bit until we can just just see where it exactly intersects with the floor. And that way we'll have correct ground contact when we bring it into virtual production. So there we go. He's on the floor. 
+
+
+## Object Orientation
+
+We already have our object orientation axes in object space, that's how we can actually view their accurate orientation.
+
+I'm going to click E and change his orientation over to 90 degrees here. And again, switch back to W. This is exactly how we did it earlier in the in the original Unreal tutorial. So the X axis is the red axis pointing off to the right. So when we drop into our scene locator in Jetset, we'll actually be facing up toward this walkway.
+
+And again, we can add as many scene locators as we want. Just showing you how it works. So let's go rename this one. And hit F2, and we're going to call it scene loc we're gonna call this passageway. There we go. So now we're going to go to the export process.
+
+
+## Unreal USD Import Plugin
+
+Before we export, in this case we're going to be using the default Unreal Importer.
+
+Uh, So it actually also works as the exporter, it's confusingly named. So we're going to go to edit plugins and going to type in USD. And we're going to make sure that our USD importer is checked. And in this case our NVIDIA Omniverse plugin is unchecked because we're just going to be using the stock USD importer.
+
+Now, of course, it imports and exports, so it's a little, again, it's a little bit strangely named. But we're going to make sure that is enabled. And then once we have that enabled, now we can go and export the entire scene. We'll just go File, Export All, and we're going to pick our directory. And as before, we just picked a USD export directory.
+
+I put it in Saved. And we can pick our USD file. Again, this will default to a binary description of USD. And so we'll just call it the Full Interior, and I'll just name it number 2. That's fine. Hit Save. 
+
+
+## Unreal USD Export Settings
+
+And it's going to bring up a slightly different USD export dialog. Once again, we're going to make sure that we have the Y axis up, because we're going to be exporting over to the iPhone, which uses Y axis up.
+
+We're also going to enable Bake Materials. This is, by default, it's unbaked. We're going to click Baked. And, by default, there are nearly 12 materials that are selected. We don't need most of them. We're just only going to export the Diffuse, Roughness, Emissive, Opacity, and Normal here. You can actually go ahead and delete, delete that, that layer with a trash can.
+
+By default, it's going to export to a texture size. of 128 by 128. So that'll be pretty heavily downsampled, but that's actually probably what we want for exporting this larger scene into Jetset, otherwise it's, it doesn't have a chance of fitting.
+
+
+## Geometry Export LOD Control
+
+The most important thing is down here. We can control the level of detail, the LOD, of the mesh export. And the stock level of detail is LOD 0, and that is the in game mesh level. And that's actually quite dense, and that's probably a little bit too dense for exporting a whole scene to Jetset.
+
+And we're actually just gonna pick LOD equals 1. So that actually lets us drop our polygon count substantially while not really changing the outside shape of the mesh very much at all. Okay, so that should do it. And then we can just click Export.
+
+And the first time you export, it's actually going to take quite a bit of time because it has to go through all the USD files and bake out the maps. Subsequent times are actually much faster. So it already exported. 
+
+
+## Generating USDZ in Autoshot
+
+Now we're going to switch over to Autoshot. And I'm going to click refresh.
+
+And so we have our newly exported TempleFull interior 02. Since we already baked down to 128 by 128, we don't actually need to change our texture size. We can just keep the texture size as original, and we don't want to change our scale units because we have that set correct in Unreal.
+
+And we can just click make USDZ. And it will go through and crunch through and make the USDZ assets.
+
+Now, once it's done that, we can see that it has exit value zero, it's finished successfully, and we have a TempleFullInterior02, which is our new temple. So then, we can actually go ahead and push that file to Jetset.
+
+
+## Opening Scene in Jetset
+
+Once we've pushed that to Jetset, we can actually go ahead and open Jetset, and then we can go to our our main menu, and we can go to our model and click open. And then pick our Temple Full Interior 02 that we've just just pushed over. We're gonna load that up. And it's gonna take actually a little bit of time to unpack that and load because that was an awful lot of models and textures. So we'll just give that a minute to load.
+
+Okay, so that took a couple minutes to load, but it's the entire Unreal level. You can always cut it down if you want. 
+
+
+## Choosing Scene Locators
+
+We can actually switch down to our scene locators. And here's our front table. Scene locator at the base of the temple table. If we move back a little bit, there's our walkway.
+
+So we can look up and around. There's our temple. And looking back at our walkway. And then finally if we move to our passageway you can see that this is where, here is where we actually set down our scene locator in that particular area. And if we look over to here, there is a scary looking set of stakes there.
+
+Alright so in that case we've actually imported an entire Unreal scene level into Jetset, and it's running fine. No GPU hits. This is an iPhone 16 Pro Max, so it's a modern iPhone. And it's actually getting a little bit warm. As you can see by the thermal indicator, because I don't have a cooler on this right now.
+
+But that should get you going. And that way you can see how using the default Unreal exporter can actually work really well for lots of cases, including when you want to simplify the geometry of a scene.
+

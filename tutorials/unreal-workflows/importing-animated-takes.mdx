@@ -1,0 +1,102 @@
+---
+title: 'Importing Animated Takes'
+description: 'Import camera animation from Jetset and link to the matching animated level sequence cleanly and quickly.'
+---
+
+## Video Tutorial
+
+<iframe src="https://share.descript.com/embed/86kywYkiGkB" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+# Transcription
+
+In this tutorial, we'll go through importing the animated take we just shot, and matching the camera tracking data back to the original Unreal animated sequence with the elevator in it. 
+
+Since the animated camera was parented onto the moving elevator when we shot the take, we need to do the same process back in Unreal.
+
+
+## Autoshot Settings
+
+We'll start out in Autoshot. We already synced the take back to the project folder. And so here's the take we're going to work with. And we can see that it's using the elevator descend USDZ with a sceneloc elevator.
+
+And our take focal length was 26. We have our program set to Unreal. And we typed in sceneloc elevator here. We'll generally use EXRs for the camera media. Unreal needs to use an image sequence to work correctly in Sequencer, and EXRs are much more compact than PNG files.
+
+PNG files are faster to extract, so they're sometimes good when doing debugging, or when working with a program that doesn't read EXRs. I'll avoid using a denoiser, as the camera original footage isn't very important for this shot and it takes longer. I'll click Save and Run. Alright, and it gives us a string to paste into the Unreal Editor command box.
+
+
+## Creating the Unreal Sequence
+
+So we'll go over to Unreal and hit CTRL V to paste that. We'll double click on our created sequence. We'll select our camera and hit F to frame. Alright, and we see that our camera is in the middle of nowhere on the ground somewhere.
+
+And this is because it needs to be parented to the elevator. This level sequence only contains the camera animation. It doesn't yet contain the elevator animation. 
+
+
+## Adding the Elevator Subsequence
+
+So to get that, we're going to add a subsequence track. And we'll go into our subsequence track, click plus, and we'll type elevator.
+
+To search for that, we'll click our elevator track. And just before you do that, make sure to hit up arrow to bring you back to the first frame so that you don't get your animation offset. 
+
+
+## Adding Scene Locator to Elevator Sequence
+
+We need to go into the elevator track. In case you haven't already done that, you need to drag and drop your sceneloc elevator into this subsequence so that we have a reference to link to in the next step.
+
+
+## Adding Camera Attach Track
+
+We'll go back up. Now we need to tell our camera that it needs to parent itself to that animated scene locator in the subsequence. So we'll click this, and we'll do an attach track, and we're going to go into the elevator subsequence, and then pick sceneloc elevator. Once again, we can highlight our camera, hit F to frame it.
+
+And There's our camera, and our screen. 
+
+
+## Fixing Animated Texture Display
+
+Right now we don't see the animated textures on the image plane. So we can go back to our content browser, and just double click on our camera texture. And hit ctrl s. And go back and back to our sequencer. And now our textures work. It's just kind of a quirk that's there in Unreal 5. 3. 
+
+
+## Fixing Texture Brightness
+
+And that's really bright. So we can dial down the brightness of the EXR files. So we can go to our image plate. Highlight that. And go over here and type in mat for material. And that brings up our material. And we'll double click the image plate material. And we can see our our node set up here and we're going to right click and we're going to add a multiply node here.
+
+And we're going to set this to instead of 1. 0, we're going to set it to 0. 01, which is quite a bit less bright. And then we can drag in our RGB plate and drag this out to our emissive color. Alright, and then we can click apply. And come back, and sure. Alright, and so that has that has dropped our brightness down considerably. 
+
+
+## Disabling Image Plate
+
+In this particular case, we're not interested in the live action. We're just using this for a previs. So we can just go to our image plate, highlight that, go over to our details and Click actor hidden in game and that will remove it and we can hide that there for now.
+
+Unclick our camera cut and we can see that our image plate is no longer visible, but we still have our camera animation. So if I click our camera track, you can see, all right, now things are moving. You can see our, our shot as we plunge down into the city.
+
+And the buildings go by and our camera tracking is now merged in with our original elevator motion.
+
+
+## Command Line Encoder Shortcut
+
+Let's render the sequence out. And as usual, to get a video, we'll need to set the command line encoder properties first.
+
+And you've seen this before, where we had to go find the installation location of our FFmpeg executable. But we just added a shortcut. So we're going to go back to Autoshot. We're going to click tools. We're going to say copy command line encoder path to clipboard. And come back over here to edit. And then project settings.
+
+And then type in command line. And then we can just double click this and hit paste. For the video codec, we do libx264. For the audio codec, we use aac. And for the output file extension, we'll enter in mp4. 
+
+
+## Rendering with Movie Render Queue
+
+And with that done we can go to our movie render queue and we'll delete the old one.
+
+And this is our, our current one. Click render. And that'll spool up our renders.
+
+All right. We'll let that render out. 
+
+
+## Comparing With Jetset Live Comp
+
+Okay, so we've finished rendering. We're going to want to test this against our original. To test this, we'll overlay the original live composite clip and the re rendered clip in Unreal. So, back in Autoshot, go ahead and click the Open button next to the clip. And this opens up in Windows Explorer, the list of subdirectories under that processed shot so we can easily find the pieces we need. 
+
+So let's go up to Resolve And we'll go back to our media panel, and we'll make our test bin. Open up our third test bin, and we'll go back over to our folder, and we'll go into our preview. And we'll pull over our unreal preview. Go up over to our source data, and get our videos and get our live comp. Pull that back over. And we'll go ahead and make a new timeline out of this. Let's make sure we have the correct format. Okay. 30 frames a second. Great. We'll open up our timeline and we will drop our live comp on top of this. Line it up. Alright, and then we're going to crop our bottom. There we go. 
+
+And as we scroll through,
+
+we can see that we are frame on with our foreground 3D images, which is great. , I eyeballed in the background 2D image a little bit off, but that's alright, that's good enough for our reference use.
+
+And we can see that our animation is, is correctly synced..
+

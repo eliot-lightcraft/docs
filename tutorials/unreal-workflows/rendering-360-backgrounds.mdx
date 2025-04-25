@@ -1,0 +1,70 @@
+---
+title: 'Rendering 360 Backgrounds'
+description: 'Configure the Unreal Movie Render Queue to render high quality 360 panoramic images for background use in Jetset.'
+---
+
+## Video Tutorial
+
+<iframe src="https://share.descript.com/embed/gllpr1JpvLJ" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+# Transcription
+
+​Unreal can make some fantastic backgrounds with very heavy imagery. But to get this to fit on the phone, we can do some simple tricks like just exporting the 3D objects that are near the shooting locations and scene locators, and rendering a 360 degree panorama for the objects and environment that are further away.
+
+And thanks to Winbush for his tutorial on this, which was really helpful. I'm using the same process he describes and just modifying it to fit this application. I'll put the link below.
+
+In this Unreal scene example from Joshua Kerr, we have some 3D buildings and an elevator that we'll use for the foreground information, and that's the 3D model we'll export into Jetset, but we want to render the rest of the scene with the complex buildings, et cetera, as a 360 degree background. 
+
+
+## USD Export Layer
+
+We already placed all the foreground 3D objects in a layer; I'll double click that. So we can see we have the main tower and the elevator selected. The elevator is animated in this scene in the elevator level sequence, as we can see. There we go.
+
+So, as the sequence goes, the elevator goes down. It has a scene locator in it, and the elevator is animated through this sequence, so we'll just pick out a midpoint to take the 360 degree pano from. 
+
+
+## Placing 360 Camera
+
+So, go down about here. Halfway down. Okay, and next what we're going to do is We already created a 360 degree pano camera, which is just a normal Cine Camera actor.. We'll just locate that roughly the same position as the elevator. So we can go to our elevator, right click on our location, copy that, come over to our 360 pano, right click and paste. There you go, and that's an easy way of copying location.
+
+
+## Setting Foreground Objects to Hidden in Game
+
+We want to make sure that the 3D foreground objects that we're going to export don't render into our panorama.
+
+And to do this, we're going to double click our Cabbi\_USD elevator layer. So we select all the objects we're going to use. And we're going to go down here and click Actor Hidden in Game. And that will remove those actors from view when we render them. Except there's one extra one there. Let's add that to our layer.
+
+There we go. And double click that again. And actor hidden in game. Great. 
+
+
+## Creating 360 Level Sequence 
+
+Now we're going to make a new level sequence to render this. We'll just click here, add a level sequence. We'll call this 360 Pano 4. We're going to want to put in our panoramic camera into that. So we'll drag and drop that into the scene. And lock our camera cuts file. And this is the viewpoint from the camera.
+
+And we're going to actually shrink down our rendering section considerably. Because we only need a single frame. So I'll drop that down quite a bit. We'll just render like two frames to make sure they all work. Okay. 
+
+
+## Movie Render Queue Panoramic Setup 
+
+Now we're going to want to click on the Movie Render Queue icon. And we're using the Movie Render Queue Advanced.
+
+So, let's remove that. Here's our 360pano4 configuration. We'll click on the unsaved configuration. And we're going to remove the deferred rendering. And we're going to add panoramic rendering. And we're going to click allocate history per pane. This was recommended by Winbush and that seems to work well.
+
+And we'll go to our output. I'm going to change our output directory to a directory I've already picked to load the 360 images and we're going to change our output resolution to 4096 by 2048 and that gives us a two to one aspect ratio image, which is the standard for panoramic rendering. 
+
+And when Jetset opens a two to one panoramic image under our 2D tab, it recognizes that as a two to one image, and we'll bring that in as a 360 degree pano, which is just what we want. So we're gonna click accept, and we're gonna click render. And it'll take quite some time to render this several minutes, but we'll let that go for for now and then come back.
+
+
+## Reverting Scene and MRQ Settings
+
+Okay, so we've finished rendering. And we're gonna go back and make sure we can exit this, and uncheck our camera cuts so we're back in the scene. Now we can double click our layer again, and uncheck the actor hidden in game. And that brings our objects back, because when we render, we actually want to see those objects.
+
+Also in our movie render queue, let's go ahead and re add the deferred rendering. Otherwise, when you try to render our normal sequences it will be blank. Great.
+
+
+## Transferring 360 Images to Jetset 
+
+And now we can move on to getting our new panorama onto the phone. We have logged into iCloud Drive on the browser, and we'll navigate through the folder tree to where we want to bring our files. Jetset files in iCloud are located under the Jetset directory and then the project name. And finally we'll go into the images file. And we're going to drag and drop our image.
+
+360pano4. Alright, and it's uploading. We'll double click that to see what our image looks like. Alright, there's a 360 of our futuristic city, and we'll import that when we load in the animated elevator in the next tutorial.
+

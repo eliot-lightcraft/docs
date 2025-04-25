@@ -1,0 +1,84 @@
+---
+title: 'Exporting Animated Scenes'
+description: 'Use this method to export animated scenes from Unreal to Jetset.'
+---
+
+## Video Tutorial
+
+<iframe src="https://share.descript.com/embed/ZZuGmVm577Q" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+# Transcription
+
+In this tutorial we'll go through exporting an animated scene to Jetset. We're using NVIDIA's Omniverse system and Unreal Connector to translate part of this Unreal scene to USD. And there's a technique with Omniverse that works particularly well for this kind of animated scene. So let's make sure we have the needed Omniverse tools installed.
+
+
+## Omniverse Setup
+
+We'll go to Omniverse Launcher. And then we first want to make sure that we have a local Nucleus server here. And you know, we can see here it's up and running. You can see I have, local Nucleus service here. And here's our local host. And there's the projects. I've already made a CABBi subfolder and an elevator folder that we're going to store our files in.
+
+Back to Unreal, go to our Omniverse menu, add server, and we're going to accept the default local host server, and this connects us to the local Nucleus server that we just saw.
+
+
+## Select Export Layer Objects
+
+We have an animated level sequence of an elevator here. So, let's go to our level sequences, here's our elevator moving up and down. And over in our scene, you can see that we have our elevator and we have a scene locator parented to that in the scene.
+
+We already rendered out the far background as a 360 degree pano in a previous tutorial. So we just want to export the elevator, the scene locator, and a couple of the surrounding buildings so that we can see the scene moving as the elevator descends. So I already put these in the CABBi USD layer, so we can double click that. And that will select all of the items in the layer. You can see which, which buildings that we're selecting, just the main one behind it and a couple around it. 
+
+
+## Adding the Level Sequence Animation
+
+Now to include the animation in the elevator level sequence, we're going to scroll down. And there's our elevator sequence. We're going to hold down ctrl and click it. And now the elevator level sequence containing the animation is highlighted along with the rest of the objects we're going to export.
+
+
+## Exporting to Omniverse
+
+Now we can right click and choose export to Omniverse. And we don't need MDL for this. We'll use our USD preview surface. We won't need the Unreal materials in the phone. And we're going to export as the y up axis, as that's what the phone expects. We don't need landscape grass. And click okay. And we're going to pick our, we're in our content going to go in content.
+
+And here is our Omniverse localhost. Just as we specified it. Here's our projects cabbie and then elevator. So, I'm gonna name this elevator descend.
+
+All right. I'm gonna save. And it's gonna start exporting all the various objects in the scene. And the first time you export it, it might take a little while because it's writing out all of the materials.
+
+
+## Downloading USD Zip from Nucleus
+
+Okay, so that just exported. That will typically be faster on following exports. And we're going to jump to the Nucleus server we had previously. And it has created, as we see, we're in our elevator panel, and it created a elevator\_descend\_01 USD file. And we actually want to export not just that file, but also the materials and props.
+
+So we can just click on the elevator folder and click download. And it's going to zip up and download pretty quick here. And then we can actually just write that download to our USD exports directory. And go ahead and save that. And replace that. All right. 
+
+Here we are in our USD exports directory, and I'm just going to right click on elevator, and we're going to extract it all. That's fine.
+
+And again, this is our very first export, so we're writing out all the materials and the submodels. If we start writing out additional USD files that are just different animations, then we could just export the top level file and we wouldn't have to re export the materials.
+
+All right. So now we can look into our elevator and we see our elevator to send a one USD file as well as our materials and props. 
+
+
+## Converting USD to USDZ in Autoshot
+
+So now we'll go to Autoshot and I'll open up our models tab. We'll set our model temp folder to the same elevator file, click select, and there's only one USD file in there. And now we can click that and click make USDZ. So it's going to go through that and with our default 128 pixel texture size and compress all the textures to make it fit into a phone.
+
+All right so it created that and we'll now go find our freshly created elevator\_descend usdz and we'll push that usdz to Jetset. We have Jetset running so it's going to just push that file fairly quickly. 
+
+
+## Loading Scene and 360 Pano in Jetset
+
+In Jetset we can open up the model, and, uh, elevator\_descend, there we go. And we'll click on our Scene Locator of Elevator. Okay, we can see our animated model. There's our elevator going by. And there's a building coming up. All right, but now we want to add in our 360 backgrounds. We'll click 2D, do Import, and we're gonna look for our project images. And we'll pick our 360 Piano 4.
+
+And it recognizes that it's a sphere, that it's a 360 piano, so we'll click sphere. All right, and so you can actually move that around. Uh, there's our building that's supposed to be behind us over there, so we'll put that around here. All right, so now we have our foreground images moving, and, 360 background behind us, so we can see our dystopian future.
+
+
+## Synchronizing Animation Start
+
+And we're going to want the animation to start at the beginning of the, uh, take. So we'll go to settings. And we'll click, uh, settings. And then we're going to start animation playing at the start of record. Just click that to make sure it's right. And we'll click done. 
+
+
+## Rolling a Take
+
+Okay, so now we can, uh, roll take.
+
+It's going to start with the animation here. And we can pan down and look over and there's our building coming up.
+
+All right, we can click stop. In our next tutorial, we'll bring in the tracked shot and relink it to the Unreal Animated scene.
+
+
+
