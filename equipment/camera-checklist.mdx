@@ -1,0 +1,97 @@
+---
+title: 'Camera Checklist'
+description: 'This checklist covers recommended cine camera accessories for use with Jetset Cine.'
+---
+
+## Accsoon SeeMo
+
+### SeeMo 4K
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/jetset/SeeMo4k-1-420x600.jpg"
+/>
+
+[Accsoon SeeMo 4K HDMI Adapter](https://a.co/d/gciNr8d)
+
+The SeeMo 4K will work with any camera that can output HDMI video.
+
+The Jetset Cine calibration process will work fine with 1080p video, but the big advantage of the SeeMo 4K is that it has an integrated SD card slot, enabling an optional take write to the SD card.
+
+### SeeMo Pro
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/jetset/SeeMoPro-600x350.jpg"
+/>
+
+[Accsoon Seemo Pro SDI/HDMI to USB C](https://a.co/d/8X16VPa)
+
+The SeeMo Pro can work with either SDI or HDMI video at 1080p resolution, and is constructed from aluminum for a more stage-durable configuration.
+
+## HDMI Cables
+
+The SeeMo does not ship with the HDMI cable that you will need to connect your camera to the SeeMo. The SeeMo uses a standard HDMI port, so the cables will either be:
+
+- [HDMI to HDMI](https://a.co/d/7hk9IXO)
+- [HDMI to Mini HDMI](https://a.co/d/1ymuTE0)
+- [HDMI to Micro HDMI](https://a.co/d/b91FV95)
+
+## Batteries
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/jetset/Smallrig_NPF_90.jpg"
+/>
+
+[SmallRig 10500mAh Replacement USB-C Battery](https://a.co/d/6MSAbn4)
+
+These batteries are some of the largest capacity NP-F compatible batteries made, and can be directly charged with a high current USB-C charger.
+
+## Battery Plate 
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/jetset/Kastar_NPF_plate.jpg"
+/>
+
+[Kastar NP-F Battery Adapter Plate](https://a.co/d/bNYMBQd)
+
+Even if you are not running Jetset Cine, if you are using Jetset in production you need external power and cooling.
+
+This NP-F battery plate can screw to the side of the Smallrig iPhone cages, and holds a NP-F battery with a USB-C and USB-A power output.
+
+## Cooling
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/jetset/BlacksharkV4ProCooler-600x600.jpg"
+/>
+
+[Black Shark Magnetic Cell Phone Cooler 4Pro](https://a.co/d/dJQ6dVt)
+
+A cooler is required for production use. We specifically recommend the most recent BlackShark coolers due to their powerful cooling and reliable thermal connection.
+
+When the iPhone gets too hot, the tracking performance is severely degraded and you may see sliding and drifting problems. The solution is to use an active cooling system like these.
+
+These coolers can be powered with a USB-C 5V cable directly from the Accsoon SeeMo.
+
+## Tentacle Sync E
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/jetset/tentacle_sync_e.png"
+/>
+
+[Tentacle Sync E MKII (Single Set)](https://a.co/d/0fdaWUwp)
+
+The Tentacle Sync is a device that can generate synchronized timecode for multiple production cameras.
+
+In addition, Jetset Cine can connect directly to it via Bluetooth, so that the recorded tracking data has timecode matched to the cine camera footage.
+
+This can be used in 2 ways:
+
+- As a real time data synchronization reference, for sending live camera tracking data to external rendering engines like Unreal. In this case, the embedded timecode in the tracking data is used inside Unreal to automatically synchronize with incoming live video data. Unreal supports AJA and Blackmagic SDI capture boards where the video signal can have embedded timecode.
+- In post production, Autoshot will soon be able to use timecode embedded in the Jetset tracking data to automatically match Jetset takes with the corresponding cine camera takes, and to measure the timing offset between these two files. This is currently achieved with Jetset’s digital slate, using flashing ID markers, but embedded timecode is a more robust method that can do faster matching.
+
+The Tentacle Sync devices can also jam sync to other sources of timecode, so they are compatible with a production running on Deity timecode systems.

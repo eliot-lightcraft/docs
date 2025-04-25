@@ -1,0 +1,22 @@
+---
+title: 'Blender Direct Export to USDZ'
+description: 'Blender can directly compress texture files and export to USDZ, saving a step in the process.'
+---
+
+## Texture Compression
+
+As seen in the [Autoshot Blender Round Trip](/tutorials/blender-workflows/autoshot-blender-round-trip) tutorial, Blender can export to a standard USD file directory with full resolution textures.
+
+In the tutorial, we then used Autoshot to compress those 2K/4K original textures down to 512x512, and then wrapped the USD and texture files into a USDZ file ready to be pushed to Jetset.
+
+However, Blender can also directly write to USDZ while compressing textures, which can save a step. 
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/blender/blender-direct-export-usdz.JPG"
+/>
+
+To do this, just use a .usdz file extension, and set the USDZ Texture Downsampling value to 512 or another small value.
+
+Blender will compress the textures to that value and write a USDZ file with the compressed textures directly.
+

@@ -11,19 +11,31 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Jetset Checklist",
+        "tab": "Docs",
         "groups": [
           {
-            "group": "Jetset Configuration",
+            "group": "Equipment",
             "pages": [
-              "jetset-config/create-project"
+              "equipment/stage-checklist",
+              "equipment/rigging-checklist",
+              "equipment/camera-checklist",
+              "equipment/iphone-hardware"
+            ]
+          },
+          {
+            "group": "Setup",
+            "pages": [
+              "setup/configuring-travel-router",
+              "setup/create-project"
             ]
           },
           {
             "group": "Creating USDZ Files",
             "pages": [
+              "create-usd/blender/creating-with-megascans",
               "create-usd/blender/scene-locators",
-              "create-usd/blender/object-locators"
+              "create-usd/blender/object-locators",
+              "create-usd/blender/blender-export-usdz"
             ]
           }
         ]
