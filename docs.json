@@ -44,11 +44,11 @@
         "tab": "Video Tutorials",
         "groups": [
           {
-            "group": "Introduction to Jetset",
+            "group": "Jetset",
             "pages": [
-              "tutorials/introduction-to-jetset/introduction-jetset",
-              "tutorials/introduction-to-jetset/2d-backgrounds",
-              "tutorials/introduction-to-jetset/animation-controls"
+              "tutorials/jetset/introduction-jetset",
+              "tutorials/jetset/2d-backgrounds",
+              "tutorials/jetset/animation-controls"
             ]
           },
           {
@@ -103,7 +103,8 @@
           {
             "group": "2024",
             "pages": [
-              "office-hours/office-hours-2024-08-06"
+              "office-hours/2024/office-hours-2024-08-09",
+              "office-hours/2024/office-hours-2024-08-06"
             ]
           }
         ]

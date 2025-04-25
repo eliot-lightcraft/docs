@@ -1,0 +1,932 @@
+---
+title: 'Office Hours 2024-08-09'
+description: 'Debugging USDZ file crashes. Fusion composites. Jetset/Maya pipeline. Rendering Cinema 4D shots in nVidia Omniverse via USD. Modifying the Autoshot pipeline to work with Resolve-generated EXRs. Best practices for editing Jetset Cine shoots. Resolve and Fusion editing and compositing workflow. The utility of tracking in a consistent 3D world. Generating a .csv of Cine source to Jetset take matches. Automatically entering Resolve metadata based on Autoshot take matching. Preferred scene locator alignment. Transferring takes with gigabit Ethernet connection.'
+---
+
+## Recording
+
+<iframe src="https://share.descript.com/embed/IdT7fau5NP9" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+# Transcription
+**Ryan:** There we go. 
+
+**Eliot:** All right, fire it up. 
+
+**Ryan:** Yeah, I tried the new, um, the new Autoshot that you sent my way on the forums. I, uh, 1. 04. I can't think of it off the top of my head. The, um, the round trip through Omniverse with the USDA file is now offset the way that it should be, the same way it is in Cinema four D, which is awesome.
+
+Great. It actually makes it a possibility of rendering through Omniverse. Like we're gonna, I'm gonna be trying some, uh, some tests in that, um, hopefully next week, um, because. We're rendering in Cinema 4D through Octane, um, and now that I have the roundtrip working, I'm like, we can at least get a real time preview within seconds of shooting, run it through Autoshot, send it to Omniverse, install the, um, the sub layer.
+
+**Eliot:** And 
+
+**Ryan:** render it out. And it takes like 15 seconds to render out the sequence that we were testing. So it's like, we can like instantly have a previz really fast, 
+
+**Eliot:** which is perfect. That's exactly what I wanted to see people doing on stage. See it. So, okay. So actually, let me, let me understand this. So, um, so you actually, the scene is constructed in Cinema 4d.
+
+That's the original build of it. And, and the use of rendering it in Omniverse. Um, would be to get a quick preview render or would you just push it back? Cause we, I mean, we, you've probably tried the round trip to C4D, right? 
+
+**Ryan:** Yeah. Yeah. The round trip to C4D works perfectly. It works the, I mean, even on the old version of Autoshot, it, the camera came in correctly, it aligns with where we're looking.
+
+Um, when I, and then on the older version, more or less, I'm kind of trying to explore, like what's the fastest way to get temp shot set up for their approval, or to just check that tracking's working. Um, and it's just significantly faster to render inside of Omniverse than it is in Cinema 4D without just having, um, like a clay render or, um, viewport shading, for example.
+
+In Omniverse, I can actually put light sources that are small In a location and it's like, well, it's a representation of the scene. It's not the full scene, but it's still a representation of how the scene is looking. Oh, great. Great. 
+
+**Eliot:** Oh, that's fantastic. That's fantastic. Yeah. I knew you were using it to sort of add in the textures that Cinema 4D's USD exporter left.
+
+**Ryan:** I still haven't figured that out. The only thing, the only way I can get it to work is export from Cinema 4D as USDC, all of the, like the UV transforms and everything come over as long as I don't, I don't know if this is a limitation of Cinema 4D or if it's a limitation of USD. Root nulls cannot have rotations on them.
+
+I have to create a new null and put rotations inside of a null and then everything will translate correctly. So when we, when I was saying the, you know, I was having issues that first time of like translating my scene. And I was like, stuff is rotated weird. And things were flipping. I was able to figure out that that was the cause of it.
+
+And I must've changed it through my process of troubleshooting when we did the time together when it worked. Um, so essentially, like, if you have a hierarchy, um, USD will, like, create its own hierarchy of that, and then everything is a subset of it. Any null that's under that subset root that has rotations to it need to be put inside of another null that have zero, zero rotations to it, and then everything translates correctly to Jetset to Omniverse and round tripping back to Cinema 4d.
+
+So it's some limitation of how Cinema 4d is exporting it, or my non understanding of how USD is actually structured in that layer form. Interesting. Interesting. Yeah. That's that one took a bit to wrap my head around. Cause I'm like, it, if I import it back into Cinema 4d, it was fine. The USDC file looked exactly like it did in the existing file.
+
+But when I would push it to Jetset or to Omniverse stuff, like literally parts of the scene would just be rotated in like random space. And I'm like, I have no idea what's happening. 
+
+**Eliot:** Interesting. Interesting. Interesting. We 
+
+**Ryan:** got that figured out, which is awesome. I mean, that's really, that's a huge step forward for me of just being able to like, Can we quick see what this shot looks like?
+
+And I can be like, yep, run it through Autoshot, click a button. There's basically the background, send it over to, um, to Fusion and do a slap comp in less than five minutes. We have something visible, which is amazing. Fantastic. I did. So in the forums, I kind of mentioned it as well. I'm, I did get approved to use this on a commercial job that we have in like three weeks.
+
+**Eliot:** All right. 
+
+**Ryan:** So kind of scrambling now to be like, okay, I got to make sure in a, in a row, um, Oh, that's fantastic up and running, but I will be sending you some raw tests that we do with the C, um, 200. We're going to be using the Canon C 200 and this camera C 500. Uh, For our shoot. And I figured like worst case scenario, I can always make pro res four, four, four on my side.
+
+And then sent that through the, um, through the pipeline for Autoshot, you know, I'm assuming that it won't, we won't be able to get to a raw encoding, you know, in the next couple of weeks here. So that was my plan is to make the workflow with, um, With pro res four, four, four as the source, and then running it through Autoshot Cinema proxies, um, Because one of, you know, in, in some of my It's some of the long form, like workflows that I've been trying to figure out that would work the best for us 90 percent of the time, I just need a camera to 3d.
+
+And then we're doing everything after Autoshot. Like, it's just like, all I need is this camera to get over to Cinema 4D, render the background and send me that file back. And then my pipeline, I'm building what I need for all of those shots. Um, right, 
+
+**Eliot:** right. And so you actually, you actually don't want. You don't, you don't need to do the full frame extraction.
+
+You just almost want the, uh, the, the, the sort of the tracking data, the tracking data file. All right. I have to, I have to, I've actually been sitting here and trying to think, think through it, how to, you know, how to, how to approach that so that it's, it's, uh, we have to be, everything right now is built around wrapping up an image sequence along with a tracking data.
+
+Uh, and so. I have to just be very careful about branching conditions. No, no, it makes sense. Things erupt, but I'm thinking through it. 
+
+**Ryan:** And if, you know, if it's not, if it's not possible, I mean, everything that I've seen, like there's always a workaround that I can get to, if I just run Autoshot the way it's designed, I can build my pipeline off of it, you know, and essentially what I'm doing would be.
+
+They'd be in two separate folder substructures. It's like, here's what Autoshot did. And then here's what, like my internal shots are. And then I'm just data from those shots. Um, cause I'm sure I'm going to run into a lot of the, um, I need multiple portions of a take, but they're not all sequential. So it's going to be the first quarter of the frames.
+
+And then the last quarters of the frames, um, And that it, since we've chatted, I it's, I'm really starting to wrap my head around the way that Fusion works, where you're saying like, even though you're extracting Autoshot from a time, so sequence it's becoming frames one through 100 or whatever, even though it's not time code, but it is time code specific.
+
+Once you're in that zero to 100 range. Yeah, this is, I didn't understand when I was working through the Fusion comp, I was like, I'm missing something here. And then yesterday we were running through tests and it like, I just dawned on me. It was like, Oh yeah, that's because Fusions numbered zero to a hundred, not time of day time code where I'm looking at those files from.
+
+So 
+
+**Eliot:** yeah, everything in visual effects more or less starts with 1001. Um, because at some point, and we haven't done this yet, but at some point it, it'll. When we start dealing with, you know, timeline kind of stuff, we're going to need to start doing handles. Right. So you, you get your edit and you want like 10 frames on either side because you know, you don't want to do the effect shot and like, no, I need four more frames and you know, that kind of stuff.
+
+So that's, that's the eventual reason, even though we're not doing it yet. 
+
+**Ryan:** Gotcha. Yeah. One of the other things I noticed too, and just as a more of just like what. As I'm going through it, what would help me is when we get the, the file extractions, if that file extraction name could be the take that we're using rather than I, there's a camo.
+
+I always forget what the, 
+
+**Eliot:** yeah. Yeah. Okay. That's because then if 
+
+**Ryan:** you have, if you have like, especially what happens when you, when I branch my own pipeline from Autoshot to make it work, every loader is named the same. And so I like that. Not only do I have to like make my own substructure, I also have to have a way of correlating it back to the original name of that project.
+
+That's an 
+
+**Eliot:** excellent point. And that's, that's, that's absolutely something that we want to figure out how to do. I, I, I'd hoped to sort of tackle that when we go, when we, when we moved to, um, cause right now the take names are like, you know, they're, they're, they have, they're not, they're not small. So you get some monster file names and it's.
+
+Very easy to run afoul of Windows has a hard 260 something character, the file limit that you go over and you know, and nothing works. Yeah, I've 
+
+**Ryan:** had it happen. 
+
+**Eliot:** Yeah. Yeah. And so I'm, I'm nominally thinking that we'll, that we'll probably switch to into, uh, to naming those individual file creations when we can call them names them after shots.
+
+Cause then what happens is people are going through an edit and they're like, okay, shot one shot, two shot, three shot, four, like, you know, whatever. And then it's like super easy. That's just like, yeah, shot one, you know, this done. And the, the file name is only 10 characters long and everything makes sense.
+
+I'm nominally aiming for that. Um, 'cause I, I think we're gonna break it if I have a, a 40 character , but I, I'm, I've got it in my head to do that. I, you know, I'm just looking for the right place Sure. To, to do that. And maybe there's a, an intermediate where we, you know, name, name shots. I'm, I'm gonna, I'm gonna look at that and just sort of see if there's some, some form where we could, uh, do a version of shot naming earlier.
+
+Mm-Hmm. . Um, because that would, that would sort of. That would make things a lot that, that you could actually name things. Um, on a shot basis. I gotta, I gotta think through it. Yeah, I 
+
+**Ryan:** I'm sure the others, it's just me, like what I run into, I'm just trying to pass along, like, Oh, these are things that niceties that would work, you know, but I don't know how they are accomplished.
+
+**Eliot:** I know it's perfect. This is exactly what we want to find out to, you know, you started doing a lot of shots and all the stuff exactly all comes up and we just want to. Make it so that, you know, when you open up all the files, the system all makes sense, you look at it, you're like, Oh, that's where it is.
+
+That's where it is. That's where it is. You don't like need to, you know, I hate binary assets. Just right. 
+
+**Ryan:** It's always hard to navigate. Right. 
+
+**Eliot:** Yeah. Yeah. Yeah. I, we were, I was debugging something in Fusion and fortunately, you know, cause for some reason the, the SynthEyes copy paste in a Fusion, just Flat out wasn't working and I, I, you know, I put it into text and it like went through a block at a time and isolated down to the, for some reason, the name of the OBJ file of the scan, just nope.
+
+Fusion just wouldn't, wouldn't, didn't want to have anything to do with it. I removed that from the export and everything worked. So I'm scratching my head. I'm, I'm, I need to isolate that a little bit better, but text, right. You know, this is, and I, I've, I talked to Bill about this, um, you know, it's cause you know, just the, as we're, as we're going along through this, which is that There's, there's a bunch of complexity when you're doing a VFX workflow.
+
+There's a ton of files. There's a ton of these, these sorts of things, but it's, it's there so you can fix stuff. So then when something goes flying off the handle, then you can actually just go in and, and, you know, take 10 minutes, open it up, figure out what's going on and repair it and move on with life.
+
+Okay. Well, what's, what's the, the, what's the project, the commercial shoot? I mean, if you don't, if you can talk about it, I, 
+
+**Ryan:** yeah, I can get it. I can give some sort of an overview. It's a, it's kind of, it's a corporate training video that we do. We've done an ongoing, a lot of the stuff that I showed you in the reel that we did, a lot of those shots are from that same client.
+
+They come up with creative ways of showing it. So we get to go and make, you know, we're basically, this is a spaceship themed project. So we're, yeah, we're doing that, um, on a kind of a, like a cyber world is essentially what we're trying to create. Um, 
+
+**Eliot:** Oh, that sounds great.
+
+What a great, you know, 
+
+**Ryan:** what an excellent thing. This portion of Jetset, I'm going to guess is between 10 and 12 minutes of like runtime when it's fully edited out. Um, So, yeah, it's just, it's kind of like, we got, I got everything on for the Simu on order right now, we'll get that up and running next week.
+
+Um, you know, one of the things that, that I, that I'm trying to wrap my head around now is when we go into editorial, can we just use the temp comps from Jetset and then align with. What I need to do with frames or do I have to do it per shot and every time I cut, go in and set Autoshot to be, I need this frame to this frame.
+
+Run Autoshot change the name of that shot, go to the same, you know, the same clip. So I'm okay. That's what I'm trying to wrap my head around right now is like the long flow, long form workflow without sequence support currently. 
+
+**Eliot:** Yes, yes. That's a very, very valid. The, the present issue is that the, um, the phone, um, and, and re remind me, have, have you, have you closed looped, uh, Jetset syn?
+
+Have you run, run the whole pipeline to, with, uh, with, I have not 
+
+**Ryan:** used Jetset syn yet. I've only used the free version of Jetset. Okay. Got it. 
+
+**Eliot:** Okay. Just, uh, keep in my, so yeah, I, yeah, I would strongly, my, my biggest recommendation is get the, get the Equipment ASAP and, and run closed loop tests. Um, just a bunch of times, you know, just so you get used to it.
+
+And then, you know, the, the, the framing, the digital slate and this kind of stuff so that there's, cause it's just something, it's a great thing to load into your head and you can do it sitting in your, in your, you know, in your desk, et cetera. Um, before you're, you, what I, what we noticed so far is that shoot scale fast.
+
+And they, they, because they, especially with the real time stuff, they, they get it, their own energy to them. And two blinks later, there's 30 people on the set. You know, I mean, it's, you, so it's, and my, my request is just to close loop the tests, uh, on, on that so that you're, you're just, it's kind of already second nature before you're going out on there and, and then there's a zillion questions and people, you know, because people have a lot of questions, like, You know, how is this, why is it doing this?
+
+Why is it doing that? And you just want to have it just embedded. And you're doing exactly the right thing. Trying everything out on the free version. Okay, now we're jumping into Cine. And that would be my sole request. Let's get all the Cine stuff ASAP. Like, two weeks before you're, you're shooting. And just run through the, run through it.
+
+So that there's There's no surprises. So, you know, seeing how the origin markers work, all this kind of stuff. Anyway, um, so let, okay, sorry, I just, I just, uh, sidetracked off that for a second. Um, what, where was I? Where was I at? Oh, yes. Uh, so the, the phone Jetset that is restricted to a 30 frames per second, real time processing.
+
+That's just, What we can do, uh, with when we're tracking using the iPhone tracking. If you, if you're not tracking with the iPhone, you can set it to 25 or whatever. Um, but we're tracking. And when, when you're tracking, we're, we, it just restricts the frame rates. It can work at it's basically hard lock to 30 frames a second.
+
+Um, so the, the real time composite is also for the time being 30 frames a second. Um, and that in post, uh, I'm still honestly figuring out a good way to approach it. Whether, whether. For the time being, we just suggest people just edit with the green. Um, and then, because then it's, it's a simple, it's a one to one correlation.
+
+You, you open up your open up Resolve, you know, look at open up, pop open the Fusion panel for that particular clip, you know, there's your in frame, there's your out frame, type it into Autoshot, punch the frames, put them back in simple, simple as anything. Um, I would dearly love to be able to edit with the live comp.
+
+And we are aiming toward that, but the, it just introduces a substantial number of frame rate conversions that I, I worry about in, um, yeah, subjecting people to an editorial cause it's, you know, I'm, I'm backing out the math now for match doing animation matchbacks. And it's all, it's all there. It's just, you have to be, you have to have in your head, like this one's at 30.
+
+This one's at 24. And I, I think it's going to be a bit much for when, when of course you're going to be under the gun and there's going to be like 90 shots you're pushing through and you don't want to do math on 90 shots. You just want to like, you know, look at the number, enter it, look at the number, enter it.
+
+So for now, I would tend to say edit with the green. Um, and then in, in, in Resolve, you just open up the Fusion panel. There's your in, there's your out, you know, punch, punch it, render the frames. And we, we have the, um, I have the, uh, the Fusion loader actually working decently well to where it, um, you know, they pop it up.
+
+Where am I at zoom share this? There we go. Um, so this is the, uh, this is the, the automatically generated Resolve script. And in fact, if you have, um, if you're running AI mats, then it adds, it adds another loader down here with the AI mats and correctly routes them into the Delta keyer as a, as a hold in, uh, so that, uh, and it works, it works great.
+
+You know, I just like the, the clean plate. Resolve is wildly underappreciated in terms of what you can do on the Keen. I mean, the Clean Plate process is just magic, right? And I almost want to automate it so people just assume that's how they're gonna be doing it. So you can just, you know, all of a sudden, like, work really quickly and make, make, the Clean Plate process is just magical when you're doing this stuff.
+
+**Ryan:** Um. 
+
+**Eliot:** So, you know, then, you know, run the keyer and stuff like that. And we're still, there's still this particular shot is gnarly, but anyway. Um, but that's, and over here, this is what I'm working through with the, um, the SynthEyes export. So when you have our, our default export is fine. If there's no ground contact, right.
+
+If you, as soon as you're, uh, and you, did you see those SynthEyes tutorial I just put out? 
+
+**Ryan:** Okay. So you sent out a one, I haven't looked at the finalized version, but on the forum, there was like a beta version that you sent out and I watched that one. 
+
+**Eliot:** Okay, great. I'm not sure how 
+
+**Ryan:** much changed, but it was pretty straightforward.
+
+I, I haven't run through it yet, but I get what you're doing. I get the constraints. I get the, you scan the set and it's taking those points and putting it on your mesh. Finding that track again, once the tracks refined, you should be at a. Subpixel level. If not, then you're just using SynthEyes to do its processing, to get to a sub sub pixel track.
+
+**Eliot:** Right. 
+
+**Ryan:** Once you're there, send it back out. Um, 
+
+**Eliot:** yeah, that's exactly it. I'm 
+
+**Ryan:** really pushing for this shoot to not have ground contact. Like just, let's just eliminate one variable from all of this. And most of the shots are going to be in like a spaceship. So they should be seated for almost 95 percent of all of it.
+
+So I'm like, okay, like that eliminates a lot of issues on my end. Cause I, I, I've been the person that is tracked where it's like, this is going to be five days of my life to try to track this shot because there's nothing to track to, and I don't know where the world is and I was trying to, it's actually on a side note, it was really funny what I've been doing with the free version to From helping to sell the idea of this, what you're doing internally in Jetset Cine, I'm doing manual.
+
+So I was actually measuring the distance of the offset of the camera. So when it would move, I'd put two Apple boxes in our scene, shoot both of them. And then I would pan to them and that all I, it was, you know, it's all guesswork because it'll line up on one, but as soon as you pan, it won't go to the other one.
+
+So it's like constantly moving this back and forth up and down until I get it right. And when I would get it right, because it was hard mounted, all I had to do was copy and paste my offsets to every camp. And I'm like, this works like worst case scenario, we could just shoot this way and don't move the camera.
+
+Like just point it this way. And that's exactly what we're seeing. And the funny thing is, is during this testing with my DP, it was like, these comps already look better than what we've done when we've just manually measured, you know, it's this high tilted this far. I'm like, yeah, that's why I'm telling like, this is the way to do it.
+
+This is the future of the way we shoot. Yeah, it was pretty great of like, You know, I think I can trick the system to work because I've done it before with a Mars or with a Vive system before Mars came out, but I just remembered it being like, this is so time consuming to get it right. And I'm like, just get Cine, it's going to make it so much easier for us.
+
+**Eliot:** I was going to say, like, at the, at the, the number of hours you start to spend on hand alignment, you know, versus the lens calibration in Cine is like three minutes and then everything's locked. I love it. So great. So I salute you for your effort, but that would, I think the energy will be better spent in finishing the finishing the shot.
+
+**Ryan:** Yeah, yeah, exactly. Great, 
+
+**Eliot:** great. All right, so I've got 
+
+**Ryan:** I'm trying to just go through. Oh, you were, you were mentioning that the, the export from SynthEyes, the direct export from SynthEyes works when there isn't ground contact. So like just the generic export from SynthEyes. 
+
+**Eliot:** Well, we have, we have a, um, we have an Autoshot exporter, um, that they're already, that, that, that already works.
+
+So there's, there's two separate ones going on in here. Let me, uh, this is actually good to walk through because this is, this is what I'm, I'm in the middle of solving right now. Um, and where's my Zoom? There's Zoom and share. Okay. So there's okay. So there's studio. Um, so this set of nodes is, uh, is what Autoshot automatically generates and, uh, and then bring, you know, it sets, it sets all the, so here's one of the things that I really noticed, which is that.
+
+Um, in Resolve, if you depend in the Fusion inside Resolve, if you depend on the media and node, your comps break like all the time, 
+
+**Ryan:** you know, it's, 
+
+**Eliot:** it's, uh, it's difficult to keep the comp working where what we did is we just scripted the output of, of Autoshot to just generate, you know, we're making EXRs and, uh, and image sequences, et cetera.
+
+So we just scripted that to just build the loaders from scratch. Um, in, in, uh, in, in, uh, inFusion, in, uh, inFusion, and then everything works, you know, it works, it works really reliably because then you're dealing with the original, uh, Fusion code base, right? All the EXR loaders. So we just leave the media input unhooked.
+
+Like we don't even touch it. Um, and then we built, we built this, you know, this, the standard key network to, to, you know, work through and see how it's, it's all going to behave now. Oh, 
+
+**Ryan:** before you go any further, just to clarify, like if you go to your edit tab right now, you are not inside of a Fusion comp.
+
+It's just a, yeah. Okay. Got it. You're just inside of a clip. 
+
+**Eliot:** Yep. Normal clip. 
+
+**Ryan:** Yep. Yep. Got it. Makes sense. 
+
+**Eliot:** Yeah. And, uh, and so that way we're, we're, um, uh, we're, we're doing all the heavy lifting inside, inside Fusion where we can program it. Like we can, you know, we know how to program Lua and so we can just write all the code to automatically create, create this.
+
+And so this is all created as, you know, I'll show you how it's, uh, uh, where's my Autoshot. Let me, let me just share the whole screen so you can see it because this is worth, it's There we go. Let's
+
+screen one. Okay. So let me, I'll back up and I'll try this again. I'm in the middle of doing stuff, so I might've broken something, but let's, let's go find out. So are 
+
+**Ryan:** you from that timeline right now? Just to kind of walk through, like, start to finish on the timeline in the edit page. You're like, that's not the absolute beginning of that clip.
+
+And it's not the absolute end of that clip. It's all right. This is already 
+
+**Eliot:** a, an edit of the clip. I'm just using it as an example case. So I go into Fusion and my, my frame in is, you know, Oh, median. My frame is 1150 and my frame out is, is 1320. And so you just punch in. 1150, 1320. I love it. Right into Autoshot, 1 to 1.
+
+Just a, just a simple match. And then we, we, uh, in others, we just save and run. And it's going to generate all the script files for this. And then how are you, sorry, 
+
+**Ryan:** I don't, you want to keep interrupting you, but how are you trans, how are you correlating this clip inside of Autoshot currently? 
+
+**Eliot:** Boom. There we go.
+
+So we just, we just, it just created a, um, it just, it just, uh, created a Lua script and I dragged the Lua script and automatically generates the whole node network. Um, and so you can do, you can generate the network in seconds. Um, to, to, to put all the pieces together. Um, and that, that gives you their base pieces.
+
+This, uh, it detects if you've rendered Unreal frames, uh, and the cam original frames, and if you've done AI mats, it detects that too, and it'll make another, another loader down here and feed everything in. So you have, this is the default high speed, um, no, no foot contact version of it, where you just like render an Unreal and, and, and drop this in and you're fine.
+
+Um, you don't have to, there's no retracking SynthEyes. And that's, I think people are going to do that and just rip through, you know, tens and hundreds of shots at high rates of speed, uh, if you don't need to retrap, uh, so I'll pause there. Yeah. 
+
+**Ryan:** When you in the edit page, when you're saying this is the shot, so now we're going to take make metadata.
+
+You're at take 13 of scene one, right? Is that what you're looking for inside of Autoshot to assign your take to? 
+
+**Eliot:** Oh, let's see. Yeah, so this is, um, okay, that's an excellent question. Oh, um, the what you're looking for is If we're editing with the camera original, right? So in this case, this was like something, uh, shot off a ninja, right?
+
+So this isn't a, uh, a Jetset name. This is just, you know, the camera camera name, but you want to know which, uh, which, uh, a Jetset tape take to work with, uh, in Autoshot. You, we, we can go through and, uh, and automatically, you know, you can, you tell it to scan and it'll, it'll go through and find the, uh, find the sequences and then you can actually, um, stop, remember where that is, uh, file.
+
+Let's see, where is it at? Uh, show CineSource matches. There we go. So this shows you all of the matches. So here, here is the, that Autoshot automatically detects. So here's the, um, you know, the, the, the original match, the MOV and this, and it correlates with this Jetset take. And so these, these are automatically detected.
+
+Um, and so if you just, if you go through and you have just your, a whole bunch of jets that takes and a whole bunch of, um, and a whole bunch of cine takes you hit scan. In the directory. Um, try that. We'll. There we go. Scan. You tell it to scan. And, oh, okay, on this one I have to manual pick it, but, um, and normally you just click scan on the directory and it'll sweep through the, uh, the Cine files and it'll automatically match them to your takes.
+
+So that way when you're editing, you can say, okay, um, I'm editing my original source material here. Uh, you know, Ninja five, whatever. So I can go over and say, which take do I, which take does that correlate in Autoshot? And, uh, then you can just look in here, uh, syn, take source matches. All right, I'm looking at, you know, ninja five C 13.
+
+So that means that was scene 1 0 1, take 15, and that correlates to this one. Scene 1 0 1, take 15. You just pick.
+
+**Ryan:** How did, how do you get to that first take 13? No, I think that's where I'm, I'm not following where 
+
+**Eliot:** if 
+
+**Ryan:** we're at something else, you know, like I want to go back to the morning shoot, that would be this shot. How do I find that in Autoshot? 
+
+**Eliot:** Let's see. Um, in Autoshot, what you think, what's a good way to do it?
+
+We, we, yeah, we, we let you, um, uh, as you right now, this is a single project I've opened up. So it's only got one shot. So normally you'd pick your day, you know, and, uh, and then you'd pick your take and that's more or less, you know, if you're, if you want to take 15, you pick take 15. That's about it. 
+
+**Ryan:** That that's the, that's the Autoshot naming is take 15, right?
+
+**Eliot:** Yeah. The Jetset naming, what, what it was originally flashed on the, um, on the, let me actually go find the, the camera, 
+
+**Ryan:** the slate, the digital slate. 
+
+**Eliot:** There it is. So, and this one, it was super blurry and so I had to do it manually, but all right. So let's see, there's, yeah, this one was super blurry. Let's see if we got a little bit better focus on that.
+
+Nope. This was one of those where you shot it completely out of focus. That's all right. That's why I had to do a manual pick. Normally the digital slate would show you the scene of the current Jetset take. And so that way you can actually, you know, the scene, you know, scene 101, take 15, and that is how you can tell, uh, your cam original, which one it should be.
+
+Uh, so, cause of course here it's, it's, you know, take it's, it's whatever the recorder named it, which is something kind of random and frustrating. Cause you usually can't set your names and recorders, but the digital slate, and this is actually really key to running Jetset City. And I want to make sure you kind of close the loop on this.
+
+Is, um, have you used the digital slate? Uh, okay. It's great. It's super easy. All it is is a web browser. Jetset has a, a little web web. 
+
+**Ryan:** Yup. I've been there before. Yup. 
+
+**Eliot:** Okay. Server built into it. So you just, you know, feed that out to, you know, your laptop or, you know, or iPad or whatever, something you can hold in front of the, uh, the screen and, or hold, hold in front of the cameras.
+
+And you put that in front of both the cine camera and the Jetset camera. And when you hit roll, it's going to flash a series here. We'll, we'll show you, it's going to roll. 
+
+**Ryan:** Yep. 
+
+**Eliot:** It's going to go boop, did it, and it's going to flash this series of frames. There we go. And of course it's, this is kind of blown out, but, um, and that gives us.
+
+That's what lets us automatically match the Cine take to the Jetset take. So you don't have to worry so much about what your Cine take was named. Um, cause the, the camera's going to name it, name it something random anyway. And someday when we're a little bit further along, we'll probably do something where we'll let you bash, rename your Cine takes, you know, takes to correlate with the Jetset takes.
+
+We haven't done that yet. 
+
+**Ryan:** Um, 
+
+**Eliot:** cause then everything would line up and make sense, which would be nice. I 
+
+**Ryan:** think the way I'm the way I'm seeing it right now is that you almost would need to edit Or correlate the edit to the Jetset naming and then correlate that to the Cine take or the Cine files to round trip it.
+
+So if I have 10, 10 cuts on a timeline, they're all going to be named exactly like they are here, like from the recorder, take 13, right? How do I find the third take that corresponds to. It's like, I'm seeing it as a backwards match. How do you get it the front way patch? 
+
+**Eliot:** Okay, let's see. 
+
+**Ryan:** Am I not explaining myself or am I not understanding what you're saying?
+
+**Eliot:** Um, it's, it's interesting and it's, it's um, cause the, ultimately the, the core problem is that the, the cine takes are just kind of named wrong. Um, and those are the ones you're editing with. That's kind of the problem. Um, 
+
+**Ryan:** So if I would take this clip here, go and like, before even running anything in the edit, log the clip based on the cine or based on the Jetset names on the slate.
+
+**Eliot:** Yeah. And then 
+
+**Ryan:** I could say, you know, in the metadata panel here, I could just go to shot and it would say, this is shot. I think it was 15 was what the Autoshot was named. So if you could read that basically the metadata log that, 
+
+**Eliot:** yeah. 
+
+**Ryan:** And then that would correspond back to the Autoshot naming. So that when I go into the Fusion page, it's this in point to this out point.
+
+And this is the Autoshot name of this shot. That that's, 
+
+**Eliot:** that's great. I like, I like that. 
+
+**Ryan:** That makes total sense. Cause we were going to go through and log anyway. So it's just part of our process. We always log everything we shoot. So it's like three days of shooting or three days of post afterwards, just be like, name everything.
+
+So it's searchable. 
+
+**Eliot:** Oh, well, this is, so this is actually what we should think about doing is Ultimately, the right way to do this? That we are aiming for is you, you, you know, over time is you composite in the phone, we take, you know, right now we already have a live feed and we go take into the phone that we do for, for Jetset Cine to do the calibration.
+
+Um, and we use the live feed for the calibration. Um, and then ultimately at some point, what you'd really like to do is just keep using the live feed to composite, um, you know, in the phone and then your, um, then your Cine, uh, then your real time composites are correctly named and have the correct frames.
+
+You know, and then you edit with the real time cops and it's easy. Um, so that's, that's, um, but we're, you know, we're not there yet. So I think that's an excellent plan. I think that's an excellent plan is to just go through, you've got the digital slate. Log the meta, log the metadata. I, I, I hate manual work like that.
+
+I just so badly want to automate it that I'm, I'm trying to restrain myself from going off on a, you know, a large tangent rather than solve the, the way that you'd really want to do it, which is have 24 frames per second, live composites to edit with. So I need, I need to stay focused on that. Um, but that's, that's a good plan.
+
+Yeah, it's a good plan. 
+
+**Ryan:** Is there any way outside of like the custom code that you have written already for Jetset to correspond that like you had that corresponding taken name number inside of Jetset? Is there a way to do that for every shot? Oh, give me a CSV file of every shot that was done that way.
+
+**Eliot:** Oh yeah, that's, that's the, that's what this is. So Cine, so show Cinesource matches. 
+
+**Ryan:** That would give you all of the takes that would match the Cine files. 
+
+**Eliot:** This is, and then you hit copy, and this is designed to be a CSV file with the comma, comma separated stuff. Okay, so you might be 
+
+**Ryan:** able to be able to figure this out because I, I got real excited about the fact that you can export CSV files from, um, Resolve.
+
+So you could take all of the media in a folder. export out a CSV file, then there should be some, there should be a way. And I don't think it should be manual because as long as they're like left and right columns match You could copy all of the assigning, um, uh, Jetset file names and just put that as metadata into the corresponding raw file when 
+
+**Eliot:** you're logged in.
+
+Let me do it in an automated that this is worth chasing down. So when you're doing that. 
+
+**Ryan:** When I, when I get this, when I start testing next week, if I get enough time to run that like round trip, I will, because one, I think it would completely benefit myself, but also I think it could be an easy way for you to correspond shots.
+
+Takes, um, 
+
+**Eliot:** this is exactly what we want to, we want to figure out these sorts of things because so many times the tools are almost all there and with a little bit of code, then it'll, it'll slot in, you know, Resolve is really powerful. And, but half the time there's the, there's some little magic thing of like import CSV here.
+
+And if you do it, then all of a sudden, instead of three days of post, you're down to like, Oh, that just went, took an hour and a half to kind of go through it. And then, and. Now it's all done. 
+
+**Ryan:** That's the, that's the hope with tying it all with tentacle. I mean, we used to go like manually syncing dailies for like a week to, it takes an hour and an entire week's worth of shot is all jam sync to time code.
+
+And we have sync audio, like, you know, it's one of those things where it's like, well, we used to build like. Five grand for this. And now we don't bill at all. It's like click a button and there it is. 
+
+**Eliot:** Yeah. That way you can focus on the part. That's actually the, you know, make the thing instead of the bookkeeping.
+
+Yeah. But please. As you go through this, let's, let's work through it because we can, if I need to reformat something in it and it'll, it'll be very good to test it with, you know, you do five, five takes, you know, that stuff I, you know, five takes and pull them in and we test it and, and, Oh, we needed to do add this.
+
+So we add that, add that fix to it and we can test it again. And if we know what it is, we can turn around things pretty quick. 
+
+**Ryan:** Even if it's not, um, you know, even if I'm not able to find a solution to actually import the metadata back into Resolve, I can still use something like, um, notepad plus plus or something and be like, I can just search for what I need and there's the corresponding take.
+
+Now I can just go to Autoshots, select what I need and know, already know the in and out points that I need, like. That alone is a huge time saver. Cause I was like, if I have to go through and just manually match these things back and forth to potentially a hundred shots, it's like, that's three days of just matching shot names.
+
+Um, 
+
+**Eliot:** here's, and this is the, honestly, this is one of the things that we, we think we're going to tour it is that we want to set this up. Putting Jetset on the camera and doing this, you know, digital slate, et cetera, doesn't take that much extra energy. And then all of a sudden you can automate such huge chunks of the production process that, I mean, it's originally built around visual effects.
+
+But the same logging and, and data management problems are just rampant in anything where you, the shot count gets high. And that's, we want to get it. So people just park the phone on the camera, no matter what, you know, tracking great. But then, then the batch automation of all this stuff, that's, as you said, nobody likes to sit there and type for three days.
+
+Just to get going, you know, 
+
+**Ryan:** yeah, I mean, like, you know, long term solution, what I'm seeing. And I, I wrote this in my, that huge workflow thing that I was, that I thank you for the ideas that I have. And I spend a lot of time thinking about this stuff because we don't have the time, like feature films do and the crew it's there's five of us here.
+
+So it's like anything that can save us time is huge. Um, but like getting somewhere to the process, especially with Omniverse. Of You know, those, those stages where they're like, there's a previous stage, there's a post vis stage, and then there's like your final compositing stage. I could totally see here's an edit edited with the pre comp send, you know, run Autoshot on that sequence, automatically go to Omniverse, render out all of those background frames, drag and drop into, um, Fusion.
+
+And literally by the time it's done, like, oh, let it, it's gonna cook for 32 minutes. Okay. In 32 minutes you come back and it's every shot on your timeline is already set up with a comp. With the rendered background. Yes. And you can watch it. Like, to me that is mind blowing that it's even possible to do.
+
+And it's like, yeah, the tools I've read and been looking at everything you're doing, it's like, dude, this is totally gonna be possible. Like this is something that's going to happen. 
+
+**Eliot:** It's exactly what we're aiming for. Just described. Yeah, it's incredible. It's like all engineered toward doing that. You know, and, and, and automated, you know, for, for now, it's still going to be like a shot at a time punching it in, but over time we get timeline automation.
+
+And then it's like, and then, you know, the machine burst into flames for a while. And then, and then you come back and, and then you watch, watch your cut. And if you need to reedit and rework it, Hey, you do it again. Right. That's right. You know, once you, you lock it, then you can go in and do the fine tuning stuff, but you can, you know, you get a long way there.
+
+Absolutely. 
+
+**Ryan:** Absolutely. Um, one of the, like, outside of like the workflow tools, one of the things I had questions about, um, shooting, like from a production side is, um, There's going to be two locations. Essentially there'll be two locations. I, what, the way I see it right now that we were planning is there's going to be a front view.
+
+So just like you and I, there's going to be multi, you know, one person's here, one person's here, and then there's a second row and there's going to be all green screen, except the people and a chair. So just like if I'm sitting in my desk chair right now, there'll be some sort of chair that they're sitting in.
+
+Remove all the people, scan the set from this front area. The thing I found the easiest so far is putting my. Anchor point on a person so that I'm always like, regardless of where the scene is, it's like where this person's sitting, that's the origin of my scene. Like, so I've been moving my 3d scene to that be the origin.
+
+My question then becomes, is it better to align our scene with. a scene locator of where our camera starting place would be because there's going to be a right like there's going to be a zone of like this is basically where the camera is going to live based on where they are based on where the green screen is.
+
+So I'm trying to wrap my head around like what's the best way to set up our scene so that it translates to the set when we're shooting so that when we say We're looking, you know, let's just say it's camera. We're at camera one, location one, that's our straight on view. I have found it a little tedious on the phone to be like, I need to move the set back five feet.
+
+Well, I don't know what five feet is. And you just sit there and just keep doing this over and over again and try to get it back. But if I know one, like I will know the dimensions of my set. In correlation to my 3d world and be like, I know this person is going to roughly be eight feet away from my starting point.
+
+Do I just put a scene locator that eight feet away? And then let's call that my starting zone. 
+
+**Eliot:** Let's see. Um, the way we really, the way scene locators originally designed is to pin a particular 3d spot to an inner scene to a particular, you know, real life at point. And usually based around where the, the dicey is part of tracking is, is places where we have contact.
+
+Right. And so the point where you're going to have the most accurate lineup is, you know, right around where you set your origin, because as you get, you get further away. You know, there's angular offsets and stuff like that. Um, so I would, um, I would almost just pick the part. So are they, are they, are they sitting in a, in a real chair in a CG world?
+
+Is that kind of how the, how it's going to look? 
+
+**Ryan:** Okay. That's kind of, that's kind of the basis for it. So based on what you're describing, it almost would make sense to put my origin in the middle of the four people. Like if I have a box, basically put the origin in the middle of that box. 
+
+**Eliot:** Yeah, I think, I think that, that would, that would make a lot of sense.
+
+You know, put a piece of tape on the, uh, on the, uh, on the, uh, on the, you know, the, whatever the, um, you know, put a cross mark on, on the, uh, uh, on the set to, uh, to know where you're at. And, uh, so you can, you can, you can recreate that. Um, yeah, I tend to, I would tend to do that. I mean, if, if it's, if it's just one person.
+
+You know, for example, when we're doing our, the test X wings things, we actually put the, the, the scene locator right in the person's seat, because that way we pin them right to the seat. Um, if you have four that you're going to be moving around and they're all in practical chairs, I don't see a lot of ground contact problems.
+
+You know, you're, you're just going to be floating around and it should look pretty sweet. It should, 
+
+**Ryan:** it should be very similar to what you and I are on zoom right now. Like, I mean, framing wise would be probably more like this, but this is more or less what the framing will be for the majority of our shots.
+
+**Eliot:** Yeah, yeah, I think that's I think that seems fine. Um, and then it's then it's straightforward to, uh, put it on the ground and then kind of figure out where all the different people are, um, you know, lined up lined up really well. I think that's that that makes sense to me. 
+
+**Ryan:** Um, yeah, that makes sense to me too.
+
+And I think there's going to be like other things they interact with, but it's all like HUD type stuff. So as long as I have a world position space, it should be pretty easy to just take that world position that we're using from the camera, put a plane inside of it. And now the HUD is that plane exactly in that spot.
+
+Right, right. Well, this 
+
+**Eliot:** will be, this will be great. Cause then you, you only need to build your HUD once. Right. And then you should have a coherent 3d space throughout all your shots, instead of trying to like hammer into place per shot, which is always, always, always painful. 
+
+**Ryan:** You know, one of the things that.
+
+Even in the easy testing I've been doing of like manually trying to offset a camera and all of that and it's like well you shoot five takes and it's like regardless of how extreme that camera move is it can just be like hey we're just going to do a static move and now we want to pan over here we want to go closer the camera is still in the same world when I use the 3d track the camera's not in the same world it's like the yes And now I'm looking over this way.
+
+And then I put another shot in, you know, look in this, it's like, nothing's coherent of where I'm looking in a world. Um, and you can do it in SynthEyes, but it was always, sometimes you just don't have the time to do it. And it's like, run the auto tracker and after effects. And if it gives you a solve, cool, just use that and 
+
+**Eliot:** move right.
+
+And just kind of banging in however you possibly can, but it's, you wear out quickly because you're, you're just. I mean, I saw, I've been talking to Matt Markovich, who has made the best SynthEyes tutorials. I put links to them on the YouTube thing because they're so good. They saved my bacon and going through it.
+
+And I comment in the middle of the finished tutorial. You know, if, if the, if the observer says, wow, this looks suspiciously, like you're just going through all of Matt Berkovich's tutorials and borrowing his techniques. That's correct. He had especially had a technique where he used the, um, uh, you know, the, the blip detector and stuff to, to sweep through the scene and find small, medium, and large peel each one of these and use all of them.
+
+And that was, that was a game changer. That was an absolute game changer. Cause before. You know, you try your presets in the auto tracker and if you, if you don't get any features with those presets, you know, what do you do? And this way you just like keep changing it and just sweep through the scene a zillion times.
+
+And then you have got like a hundred trackers to, to work from. And then, then it's just, so that's in the, that's in the final tutorial. 
+
+**Ryan:** Yeah. I'll take a look at that. Um, but then 
+
+**Eliot:** this, this is exactly it. The, the operating in a coherent 3d space is, is what the whole thing is designed around. One of these things I, I struggle with a little bit is, and I, we're gonna, you know, I'm going to start doing some email blasts and stuff.
+
+I wanted to get the SynthEyes thing nailed and dialed so that, you know, when people pile into a production, we know we can make sure that even if they have ground contact, yeah, no problem. Yeah, it would just, we can track it. So, but one of the things I want to get across is how incredibly fast it is if you can operate in the same 3d environment over and over, you know, I don't yet know how to do that, like you obviously just get it because you, you were the guy who sat there and track shots for five days straight and try to like, you know, hammer them together and 
+
+**Ryan:** And then it becomes, you know, your master render scene now has to have 18 versions of it because you constantly have to be flipping the world.
+
+Instead of like, here's the master render scene. And if you're looking in this direction of the set, the lighting will all work. So just drop your cameras in and render the sequence. It's like a no brainer to me. I'm like, we, the first time I got that working, I was like, you know how much time this is going to save us?
+
+Like, this is like, Absurd. How much time this is going to save us. 
+
+**Eliot:** Yeah. Yeah. This is, we've been wanting to do this for a long time to get, I'm glad we, I'm 
+
+**Ryan:** glad we get to finally work with you guys. Cause we, like I mentioned it before, but 10 years ago, we looked at the original Lightcraft system for the same.
+
+And it, it was just like, this is just too much, I think for what their needs were. But when I found you guys, I was like, man, how do I know that name before? And I went through my bat and like, Oh, we'd like pitched, like buying this thing 10 years ago. 
+
+**Eliot:** Yeah. I, yeah, it was. They were the best you could do for the time.
+
+And then I, I, uh, I thank Tim cook for turning around and dropping a billion dollars to make every iPhone track. I don't know what, you know, I have yet to see another app besides Jetset that, that like really. Makes the full use of, of that tracking stuff. I'm just like, thanks Apple. They're just suffice to say their, their hardware development budget exceeded ours.
+
+And so I took, you know, one look at, at how good the, the first ones didn't track. I tried their, their earliest ones and it wasn't, it was nowhere near, um, it was about the iPhone 11s and twelves that went okay. And especially the LIDAR. LIDAR is a total game changer, absolute game changer on this. So, um, 
+
+**Ryan:** So from a workflow standpoint, is there an, what I'll call quote unquote, an easy way to dump the Jetset iPhone cloud?
+
+Actually, I could probably do this. I think I already solved it. But what I'd like to be able to do is download the Jetset data on set while we're working. And I, I'm hoping I can do that progressively. Like, Oh, 20 minutes. Just hit sync. And then And let it sink over. What model 
+
+**Eliot:** of phone do you have? 
+
+**Ryan:** I currently have a 14 pro.
+
+Okay. Um, but I'm all, I'm very much thinking about getting the 15 pro just for the sake of this project. There's a 
+
+**Eliot:** reason you want that. So this is a lightning to lightning to ethernet adapter with, uh, and with a lightning and that's up to the 14 models. It's only a hundred base T right. And it's, it's faster than wifi, but like marginally faster, you know, whereas with the 15 pro it's that's a gigabit ethernet.
+
+At that point you can pull takes, you know, you're like, okay, we're, we're, we're, you know, we shot for a while. I don't want to pull all my takes off. Just plug it into the ethernet and with the, to, to a local switch. And this is something to start thinking about. Um, I would actually. Look closely at, at testing with this kind of stuff is you may want to bring along your own, um, uh, wireless infrastructure.
+
+Uh, so there are nifty things like, oh, here's a barrel travel, a router that we've, we've experimented with. Um, it's, this is kind of a needle, needle device, uh, it was chat. There's chat. There we go. Um, but what it is, it's a, it's a little mini router that's designed to like, you know, hook up to your hotel Wi Fi.
+
+It's designed to hook up to another router, but then you're, you get to run your own stuff internally. Um, because there's. There's a number of things that are worth doing on this stuff. Uh, and one of them is just being certain that the, the wifi behaves back and forth between Jetset and, um, the, the, um, the digital slate, you know, when you sort of, you sort of want to remove external dependencies as much as possible with this stuff.
+
+Um, and so, you know, a little mini local router that your, your, your stuff is all running locally on your own, your own equipment. That means you set it up in your office. With your own router and you walk on set with the exact same router and it works exactly the same way and you maybe you hook it up to their, this router is designed to talk to another router for internet and then it handles everything else locally.
+
+It's like, again, a hotel router, so you can, you can run inside a hotel room, um, but that, those have worked, those have worked well so far, uh, and that, that has a couple of ports on it. And I think, are they 10 gig, are they gig ethernet ports? Let me double check. Um, I think they probably are what they have on that.
+
+But anyway, so that way that would let you, if you with the iPhone 15 pro, you can get a USB C to gigabit ethernet adapter, and then you'll hardline it when you're pulling your takes over. And that's going to be wildly faster, wildly faster. The files are going to get big. If you're running these five minute, 10 minute takes and wifi is okay, but it's, it's, um, You know, copper.
+
+Why when, when I'm, when you're just doing brute force take transfer and then, then it works with Jetset, right? It's still talking to it over the network. Um, yeah, with, with Autoshot, it's still talking to it over the network. That you don't have to change anything. It just, your file transfer is going to be a factor of 10, at least faster, uh, than just depending on, on wifi.
+
+**Ryan:** So is that still pulling from iCloud then? Cause it's still uploading the iCloud and then we're pulling it down through the. 
+
+**Eliot:** No, no. Autoshot always when you're, you hit sync, it's it. Okay. This, this is, it's, it's, this is a little weird and confusing. Is when we write to the phone right now, there is, um, on, on an iPhone, there is a chunk of local storage.
+
+It's still on the, on the local disc as it were, um, that is quote unquote iCloud storage. And, um, and that is, if you, if you're going to write it, it goes to, it's hooked to the user's iCloud account. And the reason we write to that right now is that if you write to app storage, if you accidentally, if you, you know, I'd have to go and uninstall or reinstall the app, it blows away all the takes.
+
+Right. So we defaulted to something safe, which is to write to, it's still local storage, but it's designated for iCloud. And then, and then Autoshot doesn't, doesn't actually talk to iCloud at all. Autoshot just talks directly to Jetset and sets up a cloning file system, a file structure, like it just clones the thing straight over wifi.
+
+And so that's far faster than dealing with iCloud. So we, we, we gave up on that. iCloud is okay for, you know, sending a, sending a, I don't know, an email or something like that, but you're trying to transfer like two gigs of takes. It's, it's not a, it's not a happy thing. Sure. So the Wi Fi works is a direct shot, um, but it's still Wi Fi.
+
+There are limitations on how much that phone can transmit and they get better, but I, the files get big and I would, and if you're in a production situation, The little adapter is like, I don't know, 20 bucks to, for any use for, uh, for Ethernet. 
+
+**Ryan:** Is that a USB C to Ethernet? 
+
+**Eliot:** This one is, is for my phone. So mine, my old 12 pro max is still a lightning phone.
+
+And so it's Ethernet to USB, uh, to Ethernet to, to lightning. 
+
+**Ryan:** And, 
+
+**Eliot:** and if you're running on your iPhone 14, this is what you're going to get to. I'm just warning you that this is a hundred base T. This is not gig Ethernet because the lightning port can't handle, you know, That that speed of transfer anyway, but usb c as of the 15 pro max can and that's it's a factor of 10 Yeah, and it's it's like, you know this and a cable And just check your cable test test your cables because gig ethernet is sensitive to um ethernet cable quality But then you've got a fat pipe on set and it costs you it's going to cost you 25 bucks Um, and then you could rip in terms of transferring tapes Um, so I'll just, and you don't have to change anything else like it, it'll still recognize it, you know, plugs into the network and it still recognizes it.
+
+You're still on the same network. Um, but these are all, at some point we should do a, another video or a description page of all these pieces that we recommend for onset. Cause these are, these are things we're learning over time of, of suggestions. Uh, but I haven't collated them into a, a single form.
+
+We'll, I mean, I'll run this call through Descript and post it. We're actually going to have an office hours section where I run, run these calls through an automatic transcription. So then you can do text search on the website. And somebody who's asked, looking for a Cinema 4d, we'll find this call. You know, so that's, that's, uh, yeah, yeah, yeah.
+
+This is, this is really, really, really useful. 
+
+**Ryan:** And then if we take, so once I, once I dump from set and I like we're shooting at our studio, so I have a 10 gig network already set up. I mean, I can pull right to our server from that transfer point. Can I take like, once I transfer like a day's worth of shoot from Autoshot, can I just take that entire folder and bring it with me to my laptop, to my other computer?
+
+And path maps are going to be the only thing that I need to change of where those process frames are coming from. Or is it possible to bring that folder to my, my local workstation where I am here, have JetSec connect back to my phone and then process takes on my workstation, not from the computer I dumped.
+
+The sync from, 
+
+**Eliot:** yeah, let me make sure, make sure I fully understand, um, okay. So the transfer, the, when you transfer it over to a project, um, folder, it's just, it's just a project folder. And then a bunch of files underneath it in a, in a, in a, in a hierarchy. And so. You can just point Autoshot at that top project folder and it'll recognize it as, as a project folder.
+
+It'll be like, Oh, okay. You know, now I know where to, where to look for takes. Cause they're all, it's all structured the same way. So wherever that project folder with all the takes and stuff, what lands just point Autoshot at it. And you know, then it'll recognize it and then you, then you can work. So, um, I think the simplest thing is, is you can, you can transfer, you can both transfer the whole thing over.
+
+You can also, if you have, you take the home, the phone home with you after, after the shoot, you can also just. Point pointed at your workstation and just think, you know, a day's worth or something like that. And, uh, that, and that'll work fine. It'll just, it'll recreate that project folder structure on whatever, you know, whatever machine you're on.
+
+Um, so that, that part's, I think, fairly simple. Okay. The part that's less simple is when you start having, which is going to happen, um, where you, you want to have. Multiple people working inside the same project. Um, and that, that is coming and we are figuring out how best to, how best to do it. Uh, but right now it's, it's just a simple folder tree.
+
+**Ryan:** Okay. Makes sense. Um, yeah. So once it's, once it's sunk and that folder tree is there, it's just like any other folder structure and Jetset's just calling when I make, or Autoshot is just calling that folder. When I say I want to process frames, I want, so, Somebody could be working in the Cinema 4D folder while it's writing files to the, um, PNG files or whatever it is.
+
+**Eliot:** Yeah. Yeah. If you have it on a NAS, um, and I, this'll be interesting and I, I don't a hundred percent know the answer to it, but the, uh, I think it'll work. You know, I think that as, as you, we've mostly tested with. With local disks. Um, and there's, I know there's a couple of quirks. If you try to do this on Google drive, it ends up being a little, a little quirky, frankly.
+
+Um, but on an as I think it's going to be straightforward. We'll have to, we have to try it as, as you go through it. Let's, you know, let's, let's test on it and, and see. Um, because it, it's, it's not destructive in terms of it's, it's. Once you have copied those, those camera original files over, or the, uh, the original take files, there's nothing that, that it reads.
+
+It only reads those, the, the part where it does writing is all in the sequences, uh, area. So if you write a sequence and then you, you know, and then you rename the sequence, kinda like what we talked on the, the website, you know, the sequence and then change it to a shot, whatever, uh, Autoshot won't ever go back and rewrite that, uh, rewrite that directory 'cause it doesn't know it exists.
+
+Okay? It only knows the directories that it, that it, that it creates. 
+
+**Ryan:** Gotcha. Is there, when we do the other processing from Autoshot, where you do like program, run, other, and then it creates the SynthEyes and all that. Um, there's no way to disable writing files, like write the PNG or write the EXR. Just like, just don't do that process.
+
+**Eliot:** Well, let's see it only will do it if the checkboxes is enabled of, of, um, there's a checkbox on it. That's a re what's it called? Um, regenerate frames. That's what will cause it to regenerate the, uh, the EXRs, et cetera. And I, that's right. So you are this. Okay. So you were looking at running your own process to generate the XRs.
+
+Can you, can you tell me a little bit about how you're thinking about doing that or how you're planning to do? 
+
+**Ryan:** Part, part of it is for this reason of like our, my team is remote. So I don't want to rely on Google drive to write Jetset too. So it'll be its own subsection of. Files takes, um, okay. So there are two separate things.
+
+Essentially my pipeline will be two separate approaches. Um, there's the Jetset side and then there's like our production side data between our team. Um,
+
+I don't see the need other than like a still frame from my end to give to our 3d artists, to make sure that the scene lines up. 
+
+**Eliot:** I 
+
+**Ryan:** not need to go through an entire structure of like writing new EXRs simply from the fact that I don't have raw support in Autoshot. So I'm gonna have to create all new files from my raw files for Jetset to reconnect to where I wouldn't need to do any of that.
+
+If I could just get the camera, like if I could just get the pie camera from Jetset into Cinema and then just be like, render a frame and make sure it lines up. And let me do all of the post processing after the camera's been rendered on my end. 
+
+**Eliot:** Okay, that's, that's a good point. Um, let me, let me ask, check with our CTO and I can say, I think there might be a way to do that, which is, which is like a, um, a, just a cam only export where we don't, where we actually don't try to run all the other processes on it.
+
+Because like 
+
+**Ryan:** if I use like original file, like just use original file, it errors on me right now. Like it won't let me process that take with, forget what the thing, like, what does it say here? 
+
+**Eliot:** And are you rendering a none? Oh yeah. Cinema 4D. That's right. Okay. 
+
+**Ryan:** But currently that's the pipeline. I'm, I'm thinking that there's a potential we might use Omniverse only from the standpoint of how fast it is.
+
+Like I want to test that because I was getting really good results on some temp scenes that we created. In like seven seconds of frame. And I'm 
+
+**Eliot:** like, 
+
+**Ryan:** well, octane's rendering at like a minute and a half of frame. And I'm like, it's pretty negligible. Which one's better? Like pretty subjective at this point.
+
+**Eliot:** And that was using the Omniverse, the path tracer. 
+
+**Ryan:** Uh, that was, yeah, the interactive path tracer. 
+
+**Eliot:** Oh, fantastic. Fantastic. Oh, this is, that's exciting. I mean, this is, um, um, cause the way we're, we're close contact with the Omniverse team and it's, and it's, it'll be fun. It'd be fun to see this, see it getting used in a, in a production like that.
+
+Um, if 
+
+**Ryan:** you, uh, if you can pass along to them, if you're that close with them, there's very little documentation on like the newest versions of Omniverse. There was a huge kick for a long time of like, wow, there's a lot of stuff I can go through. And now it's like stuff changed. And it's like, wow, there's like four videos since 2023 on Omniverse.
+
+I'm like, guys, like you, they've built such an amazing thing. And I think there's such a small subset of people that could use it initially, but technology, like what you're creating. And it's like, right. It's the only reason I ever looked at going into Omniverse. Cause I was like, I tried it and I was like, this is never going to be for us.
+
+Like, this is. It's more than our workflow needs now. We have a use for it. And I'm like, wow, like going back to this, this is amazing. They've made big updates they've made, you know, so there's a lot of potential there between your two tools to 
+
+**Eliot:** make that the 
+
+**Ryan:** way that we normally do our projects. So it's exciting to that level.
+
+**Eliot:** Okay. Okay. So I'm going to check on the camera only export. I bet there's a way to do that. And I just have to think through. And this is okay. And this is going to, into C4D. 
+
+**Ryan:** Yes. 
+
+**Eliot:** Okay. I 
+
+**Ryan:** mean, even if it's just exporting out the, um, the USDA file worked as well. 
+
+**Eliot:** And that's interesting. Well, the USDA file, because the Omniverse doesn't support image sequences, so the USDA file will actually, that will work now.
+
+Um, Yeah, yeah, actually, if you needed it, if you needed the immediate thing, that should just work because Omniverse, we ran into this, they don't have an image sequence support, so I think that if you're just, if you send it to the USDF file, that'll just work. 
+
+**Ryan:** So, In Autoshot, is there a way to process that USDA file without having to run, run Autoshot?
+
+**Eliot:** Oh, I see. And then, and then do the frame extractions. 
+
+**Ryan:** Yeah. 
+
+**Eliot:** Um, that is a good question. Um, I'm going to, I have to check on that to see if there's some elegant way, some elegant way to do that. I, I, I totally see the need for it and I don't have a great, um, it's very easy if we have too many switches and configurations to break stuff.
+
+Wildly painful ways. So, but I, I see what you're trying to do and let me go in and see if there's a, a smart way to do that. 
+
+**Ryan:** Follow my logic. If I would use like blender can use the original camera files, right? If I could find a way to get it into blender, the camera in the blender. And figure out a way, a workflow to get that camera out of blender.
+
+I wouldn't actually have to render the extracted files from Autoshot. I would just say, use original, go to blender from blender, figure out how to get the camera out. 
+
+**Eliot:** That's actually an interesting point. I know we had that in there. For a while, 
+
+**Ryan:** I think the first time I tested it, I think that's actually the way that I first tried to do it.
+
+Cause there wasn't an other option in the version I downloaded. It was only Blender. Okay.
+
+**Eliot:** Yeah. And Blender is unique. It's the only one where the original media ever worked. That's, that's why we like switched images, we can just sequences for everything, but cause nothing else works with the original media. 
+
+**Ryan:** The more and more I use Blender, the more I'm like, why are we not switching to this?
+
+Like it does everything that I've been asking it to do. And every other program's like, nope, doesn't do it. Doesn't do it. Have you seen 
+
+**Eliot:** the, the new, like the 4. 2 renderer? The new Eevee? 
+
+**Ryan:** Yeah, the Eevee next thing. It's insane. It's unbelievable. 
+
+**Eliot:** We're actually already setting up. We've already done tests where we have reactive lighting.
+
+Um, we take the Blender real time feed. Because you could actually send it. Uh, already we have real time tracking data going into, into blender. And this is, again, it's not documented. We already, but you take Jetset, move it around set, and then the blender scene will move around. Um, but we took that and we fed it into a simulates live effects and then pixel mapped the output of that to a stage lights.
+
+So you had this animated scene with like lights and stuff like that. And all the, and it were, it was like. So we're going through it again. It was, we did the first test of it and you look at it and like two seconds in, you could just go, this is how everybody in the world is going to shoot green screen, because it was so easy to set up and work with the aperture lights, they're all programmable.
+
+They're like, I don't know, 500 bucks each or something like that for one of the strips. It all just worked. And they have a nice software system where, you know, you can hook it up. And I went, that's, you know, we're, so we're going to do some experiments and see if I can get a live key working in that.
+
+Cause then, you know, live effects is pretty, it's expensive, right? It's, it's, it's not cheap, but, uh, You, if you wanted to see a log, you know, you could basically grade on set with 
+
+**Ryan:** that. That's actually what we tested yesterday was trying to get a live feed into Resolve and have a key, a pre rendered background.
+
+And so if you just were, if we're on a tripod. Can we get a live feed into Resolve, key that out and see the, so now when you move a light source, it would work. We couldn't get it working. Resolve kept crashing on me when I would use the color live portion of it, but it was as easy as like take screen capture comp, move a light, hit screen capture comp.
+
+And then because we're using Resolve, like you just have to right click or a middle mouse, click the previous clip and everything you did to the previous one just applies to the next one. So. Within, I don't, 15 seconds of moving a light, the comp's already updated. 
+
+**Eliot:** Interesting. 
+
+**Ryan:** The idea would be to get it so that we could literally move a light source and then see this background doesn't change, but the light source here is actually changing to help.
+
+Marry the two scenes together. 
+
+**Eliot:** Yes. Yes. That's, that's, you know, that's what everybody wants to actually be able to like, see how it's all going to come together before it's three weeks later. You're like, whoops, you know? So,
+
+okay. So I'm going to go look at that 
+
+**Ryan:** currently here. If I run this now, 
+
+**Eliot:** because the blender original media is something we've already done. And I bet, I bet we can do that. I know he took it out on this, on this last one 42 build, but I, I Let me check on that, because I'd say that is the most likely, um, the most likely being, being able to implement it in short, because we used to do it.
+
+I just have to see why, why we, why I pulled it out. 
+
+**Ryan:** Well, I think your blender add on is not, oh, I got to set that, reset that up.
+
+Did it run? It might've just ran. Just give me one second. I want to see if it actually gave me a camera or not. No, it didn't. It aired out and didn't give me a camera. I was just seeing if I ran the blender export, if I could just say use original and then give me the camera from it. 
+
+**Eliot:** Interesting. The, um, on mine on one 42, I don't actually have the option of using the original camera, original media.
+
+I just have EXRs and PNGs. Um, let's see. 
+
+**Ryan:** Yeah, I'm on 1. 4 too. Yeah. And if I go to run values, program, blender. Um, I can set
+
+camera media, I can use original file, extracted PNGs or extracted EXRs. 
+
+**Eliot:** Really? Can you share your screen? I'm actually curious because I don't see it on mine and I want to understand whether it's, it's, I need to understand this a little bit better. 
+
+**Ryan:** I gotta switch computers here. Just give me a second.
+
+Yeah, no worries. Wobble it 
+
+**Eliot:** over.
+
+**Ryan:** Problem with having too many computers. Okay. All right, let's see if this works. All right, can you hear me? 
+
+**Eliot:** Yeah, yeah, it's good.
+
+Blender.
+
+142.
+
+We'll just take a look at that. That is, let me
+
+Oh, I wonder if that's because it's Okay, you're not running a Cinetake. That's right, that's right. 
+
+**Ryan:** Okay, 
+
+**Eliot:** that's probably what's going on. PenScene, original file. Okay. Yeah, that, that, that's, that's, I think what's going on. So that what I'll do is I'm going to check, cause that should actually work. Can you, does it work to, um, you may need to update your blender, uh, your blender.
+
+Okay. I see error creating a blender editor file. Make sure you update your blender add on to one 10, the most recent one. 
+
+**Ryan:** Yeah, I definitely don't have that. 
+
+**Eliot:** Yeah. Let's, let's, let's, let's try that. Cause if that 
+
+**Ryan:** works on your website, 
+
+**Eliot:** just on the downloads page,
+
+let's just make sure that works for you. And then, then I mean, to some degree, then I think you're off to the races. Uh, but then I, I want to chase it down to see whether it still works on, um, on Cindy's shots.
+
+**Ryan:** Cause like, realistically, if that, if that could be working for my shoot, I can do all of the like hard lifting on my end and all I need is the camera info. 
+
+**Eliot:** Yeah. Then you just like, you generate a blend file and you know, pack it and send it or whatever, you know? Yup.
+
+**Ryan:** You're going to have to remind me, do I have to put this somewhere? 
+
+**Eliot:** Oh, it's a, it's a, you just download the zip. That's fine. So, uh, and then you just go into blender and then you're going to do, uh, edit, edit preferences. Yeah. And then it just takes the zip file. 
+
+**Ryan:** I don't use Blender often, so I forget what the order of things are, where stuff goes.
+
+Yeah, 
+
+**Eliot:** there you go. Edit, preferences, and then add ons, and, oh, actually, that's right, you need to click, no, they changed it, so you have to click get extensions. It's one, one level up from add ons. Oh, there we go. And then, uh, on the upper right hand corner, instead of repositories, uh, just click from, like, user, from, like, system, let's see, uh, like, look on my Blender, they just changed all this.
+
+Um, where do they have that? Um Under the ad let's look at the add ons pull down This one here. No, let's uh to the left of that. There's add ons and um, Where did they put that internet is? Oh And under online extensions, let's um, look at let's pull that down. Uh, because it's it's just a uh, Oh, I don't know where yeah add ons is fine.
+
+Um, Can you pull down that that menu just to the right of repositories? You Oh, install from disk. There it is. That's the one we're looking for. There 
+
+**Ryan:** we go. 
+
+**Eliot:** And download. It's in this point. I have to zip and it's a one, yeah. One 10. 
+
+**Ryan:** I think this is the extract. I think I did it. So 
+
+**Eliot:** there it is down, down, uh, partway through your screen.
+
+Uh, one up three down. Autoshot Blender. That's the one. Is 
+
+**Ryan:** that it right there? 
+
+**Eliot:** Yep. Thanks. Soft and disk. And then type in Autoshot in the search just to make sure we, it's enabled.
+
+**Ryan:** Oh, probably got to go to add ons. 
+
+**Eliot:** There we go. Okay, good. It's, it's, it's working. Okay, so then, uh, we can just exit that. Exit Blender. And then, let's see if this is gonna, gonna behave. Your
+
+**Ryan:** Blender add on is not present or incorrect. Oh. 
+
+**Eliot:** Do you have it pointed toward the current 4. 2 executable? Uh, so. Let's see what it's doing.
+
+And I don't think we've actually tested it on 4. 2 yet, but I guess we're going to, it'll be a good time to test it. 
+
+**Ryan:** Is that everything? Hit run again? 
+
+**Eliot:** Yep. Let's try hit and run.
+
+Hey. There we go. That's good. And it's compiling shaders. There we go. 
+
+**Ryan:** I don't know what take I did, but that's fine. And then, well, theoretically, if I can get it into here, I should be able to put the add on a blender inside a Omniverse. And then I would just have the camera,
+
+**Eliot:** the on a blender inside Omniverse. So there's, 
+
+**Ryan:** there's a, there's a, uh, there's a USD connection that you can put to blender. Mm-Hmm, . Then I could open this scene. Or the USD scene inside of Omniverse. And then this camera would be present in that connection. 
+
+**Eliot:** Huh? That's worth, that's worth trying. 
+
+**Ryan:** I've never 
+
+**Eliot:** tried that.
+
+Uh, that's, I'm actually very curious to try it. If you want to try it out. 
+
+**Ryan:** Sure. I don't know if I have that all set up currently, but we can try it. I think I have to get a, uh, no extensions. They call them extensions for blender. I mean, let's try
+
+**Eliot:** connectors.
+
+Oh, that's right. They have an Omniverse. They have an Omniverse connector for Blender. Um, 
+
+**Ryan:** it 
+
+**Eliot:** may be under, okay. I'm a little bit behind it. It might be under apps where they actually have a dedicated, um, Omniverse Blender version. 
+
+**Ryan:** Here, there it is. That's an alpha right now.
+
+**Eliot:** Yes. Yes. We used to use, well, we were developing it. The, uh, the Omniverse, uh, had done great, great work in the USD branch. And so for a long time, we were on the developmental version of, Of, uh, of the, you know, the blender Omniverse branch. And then they got all this stuff, all the USD stuff that we really, really needed into Ford in the, in the mainline blender.
+
+So we've been on mostly mainline blenders since 4. 0, but it's, it's a great, it's a great team.
+
+**Ryan:** They're probably using a way. And then once I go through the. Cine calibration. I don't think there's a way that I could just revert back to regular old jets up to get the camera out right now. Cause once I'm tied to Cine, I don't think I can export camera originals to Blender.
+
+**Eliot:** Yeah. Cine is really designed around pulling the frames from the Cine, the Cine, um, um, you know, the Cine camera and getting that into Blender instead of the, the original frames. Um, think about that for a second.
+
+Okay. So you can just open that same file in the, in the Blender Omniverse. On the Omniverse Blender, maybe save it and, uh,
+
+thinking,
+
+**Ryan:** thinking real hard. 
+
+**Eliot:** That's strange. You shouldn't, uh, 
+
+**Ryan:** there we 
+
+**Eliot:** go. All right. Now, see if we can figure out how to get it.
+
+I'll be super intrigued to see this. 
+
+**Ryan:** I actually don't know. I'm not even sure how you pull it in the, um, I did it a long, long time ago when I first tried Omniverse, probably three years ago, but it's been a while since I've tried to link anything.
+
+Sure. Zoom is just too much for the computer to handle all the graphics processing. 
+
+**Eliot:** Right, right. That's 
+
+**Ryan:** usually what happens.
+
+**Eliot:** Alright, how are you supposed we get to file?
+
+**Ryan:** You know, I remember there being something you have to set up like the 
+
+**Eliot:** USB file. 
+
+**Ryan:** Oh, was it 
+
+**Eliot:** a server? Do you need to set up their um, They have a real time server that they, that they hook into. 
+
+**Ryan:** That drive thing. 
+
+**Eliot:** Yeah.
+
+**Ryan:** Yeah, I'm going to have to go through 
+
+**Eliot:** here. 
+
+**Ryan:** I think I have drive is enabled.
+
+**Eliot:** Oh God. Okay. So let's, let's cancel for a second. So I think it's okay. Nucleus was their server. That's right. So, uh, under, under there's a nucleus tab up on the top. Let's see if you have nucleus running. Okay. Yeah. So you have, um, I think Omniverse. Uh, I think you can, okay, this is, everything's changed since I looked at it.
+
+I wonder how that, um, now as a simple thing, you can, you can go to, I mean, we always just export USD from blender, right? That might be the 
+
+**Ryan:** easiest way to do it. It's 
+
+**Eliot:** a simpler, simpler thing to do it. So I just go to blender and, and, uh, click on the camera or yeah, actually you can export USD. It should be fine.
+
+**Ryan:** So I just select scene collection and then export? 
+
+**Eliot:** Yep. Just a file export, universal scene description, and then just write it out to a, you know, convenient, convenient directory and we want, just double check to make sure you've got, you want to, Oh yeah. Click animation, uh, about two inches below. Make sure you have your animation rig.
+
+Um, all right. That should do it. Yep. Uh, do it export USD, and then we can load that USD into, into create. Or whatever this is now. Composer is what's called these days. Yeah, 
+
+**Ryan:** they don't even call it the same thing anymore. Heh heh. Uh, let's go by date. Sometimes it's just easier to search by the last thing you did.
+
+Uh, I don't know if that keeps my origin correct, but I think if you do it through layer it does, but Camera, perspective, 
+
+**Eliot:** camera. 
+
+**Ryan:** There you go. 
+
+**Eliot:** There we go. Uh, and did the animation come through? I forget whether there's a timeline. 
+
+**Ryan:** I think it's in There we go. Layout, animation. Select animated.
+
+Hey, 
+
+**Eliot:** it looks like some motion. 
+
+**Ryan:** Yup. And they look, well, they kind of look the same. 
+
+**Eliot:** Interesting. Interesting. Okay. Well, this is promising. So I tell you what, let me go, uh, see about using original camera, original media on a Jetset Cine take. Cause that would, I think, I think that's going to be the way. The, the cleanest way to approach it, to get a, to get a frame, you know, something out quickly, because then you can, you know, put it into a blend file, pack the blend file and to send it on and it'll be, it'll be lightweight.
+
+The blend file is going to be like 300 K. Cause it's just has the camera tracking information in it. It doesn't try to add in the, um, uh, when it packs, it doesn't add in the, um, the movie or anything like that. It'll just send the, well, this is great. This is great. This is exciting. Uh, looking forward to.
+
+The, uh, seeing, seeing all this stuff come together. So, um, all right. So when do you think you're going to have the, uh, CMO and the pieces to be able to, to close it looks 
+
+**Ryan:** like it should be, it should be shipping it shipped today. So I should have it on Monday or Tuesday. 
+
+**Eliot:** Fantastic. 
+
+**Ryan:** Um, and if it is, if it's here on Monday, like that's my day is I will be at the studio trying to get everything set up.
+
+Um, I, we have, uh, um, we have a shoot. Monday, Tuesday, Wednesday, next week that I'm not a part of, but our Cinema camera is on, so I'm going to be used. I'm not going to be using the actual camera we're using, but at least I should be able to test everything, um, with a, with the non production camera, we'll be using a, uh, Canon C300 to test with.
+
+**Eliot:** Okay, great. Did you, did you also order the rigging and the cooler and that kind of stuff? 
+
+**Ryan:** I have the cooler, um, and we have, we already had rigging for it. Um, I was waiting to buy the actual cage. And the mount, if I got the iPhone 15, but we got it, we have rigging to the camera, that's very rigid. Um, we got that working yesterday.
+
+**Eliot:** Okay, great. Great. As long as it's rigid and you can mount a cooler, those are the two key things.
+
+Oh, fantastic. Well, uh, yeah, let me know how that is going and I will check on this, on these pieces of it on the, uh, that, that would be a clean way of getting you your cameras, you know, very quickly. And, uh, yeah. And then let's, uh, let's, let's just go through and do all the tests. Cause there's a lot of great things here that can be absolutely fantastic.
+
+And we just want to sort of close loop it. We can solve anything if we have a couple of days to solve it. And I just want to figure out what the, uh, Uh, what, because there's multiple useful things. There's the logging, uh, there's the potential use of Omniverse. There's the sending the, the blend, blender file out.
+
+So there's, there's multiple, multiple useful things here. 
+
+**Ryan:** Sure. 
+
+**Eliot:** Well, fantastic. I'm going to go sign off, but I'll, uh, I'll transcribe this and we're going to put up a, we have an office hours section going up on our site. So I'll transcribe it and put it up. And, uh, I think this will be gold for a lot of people who are coming in and, and, uh, figuring out this, some of these pieces of it.
+
+**Ryan:** Excellent. Well, thanks for your time and answering my questions and working through all this stuff. It's exciting to see it all come into life. 
+
+**Eliot:** All right. No worries. I appreciate it. Talk to you soon. 
+
+**Ryan:** All right. Have a good one. Bye.
+
