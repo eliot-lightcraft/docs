@@ -26,6 +26,7 @@
             "group": "Setup",
             "pages": [
               "setup/configuring-travel-router",
+              "setup/configuring-icloud",
               "setup/create-project"
             ]
           },
