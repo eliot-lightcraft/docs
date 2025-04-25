@@ -1,0 +1,103 @@
+---
+title: 'Matching Takes with Timecode'
+description: 'Autoshot’s new timecode-based matching massively speeds up the process of matching cine camera video files to Jetset takes, and makes the digital slate optional. This is a great addition for time-crunched projects.'
+---
+
+## Video Tutorial
+
+<iframe src="https://share.descript.com/embed/Loxb19e97lm" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+# Transcription
+
+Okay, in this tutorial, we are going to go over our new timecode based take matching and sync method, and this is a new method for automatic take matching and sync based on matching timecode between the Jetset data and the Cine data. 
+
+
+## Tentacle Sync Device Required
+
+And this requires the use of the Tentacle Sync E device so that the embedded timecode in the cine camera footage files matches the embedded timecode in the Jetset take. 
+
+
+## Replaces Digital Slate Markers
+
+This replaces the use of the flashing optical markers in the digital slate, so it can be much faster than optically scanning through those files, looking for those markers, and also more reliable, because the digital slate is prone to having lights flash on it or reflections, etc., and the timecode is just a, a very reliable method. The digital slate is still a good idea to use as a backup visual reference, but in productions where you can't use it, then this can replace it.
+
+
+## Autoshot Directory Setup
+
+Let's take a look at this. We've uh, opened up one of Alden's shots. I've already loaded this into Autoshot. We already have our project folder. I've set our CineSource directory to the directory with the BRAW files in it, and since this is a BRAW project, we also use the the proxy videos generated from the BRAW files. And we've pointed the CineProxy toward these files just the normal way we process BRAW files. We've already picked our day and our take that we're using for this.
+
+
+## Scanning Using Timecode
+
+And you can see here that we don't yet have our Cine footage matched. We don't have our Cine time offset yet. We're going to find that out from doing this process. First of all, let's click Scan. And now when we click Scan Autoshot will pop up this little box.
+
+You can tell it to use the old method of visual markers instead of timecode. But we actually don't want to do this. We're going to match with timecode.
+
+And you can also tell it to ignore the cache. So when we, we click scan it'll actually store all the file matches in a json file, and if we want to get rid of that file, we can ignore cache. But we're just going from scratch here, so we're just going to use it as is.
+
+We're going to click scan, and it's going to look for timecode, and bam! Already we found a matching cine video, And in that, quickly, we found the CineTimeOffset. So that was, you know, a second versus a long time scanning through the files optically, which is what the old method was.
+
+
+## Limitations of Timecode Matching
+
+So it's very, very fast. Now, the timecode based matching is really fast, but it has limitations. And the limitation is that timecode is frequently not completely frame accurate. It can be off a frame or two in one direction or the other depending on your camera model and how the timecode was embedded.
+
+So, it's not precise enough by itself to be able to do the level of really accurate time matching that we need to for tracking data. Tracking data has to be at least frame matched, and sometimes sub frame matched. 
+
+
+## Optical Flow Refinement
+
+So the great thing here is that we've added a secondary optimization which is optical flow.
+
+And the optical flow will actually get us all the way to the final alignment. The optical flow requires an initial estimate to work correctly. It also requires a decent amount of camera motion in the image, so if you have a stationary image, the optical flow isn't going to work. But then you're not that worried about synchronizing the motion anyway. So in any case, this combination can work great. So we have our Cine Time Offset, our initial offset from the timecode.
+
+We're going to click refine offset and it's going to say wait for the graph . We'll wait a couple seconds for the graph and There we go Use suggested offset of 5. 285. That's fine. 
+
+5. 308 was the initial Cine time offset between the start of the Cine clip versus the start of the Jetset clip. Remember we typically roll the Cine camera and then Jetset separately.
+
+So in this case, it was a 5, 5. 3 second offset and this was the timecode based offset, and then we're going to refine it to 5.285 seconds using the optical flow offset. So we're going to click yes, and if you want to see the little meter we can now see a cross correlation of optical flow shifts so we can actually see how it's working out.
+
+And I'm going to exit that. 
+
+
+## Picking Clip In/Clip Out Frames
+
+Okay, so that's our offset. In Resolve we took a look at this clip and found an in point that we want at about 2250 frames and an out point at 2350. 23 2390. So we're just going to look at this portion of the clip for the shot.
+
+So now we can go back to Autoshot and I entered in those numbers. And since this is processing BRAW, we don't need to set our gamma and color. It'll do this automatically for us. 
+
+
+## Setting Scene Blend File and Scene Locator
+
+I set our scene blend file. Since we have a scene blend file, we'll just append that to the scene in our newly generated Blender file. And since we picked that Blender file, it's going to open up the the blend file in the background and give us our possible scene locators to use.
+
+In this case, since the take had the origin, we're just going to use our origin in the file, and we can click save and run.
+
+It'll extract the EXR files from the BRAW and generate a Blender file.
+
+
+## Rendering Test Shot in Blender
+
+Alright, there's our generated file. And it's going to compile the shaders in Blender for a second so we can see the actual image sequence.
+
+There is, there is our shot. I'm going to scroll back. The beginning of our shot. And so we can actually hit play and see how it tracks through the shot.
+
+And since the the playback performance is a little bit slow, cause these are 6K files, you can generally see the tracking is aligning, aligning well.
+
+We can check by hitting N, going to Autoshot. And telling it we want to do a fast viewport video render, so that'll just go through and do a fast render of the viewport and compress it into an mp4 so we can check the tracking behavior.
+
+
+
+
+## Viewing Fast Viewport Clip
+
+If we want to see that clip, we just go to Autoshot, click open, and it opens it directly to our sequence directory, go to preview, and there's our preview render. We can double click that and kind of see him going walking through the scene. There we go.
+
+Alright, and that looks like the synchronization is looking correct. We'll switch this back to 3D viewport.
+
+Okay, so that shows us our tracking is correctly aligned in the scene in time. Now you can see it's a new way of automatically synchronizing the Jetset takes with Cine takes using embedded timecode from the Tentacle sync.
+
+And this is far faster, and I think will be very, very useful for productions that don't always have time for the digital slate. And they have a very large number of takes to process through, since it's so much faster to match takes with timecode instead of going through the process with the optical targets.
+
+Alright, so I hope that helps out.
+

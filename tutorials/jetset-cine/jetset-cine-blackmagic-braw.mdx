@@ -1,0 +1,278 @@
+---
+title: 'Shooting Blackmagic BRAW'
+description: 'Jetset Cine software setup, calibration, and shooting with Blackmagic 6K BRAW. Automatic post processing and transfer of shot tracking data into Unreal for post rendering.'
+---
+
+## Video Tutorial
+
+<iframe src="https://share.descript.com/embed/S6nFncYAEN2" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+# Transcription
+​​
+We are going to go through a complete Jetset Cine round trip shooting with Blackmagic BRAW. We'll show connection of the Accsoon SeeMo, the connection setup of the Tentacle Sync time code to the main camera and to the Jetset app, the calibration process, and finally shooting and recording a take.
+
+And then post-processing the take and then bringing over the take information including the BRAW data file, extracting proxies from the BRAW file, and then finally processing everything and getting frames. Let's start out. 
+
+
+## Accsoon See App Installation
+
+So before we do anything else, we're going to install the Accsoon See app. Go to the App Store, search, there's the Accsoon See, great, and we can open it. Okay, we can, we can exit that for the, for the time being. 
+
+
+## Connecting Accsoon SeeMo to iPhone
+
+We have our Accsoon SeeMo powered up and connected to the camera with a live HDMI feed. So then if we connect the Accsoon SeeMo to the iPhone. We're going to get this pop up. It says it would like to communicate.
+
+Yes, go ahead and allow it. So that's going to bring up the Accsoon See app. We have currently connected a SeeMo 4K. So I'm going to slide that over. Let's check to make sure our firmware is up to date. Firmware, we'll click there; current firmware update. And it says that our current firmware is the latest.
+
+That's great. Now we can go back to here. Now we can click the monitor button. And this lets us see the live feed from the camera. Right now the camera is pointed at a blank wall. But the live feed is working. So now we know that we have live signal coming into the Accsoon, and that we have the current updated firmware. We're all set for there. We can exit the See app just by swiping up.
+
+
+## Tentacle Sync App Setup
+
+And next we're going to want to connect our Tentacle. We have it connected to the timecode input on the camera. And we've verified earlier that the camera is reading timecode.
+
+We can click on our Tentacle Sync app here and verify that it's hooked up. It's detected our local device called Sergio. We can click on it here and we can see that it's currently generating time code. 
+
+So now we can exit that, that device. 
+
+
+## Project Folder Setup
+
+Now we'll start up our Jetset app, and we want to be in the Cine version.
+
+And as usual, we're going to create our own project, main menu, create a project, new project, scroll down, highlight that, edit and we're going to call this
+
+calibration test
+
+and we'll edit our prefix
+
+there we go. 
+
+Then we're going to switch over to Autoshot, make a folder with the same name as the project and I hit refresh and there we go. Our project folders on Jetset and on the local drive are now synchronized.
+
+
+## Tentacle to Jetset Connection
+
+Next we need to connect to the Tentacle device in Jetset so we can receive timecode both inside the app and to the camera.
+
+So we're going to click our main menu, we're going to click settings, and we're going to click settings here. We can enable Tentacle Bluetooth timecode, as we see here. Okay, done. 
+
+And then bring this up, and you should see this, so we have our source, our Tentacle source, and here we can verify that our timecode matches this on the camera. It's all coming from the same source, and that our Tentacle name, Sergio, is correct.
+
+And if that doesn't work, just go ahead and restart the app. 
+
+
+## Cine Calibration Setup
+
+So we're, now we can start our calibration and the trick with the lens calibration is you, you don't actually need it to be on a stage. You don't want to calibrate on a green screen stage because there aren't that many feature points.
+
+And what you're looking for is actually quite a few feature points that can match the natural features. 
+
+When we start up, we do need to set our origin. And we're going to pick any point. It doesn't matter.
+
+
+## Cine Calibration Capture
+
+Once we've set our origin, we can click Recording, I'm going to click Cine Calibration. I'm going to click New Calibration. 
+
+Okay, so here we have our calibration UI. And we're going to click Start.
+
+And we can see, simultaneously, we have feed coming from the main camera and from the Cine camera. And in this case, the main camera on the Jetset device is about a 19 mm equivalent focal length. And we have about a 24 mm focal length on the Cine camera. So the Jetset camera is a little bit wider.
+
+The red squares is where Jetset Cine is detecting the natural feature points in the scene. We're going to hold the camera still. While we're looking at this, we're going to click test frame and it's going to find all the matches between those two images.
+
+So I have found quite a few different matches so that we're going to keep that frame. And then we're going to move over just slightly and we're going to keep the same basic object in, in the line of view as we work our way around the same carpet. So we're going to hold ourselves still again.
+
+We're around the same object, around the carpet. 668 points, that's good. I'm going to keep, keep that frame. I'm going to move over another foot. And we're trying to keep these at roughly the same focus distance. I'm going to click a test frame. It's going to detect 597 points. Keep that frame. I'm going to move over yet again.
+
+And on the right, it's keeping track of the number of points that match the original image. Keep that frame. So we're going to click 620 frames. I'm only seeing like 12 points that match the original image. But that should be okay. And we're going to come back here.
+
+Test a frame. There's a lot of point matches. Keep a frame. Okay, so sometimes if it didn't work you just click ignore frame and we're just going to keep working our way around. Test frame, I'm going to keep that frame and move over into a roughly an 180 degree semicircle. Test frame, keep frame.
+
+Alright, so now we're going to click save And we're going to enter in our our calibration in this case we're going to just going to say I'm going to call it the Blackmagic Pocket Cinema, And we were at a 24 millimeter frame 
+
+
+## Exiting Calibration Capture and Red Reticule
+
+Now that we have saved, we're going to click exit and it'll be a black screen for a second. 
+
+And once it comes back to Jetset, you're going to actually see an overlay of the aiming reticule. This capture is actually taken from a 70 millimeter lens, so it's a much smaller reticule, and the aiming reticule that shows the equivalent area of the the cine camera is red because we haven't processed it yet. 
+
+Right now, we have just captured the 2D images for our calibration, but in our next step, we're going to calibrate, and once it's calibrated, then the aiming reticule will turn yellow instead of red.
+
+
+## Autoshot Calibration Panel
+
+Okay, so that's now saved. We've done our captures. Let's go to our calibration.
+
+Now we're back to Autoshot and this time we're going to go to the calibration panel and we can see that we can detect our current Jetset device. 
+
+
+## Cine Camera Sensor Width
+
+Very important, is we're going to enter the sensor width. We enter this in here and it's carried downstream into our metadata. In the Blackmagic Pocket Cinema 6K G2 in the 6K BRAW mode, this is 23. 1.
+
+So now we can click calibrate, and it's going to go through, crunch the numbers, 
+
+
+## GUI Check of Calibration
+
+Now if we want to do a GUI check to see how it, how it looks, we can click GUI check, and this opens up and it shows the pattern of where the images were shot. So we can see the cluster of camera positions as I moved around the, the carpet.
+
+And we can actually even see the pattern of the carpet so that looks like a reasonable solve. And we can exit. And we don't want to save it and we really do want to quit. 
+
+
+## Numerical Check of Calibration
+
+And you can see here that our convergence was about three tenths of a pixel, so that looks pretty good.
+
+
+## Automatic Calibration Push to Jetset
+
+And here we can see calibration pushed to Jetset. So let's go back to Jetset. 
+
+
+## Jetset Cine Setup
+
+Okay. So there is our aiming reticule. Here we're going to set our usual things. We're going to go to our set tab. We're going to do a quick scan. of our environment, which are going to, it'll be really helpful for any post production tracking refinement work, especially our green screen with our markers on it. That's going to be useful.
+
+All right. And we're going to click that to hide it. And we're going to click our green screen, green screen key. All right. 
+
+We can set our garbage mats and clear our garbage mats, set them. Add one there, add one there, and rekey. Okay. And we're going to set our mat to green. Okay.
+
+
+## Framing Digital Slate
+
+So here we have, we're in Autoshot. We can see we're connected to our Jetset device. Jetset is running on that phone. I'm going to click open webpage. There is our digital slate. And it's working. 
+
+Now to start to roll a take, we're actually going to come over and frame up on our digital slate. And we're going to make sure that both our cine camera and our Jetset camera can see the slate.
+
+
+## Rolling Cine Camera then Jetset
+
+To roll on, on the Blackmagic can roll on Jetset. And we're going to see the timing and the synchronization markers go. Now we can shoot.
+
+So now we can move,
+
+adjust. So we can see the framing of our, of our digital set and come up,
+
+come down to our subject. Okay. And we'll come back up, cut. I'm going to set our background to our default. There we go. So we have, we're not seeing the background through that. Okay. 
+
+Frame up Cine and the Jetset take at the same time. Roll the Cine, roll Jetset.
+
+Okay. And come back over and do a take and we can come down
+
+and then back up.
+
+All right. Cut the BRAW, cut the Cine. and cut Jetset. 
+
+All right, that should do it, and we can go pull some takes.
+
+
+## Transferring Takes
+
+Okay now that we've recorded the takes we're going to come back to Autoshot, we've got our project folders picked, and we can see our Jetset device, the network, and we're going to synchronize the day's worth of shooting. I'm going to click sync. And it's going to start pulling takes over. 
+
+
+## Setting Cine Source Directory
+
+We need to set our Cine Source file. So let's go ahead and click browse and we can actually just make a another folder right next to here. We'll put a new folder next to the other folders. We'll just call this a BRAW. 
+
+Alright, now we need to go get our BRAW files. And they are connected on a USB drive. That's what we shot to directly. And here's our BRAW files. We can grab these and copy and bring them back into our open and hit paste into our Cine source file. So it's going to copy the BRAW files over there. 
+
+
+## Creating Cine Proxies
+
+While we're at it, let's copy this path. And we're going to need to generate proxies. So in order to do that, we can use the Blackmagic proxy generator. This comes along free with Resolve, with an installation of Resolve. And we can go click add to our watch folders.
+
+I'm going to come up here and hit paste. And there's our BRAW folder. So we're going to select that as the watch folder, and then we can click start and it's going to go look at and process our two raw files. 
+
+Click stop when it's done and we can exit that. 
+
+
+## Setting Cine Proxy Folder
+
+Now we want to set our Cine Proxy and right now it's disabled because you typically only want that if you are using raw files. So we're going to click scan. and it says down here you will need proxy files for this.
+
+Okay so now that that's that Cine Proxy is enabled let's click browse. And we're going to click proxy because that's put it just below that automatically. Okay. 
+
+
+## Scanning Cine Takes
+
+Now that we've picked our Cine Proxy folder, we can click scan, and it's going to go start scanning through the video files for the different ID markers. It's working through its working through the videos, and you'll note that it's looking at the proxy video files, the mov files, and not the BRAW files. 
+
+Okay, so no video found matching current take. Okay it's probably because we don't have a BRAW file for that, so I'm just going to pick ones that we do have a BRAW file for. So here's TakeAAC, going to click scan. There we go. 
+
+Okay, so it detected the correct matching file, and it measured the difference between the start times of the two files and found the correct Cine Offset, which is 2.361 seconds, which it automatically entered in here, and that sets our correct timing match between the Jetset and the Cine take. 
+
+So let's also try a different take just so you can see what that's going to look like. Pick, we'll pick 177 and it has already chosen that. So as we switch back and forth, you can see our Cine offset changing. It's gone through and detected the different takes.
+
+Okay, so that's how, that's how it can match. 
+
+
+## Manual Take Selection
+
+And if you need to do this, you can actually do a manual pick. You can also just click manual pick, it'll take us to here, and we already know that it's 047, but just in case it didn't detect it, you can click that here, and , it tells us that it's using the proxy video and the Cine video.
+
+
+## Viewing Cine Matches
+
+One very useful thing is once you have finished a scan, you can quickly check which files were automatically correlated by just going to Cine and then you show Cine Source matches. This will open up a window that shows the matches between each BRAW file and each Jetset file.
+
+So this is scene 101, take 59, and it correlates to this BRAW file. This is especially useful when you start having to deal with a large number of shots coming from editorial, where they may have initially edited with the BRAW footage, or the proxy footage with this name, but you want to associate it with the Jetset takes.
+
+
+## Creating Level Sequence in Unreal
+
+And finally we can tell it we want to go into Unreal. 
+
+So we're going to set an in frame of 200 and out frame of 400. So we have about 200 frames to work with, and let's regenerate our frames, and let's save and run. 
+
+Okay, it's created a sequence, we're going to move to Unreal.
+
+
+## Enabling Unreal Plugins
+
+Let's make sure we have our plugins for Unreal, we've got our plugins we want image plate . Yep, we have that. We want Composure. Yep, we want Python, both the EditorScript plugin and the Sequencer scripting. We want Movie Render Queue, and we want both the Movie Render Queue Additional Render Passes and the Normal Movie Render Queue. And okay, so that should do it. 
+
+
+## Pasting Command Sequence
+
+Okay, and let's hit paste.
+
+There we go. We can double click on the Sequencer. And see here's our video footage being played. And here's the scan data dropped into Unreal. 
+
+
+## Hiding Scan
+
+If we don't want to see the scan right now,\\ we can unspawn it for the time being.
+
+Okay, so this is great. We can actually see our image playing through from the beginning of the sequence. Extend this out a little bit. There we go.
+
+And if we want to see how it's going to line up, we can actually do our usual trick of going to our custom color difference keyer. And we're going to make a material instance and the usual bring this over here, move it in here, exactly the same as we did same as we did for the intro Unreal tutorial.
+
+So I won't go over that and this in that much detail, but it's going to set our key color. Okay, great. Because we just basically want to see if things are lining up correctly and we can go back to our sequencer. And, oh yes, highlight our image plate and type in material and let's bring over our new custom color difference keyer there. Great. Next we want to, we want to go to our sequencer and lock our camera image. And this way, we can see how our plate is going to match up with our, our image. 
+
+I'm going to come down.
+
+There's our little,
+
+OK, that looks good. 
+
+
+## Adjusting Image Plate Distance
+
+And as before, when we, we ran into the problem of her disappearing, we know that we can actually change our transform. So come to the right, show you what's going on Unlock our hit frame after frame. And what's going on in this part of the shot is that the image plane is intersecting the 3d surface of the road.
+
+So we want her actually closer to camera. So we can go to the transform of our image plate and just click and drag over all the keyframes, delete those, come down to our location, increase our X location a little bit. There she is. Okay, and then let's look back at our image plate. Okay, and let's see how that's, how that's, how that's working. Get in our timeline. There she is.
+
+Okay, so it looks like it's reasonably locked.
+
+Then we can actually just hide the image plate. Come down here, set our details, and remove the search. And we're going to do actor hidden in game.
+
+
+## Rendering EXR Sequence
+
+And then when we go to our movie render queue, we can actually just go ahead, look at our settings, make sure they're correct. That all looks fine. Accept, and we can render. 
+

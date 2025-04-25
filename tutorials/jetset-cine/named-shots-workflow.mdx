@@ -1,0 +1,66 @@
+---
+title: 'Named Shots in Autoshot'
+description: 'This covers Autoshot’s new named shot workflow, so that multiple shots can be extracted from one take without overwriting files.'
+---
+
+## Video Tutorial
+
+<iframe src="https://share.descript.com/embed/QLS4WN5aU7e" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+# Transcription
+​
+Okay in this tutorial we're going to go over a new feature in Autoshot which is named shots. This is found under the file menu, under shots, add shot, delete shot. 
+
+
+## Shot Overwrite Problems
+
+Originally, when you pick out your day and your take set your clip in and out, hit save and run. And then we can, click open and to see where it's generated the files. Over here you can see it has made a Cinecam EXR, it's made an EXR sequence and likewise under the AI mattes, it's made an AI matte sequence.
+
+But, now, what happens if you have more than one shot that's coming from the same clip, and you punch in different numbers here and and tell it to run. The problem is it's going to overwrite those original files that were in this CineCam EXR and AI mattes directory. You don't want that to happen. 
+
+
+## Adding a Shot
+
+So we actually now have a named shot technique. We're going to go to file and shots, we're going to call add shot, and we're going to call this SHOT001 .
+
+And we'll hit enter. You can see it's added a shot here, right? So now we can go back to the default for the take, or we can actually go to SHOT001. 
+
+So we can say, okay, this one, we want 1200 through 1250. And then we can actually just save and run and it'll go through.
+
+And it's going to crunch out the files for that, and then this part of Autoshot is unchanged. It's gonna do the frame extractions from our cam original, and go find the 50 frames from that. There we go. Runs Blender.
+
+Alright, and there it's created our Blender file with this particular set of the sequence. 
+
+
+## Directory Suffix Name
+
+Hit save, exit that, and let's take a look at what it did under the hood. So we're going to open up, once again, next to our take, we're going to click open up and we'll open a window right into the sequence.
+
+And we can see that it made a new set of directories, CineCAM EXR, underscore SHOT001.
+
+And if we look in here, we can see we've got 50 of these files. And once again, over in AI Mattes. It created a folder for that. And this way, we can actually, if we wanted to make yet another shot, and we're gonna go say, 1400 through 1450.
+
+We'll go File, Shots, Add Shot, and we'll call this SHOT002. And let's bring this 1400 through 14. 1450. All right. And save and Run. It's gonna run the process and the sequence once again, pull out 50 frames.
+
+All right. Here's a different part of the clip. We'll hit save. And so now you can see clip in frame for 1400 through 1450, that's SHOT002. We go back to SHOT001 we're at 1200 to 1250. And then we go back to the default take where we originally had our original numbers.
+
+But in general, when you have multiple shots from a given take, and if you have started wanting to name your shots, so you can keep track of them, this makes for a really good technique for it. And again we can open up our file and we can see CineCam EXR underscore SHOT002, uh, actually, And there's our cine camera files. So we're using the same the same Autoshot, file generation system, etc. It's just now we can keep track of multiple shots per take.
+
+
+## Application Files Created with Shot Suffix
+
+And also note that in addition to creating a separate CineCAM EXR SHOT002, when we go to our Blender files, this is where our Blender files are stored, you can see that we now have created a separate blender Composite file with the same prefix, so we know which which take it's from.
+
+But now it has a suffix of SHOT001 or SHOT002, and this holds true for all the different kinds of files that we would create in the system. So that simple suffix can actually help keep all your files organized so you don't have any files overwriting each other.
+
+
+## Deleting Shots
+
+Of course the other side of being able to create a shot is we can actually delete that shot. So if we have shot 002 selected we can go back and go file, shots, delete shot, then we're left with just the default and SHOT001. 
+
+And when we delete a shot it's only removing the reference to the shot in in Autoshot. It does not actually delete the underlying files.
+
+So if we click open to look at our folder, we can see we still have the SHOT002 files here the XR files . So you can, manually delete those if you want. We just are actually removing the reference inside Autoshot to that shot. We don't delete any files beyond the reference. 
+
+So that's helpful when you're dealing with a larger timeline.
+

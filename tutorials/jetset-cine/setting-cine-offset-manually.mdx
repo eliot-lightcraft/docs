@@ -1,0 +1,58 @@
+---
+title: 'Setting Cine Offset Manually'
+description: 'If the automatic timing marker detection fails, it’s straightforward to calculate the Cine offset value by aligning both clips in a timeline.'
+---
+
+## Video Tutorial
+
+<iframe src="https://share.descript.com/embed/p6r7U9s3ipv" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+# Transcription
+
+​​This tutorial will go over how to manually set the Cine offset if for some reason the automatic marker detection didn't work. 
+
+
+## Create Timeline at Cine Frame Rate
+
+What we're going to do first is we're going to just go into Resolve and I've already loaded the Cine file and the Jetset Camera original take.
+
+What we're first going to do is going to right click on the Cine file, and that one's at 23. 976 frames per second. So we're going to right click and create a new timeline using the selected clip, and we're going to double check to make sure that our format is actually the correct frame rate of the Cine clip, 23. 976 frames per second. The timeline resolution doesn't matter so much, so just click create. And we're going to go to that timeline. And there's our, our cine clip. 
+
+
+## Set Cine Marker
+
+And we're going to scroll along until we see the very first frame that the very first fiducial marker is shown on.
+
+There's the flash, and I'm hitting the right arrow key to go forward one frame at a time. There's the first marker. I'm going to select the clip, hit M to make a marker. 
+
+
+## Set Jetset Marker
+
+And now I'm going to drag in the iPhone clip, and I'm going to do the same thing. I'm going to drag through until I see the very, very first frame that the fiducial marker ID shows up.
+
+There we go. I'm going to select this clip, hit M for a marker. 
+
+
+## Aligning Clips
+
+Now I'm going to drag one clip on top of the other until the two markers line up. Then I'm going to set the, the play head to the beginning of the first clip, and this tells me how far offset in time the two clips are.
+
+
+## Checking Time Alignment
+
+Once these are aligned, we can actually see how that they align through time.
+
+So if I go to this clip and I set the opacity down to say 50%. You can see that they, one of them is a different frame rate, but they are actually both aligned in time, because they're both on the same timeline frame rate and the 30 frames a second Jetset clip is automatically adjusted to, to match the 23. 976 Cine clip. Okay. 
+
+
+## Calculating Frame Offset
+
+So now we're going to put the play head at the beginning of that, and now we're going to measure the timing offset. 
+
+We can see here that we are one second and 20 frames in before we encounter the beginning of the clip. So we need to first find out how many frames total that is. Since we're 23. 98 frames, that is 23. 98 plus 20. All right. That tells us how many total frames we're at. And so that's 43. 98 frames. Now we're going to divide that by our overall frame rate, which is so 43. 98 divided by 23. 98. And we're going to calculate that real quickly. That works out to be 1. 834. 
+
+
+## Entering Offset in Autoshot
+
+And then we can actually go back to Autoshot and enter that right here, 1.834. And then we can save and run. And that'll be very close to the same calculations that we got from the automatic marker detection.
+
