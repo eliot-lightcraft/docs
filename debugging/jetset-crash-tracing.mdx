@@ -1,0 +1,34 @@
+---
+title: 'Jetset Crash Tracing'
+description: 'If you encounter a Jetset crash, especially one that recurs, we would appreciate your help in tracking it down!'
+---
+
+## Share with App Developers
+
+Inside your iPhone/iPad’s Settings menu, browse to Privacy & Security -> Analytics & Improvements -> Share With App Developers, and enable the switch:
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/debugging/AppAnalytics-277x600.jpg"
+/>
+
+You’ll need to enable this, and then restart the app before the log will start to be saved.
+
+## Saving Log Files
+
+Inside the Jetset app, go to Main Menu -> Settings & Support -> Settings, enable ‘Save log file in SPOOL folder’, and click Done.
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/debugging/JetsetEnableLog-600x277.jpg"
+/>
+
+Then, Jetset will start saving to (in the Files app) On My iPhone/Jetset/INTERNAL/SPOOL/jetset.log.
+
+Note — don’t enable saving the log file in production; this is for debugging purposes only.
+
+## Sending the Log Files
+
+After you’ve enabled the above, and Jetset crashes, we still need to receive it!
+
+To send it, navigate to the jetset.log file in the Files app (On My iPhone/Jetset/INTERNAL/SPOOL/jetset.log), and send it to support@lightcraft.pro with a quick note on what was happening when Jetset crashed.

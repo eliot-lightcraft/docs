@@ -38,6 +38,12 @@
               "create-usd/blender/object-locators",
               "create-usd/blender/blender-export-usdz"
             ]
+          },
+          {
+            "group": "Debugging",
+            "pages": [
+              "debugging/jetset-crash-tracing"
+            ]
           }
         ]
       },
