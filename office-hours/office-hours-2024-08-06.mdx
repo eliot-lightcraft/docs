@@ -1,0 +1,423 @@
+---
+title: 'Office Hours 2024-08-06'
+description: 'Debugging USDZ file crashes. Fusion composites. Jetset/Maya pipeline.'
+---
+
+## Recording
+
+<iframe src="https://share.descript.com/embed/f9X28RfLXgt" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+# Transcription
+
+**Emmad:** All 
+
+**Eliot:** right, send a link to the USD export, and then I can look at it over here, load it up on my machine. What's your, model of phone are you using? 
+
+**Emmad:** It's an iPhone 14 Pro. 
+
+**Eliot:** should do it. 
+
+**Emmad:** So how do I send the link here? 
+
+**Eliot:** you just send the, Dropbox and send me a Dropbox link.
+
+Let me set up my rig over here. 
+
+**Emmad:** So, when I'm loading it, the USDZ is like just 262 MBs. 
+
+**Eliot:** Okay, yeah, that's 
+
+**Emmad:** But when I'm loading it, it shows like 4000 MBs. 
+
+**Eliot:** Yeah. Okay. Welcome to, so when we're, this is one of the things that, that really nails us because. we're using, RealityKit, which is, Apple's internal rendering framework to render.
+
+it's the one you use with AirToolkit. And the problem is that RealityKit is a little bit of a black box. So we tell it to load a model and then we have actually very little information about what it's doing. So what you see on that memory, thing is the closest we could find, to a way of querying.
+
+**Emmad:** Oh, yes. I'm sorry. 
+
+**Eliot:** Let me put my mic a little bit closer. So yes, this is, this is one of the problems we're trying to work through, because when we load a model into RealityKit, which is the rendering framework we use, RealityKit does not give us a lot of information about what is going on.
+
+Yeah. It just, we give it a model file and it loads it or it doesn't. 
+
+**Emmad:** Okay, so we were doing a shoot today and it crashed like three times in eight hours. 
+
+**Eliot:** Okay. 
+
+**Emmad:** random, like, we don't know, sometimes it loads perfectly well and sometimes it just crashes.
+
+the only way it works is if we uninstall the app and install it again. 
+
+**Eliot:** Okay? So we wanna test with this model file, we should be able to make it so that doesn't happen. We might not. Be able to keep it from crashing, but we got to make it. So you don't need to uninstall the app.
+
+That's bad. That's really bad. Give me 
+
+**Emmad:** I'll send you the model file. I'll just send it to you on the post. How about that? 
+
+**Eliot:** perfect. So I 
+
+**Emmad:** also tried keeping the textures to like 128 MB and it still does that. 
+
+**Eliot:** Still crashing. 
+
+**Emmad:** and I tried to load in just the scene locators and it did not work at all.
+
+**Eliot:** The loading 
+
+**Emmad:** bar was stuck in the middle. 
+
+**Eliot:** So, In this case, I'm really glad you contacted us because it's so valuable for us to get the example case of what broke it. Sometimes people say, it broke. But if we don't have an example, when we have an example case, then we can really, you know, hunt it down.
+
+**Emmad:** I think we also made a log file of it. Yeah, I'll actually send it to you over on that post that, Humb made basically, I think he has the model and, the log file too. I just came back from the shoot, so yeah. 
+
+**Eliot:** got it. that's great. tell me when you've sent it to that post and I'll download it.
+
+**Emmad:** And if you need to, 
+
+**Eliot:** it needs to be private, you can send a private message to me on the board. Cause on the, on the forums, then everybody can see the link, but sometimes that's okay. 
+
+**Emmad:** So it's the Apple ARKit, right? It's not unreal engine that's causing it.
+
+Right. 
+
+**Eliot:** Yeah. It's, we don't run Unreal inside the phone. we just run ARKit and we run a RealityKit. the part that's breaking is the load in of the USDZ file into RealityKit. then we can look at that and understand what it's doing.
+
+sometimes depending on the model, when, the USDZ file is kind of a compressed file. And then when we unfold it into RealityKit, sometimes strange things happen. 
+
+**Emmad:** Like very, 
+
+**Eliot:** very, very strange things happen. 
+
+**Emmad:** Like it worked perfectly fine for like 70 percent of the shoot, but the rest of it was really hard.
+
+**Eliot:** Okay. All right. thank you for telling us about this. This is extremely useful. 
+
+**Emmad:** Tell me how to go to the files and then, I think there's a model. We have the model. Okay. So we just, upload the model and the log file and then you can just reply and tell us what's 
+
+**Eliot:** happening.
+
+Yeah. The, the model, the log file, and if you can send it also the original USD file, into a folder, it'll have a USD file and then it'll have a sub folder with like textures and stuff. If you can send just that whole folder. So the part you export before we do the USDZ conversion.
+
+okay. That's extremely, extremely helpful because then we have the source material. and then we can 
+
+**Emmad:** try to replicate it. Okay, perfect. 
+
+**Eliot:** Then we can replicate it. 
+
+**Emmad:** I mean, I did try to replicate the error but it did not happen. So it's really random. 
+
+**Eliot:** Yeah, well, if we have it, then we can instrument it and then we know what to look for, and find it let me know when you've posted it.
+
+I'm looking at the forum. 
+
+**Emmad:** Perfect, perfect. Thank you, Elliot. 
+
+**Eliot:** I just want to make sure I get it before you go. I know it's really late there. I just want to make sure that I get the files. 
+
+**Emmad:** I'll call you back. 
+
+**Eliot:** Thank you, Elliot. Oh, absolutely. I'll wait for the files. 
+
+**Emmad:** Okay. Perfect. Thank you.
+
+so basically these are our names. If you see the chat, whenever we try to contact, it's going to be like either the three of us. So I'm Pracha, Zain Irfan or Imad Elias. 
+
+**Eliot:** Oh, fantastic. Okay. so there is P. All right, there's the forest. Let me extract this.
+
+And I'm actually going to try processing on my end real quick just to see if I can replicate if it behaves the same way. here I can share a screen so you can see what I'm doing.
+
+Move that over. Okay.
+
+So there's screen one. I've got, downloaded your, the 3d scene. So there's the force. Let's take a look in there. There's the models. Oh, okay. Now there's, is there a, okay. There's, ah, there is the USDZ. Now, is there also the original, can you send the original USD directory that had the, they would, it would have had, you know, the, when you originally.
+
+Yeah, when you export from Unreal, you'll export it to a directory and it'll have both the USD files. 
+
+**Emmad:** Do you need it right now? 
+
+**Eliot:** as soon as you can send it, because that's, that's what we'll have. So I'm going to do two things.
+
+I'm going to test with this file and I'm going to push it to my, to Jetset right now and just see if it, if it replicates the crash. And then when you get back to the studio, if you can send. The USD, USD, you know, the whole, you know, yeah, the whole folder, because that's the part that we process to generate the USDZ output.
+
+All right. So let me look, check this out. 
+
+**Emmad:** For a long time. I thought it was one of the unreal engine bugs, 
+
+**Eliot:** no, fortunately this is just. when we, when you convert it to USD and then you send it over to our system, then, then it's our problem, you know, once it's outside of Unreal, it's, it's not an Unreal thing.
+
+It's a USD, it's a USD thing, which is good. It makes it much simpler to, to debug. Unreal is not easy to debug.
+
+
+
+**Emmad:** I am the unreal engine guy in the studio. 
+
+**Eliot:** Oh, got it. 
+
+**Emmad:** Yeah. 
+
+**Eliot:** Yeah. So you're fixing everything. All right. So let's go to, there's the forest.
+
+All right. Model. Okay. So let's click that and then, Oh, I guess I better be one up.
+
+Where's the USDZ file? Oh, that's right. I need to set USDZ for that. There we go. And go back to,
+
+okay, there we go. There's the USDZ file. Let me push it to my Jetset.
+
+**Emmad:** By the way, I have to mention the rest of the app is really hassle free. It saves a lot of time. 
+
+**Eliot:** Oh, good. that's what we want. That's, we're trying to make virtual production, straightforward and clear. 
+
+**Emmad:** Especially we, since we have a really quick turnaround time. 
+
+**Eliot:** Oh, good.
+
+You'll check out, I just released a, because the real time tracking is good, but it's not sub pixel. So if you have Things with lots of the ground contact, you usually need tracking refinement. So just last week I put a new tutorial up on a sub pixel tracking refinement with SynthEyes.
+
+Yes, 
+
+**Emmad:** yes, yes. I saw that. I'm going to do that. I'll probably need that, for this shoot too. I know I can solve that in post, but this can be quite a trouble for me when it's happening on the set with all the producers and everyone. Well, yeah, 
+
+**Eliot:** All right. So let's see if this loads.
+
+And I'm testing with an iPhone 12 Pro Max, so, this may overload the GPU on mine. Yeah, I bet my phone can't load it. 
+
+**Emmad:** We thought it was, we, we did think it was like probably the RAM limitation, but then I was like, the environment isn't that big since especially you have like texture size, max one zero two four.
+
+**Eliot:** Yeah, this is, okay. So let me change this to CG. Okay. So 
+
+**Emmad:** yes, that was the file size. 
+
+**Eliot:** Okay. So this is loading. let me screenshot us. see the results and make sure it looks the same over here.
+
+So let's set up my MDI.
+
+Okay. Jetset and let me get this to zoom. Okay.
+
+So there's my external virtual camera. 
+
+**Emmad:** I can just see the Autoshot screen by the way, right? 
+
+**Eliot:** Yeah. I'm just, I'm hooking this up so we can actually, get some gonna switch off. Sorry. I've got to find my zoom here. There it is. And then I'll switch the camera over to OBS. There we go. Okay. So there we go.
+
+**Emmad:** we didn't get the forest. there's supposed to be trees over here, but okay. And there's the, okay.
+
+**Eliot:** Let's say saying, okay. So I see the vehicle. okay. So now did, is this roughly what it looked like on your end when you loaded it? 
+
+**Emmad:** On the app it did, but obviously in the live preview, we could see a forest. They were trees and everything. 
+
+**Eliot:** Yeah, that makes 
+
+**Emmad:** sense. 
+
+**Eliot:** We can't yet. I think this is more than enough 
+
+**Emmad:** for, for like, you know, just.
+
+**Eliot:** Yeah, blocking. 
+
+**Emmad:** Yeah, blocking. 
+
+**Eliot:** So this is great. So I've got the USDZ file and we can start testing it. And yeah, I think it was right on the edge for what my phone can handle. you know, and so what we'll see is if we can start to replicate. Yeah, we also had a cooler on the iPhone, 
+
+**Emmad:** by the way, so it wasn't overheating.
+
+We also have a cooler on the iPhone. 
+
+**Eliot:** Good. That's, all right, so let me switch back my video. All right. Okay. And there's me. All right. Fantastic. okay. So, so we've got that and you'll, and when you get back to the studio, you can send us the, uh, the full USD, uh, folder tree and we can start looking through that.
+
+Do you need the calibration 
+
+**Emmad:** files by the way, the lens calibration files, because I thought that was somehow, uh, does it matter though? 
+
+**Eliot:** I'm not sure. It won't affect the scene loading. Uh, if we're crashing on loading a USD scene, then that's, that's just isolated to the USD files. Uh, 
+
+**Emmad:** loaded too, by the way, sometimes it just crashes when it's loaded too.
+
+Oh, 
+
+**Eliot:** Um, when, what, what are, what are you doing when that crashes? That would be extremely useful to know once it's loaded. Is it crashing when you like hit a record and cut or what's, what are the, the usual right 
+
+**Emmad:** between the tape? Oh, 
+
+**Eliot:** really? Okay. Okay, that would be actually incredibly useful. Uh, okay. Uh, if you could try to replicate that with the log running, um, to where, you know, you have it loaded and you're, you're doing takes and stuff and it crashes, that would be incredibly useful.
+
+Cause then we can look at the log file and, you know, Yeah. And the ideal time to do it, you don't want the log file running while you're in production because it's, it takes up phone to load it. We 
+
+**Emmad:** didn't have the log file running. Yeah. 
+
+**Eliot:** But now that you're, you're out of it. Um, and if it's relative, it sounds like it was crashing reasonably frequently, uh, in between it.
+
+So yeah, if you can find generate that log file and send it. Yeah. Uh, that would be incredibly valuable. Yes, I'll 
+
+**Emmad:** do that tomorrow. I'll actually send you the USD file right now. Like I'll just go to the office just nearby, but I don't have the camera right now. So I'll just, you know, uh, plug all of the things up tomorrow and just send you the log file.
+
+That's 
+
+**Eliot:** fantastic. 
+
+**Emmad:** So what is it right now? Like, have you just, uh, like, is there a method of testing it right now? 
+
+**Eliot:** Well, what we'll, what we'll do is I'll probably like unload and reload it a bunch of times and try to replicate, replicate the crash, and I'll send that to our CTO as well. So he can look at it and then we'll kind of look at it and just start to try to understand, you know, we want to basically replicate the problem with, uh, while it's instrumented, you know, while we're logging it.
+
+And then once, once we can recreate the problem, then we can start saying, Oh, That, that's where it broke, you know, uh, and when replication is always the first step. And then once you can replicate it, then you can break out the magnifying glass and start to see it. We tried to 
+
+**Emmad:** replicate it right after the shoot, but we didn't have the camera anymore plugged in.
+
+So we'll do exactly what we did on the shoot today, tomorrow, 
+
+**Eliot:** let's just do that. And it turns out, um, even if you don't have the camera plugged in, because after you calibrate right now, Jetset Cine doesn't, doesn't know if the camera's plugged in or not. Um, you know, we, we, we use it for the, the live video for calibration, but we don't yet use the live video for anything else.
+
+I mean, you, you leave it plugged in just because it keeps the camera chart to the I know, I know that 
+
+**Emmad:** part, but I was like, just to replicate the exact conditions. Yeah, yeah. 
+
+**Eliot:** That's, that's always a good idea. 
+
+**Emmad:** Just try that. 
+
+**Eliot:** All right. Well, fantastic. I'll, I'll go, send this, uh, over to our CTO and, and we'll start looking at it and, uh, let me know when you can, you can find the replication, the, you know, the crash between takes, uh, 
+
+**Emmad:** I'll actually say, I'll actually post it on the forum to just a private link or something like that.
+
+Perfect. Call. 
+
+**Eliot:** Perfect. Perfect. Oh, and so I'm what I, what I usually like to do with office hours is I want to, you know, I've recorded it. I'd like to transcribe, transcribe it and put it on our, on our site. So people, other people who are looking for the same problem, uh, can, you know, just search for, for text on it.
+
+Is this is what we've shown today. Okay. To have, have on our site. 
+
+**Emmad:** Yes, yes, yes, definitely. I mean, one more thing though, uh, it wasn't happening right before the update. So this is the first. Time it happened after the update after you, uh, so yes. 
+
+**Eliot:** Which update, which, uh, 
+
+**Emmad:** I think there was a recent update in Jetset.
+
+Right. 
+
+**Eliot:** Ah, okay. So let me take a look at, at our, at our, at our updates when we did that's, that's like 
+
+**Emmad:** our second, actual production. We've been testing this out for a while. So yes, 
+
+**Eliot:** let's see. So the changes we did, the most recent changes we did. The, the big changes we did is when we changed our calibration method.
+
+Yes. Ah, okay. Okay. So that's actually very useful to know that there, we might've broken something there. Um. Yeah. Okay. Okay. That's, that's good. Yeah. So one, one, one, one 18 is when we did the big calibration changes. And then we did a small release after that, but the big one was calibration stuff. That was, that was a big change.
+
+Okay. So I wouldn't, I'm not surprised if we broke something. Um, okay. So we will, we'll look at that. And, uh, but yeah, thanks for, thanks for joining, jumping in on office hours. And 
+
+**Emmad:** I just posted on hums, uh, post that he has made on the forum. So people can, you know, discuss or like talk, uh, if this happening to more people.
+
+Yeah, that's great. That's great. That 
+
+**Eliot:** the forums are really good for that. Cause then you have multiple people saying the same thing. Okay. 
+
+**Emmad:** Thank you so much for your time. And it was honestly great talking to you. 
+
+**Eliot:** Yeah. Yeah. It's, it's 
+
+**Emmad:** honestly, we're thinking of getting like those white mass trackers and stuff like that.
+
+But this app is really saving us to be very honest. good. I actually want to really want to continue this. Uh, method and, you know, uh, do a short film on it too, very soon. Yes. Yes. This was a commercial ad, a very small 20 second commercial ad that we did right now today, but we really want to use it on bigger production.
+
+So there's that. 
+
+**Eliot:** Fantastic. I, one of the things I haven't yet figured out, but I, you know, if you can like post frames and stuff and stills from the productions you're doing. And cause I, there's so many people are doing interesting stuff and the forums are great for debugging, but I also would love to love a way for people to kind of see what everybody else around the world is doing.
+
+Cause there's a lot of interesting stuff going on. And, uh, yeah, so, uh, Definitely, definitely. There's 
+
+**Emmad:** one, uh, I'll actually send you a link to one of the commercials that has been produced by us. And we did use the Jetset Pro like in Dubai. So great. 
+
+**Eliot:** Great. 
+
+**Emmad:** So let me just send that link. I'll probably just send it to you on your, uh, privately or like posted.
+
+Perfect. Perfect. By the way, this is Madh Elias and I'm just using, uh, like Zen's Zoom. So we're basically a team, Madh, Zen, and Hamd. So the three of us, just, you know, I'm the Unreal Engine guy. And Hamza and Zain are the directors and the producers. So yes, but we're all technical people. So we can all, we're really, you know, curious what's happening.
+
+**Eliot:** What's your pipeline? So you're using Unreal? Are you compositing with Unreal? Or are you compositing in an external tool? 
+
+**Emmad:** We're doing it externally because we haven't still figured out how to key it completely perfectly. So we're compositing it externally, but for the live render, you know, like the live preview, we're using it.
+
+Yeah, makes sense. Are you 
+
+**Eliot:** compositing in Fusion or Nuke or After Effects or? 
+
+**Emmad:** Da Vinci? Yes. Fusion, yes. 
+
+**Eliot:** Actually, so you'll be happy to know. We just put a Fusion exporter in, uh, into Autoshot that synthesizes a whole node group. I need to do a tutorial. uh, so what that tells me is one of the next tutorials I need to do is unreal, then post compositing and Fusion and, uh, nice.
+
+And I, I may work in some of the synthesized stuff into that. We'll, I'll, I'll see. But the, I think Fusion is gonna be incredible. Uh, if you try to do Fusion straight, uh, if you, if you, um, if you try to use their own media in nodes and Fusion, it's really fragile. It breaks if you look at it twice. Yes, 
+
+**Emmad:** yes, yes.
+
+It's, uh, it's not 
+
+**Eliot:** good, but if you generate a node network with EXR loaders, it's, it's great. It's, I mean, that's how it was designed to work and it's super solid. Yeah. So since our 
+
+**Emmad:** editing pipeline is DaVinci Resolve, so we tend to use Fusion for the rest of the stuff. Even for compositing. We'll try that.
+
+We were thinking of trying Nuke 2 for this, but if it works on Fusion, it's best because most of our editors work on Fusion and DaVinci. So it makes sense. 
+
+**Eliot:** Yeah. I think that'll work great. Um, 
+
+**Emmad:** okay. 
+
+**Eliot:** All right. Well, fantastic. Well, thanks for joining and let me know if we can fix anything else. 
+
+**Emmad:** Thank you so much Elliot for like, uh, the prompt responses.
+
+It's really good to have like support when we're using something, uh, like this, especially virtual productions. 
+
+**Eliot:** Yeah. Well, 
+
+**Emmad:** thanks for staying up 
+
+**Eliot:** because over in UA. got to be what, like 11 o'clock at night? 
+
+**Emmad:** Yeah. Yeah. Yeah. It's no, it's like nine. I'm in Dubai. So yeah. Yeah. But yes, uh, it was a shoot.
+
+It was an all day long shoot. It was like 10 hours, but yes, have to really figure it out so we can, you know, uh, shorten the time of the shoot next time. So yes, it would be really helpful if we can figure out what's going wrong and not do that. 
+
+**Eliot:** Well, we, we started to have people. Once they realize how the pipeline works, you can do a shot really quickly, run it through the pipeline, and then just kind of show how it's going to look, you know, rendered, and everything, um, that, I think people are going to start doing that more, um, because then you can actually just see, you know, generate the Fusion composite, render a couple, you don't need to render 100 frames, render 5 frames in Unreal, and then look at it and see, That's, that's what it's going to look like, you know, and that's very helpful to the director to see, get an idea.
+
+**Emmad:** We have an experience with compositing, uh, everything. So even in the live render preview, we can figure out what it looked like. Somewhat, but that would be really helpful. Like the, uh, uh, Jetset to Fusion. 
+
+**Eliot:** Okay. That 
+
+**Emmad:** would be really helpful. Yes. 
+
+**Eliot:** And we're also, we just started doing, um, getting, uh, automated stage lighting working.
+
+So we have our first pass that there's a, a piece of software called a simulate, uh, live effects. And so it has a very good pixel mapping function. So we just got, uh, our first tests of, uh, You know, that hooking, hooking the live feed from, in this case, we actually ran it from blender, but you could run it from unreal as well, uh, and to assimilate then pixel mapping the, uh, the sequence to a bunch of aperture lights, and then, then, you know, as going to have lighting changes, animated lighting changes in the, in the CGI scene and the, the aperture lights are like, you know, shifting on and off, 
+
+**Emmad:** correct.
+
+That would be really nice. That would be really helpful. Yes. 
+
+**Eliot:** That's good. 
+
+**Emmad:** That's good. So it's coming for unreal engine too. Oh yeah. Yeah. 
+
+**Eliot:** They have assimilated already. 
+
+**Emmad:** Oh, yeah. I'm a Maya person. Yes. So I was going to ask you if they're like going to be support for Maya too. I mean, the rest of the studio uses Blender, but I myself, I'm a Maya person.
+
+So I just wanted to ask. 
+
+**Eliot:** We actually, it's already in there. The Maya MEL script export is already in AutoShot, uh, as a, we just did a release this morning. So, uh, take a look at that. And so a lot of times we'll have something technically in there before we catch up with the tutorials, because we want people to.
+
+Yes, I didn't see 
+
+**Emmad:** it in the tutorials. Yes. Yeah. 
+
+**Eliot:** Yeah. Um, so try it out because the Maya, I know the export works fine, uh, the Maya to a USD export, uh, and, uh, and then, you know, Autoshot and then going back and so try it out. Let me know if you run into into questions. Um, because I'm, you know, I know a little bit of my, I'm not very good at it.
+
+You know, I know how to program it, but, uh, um, I just want to make sure that the, especially usually if you're running a Maya pipeline, there's a specific way people will operate where they'll, you know, they'll generate, there's a scene file and then they'll generate a shot file reference to the scene files.
+
+And I think we're going to want to, to run our script inside the shot file. Um, and whether people want to make their own shot file and then run the script to generate the, uh, the timing sequence inside it. These are the things that I want, I want to find out. So we definitely, 
+
+**Emmad:** I'll try it on Maya. We're going to try it on Blender, the whole studio, but I'll personally try it on Maya and, uh, tell you how it goes.
+
+great. So yes, I just quickly run to the studio and send you the USD file because yes. And tomorrow we'll just try to replicate the error and I think we'll be successful. So let's see. 
+
+**Eliot:** Sounds good. good. All thanks again. Really appreciate it. 
+
+**Emmad:** Thank you, you.
+
+
+

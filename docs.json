@@ -96,6 +96,17 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "Office Hours",
+        "groups": [
+          {
+            "group": "2024",
+            "pages": [
+              "office-hours/office-hours-2024-08-06"
+            ]
+          }
+        ]
       }
     ],
     "global": {
