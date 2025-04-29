@@ -1,0 +1,62 @@
+---
+title: 'After Effects'
+description: 'Autoshot has an AE exporter that can automatically assemble rendered frames and camera originals into a composition.'
+---
+
+## Setup and Script Export
+
+In Autoshot:
+
+- Under Run Values/Program, choose ‘Others’
+- Set the Clip In and Clip Out frames to specify which frames you want to extract.
+- The After Effects workflow does not yet use scene locators, so you don’t need to specify which one.
+- Set the camera manufacturer and color space of the source clip. All Autoshot EXR files are automatically converted to ACEScg.
+- You can specify an AI matte processor if you want mask shapes for the human figures in the footage.
+- Next, hit Save and Run.
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/compositing/Autoshot_AE_run-2048x1135.png"
+/>
+
+Autoshot will then run the EXR file extraction and write out a .jsx file into the /ae directory under the created sequence directory.
+
+To find this directory, click the ‘Open’ button next to the selected take in the Take dropdown selector. This will open a File Explorer to the correct directory.
+
+To run this script in After Effects, go to File -> Scripts -> Run Script and navigate to the /ae directory above, then choose the generated .jsx file.
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/compositing/AE_script_import-2048x1106.png"
+/>
+
+This will create a new composition with the footage and tracked camera loaded.
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/compositing/AE_comp-2048x1106.jpg"
+/>
+
+## Verifying Project and Footage color
+
+This is a good start, but we want to verify that the color is correct. By default, the generated AE script will set the After Effects project to ACES color management. You can verify this with File -> Settings:
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/compositing/AE_project_settings-532x600.png"
+/>
+
+Finally, we’ll right click on the EXR sequence under the Project panel and choose Interpret footage -> Main. Pick the Color tab and then select scene_linear: ACES – ACEScg:
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/compositing/AE_footage_color_acescg-490x600.png"
+/>
+
+Now the displayed color in After Effects should be correct. Please note that there is a Keylight effect applied to the footage by default.
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/compositing/AE_footage_color_accurate-768x415.jpg"
+/>
+

@@ -40,6 +40,12 @@
             ]
           },
           {
+            "group": "Compositing",
+            "pages": [
+              "compositing/after-effects"
+            ]
+          },
+          {
             "group": "Debugging",
             "pages": [
               "debugging/jetset-crash-tracing",
