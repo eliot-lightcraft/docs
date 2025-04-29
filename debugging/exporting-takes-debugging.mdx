@@ -1,0 +1,35 @@
+---
+title: 'Exporting Takes for Debugging'
+description: 'Autoshot has a built-in take debugging system that makes it straightforward to send the complete dataset for a take.'
+---
+
+## Export Take Zip
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/debugging/AutoshotExportTake-2048x1135.png"
+/>
+
+File -> Export Take Zip will write out the complete dataset of the selected take, including the captured Jetset camera original, live composite, depth video, and tracking metadata original files into a ZIP file archive that can easily be loaded into Autoshot.
+
+We’ll use the same tool to debug the take that you’re using to work with it.
+
+If the selected take is a Cine take, it will also write out the cine camera original file into the archive. This can become large, so write the zip file into a drive with sufficient space.
+
+## Export Take Zip with Source Blend
+
+Use this option if you’re working with a Blender scene file that you want to include in the zip archive. This is useful when debugging how a specific take aligns into the target blend file.
+
+Autoshot will add whatever Blender file is currently pointed to by the ‘Scene Blend File’ line in the Run Values section.
+
+## Send Take Via Email Link
+
+Once you’ve zipped up the take, send the resulting (large) zip file to support@lightcraft.pro as a link to a file download service like Dropbox, Google Drive, etc.
+
+A take zip file can easily exceed a gigabyte in size, so they can’t be emailed directly.
+
+## Opening Take Zip Files
+
+You can use this to send take zips back and forth to your colleagues, as well. After you download a take zip file, unzip it to a hard drive (with enough space), then point the Autoshot Project Folder line to the Project folder inside the unzipped folder tree.
+
+Autoshot will automatically recognize the take day and selected take (as there is only one take day and take in a take zip file!) and select them in the Take Selection section. You can then process the take normally.
