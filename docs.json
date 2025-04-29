@@ -42,7 +42,8 @@
           {
             "group": "Compositing",
             "pages": [
-              "compositing/after-effects"
+              "compositing/after-effects",
+              "compositing/nuke"
             ]
           },
           {
