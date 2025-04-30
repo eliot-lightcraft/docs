@@ -1,0 +1,61 @@
+---
+title: 'Digital Slate/Remote Control'
+description: 'Jetset has an integrated web server that enables external devices like laptops or tablets to work as a digital slate, tested with Chrome and Safari.'
+---
+
+## Connecting
+
+To connect, you can either manually enter the IP address of the Jetset device you’re connecting to, or click the Open Webpage button in Autoshot:
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/jetset/AutoshotOpenWebpage.png"
+/>
+
+## Displayed data
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/jetset/DigitalSlate-600x314.png"
+/>
+
+The digital slate display is color coded.
+- Fields that are colored grey can only be changed on the Jetset app.
+- Fields that are colored gold can be directly edited on the slate, and the edit will automatically transfer to the Jetset app.
+
+The following data is displayed on the digital slate:
+- TOD TC: time of day timecode. This updates once per second (due to browser limitations) so the Frames part of the display stays at :00.
+- Lens: this shows the current simulated focal length of the Jetset device.
+- Camera, Roll, Scene, Take: current take configuration.
+- UUID: the current unique 10 digit hex identifier that is created for each individual Jetset take.
+- Lens File: when using Jetset Cine, this shows the current lens calibration file loaded for the take.
+- LOC: user defined field. Usually INT Day, EXT Night, etc.
+- DIR: director
+- DP: directory of photography
+- NICK: the six digit (or less) ‘prefix’ defined for the project. This should be identical across all project files for rapid sorting.
+- DATE: current shooting date
+- NOTE: space for user entered notes.
+
+## Data Embedding
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/jetset/CustomData.png"
+/>
+
+The custom fields can be used to enter name and contact information on a per-take basis. For example, in the above case the director is named John, the DP is Ringo, and the note references support@lightcraft.pro.
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/jetset/TakeMetadataJSON.png"
+/>
+
+This data is stored in the {takeID}_zl_meta.json file located in the /Takes/Data/CamA/TRACKING directory.
+
+The JSON line of data for this take then includes these fields:
+
+"webDP":"RINGO",
+"webNOTE":"SUPPORT@LIGHTCRAFT.PRO",
+"webDIR":"JOHN",
+
+These can easily be searched with standard text searches.
