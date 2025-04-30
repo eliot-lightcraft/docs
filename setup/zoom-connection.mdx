@@ -1,0 +1,62 @@
+---
+title: 'Zoom Connection'
+description: 'Jetset includes a direct Zoom integration that is accessed via a link sent to the Jetset user’s iOS device..'
+---
+
+Jetset has a special link system that lets you embed Zoom call info and/or USDZ model info into a link or QR code that can be sent to users!
+
+## Making Links
+
+To create a link, you can go to the [Jetset Link Generator](https://agog.com/test/) page.
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/jetset/JetsetLinkGenerator.JPG"
+/>
+
+### Zoom Connections
+
+To create a link that embeds a Zoom call connection, add the Zoom Meeting ID and Passcode from the Zoom meeting info panel (click the green shield icon in the upper right hand corner.)
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/jetset/zoom_ID_pass.png"
+/>
+
+The passcode has to be the 6-7 digit number in the panel, as opposed to the encrypted value sent in a traditional Zoom link.
+
+### Cloud File URL
+
+The link can optionally contain the address to a USDZ file that can be accessed with a Web link (Dropbox, Google Drive, etc.)
+
+Just paste the link into the Cloud File URL line, and enter the model file name that you wish the USDZ file to be saved as in the Jetset /models directory. (Optional -- if empty it will use the original model filename.)
+
+### Generate Link
+
+Click 'Generate Link' to create a jetset:// link. This can be emailed or sent to other users, and clicking the link on their device will open up Jetset and enable the screen sharing system or automatically load the linked USDZ model.
+
+Note that some email systems like GMail won't correctly recognize these links. Fortunately, the Link Generator page can also create QR codes, which always work.
+
+### Generate QR code
+
+Clicking 'Generate QR Code' will create a QR code that is identical to the generated jetset:// link above. 
+
+This QR code is activated by viewing it in the standard iOS Camera app. A small yellow button will appear; click this yellow button and Jetset will open up wiht the screen share and/or USDZ file load
+
+## Link Format Reference
+
+The link has the format jetset:// followed by optional parameters.
+
+The Zoom meeting link has the paramters meeting={meetingID}&pass={passcode}
+
+This can be used without or without an automatic model open.
+
+Make sure to not have any spaces in the meetingID.
+
+Without a model as jetset://zoomlink?meeting={meetingID}&pass={passcode}
+
+Example:  jetset://zoomlink?meeting=88071557827&pass=111111
+
+With a model as jetset://usdz?url={url}&meeting={meetingID}&pass={passcode}
+
+The meeting room may need to be configured to accept unauthenticated users.

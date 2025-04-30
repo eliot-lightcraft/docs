@@ -27,7 +27,8 @@
             "pages": [
               "setup/configuring-travel-router",
               "setup/configuring-icloud",
-              "setup/create-project"
+              "setup/create-project",
+              "setup/zoom-connection"
             ]
           },
           {
