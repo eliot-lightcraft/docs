@@ -1,0 +1,22 @@
+---
+title: 'USD and USDZ Files'
+description: 'USDZ is the file format read by Jetset. When debugging a USDZ file, it’s important to understand a little about the structure of USD and USDZ files.'
+---
+
+## USD Overview
+
+USD is an acronym for Universal Scene Description, a file format created by Pixar for their animated movies, and later open sourced. When a USD ‘file’ is exported from Blender, Unreal, or other 3D applications, the result can be either a single USD file, or a top level file that then references in individual USD ‘asset’ files that are located in subdirectories.
+
+Texture files are also exported separately into a subdirectory.
+
+When Autoshot’s USD Model folder is pointed at a given directory, it will list the available top level USD files in that directory. When the user clicks ‘Make USDZ’ in Autoshot, the program will query the top level USD file for all the referenced USD and texture files in the subdirectories, and then assemble a USDZ file.
+
+A USDZ file is just a folder containing a top level USD file and its referenced dependencies that has been zipped up with the standard ZIP archive, and renamed with a .usdz suffix. That’s all it is!
+
+You can rename a .usdz file to a .zip file, and then unzip it into a directory to see how the original USD file structure was put together.
+
+## Zipping USD Folders for debugging
+
+This structured file system makes USD exports straightforward to debug and fix. The key thing to remember is that we’ll need not just the top level USD file, but the underlying /Textures and /Assets folders (if any), and their contents.
+
+The easy way to get all this correct is to export from Blender, Unreal, etc. into a folder dedicated to this export, and then zip up the whole folder to send to us.

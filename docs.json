@@ -33,12 +33,19 @@
             ]
           },
           {
-            "group": "Creating USDZ Files",
+            "group": "Blender",
             "pages": [
               "create-usd/blender/creating-with-megascans",
               "create-usd/blender/scene-locators",
               "create-usd/blender/object-locators",
-              "create-usd/blender/blender-export-usdz"
+              "create-usd/blender/blender-export-usdz",
+              "create-usd/blender/recommended-video-formats"
+            ]
+          },
+          {
+            "group": "Jetset Cine",
+            "pages": [
+              "jetset-cine/focal-length-override"
             ]
           },
           {
@@ -52,7 +59,8 @@
             "group": "Debugging",
             "pages": [
               "debugging/jetset-crash-tracing",
-              "debugging/exporting-takes-debugging"
+              "debugging/exporting-takes-debugging",
+              "debugging/usd-usdz"
             ]
           }
         ]

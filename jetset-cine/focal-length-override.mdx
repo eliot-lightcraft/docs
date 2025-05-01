@@ -1,0 +1,19 @@
+---
+title: 'Focal Length Override'
+description: 'Use the Focal Length Override feature to handle very long zoom lenses that will not calibrate correctly with the default Jetset Cine optical feature based calibration system.'
+---
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/jetset/FocalLengthOverride_1.jpg"
+/>
+
+The existing Jetset Cine optical lens calibration system works well up to S35 equivalent focal lengths of about 70-85mm. Beyond that, the visible field of view of the cine lens is too small with respect to the Jetset lens, and the number of optical matches isn’t high enough to make optical lens calibration work well.
+
+For focal lengths above this, we provide a Focal Length Override capability in Jetset Cine. This uses the next highest calibration you can achieve as a starting point, for example a 70mm prime in the same family.
+
+You would load that calibration to get the offset and entry pupil correct, and then enter both the base calibration (70mm) and the override focal length (e.g. 100mm).
+
+This provides a simplified approach, but it should get you fairly close as long as the base lens is close to the override lens.
+
+This override should carry through into Autoshot and the connected post production tools.
