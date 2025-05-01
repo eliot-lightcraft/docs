@@ -43,6 +43,12 @@
             ]
           },
           {
+            "group": "Autoshot",
+            "pages": [
+              "autoshot/paste-file-path-mac"
+            ]
+          },
+          {
             "group": "Jetset Cine",
             "pages": [
               "jetset-cine/focal-length-override"
@@ -52,7 +58,8 @@
             "group": "Compositing",
             "pages": [
               "compositing/after-effects",
-              "compositing/nuke"
+              "compositing/nuke",
+              "compositing/multi-peel-syntheyes"
             ]
           },
           {
@@ -60,7 +67,8 @@
             "pages": [
               "debugging/jetset-crash-tracing",
               "debugging/exporting-takes-debugging",
-              "debugging/usd-usdz"
+              "debugging/usd-usdz",
+              "debugging/unreal-console-log"
             ]
           }
         ]

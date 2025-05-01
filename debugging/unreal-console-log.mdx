@@ -1,0 +1,33 @@
+---
+title: 'Unreal Console Log'
+description: 'How to capture the contents of the Unreal Console Log for debugging.'
+---
+
+Autoshot uses Python scripting to generate the shot level sequences for regular shots, and the Composure composite for the Live Render Preview workflow.
+
+After the user pastes the command string into the CMD bar and executes it, the results of each individual Python command are written into the Unreal Console Log. This provides a really useful trace for debugging.
+
+## Example Video
+
+To capture the Unreal console log text for an Autoshot run, please use this video as a guideline.
+
+<video
+  controls
+  playsInline
+  className="w-full aspect-video"
+  src="/images/unreal/UnrealConsoleLog.mp4"
+></video>
+
+Note that before running the Autoshot script, the user right clicks on the Console log and clears it; this is because there can be thousands of lines of text from previous commands, but we only care about what the console result of the Autoshot run is.
+
+After copying the Console Log text, users can paste it directly into the Lightcraft forums for debugging, or (if it’s long) into a separate text file and attach it to a forum post.
+
+## Use the CMD Console
+
+An easy mistake to make is to set the Unreal console setting to Python instead of CMD before pasting the Autoshot script. The Autoshot script is designed to work with the Unreal command (CMD) window:
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/unreal/UnrealCommand-2048x659.png"
+/>
+

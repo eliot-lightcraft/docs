@@ -1,0 +1,67 @@
+---
+title: 'Multi-Peel in SynthEyes'
+description: 'This is a great way to automated your multiple feature detection and ‘peeling’ process, using a Synthia script developed by Matt Merkovich.'
+---
+
+## Synthia Natural Language
+
+Synthia is a natural language interface; it provides a great way to automate SynthEyes tasks for tracking artists that don’t want to deal with the technical details of Sizzle or Python, the other scripting languages that SynthEyes supports.
+
+To get an idea of how easy it is to automate tasks, here’s the script:
+
+***
+
+  //Multi-Peel MATTMERK Style
+
+  say ““.
+  say “Don't multitask while running: check email, twitter, etc. 😉“.
+  say “It will grab window focus and crash the script“.
+  say ““.
+
+  features room.
+
+  make current camera’s small blip density 0.008.
+  make current camera’s big blip density 0.004.
+  make current camera’s small blip size 8.
+  make current camera’s big blip size 16.
+  make current camera’s maximum tracker count number of frames*2.2.
+
+  click and wait for “blips all frames” button.
+  //wait 2 seconds.
+  click and wait for “peel All” button.
+  //wait 2 seconds.
+  clear all blips.
+
+  make current camera’s small blip size 12.
+  make current camera’s big blip size 24.
+  click and wait for “blips all frames” button.
+  //wait 2 seconds.
+  click and wait for “peel All” button.
+  //wait 2 seconds.
+  clear all blips.
+
+  make current camera’s small blip size 16.
+  make current camera’s big blip size 32.
+  click and wait for “blips all frames” button.
+  //wait 2 seconds.
+  click and wait for “peel All” button.
+  //wait 2 seconds.
+  clear all blips.
+
+  make current camera’s small blip size 20.
+  make current camera’s big blip size 40.
+  click and wait for “blips all frames” button.
+  //wait 2 seconds.
+  click and wait for “peel All” button.
+  //wait 2 seconds.
+  clear all blips.
+
+***
+
+## Usage Instructions
+
+- Download the Multi-Peel script from https://lightcraft.pro/downloads/
+- Select Script->User Script Folder in SynthEyes to open the User Scripts folder.
+- Copy the Multi-peel_MATTMERK_Style.sia file from Downloads into the User Scripts folder.
+- Pick File->Find New Scripts in SynthEyes.
+- The script can now be run from the Script menu; it will appear alphabetically in the list.
