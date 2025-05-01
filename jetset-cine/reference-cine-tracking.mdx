@@ -1,0 +1,50 @@
+---
+title: 'Jetset Cine Tracking Quality'
+description: 'This clip is a good reference for the tracking quality that we generally see from a Jetset Cine clip processed without additional tracking refinement.'
+---
+
+This clip is a good reference for the tracking quality that we generally see from a Jetset Cine clip processed without additional tracking refinement. There is enough detail in the practical floor for Jetset to get a decent tracking lock.
+
+This video shows the tracking data and scan data imported into Nuke with our Autoshot Nuke importer and rendered.
+
+<video
+  controls
+  playsInline
+  className="w-full aspect-video"
+  src="/images/compositing/NukeWireframeOverlay_540p.mp4"
+></video>
+
+As you can see, it’s reasonably well lined up overall, but has small jitters in the track that don’t work for a shot with ground contact. For shots like this, we recommend refining the track using our [SynthEyes](/tutorials/tracking-compositing/tracking-refinement-syntheyes) or [GeoTracker](/tutorials/tracking-compositing/geotracker-blender) tracking refinement workflow (tutorial coming very soon.)
+
+## Ground Contact Math
+
+In truth, most real time tracking systems will have difficulties getting ground contact tracking accurate to sub-pixel levels, for simple reasons of optics. This chart helps explain why, using the equation:
+
+Ground Contact Misalignment = Distance * tan(Sensor Misalignment Angle)
+
+## Calculations chart
+
+| Sensor Misalignment Angle (deg)	| Distance to Floor (cm)  | Ground Misalignment (cm)  |
+| ------------------------------- | ----------------------- | ------------------------- |
+| 0.1	                            | 200	                    | 0.35                      |
+| 0.2	                            | 300	                    | 1.05                      |
+| 0.3	                            | 400	                    | 2.09                      |
+| 0.4	                            | 500	                    | 3.49                      |
+| 0.5	                            | 600 	                  | 5.24                      |
+
+The Distance to Floor represents how far a ray of light would travel from a visible spot on the floor to the camera lens. As you can see, very small angular misalignments in the tracking sensor result in considerable tracking misalignments as measured on the actual ground.
+
+## Lightcraft's Approach
+
+Lightcraft’s solution to this problem is to use a fast, lightweight real time tracking system (an iPhone or iPad), and then refine the track (when necessary for the shot!) using the actual visible points on the ground.
+
+This is a ‘closed loop’ engineering technique, instead of the ‘open loop’ method that relies completely on perfect tracking alignment at the tracking sensor. Perfection is hard to achieve in production!
+
+Not all shots need this refinement technique. This shot below is an example of a shot that works with the default Jetset Cine tracking data. Since there is no visible CG/live action contact point, the real time tracking data is accurate enough for the shot.
+
+<video
+  controls
+  playsInline
+  className="w-full aspect-video"
+  src="/images/compositing/T019_both_960x540.mp4"
+></video>
