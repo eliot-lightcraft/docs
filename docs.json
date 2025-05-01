@@ -74,7 +74,9 @@
               "debugging/jetset-crash-tracing",
               "debugging/exporting-takes-debugging",
               "debugging/usd-usdz",
-              "debugging/unreal-console-log"
+              "debugging/unreal-console-log",
+              "debugging/blender-errors",
+              "debugging/autoshot-crashes"
             ]
           }
         ]

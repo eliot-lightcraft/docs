@@ -1,0 +1,24 @@
+---
+title: 'Fixing Autoshot Crashes'
+description: 'Fixing Autoshot Crashes.'
+---
+
+If you run into the situation where Autoshot crashes when launching, it may have corrupted a specific file that Autoshot uses when starting up.
+
+We’re still tracking down what causes this, so below is a set of steps to take to both fix the problem, and give us a file to look at to debug it.
+
+The culprit is usually the Autoshot.yaml file. In Windows, this is located in 
+> C:\Users\YOUR_USERNAME\AppData\Local\Autoshot\autoshot.yaml. 
+
+To fix this, the basic idea is to just rename that file to some other name, and send us the renamed file. Autoshot will re-make the autoshot.yaml file the next time it runs.
+
+## Windows Explorer
+One way to do this is simply to navigate in Windows Explorer to the directory, then right click on the autoshot.yaml file and rename it.
+
+## Powershell
+You can also open Windows Powershell (type power into the Windows search bar), and then enter these 2 commands:
+
+> cd $env:USERPROFILE\AppData\Local\Autoshot\
+> Move-Item -Path .\autoshot.yaml -Destination .\autoshot_backup.txt
+
+Then, you can email us the “autoshot_backup.txt” file, and we can help track down this problem.

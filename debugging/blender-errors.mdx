@@ -1,0 +1,43 @@
+---
+title: 'Blender Autoshot Errors'
+description: 'Enabling Blender console log details in Autoshot.'
+---
+
+When running a take in Autoshot, you may see an error that looks like:
+
+> Return Code from Blender is 3 -- there was an error creating the blender render file.
+
+By default, the console log doesn’t show all of the Blender console output, as it can be very long, but for cases like this it’s useful to see the complete output.
+
+## Clear Console
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/debugging/AutoshotClearConsole-2048x1135.png"
+/>
+
+We’ll first clear the console to remove text from previous runs, and make the debugging more straightforward. Click Clear on the lower right hand corner of the Autoshot window to clear the console.
+
+## Enable All Blender Output 
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/debugging/AutoshotSeeAllBlenderOutput-2048x1135.png"
+/>
+
+Next, we’ll enable seeing all of the Blender output by checking the ‘See All Blender Output’ checkbox under the Options panel in the center of the UI.
+
+## Run Take and Copy Console text
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/debugging/AutoshotSaveRunCopy-2048x1135.png"
+/>
+
+Finally, we’ll click Save and Run to run the take, and then Copy when the take stops at an error. This will load the entire contents of the Console into the copy buffer.
+
+## Save Console Text and Send File
+
+Open up a text editor like Notepad or Notepad++ on Windows, or TextEdit on the Mac, and past the contents into the text editor.
+
+Save the file as a text file, and then either post it on the forum or send it to support@lightcraft.pro.
