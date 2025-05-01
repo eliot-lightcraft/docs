@@ -95,3 +95,18 @@ This can be used in 2 ways:
 - In post production, Autoshot will soon be able to use timecode embedded in the Jetset tracking data to automatically match Jetset takes with the corresponding cine camera takes, and to measure the timing offset between these two files. This is currently achieved with Jetset’s digital slate, using flashing ID markers, but embedded timecode is a more robust method that can do faster matching.
 
 The Tentacle Sync devices can also jam sync to other sources of timecode, so they are compatible with a production running on Deity timecode systems.
+
+## HDMI to HDSDI Converter
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/jetset/BlackmagicBidirectionalHDMI_HDSDI-600x466.jpg"
+/>
+
+[Blackmagic Design Micro Converter Bidirectional SDI/HDMI](https://a.co/d/cxPW4Hc)
+
+To use synchronized rendering with Unreal and Jetset Cine, the timecode that is injected into the camera by the Tentacle Sync E device has to go into a SDI capture card such as an AJA or a Blackmagic Decklink.
+
+Cameras like the Blackmagic Pocket Cinema Camera that have an HDMI output need to convert the HDMI signal to HDSDI without losing the embedded timecode.
+
+Most HDMI to HDSDI conversion devices won’t preserve timecode, but the above unit will, and is what we use in our testing.
