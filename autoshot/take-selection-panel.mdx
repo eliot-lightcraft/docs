@@ -1,0 +1,62 @@
+---
+title: 'Take Selection Panel'
+description: 'The Take Selection panel lets users pick which take they will be processing..'
+---
+
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/autoshot/take-selection-panel.png"
+/>
+
+### Day and Take
+
+The Day dropdown shows the list of the shooting days from the current project in Autoshot.
+
+The Take dropdown shows the list of the available takes from that shooting day.
+
+The Open button next to the Take dropdown will be a frequently used button. This opens up a file explorer to the Autoshot-created take subdirectory in the current project folder hierarchy. 
+
+This is very useful for directly jumping to the various generated scripts and files that Autoshot generates for a given take.
+
+### Take USDZ and Sceneloc
+
+The Take USDZ line shows which USDZ file was loaded when the currently selected take was active.
+
+The Sceneloc line shows which scene locator was active when the currently selected take was active.
+
+### Cine Focal Length/Angle
+
+These are only active when a Jetset Cine take is loaded.
+
+Cine Focal length shows the calibrated focal length of the currently selected take. This is based on the horizontal field of view angle shown to the right combined with the entered sensor width at the time of calibration.
+
+The Angle field to the right of the Cine Focal Length field shows the HFOV value calculated during the Jetset Cine lens calibration. This is an actual value determined directly from the lens and sensor width parameters.
+
+### Cine Calibration, Solve/Resolve, and GUI Check
+
+The Cine Calibration line shows the filename of the Cine lens calibration that was loaded when the current take was recorded.
+
+The Solve/Resolve button is used to calculate the actual 3D cine lens position offset, field of view, and lens distortion from the captured frames of a Jetset Cine calibration. If this calculation has already been done, the button will show Resolve instead of Solve. The Solve/Resolve process uses the integrated COLMAP solver (included in the Autoshot Tools install) to perform this calculation.
+
+The GUI check button can be used after a 3D solve has been completed. This will open up the COLMAP GUI so that you can check where the various camera positions were found in the solve, as well as the 3D point cloud from all the matched 3D points in the solve.
+
+The COLMAP GUI button is just used as a debugging tool, and isn’t a necessary step to running Cine takes like the Solve button is.
+
+### Cine Footage Matched
+
+The Cine Footage Match line shows the name of the cine video take that matches the current Jetset take. This can be determined automatically via digital slate matching or timecode matching.
+
+If the automated methods don't work, the take can be manually selected with the *Manual Pick* button.
+
+### Cine Time Offset
+
+The Cine Time Offset panel shows the time offset (in seconds) from the beginning of the current cine video clip in the 'Cine Footage Match' line to the beginning of the currently selected Jetset take.
+
+This is calculated either with the flashed markers of the digital slate, or with the automated timecode match.
+
+Note that the timecode based match is not as accurate as the digital slate match; for this reason we recommend clicking the 'Refine Offset' button after doing a take match based on timecode. 
+
+The 'Refine Offset' button will trigger a quick optical flow analysis between the cine footage and the Jetset video; this data will be used to refine the Cine Time Offset.
+
+Using Cine Time Offset is not recommended for digital slate matches as the slate is more accurate.

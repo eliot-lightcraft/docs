@@ -25,6 +25,7 @@
           {
             "group": "Setup",
             "pages": [
+              "setup/windows-network",
               "setup/configuring-travel-router",
               "setup/configuring-icloud",
               "setup/create-project",
@@ -45,6 +46,10 @@
           {
             "group": "Autoshot",
             "pages": [
+              "autoshot/autoshot-overview",
+              "autoshot/folder-setup-panel",
+              "autoshot/sync-panel",
+              "autoshot/take-selection-panel",
               "autoshot/paste-file-path-mac"
             ]
           },

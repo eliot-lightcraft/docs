@@ -1,0 +1,87 @@
+---
+title: 'Folder Setup Panel'
+description: 'The Folder Setup panel shows the locations of the main directories used by Autoshot.'
+---
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/autoshot/autoshot-project-folders.png"
+/>
+
+## Project Directory
+
+The Project directory is the parent project folder. A new folder is typically created for each separate project or client.
+
+Autoshot will use this folder to create 3 subfolders:
+- Takes
+- Assets
+- Sequences
+
+### Takes
+
+The Takes folder is where Autoshot will sync takes to. The takes directory structure mirrors the way files are stored on Jetset.
+
+A separate dated folder is created for each individual day of shooting; this folder contains the day’s takes.
+
+Underneath that folder, a Camera folder is created. This will be named A, B, C, D, etc. depending on which camera the Jetset app was set to.
+
+Inside the Camera folder are subfolders for:
+
+- Scans (if created)
+- Images (if 2D background images were added to the scene, they are stored here for later use)
+- Metadata (contains the JSON files where the tracking data and shot metadata are stored)
+- Videos (contains the iOS camera original, real time composite, and depth videos for each take)
+
+### Assets
+
+The Assets folder is generated for an optional location for project assets, such as USD and USDZ exports
+
+### Sequences
+
+The Sequences folder is where Autoshot will place all data and files generated as part of processing takes for use in post production.
+
+Sequences are stored by the date of the take processed, with subdirectories showing the individual takes from that day that are processed.
+
+Inside the individual take directories are subdirectories that contain the actual generated files:
+
+- aimattes: Autoshot-generated 8 bit greyscale images, written in PNG RLE format.
+- blend: generated Blender files
+- camEXR: EXR files extracted from the iOS camera original video
+- camPNG: PNG files extracted from the iOS camera original video
+- cinecamEXR: EXR files extracted from the cine camera original. These are ACEScg format and DWAA compressed by default, with ZIP compression optional
+- c4d: generated Python file for C4D import
+- nuke: generated Python files for Nuke import
+- syntheyes: generates Sizzle script for Syntheyes import
+- maya: generated .ma file for Maya import
+
+## Cine Camera Directory
+
+The Cine Camera directory is where Autoshot will search to find camera original files, such as BRAW, ProRes, or log .mp4 files.
+
+Autoshot can directly read ProRes and .mp4 files, so if camera original files are in these formats, proxies are not needed.
+
+## Cine Proxies Directory
+
+The Cine Proxies directory is where Autoshot will search for matching proxy files for the cases where it cannot read the camera original files directory (BRAW and other RAW file formats.)
+
+In this case, Autoshot needs both the Cine Camera directory and the Cine Proxies directory to be pointed to directories containing the files.
+
+When the ‘Scan’ button is pressed next to the Cine Camera directory, Autoshot will search through either the camera originals, or in the case of RAW file formats the proxies folder.
+
+### Detecting ID and Timing
+
+It will load each take, and search through it to detect the black and white ID/timing markers that are displayed on the Digital Slate browser at the beginning of every Jetset take. 
+
+It uses this information to match a given Cine take to the correct Jetset take, and to calculate the correct cine offset timing for the tracking data.
+
+### Image Sequence Extraction
+
+Then, when a sequence is processed, and the camera original is a ProRes, .mp4, or .mov log file, Autoshot will extract EXR files directly from the same camera original file it found ID and timing from, and convert these frames to ACEScg formatted EXR files.
+
+If the camera original file is in a RAW file format, such as BRAW, the files in the Cine Camera directory will be used for the actual EXR extraction, as they contain the full captured color information from the cine camera.
+
+## Hotkeys/Shortcuts
+
+**Shift-Scan** will erase the stored table of take file to cine video file matches, and re-scan the cine video files.
+
+**Shift-Browse** on the Project Folder Browse button will pull up a list of the most recent project folders.

@@ -1,0 +1,18 @@
+---
+title: 'Autoshot Overview'
+description: 'Autoshot is the desktop or laptop counterpart to Jetset. It works as a connecting piece between traditional 2D or 3D digital content creation tools like Blender, Unreal, After Effects, Nuke, Maya, etc. and Jetset.'
+---
+
+## The Main Loop
+
+Jetset and Autoshot work with these tools in a well-defined ‘loop’. The loop consists of 4 basic steps:
+
+- Place scene locators (empty 3D objects named sceneloc_*) in the original scene in locations that will be matched to specific points in the live action shoot
+- Export a subset of the main scene as a USD file set, including the scene locators, convert the USD files into a single packaged ‘blocking proxy’ USDZ file, and push the USDZ file to Jetset over the local network using Autoshot
+- Load the proxy USDZ file into Jetset, pick a live action origin, and pick the desired scene locator from the scene.
+- Shoot a take with a real time preview of the live action and CG interaction
+- Pull the take data back to the desktop or laptop wirelessly using Autoshot, and pick which shot take you want to process.
+- Still in Autoshot, choose which target application you want to create a shot package for, and the color space/gamut of the footage.
+- Hit Run, and Autoshot will extract an image sequence from the shot takes, package up the camera tracking data, and write out a script file that will directly import the completed shot package into the original 3D app, or other 2D & 3D applications used in the production pipeline.
+
+This whole process can be run in a couple of minutes, and is the core design of Jetset & Autoshot.

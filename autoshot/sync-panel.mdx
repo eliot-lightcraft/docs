@@ -1,0 +1,37 @@
+---
+title: 'Sync Panel'
+description: 'The Sync panel is used to identify, select, and sync files from Jetset devices on the local network.'
+---
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/autoshot/autoshot-sync-panel.png"
+/>
+
+## Jetset Clients List
+The ‘Jetset Clients’ panel lists all Jetset devices found on the local network. This happens automatically, or whenever the Refresh button to the right of the panel is clicked. (The iOS devices must be actively running Jetset to be detected.)
+
+Users can click to highlight on individual detected Jetset clients.
+
+## Current Project
+The Project text box below will show the name of the project that the currently selected Jetset client has active. This way, one can avoid accidentally synchronizing takes from one project into another’s working folders.
+
+The 'Sync To' box directly below the 'Project Name' shows the name of the currently selected Autoshot project folder. Jetset will check to make sure that the 'Sync To' directory name has the same name as the currently selected 'Project Name' folder, and show a red warning if the names don't match as a courtesy to the user.
+
+This won't stop you, however from syncing the files if you click the Sync button.
+
+## Manual Connection
+If the Jetset devices aren’t detected automatically, it’s possible to manually enter in the IP address of the device into the IP address line, and then click Connect. The Jetset device should then be listed in the client list.
+
+## Open Web Page
+The Open Web Page button will open a browser window pointed to the IP address of the currently selected Jetset client. This is usually faster and more convenient than manually typing in the IP address into the browser address bar.
+
+## Sync Date Selection
+The Sync Date dropdown lets you pick which date of recorded takes that you wish to synchronize. You can also choose ‘Sync All’, to synchronize all of the takes of a given project to the current Autoshot project directory.
+
+## Sync Button
+The Sync button next to the Sync Date dropdown triggers the actual take sync process. Takes are synced by comparing the files in the local project folder with the files in the selected Jetset device; this way only missing files are synced, saving time.
+
+## Sync Options
+- Match File Size checks to see that the copied file has exactly the same number of bits as the source file. This should be checked by default. The only reason to uncheck it is when syncing to a Google Drive device. Google Drive pads the file sizes by 512 byte intervals, so that the copied file is actually slightly larger in size than the source file.
+- Verbose sends detailed debugging information for the file cloning process to the console. This can be useful when debugging file transfers.
