@@ -44,6 +44,12 @@
             ]
           },
           {
+            "group": "Unreal",
+            "pages": [
+              "create-usd/unreal/installing-lonet"
+            ]
+          },
+          {
             "group": "Autoshot",
             "pages": [
               "autoshot/autoshot-overview",
