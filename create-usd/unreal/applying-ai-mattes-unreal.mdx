@@ -1,0 +1,14 @@
+---
+title: 'Applying AI Mattes in Unreal'
+description: 'Appy AI generated rotomattes to the Unreal Material Keyer generated with the level sequences by Autoshot.'
+---
+
+User CptGabok wrote this great update to using the AI generated rotomattes with the Unreal Material Keyer generated with the level sequences by Autoshot.
+
+1. Change the material type for the CamMaterialTemplate to Masked
+2. Use the AIMatteTexture Media Texture as the Opacity Mask within the CamMaterialTemplate
+3. Add a Media Track to the Level Sequence
+4. Select the AIMatteMediaSource as the Media Source for the new Media Track
+5. Select the AIMatteTexture as the Media Texture for the AIMatteMediaSource
+
+Then you should see the rotoscoped footage within Unreal Engine playing back as you scrub the timeline.

@@ -46,7 +46,8 @@
           {
             "group": "Unreal",
             "pages": [
-              "create-usd/unreal/installing-lonet"
+              "create-usd/unreal/installing-lonet",
+              "create-usd/unreal/applying-ai-mattes-unreal"
             ]
           },
           {
