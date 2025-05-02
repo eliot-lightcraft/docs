@@ -7,7 +7,7 @@
     "light": "#07C983",
     "dark": "#15803D"
   },
-  "favicon": "/lightcraft-logo-icon-black.png",
+  "favicon": "/logo/lightcraft-logo-icon-black.png",
   "navigation": {
     "tabs": [
       {
@@ -148,6 +148,12 @@
       {
         "tab": "Office Hours",
         "groups": [
+          {
+            "group": "2025",
+            "pages": [
+              "office-hours/2025/office-hours-2025-05-02"
+            ]
+          },
           {
             "group": "2024",
             "pages": [

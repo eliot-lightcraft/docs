@@ -1,0 +1,456 @@
+---
+title: 'Office Hours 2025-05-02'
+description: 'Using Blender to test tracking accuracy with Unreal projects. '
+---
+
+## Recording
+
+<iframe src="https://share.descript.com/embed/wUW9K3bnSLZ" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+# Transcription
+**Eliot:** So this isn't good to, so we'll go to Light Craft Pro and we're just gonna verify, uh, install Blend. Uh, there we go. Light Craft Pro. And then we're gonna go to downloads.
+
+There we go. And then we're going to download the blender, add-on, download that. Usual place. That's fine. All right. And then let's go to Blender and let's install it. You actually don't need to unzip it. Uh, we we're just gonna install it directly from Inside Blender. Go to edit preferences, and then we're gonna go to click add-ons.
+
+And in the upper right hand corner, there's this tiny little, uh, little carrot, uh, that we're gonna go install from Disc. Gonna go to downloads and, and you can just type in, um, up in the search bar. You can just type in auto shot, uh, blender. Because it's gonna look for a zip file.
+
+I want to, uh, let's try that search bar to cut. Cut it down. And capital a auto shot. There it is. That's what we want. Okay. All right. And then let's make sure it installed. Just type in, auto shot in here.
+
+Where to go? Um, that we installed that.
+
+Where did that go? It's all from disc. And which, which blender is this?
+
+So go ahead and click on, uh oh. Yeah. So go ahead and click on on on this guy. Select this guy, and then, okay. There you go. Okay, now we're good. Okay. So we can, we can exit outta here and you can exit out of a blender. Okay. So, so we're gonna go back to auto shot and we'll switch from others. We're gonna switch to, uh, blender.
+
+And we're gonna pick, uh, instead of a pen scene, we're going, uh oh. Okay. Yes. We gotta choose the, the blender executable location.
+
+Okay. So actually before we, before we do this, let's go ahead and cancel for a second. We, we need to pick the blender executable. So let's, uh, let's click pick Executable and let's go to, it's usually stored in c program files. Uh, blender Foundation. Yeah. Blender Up. Blender Foundation. Up, up a little bit.
+
+Uh, I just look for, it starts with b uh, blender Foundation. You need to go up a bit. There it is. Letter 4.4. There we go. Just double click on that and pick open. That's fine. Okay. And then if for the generated blend file, well, we're just gonna, we're not gonna use it. The, the blend file, we're just gonna click, um, empty comp starter.
+
+'cause what we just do, we just want this for reference. Okay, that's fine. Um, and then, uh, extract XRS is just, whoops, E xrs is fine. Whatever you did originally. Let's go back to, oh, hang on. Uh, let's not change the extractor files. Let's just go back to xrs 'cause that's what you originally extracted for, uh, for Unreal.
+
+All right. So that sounds good. So, okay. And then we are, we're gonna use set lighter. Import set lighter. Okay. Let's click save and run. All right. So it's gonna pull the, the same video frames for.
+
+Oh, why is it, oh, we were regenerating the regenerating the flames. Okay, that's fine.
+
+Let's see what Auto Shot has done in that, in that, if it's done crunching, crunching, numbers.
+
+So the first thing we're gonna check to see if, if the overall timing synchronization is correct. That way it's a lot. It's, I mean, it's, it's always hard to tell Unreal. Oh geez. The playback systems inside. Inside a composure sometimes. Or inside, um, sequencer or sometimes a little weird. We're still figuring those things out.
+
+Um, okay, so let's go back, let's go back to auto shot and let's see if we're done. Um, if it's, if it's still cooking. Alright, so it's this, it's gonna try to generate a blend file now. Uh, give it a second. Has it, uh, I don't, when it's, when it's generated a blend file. It should pop up. It should pop up.
+
+Blender.
+
+Oh, there it is. Okay, there we go. Now we're, now we're kicking. Okay, so now what we can actually do is we can scroll through the timeline and blend and blender a little bit. And what we're looking at is we should see, uh, you know, it won't be able to, to play back in real time, but we can see the, the different, whether things are moving in, in close synchronization and the timeline.
+
+So as we go through, say, like, frame 180 or something like this. Um, we'll, we'll see whether or not things are, are moving from frame to frame in alignment.
+
+And let's try a little bit further on. So what I'm curious about is if we just go like frame forward, you know, like if, if, if our time alignment is, is is good. Um.
+
+What size frames are these? Just so I understand how big of an EXR these are?
+
+Uh, I don't, I'm not getting any audio. 
+
+**Kumar:** You're muted on the phone.
+
+Hello? 
+
+**Eliot:** Yeah, there you're. Okay. 
+
+**Chatanya:** Okay. 
+
+**Eliot:** How, how big are these xrs? Just so I know. How big? 
+
+**Chatanya:** Oh four. Uh, 4K. Okay. Yeah, 
+
+**Eliot:** so we won't be able to play back in real time, but what I'm, what I wanna do is, is like page through some of the, the, the timeline and see what you, what we're looking for is things where the camera moves a decent amount.
+
+You'll see either both of them move at the same time, or you'll see one of 'em go the, the, the, the, the, the, and we're kind of that, we're kind of breaking it down to more individual frames. And I wanna see if the, the core tracking synchronization is, is reasonably correct because if it's correct here, then it's gonna be correct in, in any, in, in any other system.
+
+Um. It's just easier to isolate the things in, in Blender 'cause we can see the mesh and we can see the um, uh, see the different pieces of it. So let's, uh, let's go around to like, say frame 230 or something like this. And uh, you know, someplace where we would, we would see, um, and there we go. Then move, let's move, let's forward, move forward.
+
+Like, like one frame, like with the, the, the right arrow key. 'cause what I wanna see is our, are is time-wise, are things, uh, that's jump to key frame. So just use the right arrow key to go forward and back, uh, to, for, you know, forward by a few frames. And what we're looking for is do things move in synchronization, um, you know, in, in close synchronization.
+
+And you know, right now they look like they're moving in, in pretty close sync. Um.
+
+'cause I want to, I want to check for, for time, um, like weird time offsets, uh, that are, 'cause right now it looks fairly, you know, there's an overall position question. And, and that's, you know, like Yeah. If you, things line up. 
+
+**Chatanya:** Um, yeah. If we come back 2 10, 2, 2 20, it is off. 
+
+**Eliot:** Yeah. Yeah. So there will be some original, some, some overall position offset questions that, that are, that we'll, that we'll run into.
+
+But the big thing is, is our tracking data timing correct. Um, so that we have, and so what I, what I recommend doing actually here is then, so let's starts to look. Okay, but let's, let's look at it in motion. So we're gonna type in n uh, h, your h, your mouse over the middle window, and let's type in n. Uh, and that'll open up No, uh, actually, um, uh, the keyboard letter N there we go.
+
+And then click on the Auto shot panel. Auto shot, uh, the side panel that says Auto shot. There we go. And then what we're gonna do is we're gonna render a fast viewport video. So go ahead and click, uh, a fast viewport video at the very top. And what it's gonna do is it's going to just render, uh, use the ev render and it's going to render, um.
+
+Sequence, render the sequence. Okay. And now this is taking a little bit longer than I would expect. Um, okay. 
+
+**Kumar:** Yeah, maybe you could, you know, uh, shut down. Unreal. I think. Yes. Yes, yes, yes. Because
+
+**Eliot:** right now, this looks time-wise, um, yeah, sounded close.
+
+Because right now the camera is moving in, in the, the time sync looks okay here. Um. So I want to, so I wanna just go through, and it may take a little while for it to, to render out, but this is round truth. This is, this is, we have the scene mesh, you know, uh, locked into the, um, like the, the, the Jetset, you know, scan, wire frame, frame, mesh, uh, locked into the tracking data.
+
+Right now it looks like it's, it's bang on. Um, and, uh, and so in terms of time, nu the number one thing we want to figure out is time. And we can think of it, we can worry about alignment a little bit later on. Alignment's always tricky with multiple scans because the, the coordinate spaces can be very subtly off and it, it will, uh, it will show up in, in different, different ways.
+
+Um.
+
+**Chatanya:** So, uh, when we are calibrating, we'll use this, uh, uh, cm O, right? 
+
+**Eliot:** Yes. 
+
+**Chatanya:** But while we shoot, we don't need it. Only for the calibration. We need it, right? 
+
+**Eliot:** Um, so in fact. Oh, we are about to ship an update, uh, to Jetset where we actually have real time composite cinematic compositing in the iPhone of, of the syn camera.
+
+Um, so we've been working a lot on that, and that's, we just showed a NAB and we're just wrapping up the, the, uh, the production release of that. And so then you actually see the synchronization in real time. What, what Sydney camera are you using? 
+
+**Chatanya:** Uh, 4K Semo, cmo, 4K camera. Sorry. It's only, uh, seven. Uh, three.
+
+Uh, 
+
+**Eliot:** three A seven. Okay. Three. Okay. Fantastic. Um, now on that camera, you may have difficulty getting, um, time code, uh, to go in. Yes. I, I thought I remember that the CO or the tentacle syns did not work with the A seven three. So in that case, you'll be using the, uh, the, the, um, the digital slate, um, uh, for, for centralization.
+
+Yeah, I'm using 
+
+**Chatanya:** it. 
+
+**Eliot:** But I mean, right now, so far, what I, what I see is, I mean, do you see what I'm seeing? Like what I'm, what I'm looking for is the interframe move movements. And especially when you're seeing it like this, you know, if, if it's um, uh, especially when you're moving around handheld, if it's off by a frame, you'll see it from a hundred miles away.
+
+It'll go boop, boom. Yes, yes, boop boop. And right now it looks, you know, pretty, pretty tight. Now, overall, 3D alignment is another question, you know, and what you may be running into is the, uh, um. The scans will have slightly different origins and stuff. And when you, um, magnify it, 'cause what, where was the second scan?
+
+Uh, um, let's see,
+
+I'm thinking through this. Oh, and the other thing that we're, that we're shipping is, um, we have improved the tightness of the cinematic calibration. Um, and so what I'm seeing is there is a little bit of offset here, uh, between where. Uh, you know, the, the marks where you would expect things to be in 3D and where they actually are.
+
+Um, and so I think there are new calibration updates will actually improve that considerably. Okay. But, so I, I'd say let's, let's let this render out, um, if that's working correctly and that, that, so we'll, we'll do is after we do this, we'll, we'll look at the, uh, the rendered, um, you know. It'll, it'll render.
+
+Uh, if you wanna see where it's going to render, it's going to create it into the, if you open up auto shop, we can go, go see where it's going to create this.
+
+Okay? Now, if you next to the take, if you click and click this open. Um, uh, button. It'll open up. Windows explore, and it'll open it up, um, at the directory where all the processing is happening. So, uh, did, did you either we, uh, there we go. Okay. And so this is the, the take where all the data's being, being written.
+
+And if you look at preview, then that is, uh, that is where it's being, being written. I wouldn't open it up right now 'cause that's where Okay. That's where the file being created. But there, there's the, and it says, you know, VP render, um, that is where it is. Uh, uh, that's where it's generating, generating the, uh, the clip.
+
+**Chatanya:** Okay. 
+
+**Eliot:** Okay. So what, we'll, what we can do is, is let's let that cook, uh, but this is, this is how I always check to verify tracking data, because it's much easier to detect these things. And to verifies these things in Blender. 'cause you can see the, and 
+
+**Chatanya:** this frame, see they're in the right place. Yeah. And this one, 
+
+**Eliot:** if, if the, if this is, this is correct, everything else will be correct.
+
+And the problem we're running into, and I I'm gonna dive deeper into Unreal, is the view for port playback of the live action image. Is sometimes not Yes, correctly synchronized, uh, to the 3D motion of the background. And what I've run into is if even if I do an unreal a render, if I have the live action image in there, you can get some weird motion artifacts.
+
+Whereas if I render it, um, if they, I render the unreal background and then I composite those same foreground images together separately and after effects it's correct. So I don't understand that yet. Uh, I frankly don't understand that that's, that's, 
+
+**Chatanya:** yeah. Yeah. Is example. This is the footage, both background and foreground were separately rendered.
+
+So I see this effect from the. Ah, yeah. This, this thing. 
+
+**Eliot:** So I think what we're going to want to do, yes, yes, yes. This is, this is because it's processing the correct way is that the image plate should be processed separately from the 3D background. The image plate already has motion blur in it. We shouldn't be, because otherwise we're resampling the image plate.
+
+Right. That's, that's just going to be a problem. Um, yeah. And so what I'm. 
+
+**Chatanya:** Without the background, it, it looks like there's no, uh, you know, the second layer when I switch on the, what,
+
+something happened. Okay. As the background for this.
+
+Okay. Uh, I mean, uh, in the late evening we found, like in the post ing there is a 0.5 value of, you know, calibrating the motion blur. We removed it. I think it is working fine, and now it is fine. There is no double layer. 
+
+**Eliot:** Yeah. Yeah. So I, I would just watch out for this. You, you're going and also, um, it's so easy to get one frame offsets in all of this.
+
+So yeah, we have a, a, uh, an automated After Effects, uh, importer, uh, that will bring in the rendered frames from Unreal as well as the EXR extractions, uh, into After Effects. Oh. And I'm, uh, we're actually re, you know, updating that, um. To have to be more complete. And I'm gonna do a tutorial on, on that, that workflow.
+
+Uh, yes. Yes. Because it's, it's, uh, it, it's so easy to have little things go, go wrong. 
+
+**Chatanya:** Yes, yes, yes. As in the video somebody's explaining, there is one frame of in, uh, exporting. Yes. 
+
+**Eliot:** Yeah. So I, I think we can correct, correct. All these things. Um, and, uh, uh. So that this is, this is one of the next things we're we're doing and is, um, uh, and also there are cases where if we do have problems with tracking, we want to be able to retrack it, um, or like to, to refine the track in synthesize and bring it into Unreal.
+
+And this is, this is actually what I'm gonna be working on next week. Um, it turns out getting that tracking data from Synthe to Unreal is not trivial. It's actually harder than you, than you think it is. 
+
+**Chatanya:** Um, yes. Yes, and, and I search for all the videos to get that part. Like if I, you know, correct this, find this track in the synthesis, how can I bring it back to.
+
+Unreal. Are you, you mean I'm trying it? 
+
+**Eliot:** Oh, yes. It's, it's much harder than, than you, than I thought it would be if I just try putting the FBX from an unreal, it does not work, so. Mm-hmm. I'm going through this right now to try to get it correct. Um, and, and reproducible, uh, because otherwise it's ex, it's. It was very strange.
+
+You know, the level, unreal level sequence can take in FBX files, but I, I checked that the FBX file was 24 frames per second with a binary debugger. I looked into the, the, uh, the, uh, the FBX file to make sure it was correct, but unreal interpreted it as 30 frames per second. And of course, the key frames are all wrong.
+
+Um, so there are, there are things that are just not working correctly, um, that we have to figure out a, a workaround. But, but this, this is my project for, for next week. 
+
+Okay. 
+
+So 
+
+**Chatanya:** you, you, so can I, good time. Okay. Okay. So my, uh, question is, is, is there any problem with this 29.97 at 30 with this, uh, two of iPhone is, is going 30 F years, and then my, uh, Sydney is going in, uh, 29.97, so it would be a new problem.
+
+**Eliot:** Uh, the key thing that you want to do is, um, when you're doing your after X Pro After Effects project, um, instead of trying to pull in from, uh, the, all the camera originals, I think you want to pull to bring in your, your information from the extracted XR files. So, oh. Um, 
+
+**Chatanya:** but I mean, my doubt is like, is it okay to have these two in here and then extract them and do I have, do I get the right, uh.
+
+Ah, and not track. So if you, if you click, 
+
+**Eliot:** if you click open here, um, and you know the, there we go and pull up the, um, pull up this, we extracted XRS into syn Camm, xrs. If you don't that. And the answer is you want to use these in after effects. And otherwise it's very difficult to align. Just use, use, those are the, the camera original EXRs that mm-hmm.
+
+And those will be, you know, again, as long as the, the we, we were gonna verify this tracking data with the, the blender tracking, and I think it's gonna come out okay. Um, oh. But those are the EXRs that we're using to reference our tracking data. That's why we, we pull everything from a single source and have everything in a, in the, in that subdirectory, uh, including the EXR frames, the AI mats, et cetera.
+
+Uh, 'cause if you pull from a different source, 
+
+**Chatanya:** you know, okay. It's very keep 
+
+**Eliot:** track. 
+
+**Chatanya:** Okay. Okay. Um, like, uh, in the Jetset, is there any way I can change it to 24 FPS? So I'm only seeing 30 FPS. 
+
+**Eliot:** Uh. Okay, so in Jetset right now, um, the, uh, the realtime display is 30 frames per second. Now, with the new cinematic compositing, this is the feature that we just showed at NAB in which we're, I'm recording the, the tutorial for this on Tuesday at that point.
+
+Okay. The realtime, um, uh, the real-time composite inside jetset, that'll be 24 frames per second. 23.8. Okay. What, whatever your c camera original is, whatever your Ah, uh, yes. You you'll 
+
+**Chatanya:** we can switch. 
+
+**Eliot:** Yes, we can switch it. Um, when we have that, that C camera feed coming in, 
+
+**Chatanya:** is that possible? We'll get 60 feet f Yes.
+
+**Eliot:** I think that will be very difficult. Um, yes. 'cause the, the, the phone just has some limited rendering. Uh, yes. Yes. Now. Internally in inside the, the camera. If you wanna record 60 FPS, that's fine. Okay. You will want to have your realtime preview, uh, come out as, you know, a fraction of that, maybe 30 or something like that, that you can, you can look at how you set your HDMI output, um, to, to usually be a.
+
+A fraction of the internal recording. 'cause there's no, you know, if you're recording at 250 frames per second, internally, there's no 250 frames per second HDMI standard. Okay. Okay. So usually you can control your, your HDMI output to be, uh, separate frame rate. 
+
+**Chatanya:** Okay. I have seen one option in the jet. Said like, unable, uh, C 60 FS.
+
+**Eliot:** Yeah. That was an experiment. We, we, we did a little bit on, uh. For tracking, uh, early on for doing, you doing external tracking early on? Um, so far we don't see it as a necessary thing. It was, it was a kind of a test thing we did. Um, okay. And the, we're planning to, uh, also record our oximetry tutorials and so far we have not needed that.
+
+Uh, we've just used the standard, standard setup. Okay.
+
+Is he still rendering or is he almost done? He may be done. Uh, in which case done Yes. Yes. Alright, well let's, let's open up our, um, our VP render, uh, and let's take a look at it.
+
+And that was in, if you go to Auto Shot and you open the directory into preview, there we go. And we should be able to double click that and play that back.
+
+And I, I can only see it through Zoom, but that looks like it's reasonably well. Uh, that looks like the time is is incorrect. Synchronization, 
+
+**Chatanya:** yes. 
+
+**Eliot:** Good. I mean, the tracking data is good. Um,
+
+so that means no 
+
+**Chatanya:** actually, uh, why I worried about that. Uh, small changes, you know, if I really want to use, uh, refine this in synthesize this supposed to be in the exact position? 
+
+**Eliot:** Yes. Okay. Okay. When we, what we'll do in synthesize is that, uh, we'll use that, that background mesh. We'll, uh, I mean, you've probably watched the synthesized tutorial.
+
+We, yes, yes. We find all the detect points we drop onto mesh and then we can, we can ol it. And then what we'll get in Synthes is we'll get a set of, um. 3D points that, that represent the, the, you know, the, the location of the solve. That will be very, very close to the, the original. It, it may be a little bit off like a centimeter or two, you know, because it has to resolve everything and, and, you know, move things around.
+
+So it'll have very slightly, and then what I want to be able to do is to, uh, bring the solve along with the 3D points, uh, into Unreal so we can, you know, align it in the same way I did with Blender. Um, and the, in the, in the, in the synthesized blender tutorial, we brought in both the camera and we brought in some of the solve points.
+
+The 3D, the 3D solve points into blender, and then I could align it until they were exactly aligned with the 3D, 3D information and then we can render it and everything lines up. So I'm looking to do the same process, uh, with Unreal. Uh, I have not figured it out yet, I think. Okay. I think we will probably have to go through Fusion.
+
+Uh, when I, when I've checked with people on how, with production people on how they did it, they just said, oh yeah, we, we just, we, uh, brought in the FBX through, through fusion. Uh, I'm going to go check on that and, and see if that works. Uh, and it seems like a, a slightly roundabout way of doing this, but if it works, if it, yeah, I'll, I'll, I'll take it.
+
+**Chatanya:** Okay. Um, here, actually my views. Uh,
+
+okay. I use this, these markers and as well as these, so mm-hmm. Where, uh, where these markers would enough to, uh, pull the trackers in, uh, Synthes. Oh, easily. And 
+
+**Eliot:** in fact, those are overkill. Um. I mean 
+
+**Chatanya:** this, this white one. Yeah. We can remove this. 
+
+**Eliot:** Uh, yes. What you'll, what you'll want, uh, instead of white markers.
+
+'cause those, those will give you lots of problems with your keying, right? Because even someone has to rotoscope that out. What we actually recommend is just, you know, uh, you know, green tape, you know this one here. You know, just green tape marks. So I'll, I have, here, I'll show you an example. You know, Xs, you know, LS, you know, um, 'cause what Synthesize is looking for is corners.
+
+Is is corners. So here, here, that's what Synthes is going to, going to detect. 
+
+**Chatanya:** Oh. In the, in the frame. Did you able to see this? Plasma marks? This is, 
+
+**Eliot:** oh. I could barely see it. That's what I'm asking. I could barely see it. Um, that may be, that may work. Uh, what little prop image processing we can do and then do that, right?
+
+Yeah. You may have to do a, um, uh, luminance, you know, like a aluminum scan and then, then try to detect those. Um, so this, this'll be, uh, uh, actually, you know, I'd be interested, uh, is this is a syn shot. Um. I can actually, if, uh, I can finish Okay. If you wanted to send me this take, I can try using it for the, uh, the unreal tutorial for the, the synthesized tutorial.
+
+Sure, sure, sure. I'll, you know, I can blur out the kids' faces and stuff like this. Um, but this, this would actually be a, a good test, uh, to see, to see how, how well it works. 
+
+**Chatanya:** So 
+
+**Eliot:** how can 
+
+**Chatanya:** I send you, 
+
+**Eliot:** uh, go ahead and under, under auto shot? Okay, uh, let's go to auto shot and, uh, we'll do file
+
+and then take zip export, take zip. That's fine. And then it's going to, and you just click save and it's going to generate a fairly large zip file, so it's okay. So it created this in, and we can go find this, uh, if we go open. Or if you just open up your, open up the, uh, yeah, you can see the location of, of where we put it.
+
+Uh, it's, it's in the same folder that everything else is in. If you go up one level to temp Oh, and then there it is. And so if you just send me that in Dropbox, um, then I can open it up on my end. Uh, and this will be a, this will be a good, uh, good test of a synthesized image processing. We'll see how the, how it works.
+
+Okay.
+
+**Chatanya:** So for Tropic email id, 
+
+**Eliot:** oh yes. So I'll just send it to, I'll put it in the chat. Uh, support at Light Craft Pro Stopwatch. There we go. I just put, I put it in chat copy.
+
+**Chatanya:** Perfect. Sure. I will send this. Okay. Fantastic.
+
+**Eliot:** All right. 
+
+**Chatanya:** Okay. Okay. Thanks for your time. 
+
+**Eliot:** Hey, no problem. No problem at all. No problem at all. All right. Uh, I'll look forward to, to trying this out and, uh, and, and, uh, this will be a good, a good test run for, uh, and so, just so I know, so this was shot with a Sony, uh, a seven A seven seven, 
+
+**Chatanya:** yeah. A seven three.
+
+**Eliot:** A seven three. And uh, what lens was it shot on? 
+
+**Chatanya:** 50 50 Sony 50 
+
+**Eliot:** millimeter lens. Okay. Yes. Okay. So when we, so when I go through and, and do that, but we will, I'll see if I can recreate that, that focal length and, uh, it should be pretty, pretty interesting to see it. Okay? Okay. Sure. Fantastic. Okay. And, uh, let's see.
+
+I see, uh, let's see. Uh, KU is on the line. Uh, ku 
+
+**Kumar:** yeah, that's my, uh, team. 
+
+**Eliot:** Oh, okay. Excellent, excellent. Well, this is good. This is, this is great. This is, we, we walked through the, the process of looking at, at a shot and how to, you know, how to debug what's going on and, and, and check it. And then what we can do is look at when we need to do a really high precision match, uh, then this'll be a good, a great test for the, the synthesized work, uh, going into Unreal.
+
+Oh, actually, uh, and do you want this to go into a particular unreal scene?
+
+If there's a part, if there's a particular Unreal project, if you could zip, zip that up and also send that a link on Dropbox, that, that would be great.
+
+**Kumar:** Uh, Ani I think, uh,
+
+is into something. Oh, no worries.
+
+I think maybe he is uploading the file. Chairman, you can hear us. You're on mute. Hello? Yeah. Oh, great. Yeah, so Elliot was asking the, sorry, go ahead, please. 
+
+**Eliot:** Yeah, if you have a specific Unreal scene that you want this to go, go into, um, if you want to zip up that Unreal project and, and you know, send it in Dropbox, then I can, I'll use that specific scene as, as the test case.
+
+**Kumar:** No, I think he missed it. You can hear us? 
+
+**Chatanya:** Yes. Yes, I can hear you. 
+
+**Kumar:** Okay, Elliot is, was, uh, uh, was asking if you want, uh, the unreal scene that of, uh, is your interest, uh, you know, where you wanna bring this, you can, uh, send that project also. Sure, sure, sure. 
+
+**Chatanya:** Okay. Sure.
+
+Okay, great. And, uh, uh, one last question, uh, is like, eh, works for the 5.5 also. 
+
+**Eliot:** We're fixing that, uh, probably today. Okay. Uh, the, actually 
+
+**Chatanya:** today, I, I tried importing to 5.5. Looks like it imported without metaverse, uh, omniverse. It looks like fine for me, but I will test it tomorrow. 
+
+**Eliot:** Yeah, we ran into, um, uh, there, there's some bug, uh, in terms of when we're importing the image sequence.
+
+It looks like Unreal Change there. Python, um, you know, because we use Python to, to, to script the aim import. It looks like it's a minor change, but it, it broke something. So, we'll, we'll, we'll go through that and, and do a new release of Auto Shot. Um, once, once we correct it. That that's what I'm testing now.
+
+Okay. Sure.
+
+Well, fantastic. Okay, well let me, uh, let me, uh, know when you, um, uh, let's see. Is it up already uploaded or, or will it take some time to upload? 
+
+**Chatanya:** Uh, it'll take time. Time. I'll upload it. That will is also be here. Oh, sure. Within office. It is better. Here it is less me. 
+
+**Eliot:** Okay. Okay. Well then I'll, I'll look for, so.
+
+I'll look for that and, uh, and then I can do some testing with it. Okay. So 
+
+**Chatanya:** may 
+
+**Eliot:** leave 
+
+**Chatanya:** you, you are waiting for the footage, 
+
+**Kumar:** your voice is breaking. Uh, 
+
+**Chatanya:** okay. May, I mean, um, may leave or, uh, waiting for the footage now. 
+
+**Kumar:** Oh, no, no, no. Of course you could, uh, send it at, uh, uh, the email, so we'll have it. But yeah, meanwhile, if you have any other questions, uh, please feel free.
+
+**Chatanya:** That's all for today. I hope I will come with more, you know, experiments on challenges. Excellent. Okay. So I want to make it work. Hundred percent. 
+
+**Kumar:** What's the plan for the institute, uh, you know, with raf? Where are you at right now? Uh, we're in ed. No, I mean, in terms of pursuing light draft, you have alternative.
+
+Uh, what is the status of that? Uh. 
+
+**Chatanya:** Uh, actually, uh, we're, uh, multimedia college. Yeah. Okay. So we wanted to make some short print using the virtual production and multiple, you know, I wanted to explore my, my position here is like a academic manager, whatever the possible new technology I wanted to explore and give it back to, I mean, share to our colleagues so that, uh, so I am trying to make it work and.
+
+So at least we'll make a small, short film with completely CG background and, uh, humans and a live human. Fantastic. 
+
+**Kumar:** Well, a part of curriculum as a vp as a subject that, uh, is there as, 
+
+**Chatanya:** no, not at, at this point of time, because just exploring right now. So once it is, you know, we got the con, you know, uh, thorough pipeline and understanding of it.
+
+Then we wanted to add as a part of it, because we cannot add the subject as a part of the silver every time, you know, once in four years we can do. 
+
+**Eliot:** Mm-hmm. 
+
+**Chatanya:** So, but Ally, we can teach them and, uh, we can show them how to, how to work it. 
+
+**Eliot:** Great. Great. I, I'm excited to have people start to use this in, in, uh, in more education institutions.
+
+It's, yeah, it means you can actually, you know, really use this instead of waiting, waiting for mm-hmm. 
+
+**Chatanya:** A, a wall. Yes. Yes.
+
+**Eliot:** Well, great. And I see, uh, Ben, Ben joined us. Hey, Ben. 
+
+**Speaker 5:** Good one. Good morning. 
+
+**Eliot:** Good morning. All right. And I think we're. 
+
+**Speaker 5:** We're scheduled to have something potentially at one at 1130. I wanted, uh, I had one question outside of that meeting. Yeah. And one question about that meeting. Uh, the first one is, do you happen to be available maybe at 11 or, uh, by any chance?
+
+**Eliot:** Let's see. Um, I have a, I have a 10 30. Um, let's see, but maybe I can, I, maybe it can be a quicker call. Because 
+
+**Speaker 5:** I wanna make sure we have, uh, in case we need more than 30 minutes. 'cause we have a, a, a core meeting team at, uh, noon. 
+
+**Eliot:** Okay. 
+
+Uh, so I think, uh, yeah, what I can do is I'll probably do a, uh, I can make my 10 30 a shorter call and then, uh, do the, uh, um, uh, link with you guys at 11, uh, or yeah, at 11, right?
+
+So. 
+
+**Speaker 5:** Okay. Uh, I'll confirm it with them and let you know. My second question is, I'm playing with Auto Shot a little bit and I've been, um, watching the videos online. Uh, and my question is, um, how, uh, and, and maybe it's just really simple and I got confused about it, but, um. We synced all the data. Right. Once we were done tuning and I have all the data backed up with me, um, the question is how do I essentially do all the pre the automation right, with auto shots from, to create the blender file?
+
+Mm-hmm. Once I have that data logged on an iPhone, but on a draft. 
+
+**Eliot:** Oh, okay. Um, oh, yeah, yeah. So that, that's pretty straightforward. So, uh, when you basically the, um, when you sync the data over, it will have it in a, you know, there'll be a project folder on like mm-hmm. You know, and so what you just basically do is you point the auto shop project folder to whatever project folder that you, you happen to have on your local, local drive.
+
+And then it'll detect, it should detect all the takes and stuff. So if you, I mean, if you wanna screen share, we can just walk through it. 
+
+**Speaker 5:** Yeah, I can definitely launch it. I think that's, I, I had a feeling I need to find the, um, the, um, sorry, one moment. Relaunching on Create, I struggled to find the project folder.
+
+Um, so I was like, ah, do I need to import all the data to an iPhone? Uh, and then again, you should, you should have all 
+
+**Eliot:** the, uh, I mean, it should be, you know, like just download the project folder, you know, onto your, onto your local, local, local disk somewhere. Yeah. 
+
+**Speaker 5:** Yeah.
+
+Sorry, it takes a moment. Uh, no worries. If anyone, 
+
+**Eliot:** and actually this is good, good for people to see, uh, so we can go ahead and exit auto shot and, uh, and so the, the takes were, uh, were stored under two separate, separate days. And actually we can, uh. Day, day O2, and Dayo one. Let's, let's double click on that.
+
+I wanna understand what's, uh, let's double click on day O one. Um, VTS Jetset. Okay. And then let's, because you have 
+
+**Speaker 5:** everything here. Okay. 
+
+**Eliot:** Can you double click on Jetset? I just wanna understand how they're, how they're doing it. Yeah. J or jb, uh, did they re, do they sync everything separately? Can you double click on J oh one?
+
+**Speaker 5:** Oh, I'll tell you what we have that Elliot, because Oh, I see. We uploaded. Yeah, it's a different upload. Right? Because we like, um, if we took a, a lunch break, we had a new camera roll, a new like, so probably created a new, uh, project. 
+
+**Eliot:** That's interesting. Okay. Um. So what we probably wanna do, um, instead of like, you know, munging in those, those directories, so let's go ahead and under physical production and we're gonna make a, uh, like a Jetset overall, you know, like a, I don't know, like, uh, yeah.
+
+Jetset overall, I dunno. Something like that. And Jetset. Oh yeah. Overall, yeah, that's right. What we're gonna wanna do is go ahead and, and so the Jetset Project, so we go into day O2, um, uh, we'll double click and go into day O2. Oh. Uh, 
+
+**Speaker 5:** yeah. This is our S3 bucket. Oh, technical Cannot touch it, my bad. But we can, if you can just tell me about it and, uh, and then I'll definitely make physical drive.
+
+Um, 
+
+**Eliot:** oh yeah. So let's, let's not mess with that. Okay. So, but basically, let's just double click on this so we can go into it so you can kind of see what's going on. Yeah. So we can go into Jetset and, and like Ja, O oh two, that'll be fine. You know, any one of these things will have the same folder structure.
+
+So go ahead and just double click on one of those. 
+
+Mm-hmm. 
+
+And, okay, so this is the basic Jetset project file folder structure. Okay. Assets, footage, and sequences. And so, um, what you're gonna want to do is to make a, a single folder. Then, you know, basically, uh, drop in all the, um, the footage, uh, folders.
+
+Mm-hmm. Uh, can all go, just put all the full, the, the, we can double click into footage so you can see what's going on inside there. Uh, and then go into, you know, what's going inside takes, et cetera. Okay. Pathways 25. So then what you're gonna do is, um, just combine the contents of all the footage folders.
+
+And this is actually a really interesting thing for me to think. I. On pause this 'cause I, it was actually really good to, the problem 
+
