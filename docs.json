@@ -51,6 +51,12 @@
             ]
           },
           {
+            "group": "Editorial",
+            "pages": [
+              "editorial/avid/avid-export-otio"
+            ]
+          },
+          {
             "group": "Autoshot",
             "pages": [
               "autoshot/autoshot-overview",
