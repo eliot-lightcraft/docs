@@ -1,0 +1,22 @@
+---
+title: 'Syntheyes to Unreal'
+description: 'Use SynthEyes to refine Jetset tracks for import to Unreal.'
+---
+
+## Setup and Script Export
+
+In Autoshot:
+
+- Under Run Values/Program, choose ‘Others’
+- Set the Clip In and Clip Out frames to specify which frames you want to extract.
+- Make sure to select the Scene Locator that was used in the take to have the 3D tracked camera and scene scan mesh show up in the correct position in Nuke’s 3D coordinate space.
+- Set the camera manufacturer and color space of the source clip. All Autoshot EXR files are automatically converted to ACEScg.
+- You can specify an AI matte processor if you want mask shapes for the human figures in the footage.
+- Next, hit Save and Run.
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/compositing/SyntheyesCameraObjectUnreal.png"
+/>
+
+Autoshot will then run the EXR file extraction and write out a Sizzle script file into the /syntheyes directory under the created sequence directory.

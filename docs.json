@@ -14,6 +14,12 @@
         "tab": "Docs",
         "groups": [
           {
+            "group": "FAQ",
+            "pages": [
+              "faq/faq"
+            ]
+          },
+          {
             "group": "Equipment",
             "pages": [
               "equipment/stage-checklist",
@@ -78,7 +84,8 @@
             "pages": [
               "compositing/after-effects",
               "compositing/nuke",
-              "compositing/multi-peel-syntheyes"
+              "compositing/multi-peel-syntheyes",
+              "compositing/syntheyes-unreal"
             ]
           },
           {
