@@ -80,8 +80,9 @@
             ]
           },
           {
-            "group": "Compositing",
+            "group": "Tracking and Compositing",
             "pages": [
+              "compositing/tracking-markers",
               "compositing/after-effects",
               "compositing/nuke",
               "compositing/multi-peel-syntheyes",
