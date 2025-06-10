@@ -1,0 +1,58 @@
+---
+title: 'Animated Character Export'
+description: 'Exporting complex animated characters with a simple technique.'
+---
+
+## Video Tutorial
+
+<iframe src="https://share.descript.com/embed/imV26YHg7xj" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+# Transcription
+
+​
+
+Hey guys, just talking about the workflow, uh, for the kind of re meshing and getting this into like a, uh, bone based animation here. So what I figured out is if you, I mean, this is how I did it before, I kind of ran through this with a screenshot, but, uh, to get the low res, uh, in Houdini, you just do the original Alembic time, shift it to the frame, you wanna frame hold.
+
+
+## Picking Animation Frames
+
+Um, if you have like a mouth opening or something like that, that's the better frame to do it. Otherwise you get like, you'll like. It'll kind of re mesh that mouth together. So sometimes I notice if you do like that frame and then you convert it, uh, you just do a convert node and that will make it, uh, so that this poly reduce works.
+
+
+## Adding Poly Reduce
+
+And then you put a poly reduce and then you're good. And then basically a point deform with the original. So this is the original point deform, and that's basically it.
+
+
+## Conversion to Bone Based Animation
+
+How to get the joints all over this, or the bones rather. So I reimport this as a Alembic just so it's faster. Uh, if you leave all this stuff, it's kind of long.
+
+So you leave that on skinning converter node, which is what, uh, was recommended in that email. Now the trick here is you don't see anything actually happen. You can't see it play. You wanna preview it, you can plug it into a bone deform and then see how it's actually gonna look. So this is what it looks like with a bone deform.
+
+
+## Exporting to Blender
+
+Now to get this into blender, I mean you probably could export this as used easy, but you want to get in blender, uh, and have it work with like locators or just your scene. Um, wrap. F-R-F-B-X doesn't give you the animation. You have to use RFBX character output. And the key here is you have to basically check this box.
+
+This is like the hidden box that I couldn't find. And if you don't do it, it it comes in the blender and it basically explodes. So yeah, remove scaling from joints will make it correctly interpreted and you can also turn off, uh, convert to specify unit system. 'cause sometimes it will come in, in a really large scale in Blender as well.
+
+So those are the two check boxes. Um. And you can also manually convert the access if you need to, but I don't think that's necessary. It's really just this one that if you don't hit it, it's not gonna go well. So back in Blender, uh, how it comes in. If you import it, I'm just gonna 
+
+disable this for a second and say,
+
+let's see, go to post mode, select all the bones, and I'm just 
+
+gonna delete this. So this is how it comes in. Normally it's like you have the mesh, but you have like all these huge bones kind of not very nice to look at. Uh, so what you can do is if you go to pose mode and just hit a and select all the bones, you can select the custom object.
+
+So it just gave like a little tiny ICO sphere, so it's easier to look at for the bones. And then you just, uh, right click and say Copy is selected. You can see the bones. But basically blender's just not good at visualizing it. So that's what it kind of looks like. Now, if you go back into object mode, we have just object with our bones on it.
+
+
+## Exporting to USD
+
+This is properly working. And then what you can do is, yeah, just select, I think I had to select, uh, hierarchy and then export that as USDC. So I did, uh, file export USD. And then animation selection only. Uh, that's pretty much it. So I haven't figured out the object locator thing yet. I have one in my scene object lo uh, with the proxy.
+
+I, I think I didn't parent the object to it 'cause I was messing around with this a few different times, so probably that's why it wasn't working. But, um, yeah, that was the workflow for joints. Uh, it's working pretty well as well. So this is, uh, 5,000. Actually it's less than that. 
+
+Only, yeah. A thousand versus actually, it's pretty low res, so, um, yeah.
+

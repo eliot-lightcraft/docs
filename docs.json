@@ -139,6 +139,12 @@
               "tutorials/unreal-workflows/importing-animated-takes"
             ]
           },
+            {
+            "group": "Houdini",
+            "pages": [
+              "tutorials/houdini/animated-character-export"
+            ]
+          },
           {
             "group": "Jetset Cine",
             "pages": [
