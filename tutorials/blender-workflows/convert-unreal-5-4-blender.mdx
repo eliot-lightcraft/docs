@@ -1,0 +1,101 @@
+---
+title: 'Convert Unreal 5.4+ to Blender'
+description: 'Unreal 5.4+ has an integrated and updated USD plugin can now handle converting most scenes to USD.'
+---
+
+## Video Tutorial
+
+<iframe src="https://share.descript.com/embed/qInppPXlBCb" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+# Transcription
+
+In this video we're going to be going through our Unreal to Blender pipeline 
+
+using the Unreal native USD importer and exporter. It's much improved after Unreal 5.4 and above.
+
+And so now it can actually export assets that are good enough that we can actually run them through the converter, and it brings along most of the items in a given scene, even a fairly complex one like this atmospheric house. So we'll go through the process and that way we can see how to do this now that the Omniverse plugin is no longer being updated.
+
+
+## USD Plugin Setup
+
+First of all, we're going to need to make sure that our plugins type in USD make sure that our USD importer is enabled. We're going to be exporting, but it turns out that the importer and the exporter for USD are in the same plugin. So that's fine.
+
+
+## USD Export Setup
+
+And next we're just going to go file export all, and we'll just go to our USD exports.
+
+I already made a folder and we're just going to remember to pick USD and we'll pick a name. Default name is fine. There we go. And go ahead and save. And make sure to save this in a separate folder. And we're just going to leave all these pieces in place. We're going exporting to Blenders. So the Z axis is fine for the up.
+
+We're going to actually add a couple things to make sure that it helps out the exporter. We're going to export our actor folders which will help because that way it exports some of the different USD meshes in a separate folder for each actor. And we're also going to bake our materials and instead of 1 28 by 1 28, we're going to go 2 0 4 8 by 2 0 4 8. Okay. That should be fine.
+
+Most of the rest of these things we can we'll leave as default and let's go ahead and export.
+
+So Unreal will start up exporting and it may take a little while to go through it. This current way of exporting will actually take up a lot less disk space than the old one. The old one this house exported to a hundred gigabytes of USD information and the new one is just a few gigabytes of information.
+
+We'll let this go through an export just as we've done previously. And then we're going to come back in with Blender and we're going to start importing the USD file.
+
+Okay, we have completed exporting so let's go over to Blender and start our import process. 
+
+
+## Create Asset File
+
+And we're using Blender 4.4. It should work with four three as well. All right, so we're going to start off and let's make sure we have our correct add-on.
+
+So add-ons. We need an add-on at version 120 or above. All right, which we have. So we can hit A to select everything X to delete, just to give ourselves a clean scene. Click N to open Autoshot. And we're going to unroll our Unreal to Blender and we're going to pick our USD asset that we just generated.
+
+
+## Setting up Asset Viewer
+
+So we built that in USD exports. There we go. And we will pick our house, worn night Lumen one. All right. I'll click accept. All right, and let's move this up a little bit 'cause we're going to want to actually see the process. So we'll drag that up again and we will hover our mouse over here and hit shift F1 a couple times to toggle over to the the asset viewer.
+
+And here we can see we actually have some assets from another Unreal to Blender conversion. So we don't need to worry about those right here. We're going to change the view to just the current file. And so that way we don't see any extra assets.
+
+Okay. And I'm going to open up my system console window over here just so we can see what's going on. I'll move it out of the way.
+
+
+## Making Assets
+
+All right, I'm just going to click make assets and it's going to start working on making our assets in the browser.
+
+I'll move this over here. So it's going to import all the different USD assets.
+
+
+## Rendering Asset Thumbnails
+
+Okay, and here you can see. Is going through it has generated all the assets and what it's going through now is it's going through and rendering all these different assets and rendering the previews for all of these. So you can see it's going through and individually rendering all the different pieces of it. It takes a little while to do this and you want to make sure not to save the file until these previews are done. Otherwise, it will not go through and complete the previews so you, you can go through and you can see where it's generating previews.
+
+At any given time, there's all the books.
+
+Quite a few assets in this particular scene.
+
+All right. And so when we can scroll up and down, we can see that all of our assets have rendered.
+
+
+## Pack Textures
+
+We can go ahead and go to file external data pack resources. There we go. It's just to check and hit save. All right, so we have now saved our assets and we're going to hit Control N for New and once again in A X to delete everything and make for a clean scene go to Autoshot.
+
+And Unreal to Blender.
+
+
+## Making the Scene
+
+Once again, we're going to pick our same USD file. But now we're actually going to pick our asset file, because this next step is going to reconstruct our scene from that asset file. So now we can actually go over and make scene. And so we'll bring our window over here so you can see all the different processes of it importing the different USD positions, and then it's going to repopulate the scene.
+
+Instead of from the original USD file, it's going to repopulate it from our generated Blender assets. So then we have a correctly constructed Blender scene without any duplicated textures or objects or materials, but with all the different assets loaded in at the original places, they were in the Unreal scene.
+
+And it'll take a second to link all the assets. Okay. So here is our atmospheric house, and we can of course click Z and go into our material preview. going to take a little while. It's a big scene.
+
+There we go. Here is our scene, and we can go into our scene and see that the interiors have been created correctly.
+
+All right. And we're in our material preview, so everything looks a little bit bright. So let's let's go over into our cycles engine. And we'll go to GPU and it'll hit de-noise.
+
+There we go. So there we can see our complete scene has is working now
+
+and is brought through the materials and textures largely intact.
+
+All right. And the lighting level's a little bit different 'cause we translated it from a Unreal over into Blender. But as you can see, as the path tracer works through it, it'll go through and generated a more detailed rendering of it. And you can see that our materials have largely come through intact.
+
+There's certainly some tweaks, but most of it's here. All right.
+
