@@ -70,16 +70,35 @@ Turn on the Cinematic Compositing switch in Jetset, and verify that the origin a
 2. Add a marker to each clip to name the shot (usually prefix_scene_shot, e.g. Pathways scene 1 shot 10 = PTH_001_010)
 3. Export the timeline using OpenTimelineIO
 
-### Processing shots
+### Processing Shots (Timecode Match)
 1. Point the Cine Source directory at each individual shooting media shooting day, and set the Take Selection Day to match the shooting date.
 2. Click 'Scan' to rapidly scan all the cine files in that directory and read the timecode. The Jetset takes will automatically be matched.
 3. Use the Shots->Load Timeline to load the OpenTimelineIO file. This will automatically populate the shots with the named shots from the timeline.
 4. Load the generated CSV file created from the previous step to see the list of shots, their shooting days and takes, and their USDZ files used.
-5. Select the shooting day and take of one of the shots. Configure the Run Values to link the blend file if used. 
-6. Select Shots->Quick Render to render the single shot. Open up the transcode file.
-7. Select Shots->Quick Render and choose the 'All of same USDZ' choice to load all of the shots that used the same USDZ file as the currently selected shot.
-8. Click the Pick Color button and pick a greenscreen color from the transcode file.
-9. Click *Render* to batch render all of the shots. 
+5. Select the shooting day and take of one of the shots. 
+6. Configure the Run Values to link the blend file if used, and specify the manufacturer and LUT of the source files (e.g. Sony and S-Log3) 
+7. Select Shots->Quick Render to render the single shot. Open up the transcode file.
+8. Select Shots->Quick Render and choose the 'All of same USDZ' choice to load all of the shots that used the same USDZ file as the currently selected shot.
+9. Click the Pick Color button and pick a greenscreen color from the transcode file.
+10. Click *Render* to batch render all of the shots. 
+
+### Processing Shots (RAW)
+1. Generate proxies from the RAW files using the vendor's preferred proxy generation tool. The proxy files should have an identical name except for the .mov or .mp4 suffix.
+2. As before, point the Take Selection day to match the shooting day of the Cine file directory (Cine files are frequently stored on a per-day basis.) 
+3. Point the Cine Source directory at the directory with the RAW files. This will enable the Cine Proxy directory line.
+4. Point the Cine Proxy directory at the directory with the proxy files, and click Scan. 
+5. Configure the run values as above; with RAW files there is no need to set the manufacturer and LUT of the file.
+
+### Processing Shots (Digital Slate Match)
+1. As before, set the Take date to match the Cine source files to be scanned, and configure the Cine Source directory as above for either log or RAW files.
+2. When clicking Scan, check the 'Use Markers' to use machine vision to search the cine files and the Jetset files for a match, and to set the time offset. Note: this can be quite slow compared to the timecode based matching.
+
+### Manual Pick for Unmatched Cine Shots
+1. If a take does not automatically match to a Cine file, and you know which file it should match to, you can click 'Manual Pick' and select the Cine Source file. (In the case of RAW files, pick the proxy file.)
+2. If the Cine Offset cannot be manually calculated, use [the manual method](https://docs.lightcraft.pro/tutorials/jetset-cine/setting-cine-offset-manually) to set the Cine Offset so the take can be processed.
 
 ### Verifying shots
 1. Open up the resulting rendered preview in the /{SHOTNAME}/preview folder to verify that the keying and tracking is correct.
+
+### Refining Cine Offset
+For shots using a timecode match, the Cine Offset time can be imprecise. To better align a shot in time, you can select the shot in question, and click the 'Refine Offset' button next to the Cine Time Offset number. An optical flow analysis will run on the cine footage and the Jetset footage, and the flow differences minimized. Then the shot can be re-run separately with the 'Save and Run' command.
