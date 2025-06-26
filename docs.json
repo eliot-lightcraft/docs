@@ -75,6 +75,7 @@
           {
             "group": "Jetset Cine",
             "pages": [
+              "jetset-cine/production-checklist",
               "jetset-cine/focal-length-override",
               "jetset-cine/reference-cine-tracking"
             ]
