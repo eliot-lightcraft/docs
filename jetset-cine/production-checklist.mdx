@@ -26,8 +26,8 @@ Verify that the Tentacle Sync timecode going into Jetset and the cine camera are
 Next, calibrate the cine lenses one at a time, processing each calibration with Autoshot as per the reference video.
 4. Save the lens files with a unique description (e.g. project_camera_date_focallength.)
 
-### Set Origin and scaling
-[Jetset Origin and Scanning Reference](http://localhost:3000/tutorials/jetset/introduction-jetset)
+### Set Origin and Scan
+[Jetset Origin and Scanning Reference](https://share.descript.com/view/AqtB2jCnKio)
 
 1. Add practical elements:
 Before scanning or setting your origin, add all of the practical elements to the scene. The iPhone tracking will reference natural features in the scene, so you want to add all the non-moving physical elements that will be in the scene.
@@ -41,6 +41,17 @@ Change to the Scan tab and click Start to start scanning the set. For the Jetset
 Using a separate iPhone, it's a good idea to get an 'overall' scan of the set, including the greenscreen and the Jetset origin marker. This scan can be used in post production to augment the Jetset scans for challenging shots.
 6. Enable Cinematic Compositing:
 Turn on the Cinematic Compositing switch in Jetset, and verify that the origin and scan are still correctly located in the incoming cine video.
+
+### Keying and Matting
+[Keyer Reference](https://share.descript.com/view/AqtB2jCnKio)
+1. In the main menu, choose the Keyer panel and pick the type of keyer in use (green in this example.)
+2. Click the colored circle to toggle Jetset into the color select mode
+3. Click and drag on the desired green color to use as the background reference color. The keyer will work in real time so you can see the effects of choosing different colors as you drag around. Release to select the color.
+4. To set the garbage mattes, click the 'Start' button under the 3D mattes.
+5. Move around the greenscreen to get a clear yellow outline on the vertical plane of the greenscreen. Click the '+' button to add a 3D matte.
+6. Aim toward the floor, detect the outline of the greenscreen while the floor is detecting, and click the '+' button to set a floor matte.
+7. Click the 'Edit' button and drag the silver balls around to make the 3D garbage matte best fit the greenscreen edge.
+8. Click 'OK' to finish and exit.
 
 ### Take recording
 [Jetset Cine with Digital Slate](https://docs.lightcraft.pro/tutorials/jetset-cine/jetset-cine-blackmagic-braw)
