@@ -45,6 +45,7 @@
               "create-usd/blender/creating-with-megascans",
               "create-usd/blender/scene-locators",
               "create-usd/blender/object-locators",
+              "create-usd/blender/holdout-mattes",
               "create-usd/blender/blender-export-usdz",
               "create-usd/blender/recommended-video-formats"
             ]

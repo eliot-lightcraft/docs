@@ -1,0 +1,39 @@
+---
+title: 'Holdout Mattes'
+description: 'How to use 3D scene geometry to create _holdout mattes_ for use in Jetset.'
+---
+
+## Use Cases
+
+'Holdout Mattes' are used to reveal the live action camera image in the middle of a CG scene. They are frequently created to match the size and shape of an existing piece of the physical set. Then Jetset will 'hold out' that portion of the CG imagery and let the live action imagery be displayed in the composite.
+
+## Defining in Blender
+
+Holdout mattes are defined in Blender by assigning the 'holdout_jetset' prefix to the 'mesh data' of an object inside Blender. 
+
+Please note that the mesh data is located *inside* the normal object name! In the example below, the mesh object 'Suzanne' has an internal mesh datablock called 'holdout_jetset1'.
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/blender/holdout-matte-blender.jpg"
+/>
+
+The use of the 'mesh' datablock is so that the object itself can have a normal name, while the underlying mesh datablocks use the 'holdout_jetset*' tag.
+
+Holdout matte objects are exported along with the rest of the Blender USD scene. 
+
+## Use in Jetset
+
+For a Holdout Matte to be active in Jetset, the background must be set to 'Camera':
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/blender/jetset-camera-background.jpg"
+/>
+
+Once this is set and the USDZ scene is loaded, the holdout object will reveal the camera through the CG image:
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/blender/holdout-matte-jetset.jpg"
+/>
