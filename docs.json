@@ -53,6 +53,7 @@
           {
             "group": "Unreal",
             "pages": [
+              "create-usd/unreal/object-locators",
               "create-usd/unreal/installing-lonet",
               "create-usd/unreal/applying-ai-mattes-unreal"
             ]

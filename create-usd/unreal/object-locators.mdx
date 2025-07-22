@@ -1,0 +1,63 @@
+---
+title: 'Object Locators'
+description: 'How to use object locators to specify objects in the Unreal scene that can be moved interactively in Jetset.'
+---
+
+## Object Locators
+
+Object locators are empty 3D nulls that Jetset uses to let users interactively move objects in the scene.
+
+Object locators use the prefix 'objectloc_' followed by a user-specified name, for example **objectloc_Actor_Bob**. 
+
+No spaces are allowed in object locator names.
+
+## Adding Object Locators
+ 
+In Unreal, it's not possible to parent static meshes to the Actor components that we used for scene locators. Instead, we will simply name a static mesh directly, and parent any other meshes needed to that named object locator.
+
+Select a static mesh that you wish to use as an object locator.
+
+F2 to rename the empty, and type 'objectloc_My_Custom_Name.'
+
+The result should look like this in the Outliner.
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/unreal/static-mesh-object-locator.jpg"
+/>
+
+Export to USD and convert to USDZ as per [usual practice.](https://docs.lightcraft.pro/tutorials/unreal-workflows/export-usd-unreal-plugin)
+
+## Using Object Locators
+
+In Jetset, after importing the USDZ file, navigate to the 'Object Move' tab. Jetset will parse the list of objectloc_* nulls in the current USDZ file, and provide a list. 
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/unreal/object-locators-unreal-jetset.jpg"
+/>
+
+Highlight the object you wish to move, in this case 'cube'. 
+
+You can then drag the object around on the horizontal plane with your finger. 
+
+- Tap the visibility icon to show or hide the object.
+- Tap the rotation icon to interactively rotate the object.
+- Tap the Z icon to interactively move the object up or down.
+- Click OK when done moving the objects to return to the main screen.
+
+Object locator positions are stored on a per-take basis in the take metadata, and can be viewed with the 'i' button in Autoshot next to the currently selected take.
+
+### Optical Origin Marker Detection
+
+While in the Object panel, if Jetset sees one of the [Lightcraft origin markers](https://docs.lightcraft.pro/equipment/stage-checklist#vertical-origin-target-stand), the 'Align to Marker' button will light up.
+
+If the user taps that button, the currently selected Object Locator will align to the optical marker at its origin.
+
+This is particularly useful for rapidly locating CG characters and objects within a scene.
+
+### Object Locator Saves
+
+Object locator positions are stored at the moment of recording a take in the take's JSON metadata. 
+
+The object locator metadata can be seen in Autoshot with the 'info' button next to the selected take after [syncing takes to your PC/Mac.](https://docs.lightcraft.pro/autoshot/sync-panel)
