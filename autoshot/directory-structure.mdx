@@ -1,0 +1,55 @@
+---
+title: 'Output Directory Structure'
+description: 'Autoshot has a flexible system to create an output directory structure to match your VFX pipeline.'
+---
+
+## Default Output Directory
+
+Note -- this was originally created to match the ETC 'Pathways' folder structure, but it's a well structured file and folder naming convention.
+
+### Definitions
+
+~~~
+{SEQ} Sequence number e.g. PTH_001
+{SHOT-CODE} Shot code composed of sequence + shot number e.g. PTH_001_170
+~~~
+
+### Directories
+
+~~~
+/{SHOT-CODE}
+  /3D
+    /BlenderFiles
+    /BlenderRender
+      /v00
+  /Editorial
+    /Plate
+      /v01
+    /Proxy
+      /v01
+~~~
+
+### Example: PTH_002_210
+
+~~~
+/PATHWAYS/              
+  /PTH_002_210/         
+    /3D/
+      /BlenderFiles/
+        /PTH_002_210_v001.blend
+        /PTH_002_210_v002.blend
+      /BlenderRender
+        /SLP_v001/
+          /PTH_002_210_SLP_v001.mp4 (Slap Comp)
+        /BRN_v001/
+          /PTH_002_210_BRN_v001_01001.EXR (Blender Render)
+          /PTH_002_210_BRN_v001.mp4
+    /Editorial/
+      /Plate (ACEScg EXR image sequence from camera original)
+        /v001	
+          /PTH_002_210_PLT_v001_01001.exr
+      /Proxy (sRGB JPEG Downsample of Plate)		
+        /v001
+          /PTH_002_170_PRX_v001_01001.jpg
+          /PTH_002_170_PRX_v001.mp4
+~~~

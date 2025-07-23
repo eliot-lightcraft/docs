@@ -71,6 +71,7 @@
               "autoshot/folder-setup-panel",
               "autoshot/sync-panel",
               "autoshot/take-selection-panel",
+              "autoshot/directory-structure",
               "autoshot/paste-file-path-mac"
             ]
           },
