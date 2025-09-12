@@ -1,0 +1,315 @@
+---
+title: 'Timeline Processing'
+description: 'Autoshot can now batch process shots using an OpenTimelineIO file exported from most major nonlinear editors. Export named shots into VFX industry-standard folder and file naming structures, and batch process dozens of slap comps in an hour.'
+---
+
+## Video Tutorial
+
+<iframe src="https://share.descript.com/embed/mh8MX2F30DK" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+# Transcription
+
+In this tutorial, we are going to go through Autoshot's new timeline processing functions. We can now name shots in your non-linear editor via timeline markers, and we can then export an OpenTimelineIO in this case from Resolve. But Avid now has this as well.
+
+Now we can actually batch process large numbers of shots at a time, and we can include automatic slap comp creation, automatic set linking, library overrides, we'll go through defining a shot structure, and be able to process dozens of shots in a short period of time.
+
+We are going to be working with the shots that we did with the ETC Pathways project.
+
+Make sure to check that out. I'll put that in a link below. It's a great project showing the future of blending traditional production with AI assisted background work. So let's get started.
+
+
+## Defining Shot Names Via Timeline Markers
+
+So as we come into our timeline, you can see there's the camera original file name there. We're going to set the playhead at the beginning of the clip, and click add marker. Now we're going to enter the shot name into the name or into the notes category of the marker.
+
+In this case, it's going to be the PTH prefix, followed by the sequence number, followed by the shot number. So we use the first three tokens in the notes to name the shot. The ones after that are ignored. In this case we're gonna add a couple things that are useful for information, but those will not be used for the shot naming.
+
+Okay. And then once we have done that, we also need to add in the clip name into the actual marker name. So in this case we are copying the cam, original file name BO oh four et cetera CO 18 into the name of the marker. And this is what will let us correlate the file name of the actual camera original to that particular shot name.
+
+Here we're going to go through and export an OpenTimelineIO file. We'll highlight the timeline we want to export, and then come down and click OpenTimelineIO OTIO. Great. And then we can actually export an OTIO file and then we can read that file into Autoshot.
+
+
+## Clearing Shots
+
+And in Autoshot. In this particular case, we are going to be parsing multiple directories since frequently a shot will have multiple days of takes. So we'll show you how to go through and do that. We want you to start off with a clean slate. So we are going to go up to shots and clear and we'll just go project wide. Okay. It's going to clear up all of our existing shots.
+
+Okay, great. So I'll clear that out.
+
+
+## Scanning Cine Source Directories
+
+Next, we're going to want to scan all the different cine source directories by day. We have two days in this shoot, so we're going to look at four 18 and we're going to browse and pick. Our Pathways, and here's our first day of shooting four 18, and there's the media directory. And again it can search under these directories. Like these are all the sub directories for the camera originals that were on this.
+
+But we're going to pick the top level directory so it can scan underneath that. And we're going to click scan and we're going to go by day, because we just want to scan that day's takes and ignore our cache just to make sure we're going from a clean slate click scan and you can see how quickly it's going through.
+
+In this case, we're doing time code based matching between the Jetset takes and the camera originals. We had a Tentacle Sync connected to both the Jetset iPhone and to the Cine camera we were using on the shoot. So the time code matches and it makes for very rapid matching between the Jetset takes and the Cine camera takes.
+
+Okay, so we found all the matches there. Let's go to day four 19 again. We're going to go up and browse and let's go Pathways four 19. Pick our media folder. Again, we're going to scan and again, pick the day and let's ignore our cache. There we go, and it's going to go through and scan all those files and look for timecode, correlations, and matches.
+
+Now it's going through and matching them to all the corresponding Jetset takes. And again, this is a lot quicker than having it doing the optical scan of the flashing marker codes. They can both work; it's just that the time code based matching is really fast.
+
+
+## Importing OpenTimelineIO File
+
+Okay, once we have that, we're going to import our OpenTimelineIO. We're going to going to go to shots and import from OpenTimelineIO. We're going to browse and pick our OTIO file this case in timelines. We're going to pick this Pathways OpenTimelineIO. And a couple things we want to be careful of.
+
+We want to actually go for project wide in our import and we want to add a 10 frame header, a 10 frame handle to each side of the imported shot. This is very commonly done in visual effects to give each shot a few extra frames on the beginning and the end. So we're going to add the handles and we're going to click import.
+
+Okay, so now we are going through, it's loading 86 shots worth of information and now it's going through and it's creating these shots. So it goes through and finds the takes information for each shot that we need to know and creates the shot in in Autoshot and updates the user interface and see here now we can actually see that if we go to a take that has an associated shot.
+
+I think scene one, take five has an associated shot. Yeah, there we go. We can see that the shot appears and some of them have multiple shots. On this particular case, we have Pathways 0 0 1 0 20, so sequence one and shot 20. And as we go through some of the others, not every take has a shot. They didn't use every take, but the ones that do have that again, scene one, take five. There we go. There's our shot name. Okay.
+
+
+## Quick Render
+
+So now that we have the shots, we don't actually want to go through those one by one. So we have a new feature that lets us process these shots in batch and also make slap comps and copy the shots into a visual effects friendly folder structure.
+
+And that is called quick render. So we're going to bring this up and in quick render it's going to default to a view where it just shows the individual shot from that take. 
+
+
+## Viewing Project Shots
+
+And let's actually take, go take a look at the project view so we can see all the shots in the project.
+
+So we can see a whole ton of shots here. And this is the list of shots that were in, in that project from beginning to end. And if you're trying to import these into Shotgun, it turns out that we also create a Shotgun folder from this. If you go down to our timelines then we have actually created a Shotgun csv file that you can load into Shotgun.
+
+We're not going to be doing this at this point, but I'll just for reference. So here's our entire list of the Jetset shots in that, that we're going to process and it, for each one it shows you, for, say, Pathways oh 1 0 20. It shows you which day it was shot on and the take, and it shows you which USDZ file was used.
+
+
+## Picking First Shot in Sequence
+
+And in this case, the library. Library, no front wall. And that is important information because we want to configure one of the early shots in this sequence, the way we want the rest of them to be processed. And shot O 10.
+
+I, I actually know from experience we can't see very much in the shot. We'll actually start with a 1 0 20 and let's actually just go with the take. All right. In 1 0 20 we are going to want to pick the day, the 18th, and the scene one take oh five, which is actually the one we already picked.
+
+But in case you have to look around for which one it is, this is how you find it. Okay, so scene one, take oh five. So let's close that for now.
+
+
+## Configuring First Shot
+
+And we want to configure all these pieces, so that when we do the batch processing, it's correct. So we're going to pick the scene, blend file, and in this case uh, for the library because as we can see, our library, no front wall. We actually want the library Blender file we're going to use.
+
+In this case, the library pathway is final, so we're going to pick that . Then, it will automatically match the scene locator that we used in the the shot, the scene loc center to the scene locator in the Pathways file. okay.
+
+
+## Linking to Scene Blend File
+
+And we're going to want to link scenes in this case.
+
+And we're doing this for very specific reason, because that library final file is actually quite large. And if we just copy the contents into each individual shot file, that'd be a huge waste of space and we wouldn't have a way of updating the top level library file. We're actually going to link the scene.
+
+And that means, number one, that our individual Blender shot files will be quite small because they're linking most of the data. And two, that when you update the library's Pathways final Blender file, all those changes will automatically ripple through into your individual shots. And this is a real key piece of production.
+
+You want to link your top level scenes into your shot files so you can easily update these things.
+
+
+## Configuring Frame Pull Color Space
+
+We can, we'll leave this as extracted EXRs in the original format. For the gamma and color LUT, this was shot in Apple Log.
+
+So we're going to set our gamma and color LUT to Apple, and we're going to want to bring these as always to ACEScg EXRs.
+
+We're not going to be using an AI roto model on these. So we won't worry about that.
+
+
+## Configuring Camera Plane
+
+We do actually in these, want to set our depth. By default our camera image plane is set using the onset LiDAR that can result in a camera image plane that can move back and forth quite a bit. And since these shots frequently are intersecting with the live action scenery, it's easier to just set the depth to just to a meter distance for all of them. And then we can adjust from there. Okay, so once we've got the basic setup for this initial shot, we can actually go up to shots, quick render, and let's try processing it. So we'll just pick our take.
+
+
+## Configuring Shot Directory Structure
+
+We are going to tell it to copy to the the results folder in this case. I'll show you where that's at. I've created a new folder called Shots. We'll pick that folder and we can also configure how we are going to create our shot folder structure here in settings. And here you can see how it's going to be naming this and what the hierarchy of files this is going to be.
+
+And this can change from production to production. This particular case, you can see our shot name and we can see that we're going to put in our Blender file into the 3D subdirectory under Blender files, and then our render output will go under the Blender render.
+
+Likewise, our camera shot is going to go into editorial plate. The proxy will be an editorial proxy. The view port render will go into Blender, render slap. And so we'll be making slap comps there, and then we're going to be generating a set of
+
+sRGB proxies for use in Blender, and this is where those will go. So again, you can configure these for your own project. This is fine for what we're doing now.
+
+
+## Rendering First Shot
+
+All right, let's go ahead and let's try rendering this. We're just going to click run and it's going to go through the process and extract the files from the original Apple log files and generate both EXR file sequence and also generate our proxy JPEG sRGB sequence for use in Blender, and it'll go through that reasonably quickly.
+
+And here it's going to actually start rendering. You can see it's going through rendering all the Blender frames. Once it's created, the Blender file, it is actually automatically batch rendering the slap comp using the image on the internal image plane, and a built-in keyer we have in Blender.
+
+
+## Checking Blender Render File
+
+Okay, so it's created a Blender render file. And if you just start selecting one file as we did, it'll pop up in the Blender file automatically. And in this case we can actually see that we're mostly occluded here.
+
+
+## Viewing Slap Comp
+
+You can actually very quickly check to see how the files is coming out.
+
+If you look in our, here's our shots directory, and then we're going to look at Pathways oh 1 0 20, and we can look at our Blender render, and there's our slap comp as we saw before. And then we can double click our slap comp and take a quick look and I can see our 3D bookshelf is intersecting and also we can see that our key isn't quite right. So the bookshelf we'll handle it in a slightly later area when we do library overrides. Let's fix the key because we're going to be setting this keyer color for the next 20 shots.
+
+So we want to get that about right. So we'll exit from here and I'm going to exit from here right now as well.
+
+
+## Viewing Source Proxy
+
+Okay, so let's go down to our created proxy.
+
+We can see that the directory has all of the sRGB JPEGs that we created for this, which is what Blender will read as an image sequence for its internal rendering. And we can also see that we added those together into an MP four file. So we can double click that.
+
+This is just the live action version, the proxy live action version of the shot, so you can actually see what's going to be in the shot. Okay. As we're moving. Great. So we set the key and it was too light, so it's a little bit darker here and here. So we're going to do a color pick of the key here, it's considerably darker.
+
+It's going to look down here to see if there's any much darker spots in the scene. And down here is actually a little bit darker. Okay. So I'm going to move that over here.
+
+
+## Picking Keyer Color
+
+I'm going to briefly move my Autoshot window back out of the way. And so we're actually going to pick our color here. So let's go ahead and under our keyer settings, let's do pick from screen and we're going to come over here and we're going to pick this darker area.
+
+There we go. And our keyer color going to click. Okay. And let's go through and process that. I'm going to just run the same thing again. I'll exit out of our. This piece of it, and it's just going to do the same thing we did before, and it's going to go through and just render the entire slap comp but now with our updated keyer settings.
+
+
+## Checking Slap Comp
+
+Okay. And again, instead of looking at the Blender file, let us look at our slap comp under 3D. And we're getting, still getting a little bit of dirty key, but better than it was.
+
+Okay, that's better. And we can do some more per shot cleanups if we want to do that. But let's go ahead and start the batch processing.
+
+
+## Selecting All Shots by USDZ
+
+We're going to come back to here and instead of going from our take level, we're going to actually go, we're going to pick same USDZ. And because we have set up our configuration to have our library, we want to have all the same USDZ files that use the library no front wall usdz from the same library Pathways project. So we actually want to process all those at the same time.
+
+And so by picking same USDZ, now we're loading all those from Pathway Series one shot 10 all the way down to series six shot 10. And again, we're going to use the same pieces here.
+
+
+## Batch Processing Shots
+
+So we're just going to click run and we can see we're going to start processing a lot of shots.
+
+And it's going to start off with the very first shot and it's going to do all the extractions. It's going to basically do all the pieces we did for the shot that we just processed, except now it's going to process all those shots and generate all those Blender files and all those slap comps.
+
+And then we can go through those and do any fixes that we need to do on a per shot basis.
+
+Okay, so we can see that it's finished processing a few shots. So let's go take a look at the first four shots in the pipeline.
+
+I'm going to come over here and here's our shots. Here's Pathways. Oh one. And let's look at our slap comp. All and it looks like the camera is in a is behind the CG here, so we're going to probably have to look at that. Let's take a look at our Path two. Again, we're going to look at the slap comp and this is just a great way we can go very quickly to see if things that we're going to need to fix in these.
+
+There's our shot. We're going to need to fix how the intersection of the live action of CG works because we have CG bleeding through the live action, and we'll do some key fixing. All right? That's fine. But the basic shot looks like it's working. And let's go back through Pathways is 30 and once again, we're just going to look at our slap com.
+
+And sometimes you get lucky and all your slap comps just work. Other times we're going to have to go through and correct a bunch of these things. So here are the, okay. You're going to have to fix the gear and fix a couple other things. All right. That's fine.
+
+
+## Correcting Slap Comps
+
+Let's go back to the first one and let's just start going through and showing how to fix stuff.
+
+We'll just close this. And it has created our 3D files and our Blender files, it has created a Blender shot file, which is named after the the same shot that we set up back up in the non-linear editor.
+
+Pathways sequence one shot 10. So let's go ahead and open that up.
+
+And we're working with Blender 4.4.
+
+Okay. So we can play through our timeline and clearly the camera, we'll just, swing our swing on around our camera.
+
+Let's go highlight our image plane. Our image plane is clearly in, in the middle of the bookshelf. All right, that's fine.
+
+
+## Setting Library Overrides
+
+So we're going to want to remove a couple of objects in the way, and we're going to start seeing how we do that.
+
+And here we can see how our scene is set up. It has linked to all of the collections that were in our original library file. And these show up as linked sections over here. You can see it by the little link file, the little link icon over here.
+
+These are collection instances; we may actually move to straight link collections, so this may look slightly different. But the key item here is you can see the link icon and that tells you there is a linked collection. So let's take a look at the one we're going to have to hide. If we just highlight the bookshelf and hit a hide the entire, then all the bookshelves go away.
+
+That's not what we want. . Let's unhide those. And what we actually want to do is only only hide a section of that bookshelf. How do we do that? Since it's a linked collection, we're going to actually click on this and our bookshelves and right click on that, and we're going to do a library override and create that selected library override.
+
+And now all of a sudden we can actually pick individual objects in that bookshelf so we can pick, and actually it turns out the books are going to be something else we have to do this with. So we're going to right click on the books and we'll do a library override and we'll make selected.
+
+
+## Hiding Individual Objects
+
+And then now we can select individual items and books and we can hide them, right?
+
+Let's go through and here's our camera frustrum, so we can get a good idea of the things that are in the way. Hide this. And I think we still have to hide part of the hard general structure. Okay? Right click. Library override. Make selected. And then we can hide that wall and the rest of the wall is still there.
+
+Now our camera has a clear field of view. Let's hide this little fellow as well. Okay. And now we can actually look directly at our camera . This area over here was actually in the original frame. It's supposed to be looking at an object from inside a bookshelf, but we just want to use the real bookshelf that was in the actual shot.
+
+So there we go. So we can actually see our shot come together. All right, let's go ahead and and save our file.
+
+
+## Re-Rendering Slap Comp
+
+Then we can actually go hit N and we're going to go to Autoshot. And let's actually do a fast Viewport render. So before we do that, let's take a look at our Blender render file.
+
+By default the output is set to a directory just below the current Blender file directory called Blender Render. And it will generate a Blender render file as an EXR. And we don't actually want to make EXRs for our fast slap comp, that's excessive. Fortunately, when we click Fast Viewport video, we can see this shows up and it has changed this to Blender Render now into the slap comp directory.
+
+And it is making a slap comp and directly writing it to the MP four file format, which is exactly what we want for a slap comp. So it's going through the process of writing, rendering, all that. Alright, so that's done and let's go and look at our finished slap comp. So we're going to go back up to Pathways and in 3D we're going to look at Blender Render.
+
+And I am going to look at our slap comp and let's check it out again. And before all we saw was a library wall. Now we see it's the correct shot and it's still named correctly. It's in the correct location with the correct naming. Okay, so let's let's hit save. Let's exit that one. So there is one slap comp done with our shot file updated. Let's go to the next one. And let's open up Blender files on sequence one shot 20. Again, we're going to pick Blender four four.
+
+And again, it looks like we're looking through the wall for the most part. And then at the very end you can see our flute player. Okay, so we have a couple of things we're going to want to do again, we're just going to move out to the file and note that we're shooting through the library folder again.
+
+In this case let's let's go ahead and find our library books, this books and right click and do our library override. And we know we're going to need to do it to the bookshelves as well. And right click and library override make selected. Okay, so now we can go click here, click H to hide, click r, bookshelves H to hide, and click our general structure, right click library override.
+
+
+## Library Override Auto Update
+
+And the nice thing about the doing these library overrides is when you update your central file and you update the links, these things will still remain hidden. You only have to do this once for every shot file. And that's the really efficient thing about the library override system is you can make local changes to your shot files on a per shot basis and still update the top level file and have those changes ripple through.
+
+So let's go ahead and hide that piece. Go back to our image plane and let's see how this, and go back and play the shot. Okay, so now we no longer have any 3D intersections.
+
+
+## Setting Slap Comp Keyer
+
+We're still going to want to clean up the key a little bit. To do that, let's go over to our shading. And again, remember this is a temporary key.
+
+We just want this for the slap comps. The actual production key will typically be handled elsewhere. So let's go and highlight our image plane and we're going to hit period to zoom in on this so we can actually see it clearly. Okay. Here is our flute player. And let us fix the key. I'm going to use a couple of shortcuts that are part of Node Wrangler.
+
+And if you need to enable node wrangler, it's over in preferences add-ons, type in node node Wrangler. Let's turn that on. There we go. It's a really use, useful set of shortcuts as we're going to see. And so we've selected our, it's not our camera. We've actually selected our image plane, and so we can see the shader that is on the image plane.
+
+And this is, has a real time keyer in it. We don't have quite the right color selected, so let's hit control shift click on our image sequence that is coming in. And that is a sRGB image sequence that Autoshot automatically created earlier in the proxies directory.
+
+And now that connects this node directly to our output. So we actually have the the color of the green. So now we can actually click on our key color, pick our eyedropper, and let's see how that worked. I'm going to hit control shift left mouse button on there, and go back and reconnect our shader to this and let's play through it.
+
+And let's see if our key is working working better. Now that looks a lot better there and it's looking pretty clean. All right. It is easily clean enough for a slap comp. All right. And that should do it. Okay. Then we can hit save .
+
+
+## Rendering Slap Comp
+
+We'll go to our layout view.
+
+Make sure that we are, have the view port locked to the camera by hitting the num pad zero key. Or if you do not have a numpad, you're just going to go to view and cameras and active camera and. View. Okay. View cameras and set this as the active camera. All right. And then we once again are going to hit n to pop open our Autoshot panel, and we're going to hit fast viewport video again.
+
+You can see as it goes from the default. If you would hit an image render, with a traditional rendering, it would go to correctly to the Blender render as an EXR file. We are doing something specific. We actually want a slap comp. We're just going to hit fast viewport video and it's going to come up and automatically set our output down here to our slap comp directory and to our slap com file name in the MP four file format.
+
+So it's going through very quickly and rendering our slap comp for us. And yeah, we'll have some key key problems, but the focus on the slap comps is to get it all together so you can actually see how all the pieces are going to come together and if there's anything else that needs to get fixed.
+
+Great. So then we can check let's say save exit out of our Blender file and we can take a look at our newly generated slap comp.
+
+All right. And there is our slap comp with a clean key and a clean integration between the live action foreground plate and the CGI background library. And we'll just to, for completion, we'll go through Pathways 0 1 0 30.
+
+
+## Correcting Additional Shots
+
+Once again, we're going to go through and look at our slap comp first to see if anything is required due to this.
+
+There we go. In this case, our key needs some fixing and there's something in the background. So let's go ahead and again, we're going to go back up to our 3D our Blender files and double click on this.
+
+Go to Blender four, four.
+
+All right, so we've got this and we've got a object in the scene. I'm not quite sure where that came from. Okay, so let's go ahead and correct that. And we're going to do instance bookshelves and library override. And, the process by now. Click on the vending object. We can show where it is in the hierarchy with a period ecosphere.
+
+And we're just going to hide that. And let's see. Look, if there's anything else going wrong in here, going to look through the shot. Okay. So we need to fix the key. So let's go back over to shading and highlight our image plane. Zoom to that control shift. Click on this to get the pure green screen.
+
+Set our key.
+
+Do a darker spot on the key. Check the key, and I'm just hitting space to, to play through the sequence. We can hit number pad zero, so we can actually look at it through the actual camera view. There we go.
+
+All right. That is a good shot. Okay, so now once again, we are going to hit N and we are going to do our fast view port video.
+
+So the basic idea here is that we can generate these slap comps very quickly. And these slap comps are actually the shot file for the actual sequence. Over time, these Blender files will be refined to incorporate updates to the 3D background files and additional pieces such as re-lit foreground files.
+
+But we have generated the actual production shot file for each individual shot.
+
+And so that way you can go through quite a large number of shots very quickly with this piece of automation.
+

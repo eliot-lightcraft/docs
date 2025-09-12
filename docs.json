@@ -80,7 +80,8 @@
             "pages": [
               "jetset-cine/production-checklist",
               "jetset-cine/focal-length-override",
-              "jetset-cine/reference-cine-tracking"
+              "jetset-cine/reference-cine-tracking",
+              "jetset-cine/embedding-audio-timecode"
             ]
           },
           {
@@ -159,7 +160,8 @@
               "tutorials/jetset-cine/setting-cine-offset-manually",
               "tutorials/jetset-cine/timecode-take-matching",
               "tutorials/jetset-cine/named-shots-workflow",
-              "tutorials/jetset-cine/aximmetry-setup"
+              "tutorials/jetset-cine/aximmetry-setup",
+              "tutorials/jetset-cine/timeline-processing"
             ]
           },
           {
