@@ -173,24 +173,6 @@
             ]
           }
         ]
-      },
-      {
-        "tab": "Office Hours",
-        "groups": [
-          {
-            "group": "2025",
-            "pages": [
-              "office-hours/2025/office-hours-2025-05-02"
-            ]
-          },
-          {
-            "group": "2024",
-            "pages": [
-              "office-hours/2024/office-hours-2024-08-09",
-              "office-hours/2024/office-hours-2024-08-06"
-            ]
-          }
-        ]
       }
     ],
     "global": {
