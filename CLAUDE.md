@@ -51,12 +51,11 @@ Content directories map to documentation sections:
 | `debugging/` | Troubleshooting guides |
 | `editorial/avid/` | Avid editorial workflows |
 | `tutorials/` | Video tutorials (subdivided by tool: blender-workflows, unreal-workflows, jetset, jetset-cine, houdini, tracking-compositing) |
-| `office-hours/` | Office hours recordings organized by year |
 | `images/` | All image assets, organized by category subdirectories |
 
 ### Navigation Structure (in docs.json)
 
-Three tabs: **Docs**, **Video Tutorials**, **Office Hours**. Each tab contains groups, and each group lists page paths. When adding a new page, it must be registered in `docs.json` under the appropriate tab/group or it won't appear in navigation.
+Two tabs: **Docs** and **Video Tutorials**. Each tab contains groups, and each group lists page paths. When adding a new page, it must be registered in `docs.json` under the appropriate tab/group or it won't appear in navigation.
 
 ## Content Conventions
 
