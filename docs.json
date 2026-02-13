@@ -108,6 +108,18 @@
         ]
       },
       {
+        "tab": "Spark Story",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "spark/introduction",
+              "spark/quickstart"
+            ]
+          }
+        ]
+      },
+      {
         "tab": "Video Tutorials",
         "groups": [
           {
