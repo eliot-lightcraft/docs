@@ -114,7 +114,47 @@
             "group": "Get Started",
             "pages": [
               "spark/introduction",
-              "spark/quickstart"
+              "spark/quickstart",
+              "spark/core-concepts"
+            ]
+          },
+          {
+            "group": "Organizations & Productions",
+            "pages": [
+              "spark/organizations",
+              "spark/productions"
+            ]
+          },
+          {
+            "group": "Scripts",
+            "pages": [
+              "spark/writing-scripts",
+              "spark/collaboration",
+              "spark/script-outline-and-3d-scene-list"
+            ]
+          },
+          {
+            "group": "Scene Editor",
+            "pages": [
+              "spark/scene-overview",
+              "spark/importing-assets",
+              "spark/arranging-objects",
+              "spark/cameras-and-shots",
+              "spark/timeline",
+              "spark/lights-and-environment"
+            ]
+          },
+          {
+            "group": "Shot Lists",
+            "pages": [
+              "spark/creating-shot-lists",
+              "spark/shot-previews"
+            ]
+          },
+          {
+            "group": "Export & Jetset",
+            "pages": [
+              "spark/exporting-to-jetset"
             ]
           }
         ]
