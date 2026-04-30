@@ -128,6 +128,7 @@
           {
             "group": "Scripts",
             "pages": [
+              "spark/importing-scripts",
               "spark/writing-scripts",
               "spark/collaboration",
               "spark/script-outline-and-3d-scene-list"
@@ -137,7 +138,8 @@
             "group": "Scene Editor",
             "pages": [
               "spark/scene-overview",
-              "spark/importing-assets",
+              "spark/importing-locations",
+              "spark/importing-objects",
               "spark/arranging-objects",
               "spark/cameras-and-shots",
               "spark/timeline",

@@ -50,12 +50,13 @@ Content directories map to documentation sections:
 | `compositing/` | Tracking and compositing workflows (AE, Nuke, SynthEyes) |
 | `debugging/` | Troubleshooting guides |
 | `editorial/avid/` | Avid editorial workflows |
+| `spark/` | Spark Story introduction and quickstart |
 | `tutorials/` | Video tutorials (subdivided by tool: blender-workflows, unreal-workflows, jetset, jetset-cine, houdini, tracking-compositing) |
 | `images/` | All image assets, organized by category subdirectories |
 
 ### Navigation Structure (in docs.json)
 
-Two tabs: **Docs** and **Video Tutorials**. Each tab contains groups, and each group lists page paths. When adding a new page, it must be registered in `docs.json` under the appropriate tab/group or it won't appear in navigation.
+Three tabs: **Docs**, **Spark Story**, and **Video Tutorials**. Each tab contains groups, and each group lists page paths. When adding a new page, it must be registered in `docs.json` under the appropriate tab/group or it won't appear in navigation.
 
 ## Content Conventions
 
