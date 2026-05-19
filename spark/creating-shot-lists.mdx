@@ -21,9 +21,31 @@ Add shots from any scene in the production to your shot list. Each entry referen
 
 Drag shots within the list to set a custom order. You can arrange them by shooting schedule, story order, or any sequence that fits your workflow.
 
+## Multiple shot lists
+
+You can run multiple shot lists in parallel — for example, a director's list, a DP's list, and a second-unit list. Spark does not force one canonical list.
+
 ## View modes
 
 Switch between two view modes:
 
 - **Card grid** — Displays shots as visual cards with preview thumbnails.
 - **List** — Displays shots in a compact list format with key details.
+
+## Downloading previews
+
+Click **Download Preview** on any shot to export an MP4. This is useful for sharing outside Spark Story or as input for AI video tools, where a real camera move produces cleaner output than a text prompt.
+
+## Compositing-mode take files
+
+Takes recorded in compositing mode on Lightcraft Spark also write five files to the iPhone or iPad. Find them in the Files app under the Spark folder:
+
+| File prefix | Contents |
+|-------------|----------|
+| `cam_*` | Raw iPhone or iPad camera footage. |
+| `comp_*` | The live composite the operator framed. |
+| `depth_*` | Per-frame depth map. |
+| `tracking_*.json` | 3D camera tracking data. |
+| `meta_*.json` | Take metadata. |
+
+See [compositing and recording](/spark/compositing-and-recording) for the full recording workflow.

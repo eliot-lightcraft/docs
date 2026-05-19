@@ -1,0 +1,48 @@
+---
+title: 'Common pitfalls'
+description: 'Solutions for frequent issues in Spark Story and Lightcraft Spark'
+---
+
+## Camera or asset moves break on playback
+
+You forgot to toggle **Keyframes** on for the asset or camera before moving it. The interface does not warn you. Select the object, enable Keyframes in the asset settings panel, then redo the move.
+
+## Composited actor looks giant or doll-sized
+
+The splat scale is wrong. Return to the Location Settings panel, drop in the six-foot reference figure, and rescale. Every camera distance and composited element downstream depends on correct scale.
+
+## Teammate sees a different script version
+
+You did not publish the latest version. Open the version sidebar and click **Publish** on the version you want everyone working from.
+
+## Teammate cannot see your environment
+
+You used **Load Locally** instead of **Upload** when importing the location file. Load Locally keeps the file on your machine for the current session only — collaborators opening the same scene will not see it. Re-import with Upload so the file writes to the production library.
+
+## Scene loads in Spark Story but fails on iPhone or iPad
+
+Your splat exceeds the roughly 5 million splat cap on Lightcraft Spark for iPhone or iPad. Downsample the splat for the phone and keep the full-resolution version for the browser and Jetset.
+
+## Pre-animated USD sits frozen on iPhone or iPad playback
+
+You dropped the animation clip on the timeline but did not toggle **Keyframes** on for that object. Spark Story may render it correctly in the browser while the iOS app does not.
+
+## Lightning bolt does not engage
+
+Tap it again. The handshake between Lightcraft Spark and Spark Story occasionally needs a second attempt.
+
+## Driving across a large scene is slow
+
+Drop scene locators at every action point and jump between them instead of flying. See [arranging objects](/spark/arranging-objects) for creating locators in the browser, or add them directly in Lightcraft Spark.
+
+## Splat chokes the browser
+
+If a splat exceeds roughly 7 GB, keep a downsampled version for previs and reserve the full-resolution version for Jetset on set.
+
+## AI video tool output looks wrong
+
+Download the MP4 from the shot list. AI video tools like Seedance produce cleaner output from a real Spark Story shot than from a text prompt, because the camera move is already locked and consistent.
+
+## Keying needs green screen or blue screen
+
+Lightcraft Spark compositing is AI matting only. Route through [Jetset](/spark/exporting-to-jetset) for green-screen or blue-screen keying workflows.

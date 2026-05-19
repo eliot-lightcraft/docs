@@ -1,0 +1,55 @@
+---
+title: 'Compositing and recording'
+description: 'Record takes with live AI compositing in Lightcraft Spark on iPhone or iPad'
+---
+
+Lightcraft Spark can composite a real performer into your virtual scene in real time using AI matting — no green screen required for previs.
+
+## Enter compositing mode
+
+Tap the third button on the left side of the shooting view to enable compositing mode. Lightcraft Spark uses AI matting to key the performer against the virtual background.
+
+<img src="/images/spark/compositing-mode-button.png" style={{ borderRadius: '0.5rem' }} />
+
+## View modes
+
+Use the toggles to switch between four views while compositing:
+
+- **Live composite** — The performer keyed over the virtual background.
+- **Camera feed** — Raw iPhone or iPad camera footage.
+- **Depth map** — Per-frame depth information.
+- **Matte channel** — The AI-generated matte used for keying.
+
+<img src="/images/spark/compositing-view-modes.png" style={{ borderRadius: '0.5rem' }} />
+
+## Record a take
+
+1. Frame the shot with the performer in position.
+2. Tap **Record**.
+3. Run the action.
+4. Tap **Stop**.
+5. Name and save the take.
+
+<img src="/images/spark/compositing-record-controls.png" style={{ borderRadius: '0.5rem' }} />
+
+The take appears in your shot list in the browser within seconds, ready for the team to watch and comment on.
+
+## Output files
+
+Compositing-mode takes write five files to the iPhone or iPad for every take. Find them in the Files app under the Spark folder:
+
+| File prefix | Contents |
+|-------------|----------|
+| `cam_*` | Raw iPhone or iPad camera footage. |
+| `comp_*` | The live composite the operator framed. |
+| `depth_*` | Per-frame depth map. |
+| `tracking_*.json` | 3D camera tracking data. |
+| `meta_*.json` | Take metadata. |
+
+## Offline behavior
+
+Lightcraft Spark uses the same real-time database as Spark Story. A shot recorded while the phone is offline saves locally and syncs to Spark Story the next time the phone reconnects.
+
+<Note>
+Lightcraft Spark compositing uses AI matting only. For green-screen or blue-screen keying, use Jetset instead. See [exporting to Jetset](/spark/exporting-to-jetset) for how to send your scene to Jetset for on-set production.
+</Note>

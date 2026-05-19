@@ -15,9 +15,53 @@ Spark Story supports the following 3D file formats for locations:
 
 ## Adding location files
 
-Add 3D location files to your scene through the outliner panel. Imported files appear in the scene hierarchy and can be positioned, rotated, and scaled using the transform tools.
+From the Outliner panel, click **Add**, then **File**. The Assets Library opens with filter tabs for Location, Object, and Audio. To bring in a new environment, click **Upload** in the upper right and select your file. To reuse something already in the production, click an existing asset tile.
 
 <video src="/images/spark/location-import-splat.mp4" controls style={{ borderRadius: '0.5rem' }} />
+
+### Upload vs Load Locally
+
+- **Upload** writes the file to your production library. Every teammate in the production gains access to it.
+- **Load Locally** loads a file from your local drive for the current session only. Collaborators opening the same scene will not see it.
+
+Use Load Locally for quick personal tests. Use Upload for anything the team needs.
+
+## Orientation and scale
+
+### Fixing orientation
+
+After importing, fix orientation in the Location Settings panel:
+
+- **Invert Up (Flip 180°)** — Toggle if the splat loaded upside down.
+- **Z-Up (Blender/3ds Max)** — Toggle if the splat came out of Blender or 3ds Max with the wrong up axis.
+- **Position and Rotation fields** — Type values into the X, Y, Z fields for finer correction.
+
+<img src="/images/spark/location-orientation-toggles.png" style={{ borderRadius: '0.5rem' }} />
+
+### Setting scale
+
+Click **Add Reference** in the Scale Reference section. Two methods are available:
+
+- **Ruler tool** — Click two points on a feature whose real-world size you know (for example, the top of a doorway and the floor). Spark displays the measured distance in your chosen unit. If the reading is wrong, type the correct real-world dimension into the field and Spark rescales the splat to match.
+- **Six-foot human figure** — Drop it into the scene and compare the splat against a known human height.
+
+<img src="/images/spark/location-ruler-tool.png" style={{ borderRadius: '0.5rem' }} />
+
+### Scale controls
+
+Once a reference is added, the scale controls become active. The row reads **x0.1**, **-1**, **-0.1**, numeric field, **+0.1**, **+1**, **x10**. Use x0.1 and x10 for large jumps, the +/-1 and +/-0.1 buttons for fine steps, or type a value directly into the field.
+
+<Warning>
+Scale errors cascade. Every camera distance, lens choice, and composited actor downstream depends on scale being correct. Getting it right at upload saves rework later.
+</Warning>
+
+### Collision mesh
+
+Optionally, add a collision mesh by clicking **Select GLB file**. The collision mesh defines physics collision boundaries for the location.
+
+## Splat size guidance
+
+Spark Story handles very large splats. Files up to 7 GB have rendered in the browser with no hard maximum confirmed. Lightcraft Spark on iPhone or iPad caps at roughly 5 million splats per scene — if your splat exceeds that count, the scene will not load on the phone. Keep a downsampled version for mobile previs.
 
 ## File caching
 

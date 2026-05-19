@@ -15,9 +15,35 @@ The timeline sits below the 3D canvas and includes:
 
 Use the play, pause, and scrub controls to preview your scene. Playback runs all active animation clips and audio tracks simultaneously.
 
+### Keyboard shortcuts
+
+| Shortcut | Action |
+|----------|--------|
+| **Spacebar** | Play and pause. |
+| **Shift+Up** | Jump the playhead to the start of the timeline. |
+| **Left / Right arrows** | Step the playhead backward and forward. |
+| **Ctrl+scroll** (hover over timeline) | Zoom in or out on the time span. |
+| **Shift+scroll** (hover over timeline) | Pan left or right when only part of the timeline is visible. |
+
 ## Animation clips
 
 Animation clips contain keyframed movement for objects and cameras. Each clip appears as a bar on the timeline that you can move, trim, or extend.
+
+### Pre-animated USD assets
+
+If you import a USD asset that already contains animation (a rigged character, for example):
+
+1. Open the **Outliner** panel.
+2. Expand the **Object** group, then expand the asset.
+3. Expand its **Animation** node.
+4. Click and drag the animation clip down onto the timeline, placing it at the spot where the object's row lives. The clip displays its duration (e.g., "20.8s") so you can place it precisely.
+5. Toggle **Keyframes** on for that object.
+
+<img src="/images/spark/timeline-drag-animation-clip.png" style={{ borderRadius: '0.5rem' }} />
+
+<Warning>
+Without Keyframes enabled, pre-animated USD assets may render correctly in the browser but sit frozen on playback in Lightcraft Spark on iPhone or iPad.
+</Warning>
 
 ## Audio tracks
 

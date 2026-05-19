@@ -114,8 +114,8 @@
             "group": "Get Started",
             "pages": [
               "spark/introduction",
-              "spark/quickstart",
-              "spark/core-concepts"
+              "spark/core-concepts",
+              "spark/quickstart"
             ]
           },
           {
@@ -147,6 +147,15 @@
             ]
           },
           {
+            "group": "Lightcraft Spark (iPhone / iPad)",
+            "pages": [
+              "spark/lightcraft-spark-setup",
+              "spark/iphone-camera-controls",
+              "spark/live-camera-sharing",
+              "spark/compositing-and-recording"
+            ]
+          },
+          {
             "group": "Shot Lists",
             "pages": [
               "spark/creating-shot-lists",
@@ -157,6 +166,12 @@
             "group": "Export & Jetset",
             "pages": [
               "spark/exporting-to-jetset"
+            ]
+          },
+          {
+            "group": "Troubleshooting",
+            "pages": [
+              "spark/common-pitfalls"
             ]
           }
         ]

@@ -5,17 +5,27 @@ description: 'Position, rotate, and scale objects in your scene using transform 
 
 ## Transform gizmo
 
-Use the transform gizmo to move, rotate, and scale objects directly in the 3D canvas. Switch between modes using the toolbar or keyboard shortcuts:
+Use the transform gizmo to move, rotate, and scale objects directly in the 3D canvas. Switch between modes using the toolbar buttons in the upper right of the 3D canvas, or use keyboard shortcuts:
 
-- **Move** — Drag along an axis to reposition the object.
-- **Rotate** — Drag a ring to rotate around an axis.
-- **Scale** — Drag a handle to resize along an axis.
+- **Move** (**Ctrl+1**) — Drag along an axis to reposition the object.
+- **Rotate** (**Ctrl+2**) — Drag a ring to rotate around an axis.
+- **Scale** (**Ctrl+3**) — Drag a handle to resize along an axis.
+
+These shortcuts apply to both USD assets and cameras.
 
 <video src="/images/spark/moving-objects.mp4" controls style={{ borderRadius: '0.5rem' }} />
 
 ## Numeric editing
 
 For precise placement, edit transform values numerically in the properties panel. Enter exact position, rotation, and scale values for the selected object.
+
+## Keyframes
+
+To animate an object's position over time, select it and toggle **Keyframes** on in the asset settings panel. With Keyframes enabled, scrub the timeline to your start point, position the asset, scrub forward, and reposition — each move writes a keyframe automatically.
+
+<Warning>
+Spark Story does not enable Keyframes automatically. If you move an asset with Keyframes off, the change will not persist as animation.
+</Warning>
 
 ## Locators
 
@@ -24,6 +34,11 @@ Locators are named reference points in 3D space. Use them to:
 - Mark positions where physical objects will be placed on set.
 - Align scenes between Spark Story and Jetset.
 - Create anchor points for consistent object placement across scenes.
+- Jump between locations in large scenes using Lightcraft Spark on iPhone or iPad.
+
+To add a locator from the browser, click **Add** in the Outliner, then **Locators**, and click the position in the 3D scene. Name each locator descriptively (e.g., "Kitchen," "Hilltop," "Stage Left").
+
+In Lightcraft Spark on iPhone or iPad, open the locators menu and tap a locator to teleport the virtual camera to that point.
 
 See [scene locators in Blender](/create-usd/blender/scene-locators) and [object locators in Blender](/create-usd/blender/object-locators) for creating locators in your 3D pipeline.
 
