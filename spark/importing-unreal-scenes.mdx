@@ -1,0 +1,40 @@
+---
+title: 'Importing Unreal scenes'
+description: 'Export a scene from Unreal Engine as a Gaussian splat and USD file for use in Spark Story'
+---
+
+Export a scene from Unreal Engine as both a Gaussian splat (for the environment) and a USD file (for foreground mesh geometry), then bring them into Spark Story.
+
+## 1. Separate foreground elements
+
+Identify which objects in your scene need to stay as mesh geometry — anything with fine detail the splat might miss, or elements you may want to shoot through (railings, stairs, furniture).
+
+1. In the Unreal Editor, open the **Layers** panel.
+2. Add a new layer and name it **Mesh**.
+3. Drag the foreground elements you want to keep as mesh geometry into this layer (e.g., tables, chairs, railings, staircases).
+
+## 2. Add scene locators
+
+Scene locators mark positions in the scene where you want to place actors or quickly jump to during previs.
+
+1. Add an empty actor to the scene.
+2. Rename it using the naming convention `Scene_Lock_01` (replace `01` with a descriptive name or number).
+3. Position it where you want the first locator.
+4. **Alt+drag** the actor to duplicate it and create additional locators at other key positions.
+5. Add the scene locators to your **Mesh** layer so they export with the foreground elements.
+
+## 3. Install the USD exporter plugin
+
+1. Go to **Edit > Plugins**.
+2. Search for **USD Importer** (this plugin handles both import and export).
+3. Enable the plugin.
+4. Restart Unreal Engine.
+
+## 4. Export as USD
+
+1. Select the **Mesh** layer (double-click it to select all its contents, including the scene locators).
+2. Go to **File > Export Selected**.
+3. Choose **USD** from the file type dropdown.
+4. In the USD export settings, enable **Bake Materials**.
+5. Expand the material settings menus and remove any generated elements you don't need.
+6. Click **Export**.
