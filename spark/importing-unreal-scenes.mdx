@@ -38,3 +38,35 @@ Scene locators mark positions in the scene where you want to place actors or qui
 4. In the USD export settings, enable **Bake Materials**.
 5. Expand the material settings menus and remove any generated elements you don't need.
 6. Click **Export**.
+
+## 5. Render a panoramic 360 image
+
+Render a single panoramic frame from Unreal Engine to use as the source for your Gaussian splat.
+
+1. Go to **Edit > Plugins** and enable **Additional Render Passes**.
+2. Add a **Camera** actor to the scene and position it in the center of your environment.
+3. Open the **Sequencer**, drag your camera in, and set the in and out points so it renders a single frame.
+4. Add a **Media Render Cube** to the sequence.
+5. In the render settings, delete the default **Deferred Rendering** pass.
+6. Go to **Settings > Panoramic Rendering** and enable **Allocate History Per Pane**. Without this, the render will come out too dark.
+7. Add any anti-aliasing settings you need.
+8. Set the output resolution to **4096 x 2048** (2:1 aspect ratio).
+9. Render the frame.
+
+## 6. Convert to a Gaussian splat with World Labs
+
+1. Open [World Labs](https://www.worldlabs.ai/) and choose **2D Input**.
+2. Drag and drop your panoramic render into World Labs.
+3. World Labs generates a Gaussian splat from the image, preserving the lighting from your Unreal scene.
+4. Download the result as a **PLY** file.
+
+## 7. Import into Spark Story
+
+Bring both the Gaussian splat and the USD foreground elements into Spark Story.
+
+1. In Spark Story, click **Add** and choose **Location**.
+2. Upload your PLY Gaussian splat file. This becomes the environment background with baked lighting.
+3. Click **Add** again and choose **Object**.
+4. Import your USD or USDZ file containing the foreground elements (tables, chairs, staircase, etc.).
+
+The final scene combines mesh detail for foreground elements with a Gaussian splat background that preserves the original Unreal Engine lighting.
