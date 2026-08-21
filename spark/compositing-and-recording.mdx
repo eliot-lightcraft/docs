@@ -1,13 +1,17 @@
 ---
 title: 'Compositing and recording'
-description: 'Record takes with live AI compositing in Lightcraft Spark on iPhone or iPad'
+description: 'Record takes with live compositing in the Spark iOS app'
 ---
 
-Lightcraft Spark can composite a real performer into your virtual scene in real time using AI matting — no green screen required for previs.
+The Spark iOS app can composite a real performer into your virtual scene in real time, with or without a green screen.
 
 ## Enter compositing mode
 
-Tap the third button on the left side of the shooting view to enable compositing mode. Lightcraft Spark uses AI matting to key the performer against the virtual background.
+Tap the third button on the left side of the shooting view to enable compositing mode, then choose a keying method:
+
+- **Person / AR key** — AI segmentation mattes the performer into the scene. No green screen needed.
+- **Chroma key** — For a green, blue, or other flat-color screen. Use **Pick Color** and tap the screen once to pull the key, then fine-tune with the black/white clipping controls in the tools menu. A well-picked color gives a cleaner key than segmentation.
+- **Garbage matte** — Scan around the edges of a small screen and the app auto-detects the screen area, so the virtual environment fills everything outside it. This lets a small screen (for example 10 by 10 feet) serve wide shots.
 
 <img src="/images/spark/compositing-mode-button.png" style={{ borderRadius: '0.5rem' }} />
 
@@ -18,25 +22,38 @@ Use the toggles to switch between four views while compositing:
 - **Live composite** — The performer keyed over the virtual background.
 - **Camera feed** — Raw iPhone or iPad camera footage.
 - **Depth map** — Per-frame depth information.
-- **Matte channel** — The AI-generated matte used for keying.
+- **Matte channel** — The matte used for keying.
 
 <img src="/images/spark/compositing-view-modes.png" style={{ borderRadius: '0.5rem' }} />
 
+## Placement and alignment
+
+Before recording, seat the performer correctly in the virtual scene:
+
+- **Find the floor** — If you drop into a scene too high or low, point the camera at the real floor and confirm. The app measures the distance and corrects your height. This cannot run while locked to a shot; exit to free drive mode first.
+- **Slide the world** — Hold the slide button (three-arrow icon) and physically move; the world slides relative to you, so you can seat a real actor precisely inside virtual geometry (a car seat, behind a desk), including correct occlusion by foreground virtual objects.
+- **Shot lock** — After jumping to a browser-authored shot position, the lock button pins the camera to that position, including a parented, moving position. Hit record and the camera rides the parent while you keep handheld control of framing.
+
 ## Record a take
 
-1. Frame the shot with the performer in position.
-2. Tap **Record**.
-3. Run the action.
-4. Tap **Stop**.
-5. Name and save the take.
+1. Choose the simulated camera or the device's native camera. The app auto-detects the device; 24 fps at 4K is the recommended setting, 25 fps is also supported. Autofocus is available with a manual option.
+2. Frame the shot with the performer in position.
+3. Tap **Record**. Run the action, then tap **Stop**.
+4. Name and save the take.
 
 <img src="/images/spark/compositing-record-controls.png" style={{ borderRadius: '0.5rem' }} />
+
+After each take, the app asks whether to render the composite now or defer it (this prompt can be toggled in settings). Deferring is the recommended pattern for fast-moving sets — it conserves heat and battery, and you can batch-render everything later from the takes page with **Render All**.
+
+<Note>
+Recording a take claims the camera, so screen sharing over Zoom or Meet stops for the duration. The take still records and saves normally.
+</Note>
 
 The take appears in your shot list in the browser within seconds, ready for the team to watch and comment on.
 
 ## Output files
 
-Compositing-mode takes write five files to the iPhone or iPad for every take. Find them in the Files app under the Spark folder:
+Every take produces a full set of separated elements, not just a baked composite: the raw camera footage, the live composite, the background plate movement, a depth map, the tracking data, and take metadata. Files are organized on the device by production, then script scene.
 
 | File prefix | Contents |
 |-------------|----------|
@@ -46,10 +63,12 @@ Compositing-mode takes write five files to the iPhone or iPad for every take. Fi
 | `tracking_*.json` | 3D camera tracking data. |
 | `meta_*.json` | Take metadata. |
 
+See [Spark Desktop and takes](/spark/spark-desktop) for how to get these files off the device and into the browser for the team to review.
+
+<Warning>
+Takes are stored on the device until uploaded. Do not delete the Spark iOS app while it holds unuploaded takes — an app version update is safe, but deleting the app may not be.
+</Warning>
+
 ## Offline behavior
 
-Lightcraft Spark uses the same real-time database as Spark Story. A shot recorded while the phone is offline saves locally and syncs to Spark Story the next time the phone reconnects.
-
-<Note>
-Lightcraft Spark compositing uses AI matting only. For green-screen or blue-screen keying, use Jetset instead. See [exporting to Jetset](/spark/exporting-to-jetset) for how to send your scene to Jetset for on-set production.
-</Note>
+The Spark iOS app uses the same real-time database as the Spark web app. A shot recorded while the phone is offline saves locally and syncs to the web app the next time the phone reconnects.

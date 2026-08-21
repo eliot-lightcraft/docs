@@ -1,8 +1,56 @@
 ---
-title: 'Frequently Asked Questions'
-description: 'Check these frequently-asked questions first!'
+title: 'Frequently asked questions'
+description: 'Answers to common questions about Spark, Jetset, and Autoshot'
 ---
 
-## Help System
+## Is Spark just previs?
 
-Search [Lightcraft's Documentation](https://docs.lightcraft.pro/) 
+The browser work is previs, but the same platform carries a project into production: the Spark iOS app shoots real-time composites at 4K 24p, 25p, and 30p, and any Spark scene exports to Jetset for cine-camera shooting, with Autoshot carrying everything into post.
+
+## Where does Spark end and Jetset begin?
+
+Spark is the planning and design layer — script, scenes, shots, collaboration — plus iPhone or iPad production for teams that don't need a cinema camera. Jetset is the on-set production layer for a moving cinema camera. Autoshot is the automated bridge into post. A Spark scene loads into Jetset by scanning a QR code.
+
+## Is this built on Unreal or Unity?
+
+No. The platform is built from the ground up by Lightcraft, running a full USD layer stack in the browser with a Gaussian splat renderer.
+
+## Can I bring in my own environments and assets?
+
+Yes. Upload your own splats (PLY, SPZ) from scanners or generative tools, your own USD or USDC assets, and full Unreal scenes via USD export. A default library of environments and props is also included.
+
+## Does Spark generate scenes from my script with AI?
+
+No. There is no embedded AI in the platform today. Script breakdown is syntax parsing of scene headings, and you pick your own assets and environments. Generative environments come from external tools and are then imported.
+
+## How do multiple people work together?
+
+Everyone in the organization with access sees the same scenes live. Any team member can jump in from a browser or device, follow a Direct Drive stream, author shots, comment on shot lists, and review takes. Browser-only participants need no device at all.
+
+## Do I need a green screen?
+
+No. Person / AR key mode composites people with no screen. Chroma key mode with a green or blue screen gives a cleaner key, and the garbage matte tool lets even a small screen serve wide shots.
+
+## Does it work outdoors, without markers?
+
+Yes. Tracking uses the phone's IMU plus optical analysis of the image, so feature-rich exteriors track especially well with no markers and no calibration step beyond finding the floor.
+
+## What happens to my takes?
+
+Each take saves the raw camera footage, composite, background plate, depth map, tracking file, and metadata on the device. Offload with [Spark Desktop](/spark/spark-desktop), and the team reviews takes in the browser organized by script scene. The bundle can drop into Nuke or Blender pre-configured.
+
+## Can I cut my footage in Spark?
+
+A lightweight [editing](/spark/editing) tool assembles rendered shots and takes into a rough cut and exports MP4. It is intentionally not a full NLE. Export to external editors like Avid, Premiere and Resolve via OpenTimelineIO is planned but not yet implemented.
+
+## My phone is getting hot. Is that normal?
+
+Real-time compositing runs the hardware hard. Use a phone cooler for sustained shooting, defer composite renders to a batch after the shoot, and prefer the newest devices. See [common pitfalls](/spark/common-pitfalls) for more.
+
+## Can two actors in different cities be in the same shot live?
+
+Not simultaneously. Shoot each performance as its own take from its own perspective and combine them in the edit.
+
+## Is there an API or a media-server integration?
+
+Not yet. Exports today are QR-to-Jetset and USDZ.

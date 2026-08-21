@@ -108,7 +108,7 @@
         ]
       },
       {
-        "tab": "Spark Story",
+        "tab": "Spark",
         "groups": [
           {
             "group": "Get Started",
@@ -148,12 +148,18 @@
             ]
           },
           {
-            "group": "Lightcraft Spark (iPhone / iPad)",
+            "group": "Spark iOS",
             "pages": [
-              "spark/lightcraft-spark-setup",
+              "spark/spark-ios-setup",
               "spark/iphone-camera-controls",
               "spark/live-camera-sharing",
               "spark/compositing-and-recording"
+            ]
+          },
+          {
+            "group": "Takes",
+            "pages": [
+              "spark/spark-desktop"
             ]
           },
           {
@@ -161,6 +167,12 @@
             "pages": [
               "spark/creating-shot-lists",
               "spark/shot-previews"
+            ]
+          },
+          {
+            "group": "Editing",
+            "pages": [
+              "spark/editing"
             ]
           },
           {

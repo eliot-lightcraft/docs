@@ -3,15 +3,15 @@ title: 'Live camera sharing'
 description: 'Broadcast your iPhone or iPad camera view to teammates in the browser in real time'
 ---
 
-Live camera sharing lets one teammate drive a virtual camera on their iPhone or iPad while everyone else watches the framing update in their browser — regardless of location.
+Live camera sharing, also called Direct Drive, lets a teammate drive a virtual camera on their iPhone or iPad while everyone else watches the framing update in their browser — regardless of location. Multiple teammates can broadcast at once, and each viewer in the browser chooses whose feed to follow.
 
 ## How it works
 
-Spark transmits 3D coordinates, not video. This means a teammate in another city can drive the camera without lag, and anyone in the same scene can see where the broadcaster is positioned.
+Spark transmits 3D coordinates, not video: the device sends its virtual camera position and the browser re-renders it locally, which is why it stays smooth. This means a teammate in another city can drive the camera without lag, and anyone in the same scene can see where each broadcaster is positioned.
 
 ## Start broadcasting
 
-1. In Lightcraft Spark, tap the **lightning bolt** button at the top of the shooting view.
+1. In the Spark iOS app, tap the **lightning bolt** button at the top of the shooting view.
 2. The corresponding icon in the browser changes from blue to orange, signaling that the phone is broadcasting.
 
 <img src="/images/spark/live-camera-lightning-bolt.png" style={{ borderRadius: '0.5rem' }} />
@@ -20,19 +20,22 @@ Spark transmits 3D coordinates, not video. This means a teammate in another city
 If the lightning bolt does not engage on the first tap, tap it again. The handshake occasionally needs a second attempt.
 </Tip>
 
-## Follow the broadcaster
+## Follow a broadcaster
 
 1. In the browser, click the orange lightning bolt icon.
-2. Choose **Follow [user name]** from the dropdown.
-3. Your browser viewport now mirrors the broadcaster's camera in real time.
+2. Choose **Follow [user name]** from the dropdown. If more than one teammate is broadcasting, each appears as a separate option.
+3. Your browser viewport now mirrors that broadcaster's camera in real time.
 
 <img src="/images/spark/live-camera-follow-dropdown.png" style={{ borderRadius: '0.5rem' }} />
 
-The broadcaster also appears as a gray camera inside the 3D scene, visible to everyone else in the session.
+Each broadcaster also appears as a gray camera inside the 3D scene, visible to everyone else in the session.
 
 <img src="/images/spark/live-camera-gray-gizmo.png" style={{ borderRadius: '0.5rem' }} />
 
+## Recording from a live session
+
+Hitting record on the device while broadcasting plays the scene's animation while you operate the camera. Stop, name the shot, and it appears instantly in the browser timeline for the whole team — teammates without a device can watch and participate purely from the browser.
+
 ## Limitations
 
-- Only one teammate can broadcast a live camera at a time. Multi-user simultaneous broadcast is on the roadmap.
-- The broadcaster must have Lightcraft Spark open and connected to the same scene.
+- The broadcaster must have the Spark iOS app open and connected to the same scene.

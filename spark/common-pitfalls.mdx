@@ -1,7 +1,11 @@
 ---
 title: 'Common pitfalls'
-description: 'Solutions for frequent issues in Spark Story and Lightcraft Spark'
+description: 'Solutions for frequent issues in the Spark web app and the Spark iOS app'
 ---
+
+## Viewport is slow or unresponsive
+
+Chrome hardware acceleration is turned off. This is the most common cause of a sluggish 3D viewport — check it before troubleshooting anything else in the scene.
 
 ## Camera or asset moves break on playback
 
@@ -11,6 +15,10 @@ You forgot to toggle **Keyframes** on for the asset or camera before moving it. 
 
 The splat scale is wrong. Return to the Location Settings panel, drop in the six-foot reference figure, and rescale. Every camera distance and composited element downstream depends on correct scale.
 
+## An imported object seems invisible
+
+It probably isn't missing, just tiny or enormous. USD objects carry their own scale on import and it isn't guaranteed to arrive correct, independent of whether the location splat is scaled correctly. Select the object and check its transform values.
+
 ## Teammate sees a different script version
 
 You did not publish the latest version. Open the version sidebar and click **Publish** on the version you want everyone working from.
@@ -19,21 +27,25 @@ You did not publish the latest version. Open the version sidebar and click **Pub
 
 You used **Load Locally** instead of **Upload** when importing the location file. Load Locally keeps the file on your machine for the current session only — collaborators opening the same scene will not see it. Re-import with Upload so the file writes to the production library.
 
-## Scene loads in Spark Story but fails on iPhone or iPad
+## Scene loads in the Spark web app but fails on iPhone or iPad
 
-Your splat exceeds the roughly 5 million splat cap on Lightcraft Spark for iPhone or iPad. Downsample the splat for the phone and keep the full-resolution version for the browser and Jetset.
+Your splat exceeds the roughly 5 million splat cap on the Spark iOS app. Downsample the splat for the phone and keep the full-resolution version for the browser and Jetset.
 
 ## Pre-animated USD sits frozen on iPhone or iPad playback
 
-You dropped the animation clip on the timeline but did not toggle **Keyframes** on for that object. Spark Story may render it correctly in the browser while the iOS app does not.
+You dropped the animation clip on the timeline but did not toggle **Keyframes** on for that object. The Spark web app may render it correctly in the browser while the iOS app does not.
+
+## Parented shot does not hold position on the device
+
+This is a known intermittent issue, most often seen in a freshly built scene. Reload the scene, or toggle to another shot and back, as a workaround. Also check for duplicate object names — two objects sharing a name can cause parenting to grab the wrong one.
 
 ## Lightning bolt does not engage
 
-Tap it again. The handshake between Lightcraft Spark and Spark Story occasionally needs a second attempt.
+Tap it again. The handshake between the Spark iOS app and the Spark web app occasionally needs a second attempt.
 
 ## Driving across a large scene is slow
 
-Drop scene locators at every action point and jump between them instead of flying. See [arranging objects](/spark/arranging-objects) for creating locators in the browser, or add them directly in Lightcraft Spark.
+Drop scene locators at every action point and jump between them instead of flying. See [arranging objects](/spark/arranging-objects) for creating locators in the browser, or add them directly in the Spark iOS app.
 
 ## Splat chokes the browser
 
@@ -41,8 +53,16 @@ If a splat exceeds roughly 7 GB, keep a downsampled version for previs and reser
 
 ## AI video tool output looks wrong
 
-Download the MP4 from the shot list. AI video tools like Seedance produce cleaner output from a real Spark Story shot than from a text prompt, because the camera move is already locked and consistent.
+Download the MP4 from the shot list. AI video tools produce cleaner output from a real Spark shot than from a text prompt, because the camera move is already locked and consistent.
 
-## Keying needs green screen or blue screen
+## Weak chroma key
 
-Lightcraft Spark compositing is AI matting only. Route through [Jetset](/spark/exporting-to-jetset) for green-screen or blue-screen keying workflows.
+Usually a lighting or color-pick issue. Re-pick the color on a cleaner patch of the screen, adjust the black/white clipping controls, or switch to Person / AR key mode, which often rescues a difficult keying environment.
+
+## Device gets hot during a long compositing session
+
+Frame rate degrades when the device is hot. Use a phone cooler for sustained shooting, defer composite rendering until after the shoot (see [compositing and recording](/spark/compositing-and-recording)), drop to joystick mode between takes, or close the app to let it cool down.
+
+## Older devices crash repeatedly
+
+Older iPads in particular have shown repeated crashes in the field. Prefer the newest iPhone or iPad hardware for sustained shooting sessions.
