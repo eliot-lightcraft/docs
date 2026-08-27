@@ -5,9 +5,9 @@ description: 'Set up shot cameras, record camera moves, and manage keyframes in 
 
 ## Understanding shots
 
-Each scene can contain one or more shots. A shot represents a specific camera setup — its position, orientation, movement, and duration. By default, each scene starts with one shot tied to its script heading.
-
 <iframe src="https://player.vimeo.com/video/1221836823" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+Each scene can contain one or more shots. A shot represents a specific camera setup — its position, orientation, movement, and duration. By default, each scene starts with one shot tied to its script heading.
 
 ## Viewing shot cameras
 
@@ -57,14 +57,14 @@ For precise camera animation, set keyframes manually:
 
 ## Camera targeting
 
+<iframe src="https://player.vimeo.com/video/1221836852" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
 To follow a moving target, select the camera, toggle Keyframes on, then choose one of these targeting modes:
 
 - **Aim At** — The camera rotates to track the target while staying in place. Select the target object from the dropdown. Add a keyframe at the start of the move — without Keyframes on, Aim At appears to work in the moment but quietly loses its target on playback.
 - **Parent** — The camera physically rides with the target (useful for vehicle interiors or dolly moves). The camera inherits the target's movement.
 
 <img src="/images/spark/camera-aim-at-dropdown.png" style={{ borderRadius: '0.5rem' }} />
-
-<iframe src="https://player.vimeo.com/video/1221836852" width="640" height="360" frameborder="0" allowfullscreen></iframe>
 
 ## Camera frustum visualization
 
