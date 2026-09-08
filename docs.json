@@ -237,6 +237,7 @@
             "group": "Jetset Cine",
             "pages": [
               "tutorials/jetset-cine/jetset-cine-rigging",
+              "tutorials/jetset-cine/lens-calibration",
               "tutorials/jetset-cine/jetset-cine-blackmagic-braw",
               "tutorials/jetset-cine/cinematic-compositing",
               "tutorials/jetset-cine/setting-cine-offset-manually",
