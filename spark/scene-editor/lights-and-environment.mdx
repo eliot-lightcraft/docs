@@ -1,11 +1,13 @@
 ---
 title: 'Scene lighting'
-description: 'How the Spark web app and Spark iOS app light every scene identically'
+description: 'How the Spark web app and Spark iOS app match lighting models'
 ---
 
 ## A fixed studio environment
 
 Every scene is lit by a single baked HDRI — Lightcraft's own "Spark Studio" environment — used identically by the Spark web app and the Spark iOS app. There is no per-scene light to add and no environment to choose: a scene looks the same on both platforms because they're matched by construction, not by eye.
+
+Of course, we are well aware of the creative need for adjustable lighting, and we're working towards this. The field of relighting Gaussian splats is changing very rapidly, and as we find technical approaches that fit our needs for speed and ease of use, we will be adding them.
 
 ## What this means in practice
 
