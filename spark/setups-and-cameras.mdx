@@ -1,0 +1,99 @@
+---
+title: 'Setups and cameras'
+description: 'Arrange a scene into setups, add cameras within them, and record camera moves'
+---
+
+## Understanding setups and cameras
+
+<iframe src="https://player.vimeo.com/video/1221836823" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+Each scene can contain one or more setups. A **setup** is a named arrangement of the scene — objects added, moved, or removed, plus any per-setup animation. Every scene starts with one automatic **Base** setup covering the scene as authored; add more (**Setup A**, **Setup B**, and so on) to cover the same scene from a different arrangement without disturbing the others.
+
+A setup can hold one or more cameras. A **camera** defines a position, orientation, movement, and duration. By default, the Base setup starts with one camera tied to its script heading, named **Camera 1**.
+
+## The active setup
+
+Only one setup is active at a time. The outliner and timeline both mark it with an accent bar and a bold name. The active setup is your write target — edits to objects, animation, or cameras land in whichever setup is active. Selecting a camera activates its setup automatically; clicking a setup row (or its Objects/Cameras folder) activates that setup directly.
+
+## Setups in the outliner
+
+Each setup expands into two folders:
+
+- **Objects** — every object composed into that setup, including ones inherited from the Base setup.
+- **Cameras** — the cameras that belong to that setup.
+
+Write controls (visibility, delete, revert, drag-to-timeline) appear only on the active setup's rows. An object overridden or added in a non-base setup is badged; use **revert** to restore it to the Base setup's version.
+
+## Viewing cameras
+
+Cameras appear in the 3D canvas as camera icons with a frustum showing their field of view. Select a camera to see its framing in the viewport.
+
+## Creating a setup
+
+1. In the outliner, click **+** on the **Setups** header.
+2. Objects you add or move while this setup is active apply only to it — the Base setup and other setups are unaffected.
+
+<Tip>
+An object added to the Base setup after a later setup was created does not automatically appear in that setup — it shows there as a restorable "Removed in this setup" stub. Setups created after the addition inherit it normally.
+</Tip>
+
+## Adding a camera from the script panel
+
+To add a camera with script-line attribution:
+
+1. Open the **Script** tab on the right side of the 3D canvas.
+2. Highlight the line or block of script this camera covers.
+3. Click **New Camera**.
+
+<img src="/images/spark/create-camera-script-panel.png" style={{ borderRadius: '0.5rem' }} alt="Adding a camera from the script panel with a highlighted script line" />
+
+The New Camera dialog opens with these fields:
+
+- **Name** — Prefilled with a sequential number (e.g., "Camera 4"). Override for a more descriptive name.
+- **Preset** — Choose a camera type preset.
+- **Lens** — Select from real lens models. Pick the one you plan to shoot on so what you see in the Spark web app matches what you get on set.
+- **Objects** — Select which objects the camera covers.
+- **Description** — Optional notes about the camera.
+
+<img src="/images/spark/create-camera-dialog.png" style={{ borderRadius: '0.5rem' }} alt="The New Camera dialog with name, preset, lens, objects, and description fields" />
+
+<Tip>
+You can also add a camera by hovering the active setup's **Cameras** folder in the outliner and clicking **+**, but this skips script-line attribution and breaks coverage tracking.
+</Tip>
+
+Click in the 3D scene to place your camera. Press **Ctrl+F** to enter full-screen camera preview, and press it again to exit.
+
+## Recording camera movement
+
+Use fly mode to navigate through your scene and record the camera path in real time. The recorded movement is captured as keyframes on the timeline.
+
+<Warning>
+Toggle **Keyframes** on for the camera before moving it. Without Keyframes enabled, camera moves will not persist as animation on playback.
+</Warning>
+
+## Setting manual keyframes
+
+For precise camera animation, set keyframes manually:
+
+1. Move the playhead to the desired time on the timeline.
+2. Position the camera in the viewport.
+3. Set a keyframe to lock the camera's position and rotation at that frame.
+
+## Camera targeting
+
+<iframe src="https://player.vimeo.com/video/1221836852" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+To follow a moving target, select the camera, toggle Keyframes on, then choose one of these targeting modes:
+
+- **Aim At** — The camera rotates to track the target while staying in place. Select the target object from the dropdown. Add a keyframe at the start of the move — without Keyframes on, Aim At appears to work in the moment but quietly loses its target on playback.
+- **Parent** — The camera physically rides with the target (useful for vehicle interiors or dolly moves). The camera inherits the target's movement.
+
+<img src="/images/spark/camera-aim-at-dropdown.png" style={{ borderRadius: '0.5rem' }} alt="The Aim At target dropdown in the camera properties panel" />
+
+## Camera frustum visualization
+
+The camera frustum shows the visible area from the camera's perspective. Use it to check framing and ensure objects are within frame.
+
+## Editing camera duration
+
+Adjust the duration of a camera by modifying its range on the timeline. Longer durations give the camera more time to complete its movement.

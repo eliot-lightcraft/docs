@@ -1,0 +1,48 @@
+---
+title: 'Gallery'
+description: 'Review setups and takes, track coverage, and share annotated footage with your team'
+---
+
+## What the Gallery is for
+
+The Gallery is the production's single view of coverage. It lists every scene, grouped by script, with each scene's setups underneath — and each setup's cameras and takes underneath that. Use it to plan a shoot day, run a review meeting, or see at a glance what's left to shoot.
+
+## Browsing scenes and setups
+
+Each setup appears as a card, whether or not it has been shot yet — an unshot setup still shows, so you can see what coverage is missing. A setup's card leads with its previz render as a poster and groups its cameras underneath.
+
+## Cameras and takes
+
+A card is grouped by camera position: the camera's CG previz render and every take recorded from that position appear together on the same card as layers, not as separate cards. A take with no camera falls into an unattached bucket for its setup.
+
+## Layers and missing coverage
+
+Each take's layer strip shows the artifacts that have arrived for it — composite, raw camera, background, matte, and depth. A layer that hasn't arrived yet draws as a labelled empty slot:
+
+- If the web app can produce it (the CG previz render), the slot carries a **Generate** action.
+- If it only comes from the phone (a captured layer), the slot is a passive gap — the prompt to go shoot it.
+
+A CG-only take (recorded with the camera off) shows its camera-dependent slots as unavailable rather than missing, since there's nothing to shoot for them.
+
+## View modes
+
+Switch between two view modes:
+
+- **Card grid** — Displays setups and takes as visual cards with preview thumbnails.
+- **List** — Displays them in a compact list format with key details.
+
+## Downloading previews
+
+Click **Download Preview** on any camera to export an MP4 of its previz render. This is useful for sharing outside the Spark web app or as input for AI video tools, where a real camera move produces cleaner output than a text prompt.
+
+## Comments and annotations
+
+Add comments and annotations directly to a setup or take card. Use these to leave feedback, note blocking positions, flag issues, or document creative direction for your team.
+
+## Sharing
+
+Share the Gallery with team members within your organization. Shared views let everyone review coverage and add their own comments.
+
+## Reviewing takes from the iPhone or iPad
+
+Takes recorded in compositing mode on the Spark iOS app appear in the Gallery once offloaded, organized by scene and setup, for the whole team to review. See [compositing and recording](/spark/compositing-and-recording) for the recording workflow and [Spark Desktop and takes](/spark/spark-desktop) for how takes get from the device into the browser.

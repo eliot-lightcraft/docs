@@ -141,7 +141,7 @@
               "spark/importing-locations",
               "spark/importing-objects",
               "spark/arranging-objects",
-              "spark/cameras-and-shots",
+              "spark/setups-and-cameras",
               "spark/timeline",
               "spark/lights-and-environment",
               "spark/importing-unreal-scenes"
@@ -157,16 +157,10 @@
             ]
           },
           {
-            "group": "Takes",
+            "group": "Gallery",
             "pages": [
+              "spark/gallery",
               "spark/spark-desktop"
-            ]
-          },
-          {
-            "group": "Shot Lists",
-            "pages": [
-              "spark/creating-shot-lists",
-              "spark/shot-previews"
             ]
           },
           {
