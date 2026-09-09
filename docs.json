@@ -113,72 +113,72 @@
           {
             "group": "Get Started",
             "pages": [
-              "spark/introduction",
-              "spark/core-concepts",
-              "spark/quickstart"
+              "spark/get-started/introduction",
+              "spark/get-started/core-concepts",
+              "spark/get-started/quickstart"
             ]
           },
           {
             "group": "Organizations & Productions",
             "pages": [
-              "spark/organizations",
-              "spark/productions"
+              "spark/organizations-productions/organizations",
+              "spark/organizations-productions/productions"
             ]
           },
           {
             "group": "Scripts",
             "pages": [
-              "spark/importing-scripts",
-              "spark/writing-scripts",
-              "spark/collaboration",
-              "spark/script-outline-and-3d-scene-list"
+              "spark/scripts/importing-scripts",
+              "spark/scripts/writing-scripts",
+              "spark/scripts/collaboration",
+              "spark/scripts/script-outline-and-3d-scene-list"
             ]
           },
           {
             "group": "Scene Editor",
             "pages": [
-              "spark/scene-overview",
-              "spark/importing-locations",
-              "spark/importing-objects",
-              "spark/arranging-objects",
-              "spark/setups-and-cameras",
-              "spark/timeline",
-              "spark/lights-and-environment",
-              "spark/importing-unreal-scenes"
+              "spark/scene-editor/scene-overview",
+              "spark/scene-editor/importing-locations",
+              "spark/scene-editor/importing-objects",
+              "spark/scene-editor/arranging-objects",
+              "spark/scene-editor/setups-and-cameras",
+              "spark/scene-editor/timeline",
+              "spark/scene-editor/lights-and-environment",
+              "spark/scene-editor/importing-unreal-scenes"
             ]
           },
           {
             "group": "Spark iOS",
             "pages": [
-              "spark/spark-ios-setup",
-              "spark/iphone-camera-controls",
-              "spark/live-camera-sharing",
-              "spark/compositing-and-recording"
+              "spark/spark-ios/spark-ios-setup",
+              "spark/spark-ios/iphone-camera-controls",
+              "spark/spark-ios/live-camera-sharing",
+              "spark/spark-ios/compositing-and-recording"
             ]
           },
           {
             "group": "Gallery",
             "pages": [
-              "spark/gallery",
-              "spark/spark-desktop"
+              "spark/gallery/gallery",
+              "spark/gallery/spark-desktop"
             ]
           },
           {
             "group": "Editing",
             "pages": [
-              "spark/editing"
+              "spark/editing/editing"
             ]
           },
           {
             "group": "Export & Jetset",
             "pages": [
-              "spark/exporting-to-jetset"
+              "spark/export-jetset/exporting-to-jetset"
             ]
           },
           {
             "group": "Troubleshooting",
             "pages": [
-              "spark/common-pitfalls"
+              "spark/troubleshooting/common-pitfalls"
             ]
           }
         ]
@@ -221,7 +221,7 @@
               "tutorials/unreal-workflows/importing-animated-takes"
             ]
           },
-            {
+          {
             "group": "Houdini",
             "pages": [
               "tutorials/houdini/animated-character-export"
@@ -253,9 +253,7 @@
         ]
       }
     ],
-    "global": {
-
-    }
+    "global": {}
   },
   "logo": {
     "light": "/logo/lightcraft-plane-horizontal-logo-black.png",
