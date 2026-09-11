@@ -152,6 +152,7 @@
             "pages": [
               "spark/spark-ios/spark-ios-setup",
               "spark/spark-ios/iphone-camera-controls",
+              "spark/spark-ios/mobile-setups-and-cameras",
               "spark/spark-ios/live-camera-sharing",
               "spark/spark-ios/compositing-and-recording"
             ]
