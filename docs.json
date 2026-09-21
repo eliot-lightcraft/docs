@@ -181,6 +181,12 @@
             "pages": [
               "spark/troubleshooting/common-pitfalls"
             ]
+          },
+          {
+            "group": "Changelog",
+            "pages": [
+              "spark/changelog/changelog"
+            ]
           }
         ]
       },
