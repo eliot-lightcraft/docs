@@ -183,9 +183,10 @@
             ]
           },
           {
-            "group": "Changelog",
+            "group": "What's new",
             "pages": [
-              "spark/changelog/changelog"
+              "spark/changelog/changelog",
+              "spark/changelog/updates"
             ]
           }
         ]

@@ -1,7 +1,9 @@
 ---
-title: 'Changelog'
+title: 'Releases'
 description: "What's new in Spark on the web, newest first"
 ---
+
+Each release lists what is new or different in Spark on the web: the things you can see and click. For every change, including small fixes, see [all updates](/spark/changelog/updates).
 
 New releases ship continuously, so this page updates as features go live.
 Each entry is linkable, and the page has an RSS feed if you would rather
@@ -14,69 +16,50 @@ app's version history.
 
 <Update label="2026-09-30" tags={["Web"]}>
 
+## New
+
 ### Use a modelled USD set as your location
 
-Your location no longer has to be a Gaussian splat. Upload a `.usd`, `.usda`, `.usdc` or `.usdz` set and it loads at the scale and orientation its file declares, exports with the rest of the scene, and — if it was authored with animation — gets a clip you can place on the timeline like any object.
-
-See [adding a USD set](/spark/scene-editor/importing-locations#adding-a-usd-set).
+Your location no longer has to be a Gaussian splat. Upload a `.usd`, `.usda`, `.usdc` or `.usdz` set and it loads at the scale and orientation its file declares. [Adding a USD set](/spark/scene-editor/importing-locations#adding-a-usd-set)
 
 ### Cut straight from your Gallery lists
 
-The Editor's left column now shows your production's lists and a script's All Takes instead of a separate bin, so a CG Take or Take goes onto the timeline without being imported first. Whichever list you pick is saved on the edit, so anyone who opens it lands where you left it. You can create a list, add to it, reorder it and remove from it without leaving the Editor — it is the same list the Gallery shows, changed in the same place. Rows also have a size of their own now, in the Gallery's Appearance menu: Compact trades the tags and layer chips for more of a scene on screen.
-
-See [finding takes](/spark/editing/editing#finding-takes) in the Editor.
-
-### Share lists that play and work on a phone
-
-On a shared list, every take with a picture plays when you hover over it and opens full screen when you click it. It shows the comp if there is one, otherwise the BG, otherwise the camera plate. Takes that only have a BG are marked **BG ONLY**. Anyone with the link can download one take, a selection or the whole list, packaged the same way as a Gallery download. On a phone the list switches to compact rows, a tap opens a take full screen, and a header links back to Spark.
-
-See [downloading from a shared list](/spark/gallery/gallery#downloading-from-a-shared-list).
-
-### Download Gallery takes as one zip
-
-Every Gallery download, whether one take or a selection, now arrives as a single zip with folders for 3D scene, setup, camera and take. You can also download takes that only have a BG.
-
-See [downloading a zip file](/spark/gallery/gallery#downloading-a-zip-file) for the folders inside.
-
-### Regenerate a take's BG
-
-Choose **Regenerate BG** from a take's card menu to render its background again from the take's camera track. The BG chip shows progress while it renders, and if the BG can't be regenerated, the menu tells you why.
-
-See [regenerating a background](/spark/gallery/gallery#regenerating-a-background).
+The Editor's left column now shows your production's lists and a script's All Takes, so a CG Take or Take goes onto the timeline without being imported first. [Finding takes](/spark/editing/editing#finding-takes)
 
 ### Choose production access when you invite people
 
-When you invite members as Users, you can pick which productions they'll get, and they have access as soon as they accept. Pending invitations list what they'll grant, and you can change that until they're accepted. Each member's row in organization settings now shows which productions they can open, with a searchable list for changing it. Production settings show the same thing from the production's side. Productions open to the whole organization are marked with a globe.
+When you invite members as Users, pick which productions they get. You can change it later from the Members list or from Production Settings. [Choosing production access](/spark/organizations-productions/organizations#choosing-production-access)
 
-See [choosing production access](/spark/organizations-productions/organizations#choosing-production-access).
+### Regenerate a take's BG
 
-### See keyboard shortcuts in tooltips
+Choose **Regenerate BG** from a take's card menu to render its background again from the take's camera track. [Regenerating a background](/spark/gallery/gallery#regenerating-a-background)
 
-When a button has a shortcut, its tooltip now shows the keys, written for your keyboard: ⌘ ⌥ ⇧ on a Mac, Ctrl, Alt and Shift elsewhere. The 3D scene and the Editor now share the same keys:
+### Download Gallery takes as one zip
 
-- **Shift+↑ / Shift+↓** jumps to the start or end of either timeline. Home and End no longer move the playhead.
-- **Delete** is ⌫ on a Mac and Del elsewhere.
-- **Undo and redo** are ⌘Z and ⌘⇧Z on a Mac, Ctrl+Z and Ctrl+Shift+Z elsewhere. On a Mac, Ctrl+Z no longer undoes, and Ctrl+Y no longer redoes anywhere.
-- **Esc** cancels a placement in the asset editor instead of closing the editor.
+Every Gallery download now arrives as a single zip with folders for 3D scene, setup, camera and take. [Downloading a zip file](/spark/gallery/gallery#downloading-a-zip-file)
 
-See [keyboard shortcuts](/spark/editing/editing#keyboard-shortcuts) in the Editor.
+### Download from a shared list
 
-### See setups, cameras and takes on scene cards
-
-Scene cards on the script page, home, the 3D scene drawer and the production scene picker now count a scene's setups, cameras and takes. The counts update as you add more, and hovering over a count tells you what it includes.
-
-See the [3D scene list](/spark/scripts/script-outline-and-3d-scene-list#3d-scene-list-sidebar).
-
-### Shots are now cameras and CG Takes
-
-Anywhere Spark used to say *shot*, it now says *camera* or *CG Take*, matching the Outliner. This covers the 3D scene, the Editor, the Gallery and shared lists. The base setup is now labeled **Base Setup** wherever it appears next to your other setups.
+Anyone with a shared list link can download one take, a selection or the whole list. [Downloading from a shared list](/spark/gallery/gallery#downloading-from-a-shared-list)
 
 ### Hide objects per setup
 
-The eye in the Outliner hides objects again, and a hide now belongs to the setup you're in, so an object can be hidden in one setup and visible in another. Cloning a setup copies its hides to the clone, and CG Take previews use each camera's setup hides. Locations, locators and rulers are still hidden across the whole scene.
+The eye in the Outliner hides an object in the active setup only. [Hiding an object in one setup](/spark/scene-editor/setups-and-cameras#hiding-an-object-in-one-setup)
 
-See [hiding an object in one setup](/spark/scene-editor/setups-and-cameras#hiding-an-object-in-one-setup).
+### See keyboard shortcuts in tooltips
 
-Various bug fixes and improvements (2 changes).
+When a button has a shortcut, its tooltip now shows the keys. [Keyboard shortcuts](/spark/editing/editing#keyboard-shortcuts)
+
+### See setups, cameras and takes on scene cards
+
+Scene cards now count a scene's setups, cameras and takes. [3D scene list](/spark/scripts/script-outline-and-3d-scene-list#3d-scene-list-sidebar)
+
+## Changed
+
+- **Shots are now cameras and CG Takes.** Anywhere Spark used to say *shot*, it now says *camera* or *CG Take*.
+- **Base Setup.** The base setup is labeled **Base Setup** wherever it appears next to your other setups.
+- **Help button.** The headset in the top bar is now a question mark. The menu behind it is the same.
+
+[All 15 updates in this release](/spark/changelog/updates)
 
 </Update>
