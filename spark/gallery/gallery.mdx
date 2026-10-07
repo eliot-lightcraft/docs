@@ -31,9 +31,67 @@ Switch between two view modes:
 - **Card grid** — Displays setups and takes as visual cards with preview thumbnails.
 - **List** — Displays them in a compact list format with key details.
 
-## Downloading previews
+In list view, the appearance button opens **Row size**, with **Compact** and **Standard**. A compact row keeps the name, the details line, and one line of the note. It leaves out the tags and the layer chips.
 
-Click **Download Preview** on any camera to export an MP4 of its previz render. This is useful for sharing outside the Spark web app or as input for AI video tools, where a real camera move produces cleaner output than a text prompt.
+<img
+  src="/images/spark/gallery-row-size.png"
+  alt="The Gallery in list view with the appearance menu open. Row size is set to Compact, and compact rows show behind it."
+  style={{ borderRadius: '0.5rem' }}
+/>
+
+## Take card actions
+
+Open the **…** menu on a card.
+
+<img
+  src="/images/spark/gallery-card-menu.png"
+  alt="A take card's menu in the Gallery with Regenerate BG, Download, Add to list, and Delete permanently."
+  style={{ borderRadius: '0.5rem' }}
+/>
+
+1. **Regenerate BG** renders the take's background again in the browser, using the scene as it is now. The new background replaces the old one.
+2. **Download** saves the card as one zip file.
+
+### Regenerating a background
+
+Use **Regenerate BG** after you change the 3D scene, for example after you move or hide an object. The render uses the take's camera track, so the camera move stays the same.
+
+1. Open the take card's **…** menu and click **Regenerate BG**.
+2. Wait while it renders. The top bar shows "Regenerating BG" with the take's name and the frames left. The menu item reads **Regenerating BG…** and is greyed out.
+3. When the message "Background updated" appears, click the **BG** chip on the card to see the new background.
+
+A take that has no background yet shows a grey **BG** chip. **Regenerate BG** creates its first background.
+
+### Downloading a zip file
+
+To download several cards at once, click **Select Takes**, tick the cards, and click **Download**. A selection is also saved as one zip file.
+
+The zip file is named with the date and time, then "Gallery Takes". Its folders follow the Gallery: 3D scene, then setup, then camera.
+
+<Tree>
+  <Tree.Folder name="2026-10-07 18.40.12 Gallery Takes.zip" defaultOpen>
+    <Tree.Folder name="INT. PARK - DAY" defaultOpen>
+      <Tree.Folder name="Base Setup" defaultOpen>
+        <Tree.Folder name="Camera 1" defaultOpen>
+          <Tree.File name="Camera 1.mp4" />
+          <Tree.Folder name="Take 1" defaultOpen>
+            <Tree.File name="Take 1.mp4" />
+            <Tree.File name="Take 1-background.mp4" />
+            <Tree.File name="Take 1-cam.mp4" />
+            <Tree.File name="Take 1-matte.mp4" />
+            <Tree.File name="Take 1-depth.mp4" />
+          </Tree.Folder>
+        </Tree.Folder>
+      </Tree.Folder>
+    </Tree.Folder>
+  </Tree.Folder>
+</Tree>
+
+- A CG Take is one MP4 inside its camera folder.
+- A take has its own folder inside the camera folder, with one file for each layer it has. The composite is named after the take. Other layers add the layer name. Tracking data, when the take has it, is saved in the same folder.
+- A take with no camera has its folder at the top of the zip file.
+
+Downloads are useful for sharing outside the Spark web app or as input for AI video tools, where a real camera move produces cleaner output than a text prompt.
 
 ## Comments and annotations
 
@@ -42,6 +100,21 @@ Add comments and annotations directly to a setup or take card. Use these to leav
 ## Sharing
 
 Share the Gallery with team members within your organization. Shared views let everyone review coverage and add their own comments.
+
+### Downloading from a shared list
+
+A person who opens a shared list link can download from it without signing in.
+
+<img
+  src="/images/spark/shared-list-controls.png"
+  alt="A shared list page with two take cards and the buttons Select Takes and Download all."
+  style={{ borderRadius: '0.5rem' }}
+/>
+
+1. **Select Takes** shows checkboxes, so the viewer can pick cards and download only those.
+2. **Download all** saves everything in the list as one zip file.
+
+The zip file uses the same folders as a Gallery download. For a viewer, a take's folder holds only the composite, the background, and the camera layer.
 
 ## Reviewing takes from the iPhone or iPad
 

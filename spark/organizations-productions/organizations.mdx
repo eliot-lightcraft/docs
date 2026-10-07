@@ -5,18 +5,64 @@ description: 'Create and manage organizations, invite team members, and configur
 
 ## Creating an organization
 
-To create a new organization, select **Create Organization** from the dashboard and enter a name. You become the admin of any organization you create.
+To create a new organization, click **New Organization** on the Home page and enter a name. You become the owner of any organization you create, with the Admin role.
 
 ## Inviting team members
 
 Invite collaborators to your organization by email. Invited members receive a notification and can join immediately if they already have a Spark web account.
+
+To send an invitation, click the gear icon in the top bar, open **Organization Settings**, and click **Invite** in the **Members** section. Only the organization owner can invite.
+
+### Choosing production access
+
+When you invite someone as a **User**, the **Production access** section of the invite window sets which productions they can open once they accept.
+
+<img
+  src="/images/spark/invite-production-access.png"
+  alt="The Invite member window with the Production access section. Two productions are ticked and one is marked Everyone."
+  style={{ borderRadius: '0.5rem' }}
+/>
+
+1. **Search productions** filters the list by name.
+2. **Select all** ticks every production the search is showing.
+3. The count shows how many productions are ticked.
+4. A production marked **Everyone** is already open to the whole organization. It has no checkbox, because every member can open it.
+
+One choice applies to every person in the invitation who has the User role.
+
+If everyone in the invitation is an **Admin**, the list is replaced by a note. Admins can open every production, so there is nothing to choose.
+
+### Changing access after you invite
+
+A sent invitation appears in the **Members** list until the person accepts.
+
+<img
+  src="/images/spark/members-pending-invitation.png"
+  alt="The Members list with a pending invitation row showing a Pending tag, a production count, and an arrow button."
+  style={{ borderRadius: '0.5rem' }}
+/>
+
+1. **Pending** marks an invitation that has not been accepted yet.
+2. The count is the productions this person can open after they accept. It includes productions open to everyone, so it can be higher than the number you ticked.
+3. The arrow opens **Production access** for that row. Clicking anywhere on the row does the same.
+
+In **Production access**, tick or clear productions and click **Save Changes**. This works for a pending invitation and for a member who has already joined.
+
+<img
+  src="/images/spark/production-access-window.png"
+  alt="The Production access window for a member, with a list of productions and a Save Changes button."
+  style={{ borderRadius: '0.5rem' }}
+/>
+
+1. The productions this person can be given. Ticked productions are the ones they can open.
+2. **Save Changes** applies the new set.
 
 ## Roles and permissions
 
 Organizations support the following roles:
 
 - **Admin** — Full access to organization settings, member management, and all productions.
-- **Member** — Access to productions within the organization. Cannot manage organization settings or members.
+- **User** — Can open the productions shared with the whole organization, plus any productions they are given access to. Cannot manage organization settings or members.
 
 ## Leaving an organization
 
