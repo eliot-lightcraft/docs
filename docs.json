@@ -141,6 +141,7 @@
               "spark/scene-editor/importing-locations",
               "spark/scene-editor/importing-objects",
               "spark/scene-editor/arranging-objects",
+              "spark/scene-editor/parts-of-an-object",
               "spark/scene-editor/setups-and-cameras",
               "spark/scene-editor/timeline",
               "spark/scene-editor/lights-and-environment",
