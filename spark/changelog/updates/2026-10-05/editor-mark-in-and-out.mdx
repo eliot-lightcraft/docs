@@ -1,0 +1,36 @@
+---
+title: "Mark in and out on a take in the Editor"
+description: "Mark the start and end of the stretch you want before you put a take on the timeline"
+---
+
+Feature · Web · Released [2026-10-05](/spark/changelog/changelog#2026-10-05)
+
+You can now mark a start and an end on a take, a CG Take, or an audio file in the Editor's **Clip** pane. Only the marked stretch goes onto the timeline.
+
+## Marking a stretch of a take
+
+1. In the Editor, click a take or a CG Take in the left column. It loads in the **Clip** pane, to the left of **Program**.
+2. Play or scrub to the first frame you want and press **I**. The button is **Mark in**.
+3. Go to the last frame you want and press **O**. The button is **Mark out, including this frame**, so the frame you see is included.
+
+A band with a white edge at each end shades the marked stretch on the scrub bar.
+
+- Pressing **O** on a frame before the In mark clears the In mark. The band then runs from the start of the take to the new Out mark.
+- Press **Alt+X**, or click **Clear the marks**, to remove both marks. With no marks, that button's tooltip reads **No marks to clear**.
+
+## Audio files
+
+An audio file is marked the same way, with **I** and **O**. Dragging a marked audio file to the timeline places only the marked stretch. While you drag, the ghost shows the marked length in seconds.
+
+## Marks belong to one edit
+
+Marks are saved. After you reload the page, the band is still on that take. The same take in a different edit has no marks.
+
+## When a timeline clip is selected
+
+While a clip on the timeline is selected, **Mark in** is greyed out. Its tooltip reads **A clip is trimmed on the timeline. Open its source from the name to mark it**. Press **F**, or click the clip's source name (tooltip **Open the source**), to load the full take in the **Clip** pane and mark it there.
+
+## Current guide
+
+{/* Remove this section when the guide no longer matches what this page describes. */}
+This page describes the feature as it was released. For how it works today, see [marking a stretch of a take](/spark/editing/editing#marking-a-stretch-of-a-take).

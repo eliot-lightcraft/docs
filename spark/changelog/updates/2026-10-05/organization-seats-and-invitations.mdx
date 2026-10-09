@@ -1,0 +1,120 @@
+---
+title: "See your seats and manage invitations"
+description: "The Members list now shows seats in use, when invitations expire, and lets you resend them"
+---
+
+Feature · Web · Released [2026-10-05](/spark/changelog/changelog#2026-10-05)
+
+**Organization Settings** now shows how many seats are in use. Invitations show when they expire, and an expired invitation no longer holds a seat.
+
+## The seat line
+
+Open **Organization Settings** and look under **Members**. A line shows how many seats are in use, such as **1 of 3 seats used**. An invitation that has not been accepted yet holds a seat and is counted as pending: **2 of 3 seats used · 1 pending**.
+
+When every seat is taken, the line turns red and reads **3 of 3 seats used · 2 pending — add a paid seat from Billing to invite more**. The **Invite** button is greyed out, with the tooltip **Seat capacity reached**.
+
+<img
+  src="/images/spark/updates/2026-10-05/seat-line-full.png"
+  alt="The Members section of Organization Settings. The seat line is red and reads 3 of 3 seats used, 2 pending, add a paid seat from Billing to invite more. The Invite button is greyed out with the tooltip Seat capacity reached. Below are the owner and two pending invitations."
+  style={{ borderRadius: '0.5rem' }}
+/>
+
+1. The seat line of a full organization.
+2. **Invite** is greyed out until a seat is free.
+
+## The invite window
+
+The **Invite member** window shows the number of free seats under **Invite by email**. It checks each address when you leave the box.
+
+<img
+  src="/images/spark/updates/2026-10-05/invite-window-free-seats.png"
+  alt="The Invite member window. Under Invite by email it reads 2 free seats. The email box holds abc and shows Invalid email format under it."
+  style={{ borderRadius: '0.5rem' }}
+/>
+
+1. The free seats left in the organization.
+2. The message under an address that cannot be invited.
+
+| Message | Meaning |
+|---|---|
+| **Invalid email format** | The text is not an email address. |
+| **Already a member** | That person is in the organization. |
+| **Invitation already sent** | That address has an invitation that is still pending. |
+| **Invitation expired**, with **Resend it** | That address has an invitation that ran out. Click **Resend it** to send it again. |
+
+**Add more user** is greyed out, with the tooltip **No more free seats**, when the rows in the window already use every free seat.
+
+## Pending invitations
+
+An invitation appears in the **Members** list with the tag **Pending** and the time left, such as **expires in 7 days**.
+
+<img
+  src="/images/spark/updates/2026-10-05/pending-invitation-row.png"
+  alt="The Members list with one pending invitation. The seat line reads 2 of 3 seats used, 1 pending. The invitation row shows expires in 7 days, the tag Pending, an envelope icon and a red X."
+  style={{ borderRadius: '0.5rem' }}
+/>
+
+1. The seat line counts the invitation as pending.
+2. The invitation row, with the envelope icon and the **X**.
+
+- The envelope icon (**Resend invitation**) sends it again and shows **Invitation resent to** with the address.
+- The **X** asks **Cancel this invitation?** and warns **The invite link will no longer work.** Click **Cancel invitation**. The message **Invitation cancelled!** appears, and the seat is free again.
+
+<img
+  src="/images/spark/updates/2026-10-05/cancel-invitation-confirm.png"
+  alt="A small box over the Members list that asks Cancel this invitation? The invite link will no longer work. It has the buttons Cancel and Cancel invitation."
+  style={{ borderRadius: '0.5rem' }}
+/>
+
+## Expired invitations
+
+An invitation that has run out moves under the heading **Expired invitations · don't hold a seat**. It has the tag **Expired** and the date it ran out. It is no longer counted on the seat line, so its seat can go to someone else.
+
+<img
+  src="/images/spark/updates/2026-10-05/expired-invitations-group.png"
+  alt="The Members list with a group named Expired invitations, don't hold a seat. One row in it has the tag Expired and reads expired Oct 7. The seat line reads 2 of 3 seats used, 1 pending, and the Invite button is enabled."
+  style={{ borderRadius: '0.5rem' }}
+/>
+
+1. The seat line no longer counts the expired invitation.
+2. The expired invitation, under its own heading.
+3. **Invite** is enabled again.
+
+To send an expired invitation again, click the resend icon on its row, or type the address in the invite window and click **Resend it**. The invitation is **Pending** again and holds a seat.
+
+<img
+  src="/images/spark/updates/2026-10-05/invite-window-resend-it.png"
+  alt="The Invite member window. Under the email box it reads Invitation expired, with a Resend it link beside it."
+  style={{ borderRadius: '0.5rem' }}
+/>
+
+1. The message for an address whose invitation ran out.
+2. **Resend it** sends the invitation again.
+
+If the organization has no free seat, the resend icon is greyed out, with the tooltip **No free seat — add one from Billing to resend**.
+
+<img
+  src="/images/spark/updates/2026-10-05/resend-greyed-no-free-seat.png"
+  alt="The Members list of a full organization. The resend icon on the expired invitation is greyed out, with the tooltip No free seat, add one from Billing to resend."
+  style={{ borderRadius: '0.5rem' }}
+/>
+
+1. The greyed resend icon and its tooltip.
+2. The seat line of the full organization.
+
+## Accepting when the organization is full
+
+A person who accepts an invitation while the organization has no free seat is not added. They see a page that names the organization and says it **is out of seats**.
+
+<img
+  src="/images/spark/updates/2026-10-05/out-of-seats-page.png"
+  alt="A page that reads QA seats is out of seats. Under it: The organization needs more seats before you can join. Ask its administrator to add a seat, then try again. Your invitation stays valid until 15/10/2026. Two buttons: Try again and Go to Home."
+  style={{ borderRadius: '0.5rem' }}
+/>
+
+The page says the invitation stays valid and gives its last day. After the owner frees or adds a seat, **Try again** lets the person in.
+
+## Current guide
+
+{/* Remove this section when the guide no longer matches what this page describes. */}
+This page describes the feature as it was released. For how it works today, see [seats and invitations](/spark/organizations-productions/organizations#seats-and-invitations).

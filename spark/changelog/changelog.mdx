@@ -3,7 +3,7 @@ title: 'Releases'
 description: "What's new in Spark on the web, newest first"
 ---
 
-Each release lists what is new or different in Spark on the web: the things you can see and click. For every change, including small fixes, see [all updates](/spark/changelog/updates).
+Each release lists what is new or different in Spark on the web: the things you can see and click. Click a title to open its update, which has the description and pictures. Every update in a release, including small fixes, is listed under **Updates** in the left menu.
 
 New releases ship continuously, so this page updates as features go live.
 Each entry is linkable, and the page has an RSS feed if you would rather
@@ -14,72 +14,62 @@ app's version history.
 
 {/* RELEASE_NOTES_ANCHOR — the release-notes workflow inserts new entries directly below this line. Do not remove or reword. */}
 
+<Update label="2026-10-05" tags={["Web"]}>
+
+{/* PROVISIONAL DATE. 2026-10-05 is the day this release reached staging. Before publishing, change the label, the folder name spark/changelog/updates/2026-10-05, images/spark/updates/2026-10-05, and every link to them to the day the release reached production. */}
+
+## New
+
+- [Mark in and out on a take in the Editor](/spark/changelog/updates/2026-10-05/editor-mark-in-and-out)
+- [Insert or overwrite at the playhead](/spark/changelog/updates/2026-10-05/editor-insert-and-overwrite)
+- [Choose which of a take's videos a clip plays](/spark/changelog/updates/2026-10-05/choose-a-takes-video)
+- [Password and expiry for a shared list link](/spark/changelog/updates/2026-10-05/shared-list-password-and-expiry)
+- [See your seats and manage invitations](/spark/changelog/updates/2026-10-05/organization-seats-and-invitations)
+- [What's new in the help menu](/spark/changelog/updates/2026-10-05/whats-new-in-the-help-menu)
+
+## Changed
+
+- [New keys for Split, Trim start, and Trim end](/spark/changelog/updates/2026-10-05/editor-keys)
+
+[All 8 updates in this release](/spark/changelog/updates/2026-10-05/overview)
+
+</Update>
+
+<Update label="2026-10-02" tags={["Web"]}>
+
+{/* PROVISIONAL DATE. 2026-10-02 is the day this release reached staging. Before publishing, change the label, the folder name spark/changelog/updates/2026-10-02, images/spark/updates/2026-10-02, and every link to them to the day the release reached production. */}
+
+## New
+
+- [Select, hide, and transform one part of an imported USD object](/spark/changelog/updates/2026-10-02/parts-of-an-object)
+- [Parent a camera to one part of an object](/spark/changelog/updates/2026-10-02/parent-a-camera-to-a-part)
+
+[All 2 updates in this release](/spark/changelog/updates/2026-10-02/overview)
+
+</Update>
+
 <Update label="2026-09-30" tags={["Web"]}>
 
 ## New
 
-<span id="r-2026-09-30-1" className="scroll-mt-28" />
-
-### Use a modelled USD set as your location
-
-Your location no longer has to be a Gaussian splat. Upload a `.usd`, `.usda`, `.usdc` or `.usdz` set and it loads at the scale and orientation its file declares. [Adding a USD set](/spark/scene-editor/importing-locations#adding-a-usd-set)
-
-<span id="r-2026-09-30-2" className="scroll-mt-28" />
-
-### Cut straight from your Gallery lists
-
-The Editor's left column now shows your production's lists and a script's All Takes, so a CG Take or Take goes onto the timeline without being imported first. [Finding takes](/spark/editing/editing#finding-takes)
-
-<span id="r-2026-09-30-3" className="scroll-mt-28" />
-
-### Choose production access when you invite people
-
-When you invite members as Users, pick which productions they get. You can change it later from the Members list or from Production Settings. [Choosing production access](/spark/organizations-productions/organizations#choosing-production-access)
-
-<span id="r-2026-09-30-4" className="scroll-mt-28" />
-
-### Regenerate a take's BG
-
-Choose **Regenerate BG** from a take's card menu to render its background again from the take's camera track. [Regenerating a background](/spark/gallery/gallery#regenerating-a-background)
-
-<span id="r-2026-09-30-5" className="scroll-mt-28" />
-
-### Download Gallery takes as one zip
-
-Every Gallery download now arrives as a single zip with folders for 3D scene, setup, camera and take. [Downloading a zip file](/spark/gallery/gallery#downloading-a-zip-file)
-
-<span id="r-2026-09-30-6" className="scroll-mt-28" />
-
-### Download from a shared list
-
-Anyone with a shared list link can download one take, a selection or the whole list. [Downloading from a shared list](/spark/gallery/gallery#downloading-from-a-shared-list)
-
-<span id="r-2026-09-30-7" className="scroll-mt-28" />
-
-### Hide objects per setup
-
-The eye in the Outliner hides an object in the active setup only. [Hiding an object in one setup](/spark/scene-editor/setups-and-cameras#hiding-an-object-in-one-setup)
-
-<span id="r-2026-09-30-8" className="scroll-mt-28" />
-
-### See keyboard shortcuts in tooltips
-
-When a button has a shortcut, its tooltip now shows the keys. [Keyboard shortcuts](/spark/editing/editing#keyboard-shortcuts)
-
-<span id="r-2026-09-30-9" className="scroll-mt-28" />
-
-### See setups, cameras and takes on scene cards
-
-Scene cards now count a scene's setups, cameras and takes. [3D scene list](/spark/scripts/script-outline-and-3d-scene-list#3d-scene-list-sidebar)
+- [Use a modelled USD set as your location](/spark/changelog/updates/2026-09-30/usd-set-as-location)
+- [Cut straight from your Gallery lists](/spark/changelog/updates/2026-09-30/gallery-lists-in-the-editor)
+- [Choose production access when you invite people](/spark/changelog/updates/2026-09-30/production-access-on-invite)
+- [Regenerate a take's BG](/spark/changelog/updates/2026-09-30/regenerate-bg)
+- [Download Gallery takes as one zip](/spark/changelog/updates/2026-09-30/gallery-zip-download)
+- [Download from a shared list](/spark/changelog/updates/2026-09-30/shared-list-download)
+- [Hide objects per setup](/spark/changelog/updates/2026-09-30/hide-objects-per-setup)
+- [See keyboard shortcuts in tooltips](/spark/changelog/updates/2026-09-30/shortcuts-in-tooltips)
+- [See setups, cameras and takes on scene cards](/spark/changelog/updates/2026-09-30/scene-card-counts)
 
 ## Changed
 
-- <span id="r-2026-09-30-10" className="scroll-mt-28" />**Shots are now cameras and CG Takes.** Anywhere Spark used to say *shot*, it now says *camera* or *CG Take*.
-- <span id="r-2026-09-30-11" className="scroll-mt-28" />**Base Setup.** The base setup is labeled **Base Setup** wherever it appears next to your other setups.
-- <span id="r-2026-09-30-12" className="scroll-mt-28" />**Help button.** The headset in the top bar is now a question mark. The menu behind it is the same.
-- <span id="r-2026-09-30-13" className="scroll-mt-28" />**Spark iOS app.** The web app now points you to the Spark iOS app.
-- <span id="r-2026-09-30-14" className="scroll-mt-28" />**Watch tutorial.** The **Watch tutorial** button is gone from an empty organization.
+- [Shots are now cameras and CG Takes](/spark/changelog/updates/2026-09-30/shots-are-cameras-and-cg-takes)
+- [The base setup is now labeled Base Setup](/spark/changelog/updates/2026-09-30/base-setup-label)
+- [The help button is now a question mark](/spark/changelog/updates/2026-09-30/help-button)
+- [The web app now points you to the Spark iOS app](/spark/changelog/updates/2026-09-30/spark-ios-app-pointer)
+- [The Watch tutorial button is gone](/spark/changelog/updates/2026-09-30/watch-tutorial-button-removed)
 
-[All 15 updates in this release](/spark/changelog/updates#2026-09-30)
+[All 15 updates in this release](/spark/changelog/updates/2026-09-30/overview)
 
 </Update>

@@ -1,0 +1,42 @@
+---
+title: "Insert or overwrite at the playhead"
+description: "Put the marked stretch of a take on the timeline with one key"
+---
+
+Feature · Web · Released [2026-10-05](/spark/changelog/changelog#2026-10-05)
+
+Two new keys put the marked stretch of a take on the timeline at the playhead. **Insert** (**V**) pushes later clips along. **Overwrite** (**B**) replaces what is under it.
+
+## Where the clip goes
+
+One video lane header is tinted. **Insert** and **Overwrite** put the clip on that lane. It is the last video lane you clicked in. If that lane is locked, the tint moves to an unlocked video lane.
+
+## Inserting
+
+1. Load a take in the **Clip** pane and mark the stretch you want. See [mark in and out on a take](/spark/changelog/updates/2026-10-05/editor-mark-in-and-out).
+2. Move the timeline playhead to where the clip should start.
+3. Press **V**. The button's tooltip reads **Insert at the playhead, pushing later clips on the lane along**.
+
+The marked stretch lands at the playhead. A clip under the playhead is split there, and every later clip on that lane moves right by the length of the new clip. The playhead jumps to the end of the new clip, and the **Clip** pane still shows the take, so you can press **V** again to lay clips back to back.
+
+For a marked audio file, **V** puts the marked stretch on an audio lane.
+
+## Overwriting
+
+Press **B**. The button's tooltip reads **Overwrite at the playhead**.
+
+The marked stretch lands at the playhead and nothing moves. Clips under it are shortened or cut to make room, and the end of the lane stays where it was.
+
+## Undoing
+
+One **Ctrl+Z** puts the lane back as it was, including a clip that was split. **Ctrl+Shift+Z** brings the insert back.
+
+## When Insert and Overwrite are greyed out
+
+- While a timeline clip is selected, both buttons are greyed out with the tooltip **This clip is already on the timeline**.
+- If every video lane is locked, **V** shows **Every video lane is locked. Unlock one to insert.** and changes nothing.
+
+## Current guide
+
+{/* Remove this section when the guide no longer matches what this page describes. */}
+This page describes the feature as it was released. For how it works today, see [inserting and overwriting](/spark/editing/editing#inserting-and-overwriting).

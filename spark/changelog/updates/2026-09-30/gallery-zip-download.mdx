@@ -1,0 +1,44 @@
+---
+title: "Download Gallery takes as one zip"
+description: "Every Gallery download is now a single zip file with folders"
+---
+
+Feature · Web · Released [2026-09-30](/spark/changelog/changelog#2026-09-30)
+
+Every Gallery download now arrives as a single zip with folders for 3D scene, setup, camera and take.
+
+## Downloading a zip file
+
+To download several cards at once, click **Select Takes**, tick the cards, and click **Download**. A selection is also saved as one zip file.
+
+The zip file is named with the date and time, then "Gallery Takes". Its folders follow the Gallery: 3D scene, then setup, then camera.
+
+<Tree>
+  <Tree.Folder name="2026-10-07 18.40.12 Gallery Takes.zip" defaultOpen>
+    <Tree.Folder name="INT. PARK - DAY" defaultOpen>
+      <Tree.Folder name="Base Setup" defaultOpen>
+        <Tree.Folder name="Camera 1" defaultOpen>
+          <Tree.File name="Camera 1.mp4" />
+          <Tree.Folder name="Take 1" defaultOpen>
+            <Tree.File name="Take 1.mp4" />
+            <Tree.File name="Take 1-background.mp4" />
+            <Tree.File name="Take 1-cam.mp4" />
+            <Tree.File name="Take 1-matte.mp4" />
+            <Tree.File name="Take 1-depth.mp4" />
+          </Tree.Folder>
+        </Tree.Folder>
+      </Tree.Folder>
+    </Tree.Folder>
+  </Tree.Folder>
+</Tree>
+
+- A CG Take is one MP4 inside its camera folder.
+- A take has its own folder inside the camera folder, with one file for each layer it has. The composite is named after the take. Other layers add the layer name. Tracking data, when the take has it, is saved in the same folder.
+- A take with no camera has its folder at the top of the zip file.
+
+Downloads are useful for sharing outside the Spark web app or as input for AI video tools, where a real camera move produces cleaner output than a text prompt.
+
+## Current guide
+
+{/* Remove this section when the guide no longer matches what this page describes. */}
+This page describes the feature as it was released. For how it works today, see [downloading a zip file](/spark/gallery/gallery#downloading-a-zip-file).

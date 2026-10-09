@@ -1,0 +1,49 @@
+---
+title: "Hide objects per setup"
+description: "The eye in the Outliner now hides an object in the active setup only"
+---
+
+Feature · Web · Released [2026-09-30](/spark/changelog/changelog#2026-09-30)
+
+The eye in the Outliner hides an object in the active setup only. Other setups still show it.
+
+## Hiding an object in one setup
+
+The eye on an object's row hides the object in the active setup only. Other setups still show it.
+
+1. Click the setup you want to change, such as **Setup A**, to make it active.
+2. Click the object's row in that setup.
+3. Click the eye on the row.
+
+<img
+  src="/images/spark/updates/2026-09-30/setup-hide-setup-a.png"
+  alt="The 3D scene with Setup A active. The Motorcycle row in Setup A is dimmed with a crossed-out eye, and the motorcycle is missing from the canvas."
+  style={{ borderRadius: '0.5rem' }}
+/>
+
+1. The chip names the active setup, **Setup A**.
+2. The crossed-out eye marks the object as hidden in this setup. Click it to show the object again.
+
+Switch to **Base Setup**, and the same object is still on the canvas.
+
+<img
+  src="/images/spark/updates/2026-09-30/setup-hide-base-setup.png"
+  alt="The same 3D scene with Base Setup active. The Motorcycle row has an open eye, and the motorcycle is on the canvas."
+  style={{ borderRadius: '0.5rem' }}
+/>
+
+1. The chip names the active setup, **Base Setup**.
+2. The open eye shows the object is visible in this setup.
+
+A setup you clone starts with the same objects hidden. A CG Take preview made for a camera in that setup leaves the hidden objects out.
+
+This applies to objects only. Hiding a location, a locator, or a ruler hides it in every setup.
+
+<Note>
+Hidden objects are saved in your web browser. Another browser, another person, and the Spark iOS app still show them.
+</Note>
+
+## Current guide
+
+{/* Remove this section when the guide no longer matches what this page describes. */}
+This page describes the feature as it was released. For how it works today, see [hiding an object in one setup](/spark/scene-editor/setups-and-cameras#hiding-an-object-in-one-setup).

@@ -141,6 +141,7 @@
               "spark/scene-editor/importing-locations",
               "spark/scene-editor/importing-objects",
               "spark/scene-editor/arranging-objects",
+              "spark/scene-editor/parts-of-an-object",
               "spark/scene-editor/setups-and-cameras",
               "spark/scene-editor/timeline",
               "spark/scene-editor/lights-and-environment",
@@ -186,7 +187,54 @@
             "group": "What's new",
             "pages": [
               "spark/changelog/changelog",
-              "spark/changelog/updates"
+              {
+                "group": "Updates",
+                "pages": [
+                  {
+                    "group": "2026-10-05",
+                    "pages": [
+                      "spark/changelog/updates/2026-10-05/overview",
+                      "spark/changelog/updates/2026-10-05/editor-mark-in-and-out",
+                      "spark/changelog/updates/2026-10-05/editor-insert-and-overwrite",
+                      "spark/changelog/updates/2026-10-05/choose-a-takes-video",
+                      "spark/changelog/updates/2026-10-05/shared-list-password-and-expiry",
+                      "spark/changelog/updates/2026-10-05/organization-seats-and-invitations",
+                      "spark/changelog/updates/2026-10-05/whats-new-in-the-help-menu",
+                      "spark/changelog/updates/2026-10-05/editor-keys",
+                      "spark/changelog/updates/2026-10-05/new-version-banner-reload"
+                    ]
+                  },
+                  {
+                    "group": "2026-10-02",
+                    "pages": [
+                      "spark/changelog/updates/2026-10-02/overview",
+                      "spark/changelog/updates/2026-10-02/parts-of-an-object",
+                      "spark/changelog/updates/2026-10-02/parent-a-camera-to-a-part"
+                    ]
+                  },
+                  {
+                    "group": "2026-09-30",
+                    "pages": [
+                      "spark/changelog/updates/2026-09-30/overview",
+                      "spark/changelog/updates/2026-09-30/usd-set-as-location",
+                      "spark/changelog/updates/2026-09-30/gallery-lists-in-the-editor",
+                      "spark/changelog/updates/2026-09-30/production-access-on-invite",
+                      "spark/changelog/updates/2026-09-30/regenerate-bg",
+                      "spark/changelog/updates/2026-09-30/gallery-zip-download",
+                      "spark/changelog/updates/2026-09-30/shared-list-download",
+                      "spark/changelog/updates/2026-09-30/hide-objects-per-setup",
+                      "spark/changelog/updates/2026-09-30/shortcuts-in-tooltips",
+                      "spark/changelog/updates/2026-09-30/scene-card-counts",
+                      "spark/changelog/updates/2026-09-30/shots-are-cameras-and-cg-takes",
+                      "spark/changelog/updates/2026-09-30/base-setup-label",
+                      "spark/changelog/updates/2026-09-30/help-button",
+                      "spark/changelog/updates/2026-09-30/spark-ios-app-pointer",
+                      "spark/changelog/updates/2026-09-30/watch-tutorial-button-removed",
+                      "spark/changelog/updates/2026-09-30/outliner-keyboard-input"
+                    ]
+                  }
+                ]
+              }
             ]
           }
         ]
