@@ -15,22 +15,69 @@ description: 'Arrange a scene into setups, add cameras within them, and record c
 
 See [mobile setups and cameras](/spark/spark-ios/mobile-setups-and-cameras) for jumping between setups and cameras, and bookmarking positions, once you're navigating a scene.
 
-Each scene can contain one or more setups. A **setup** is a named arrangement of the scene — objects added, moved, or removed, plus any per-setup animation. Every scene starts with one automatic **Base** setup covering the scene as authored; add more (**Setup A**, **Setup B**, and so on) to cover the same scene from a different arrangement without disturbing the others.
+Each scene can contain one or more setups. A **setup** is a named arrangement of the scene — objects added, moved, or removed, plus any per-setup animation. Every scene starts with one automatic **Base Setup** covering the scene as authored; add more (**Setup A**, **Setup B**, and so on) to cover the same scene from a different arrangement without disturbing the others.
 
-A setup can hold one or more cameras. A **camera** defines a position, orientation, movement, and duration. By default, the Base setup starts with one camera tied to its script heading, named **Camera 1**.
+A setup can hold one or more cameras. A **camera** defines a position, orientation, movement, and duration. By default, the Base Setup starts with one camera tied to its script heading, named **Camera 1**.
 
 ## The active setup
 
 Only one setup is active at a time. The outliner and timeline both mark it with an accent bar and a bold name. The active setup is your write target — edits to objects, animation, or cameras land in whichever setup is active. Selecting a camera activates its setup automatically; clicking a setup row (or its Objects/Cameras folder) activates that setup directly.
 
+The chip at the bottom left of the 3D canvas names the setup the canvas is showing. Click it to switch to another setup.
+
+<img
+  src="/images/spark/setup-switcher.png"
+  alt="The setup chip at the bottom left of the 3D canvas with its menu open, listing Base Setup and Setup A."
+  style={{ borderRadius: '0.5rem' }}
+/>
+
+1. **Base Setup** is the scene as authored. Every scene has it.
+2. **Setup A** is a setup added to this scene. More setups appear here as you add them.
+
 ## Setups in the outliner
 
 Each setup expands into two folders:
 
-- **Objects** — every object composed into that setup, including ones inherited from the Base setup.
+- **Objects** — every object composed into that setup, including ones inherited from the Base Setup.
 - **Cameras** — the cameras that belong to that setup.
 
-Write controls (visibility, delete, revert, drag-to-timeline) appear only on the active setup's rows. An object overridden or added in a non-base setup is badged; use **revert** to restore it to the Base setup's version.
+Write controls (visibility, delete, revert, drag-to-timeline) appear only on the active setup's rows. An object overridden or added in a non-base setup is badged; use **revert** to restore it to the Base Setup's version.
+
+## Hiding an object in one setup
+
+The eye on an object's row hides the object in the active setup only. Other setups still show it.
+
+1. Click the setup you want to change, such as **Setup A**, to make it active.
+2. Click the object's row in that setup.
+3. Click the eye on the row.
+
+<img
+  src="/images/spark/setup-hide-setup-a.png"
+  alt="The 3D scene with Setup A active. The Motorcycle row in Setup A is dimmed with a crossed-out eye, and the motorcycle is missing from the canvas."
+  style={{ borderRadius: '0.5rem' }}
+/>
+
+1. The chip names the active setup, **Setup A**.
+2. The crossed-out eye marks the object as hidden in this setup. Click it to show the object again.
+
+Switch to **Base Setup**, and the same object is still on the canvas.
+
+<img
+  src="/images/spark/setup-hide-base-setup.png"
+  alt="The same 3D scene with Base Setup active. The Motorcycle row has an open eye, and the motorcycle is on the canvas."
+  style={{ borderRadius: '0.5rem' }}
+/>
+
+1. The chip names the active setup, **Base Setup**.
+2. The open eye shows the object is visible in this setup.
+
+A setup you clone starts with the same objects hidden. A CG Take preview made for a camera in that setup leaves the hidden objects out.
+
+This applies to objects only. Hiding a location, a locator, or a ruler hides it in every setup.
+
+<Note>
+Hidden objects are saved in your web browser. Another browser, another person, and the Spark iOS app still show them.
+</Note>
 
 ## Viewing cameras
 
@@ -38,11 +85,11 @@ Cameras appear in the 3D canvas as camera icons with a frustum showing their fie
 
 ## Creating a setup
 
-1. In the outliner, click **+** on the **Setups** header.
-2. Objects you add or move while this setup is active apply only to it — the Base setup and other setups are unaffected.
+1. In the outliner, find the row of the setup you want to start from, such as **Base Setup**, and click **Clone this setup** on that row. The new setup is named with the next letter (**Setup A**, **Setup B**, and so on) and becomes the active setup.
+2. Objects you add or move while this setup is active apply only to it — the Base Setup and other setups are unaffected.
 
 <Tip>
-An object added to the Base setup after a later setup was created does not automatically appear in that setup — it shows there as a restorable "Removed in this setup" stub. Setups created after the addition inherit it normally.
+An object added to the Base Setup after a later setup was created does not automatically appear in that setup — it shows there as a restorable "Removed in this setup" stub. Setups created after the addition inherit it normally.
 </Tip>
 
 ## Adding a camera from the script panel

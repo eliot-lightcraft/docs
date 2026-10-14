@@ -22,9 +22,69 @@ Create an edit within a production, then pull in clips from any combination of s
 
 Drag clips onto the timeline, trim them, and reorder as needed.
 
+## Finding takes
+
+The left column of the Editor has two tabs, **Takes** and **Audio**. On **Takes**, the picker at the top chooses what the column lists.
+
+<img
+  src="/images/spark/editor-list-picker.png"
+  alt="The Takes tab of the Editor with the picker menu open. It shows a script name, All Takes, three lists with their counts, and New list."
+  style={{ borderRadius: '0.5rem' }}
+/>
+
+1. The menu is grouped by script.
+2. **All Takes** lists every CG Take and take in that script.
+3. A list from the Gallery, with the number of items it holds.
+4. **New list…** creates a list.
+
+Click any row to load it in the clip viewer.
+
+<img
+  src="/images/spark/editor-take-loaded.png"
+  alt="The Editor with a take row highlighted in the left column, the take showing in the clip viewer, and its source values in the Inspector."
+  style={{ borderRadius: '0.5rem' }}
+/>
+
+1. The row you clicked is highlighted.
+2. The clip viewer names the kind of item: **CG Take**, **Take**, or **Audio**.
+3. The Inspector shows the **Source** values: dimensions, frame rate, and duration. Audio shows only duration.
+
+## Adding takes to the timeline
+
+Drag a row by its grip onto a timeline lane. You can also open the row's **…** menu.
+
+<img
+  src="/images/spark/editor-take-row-menu.png"
+  alt="A take row's menu in the Editor with Add at playhead, Regenerate BG, Download, and Remove from this list. A plus button sits beside the picker."
+  style={{ borderRadius: '0.5rem' }}
+/>
+
+1. **Add at playhead** puts the item on the timeline at the playhead.
+2. **Remove from this list** takes the item out of the open list. The change also shows in the Gallery.
+3. The **+** button adds CG Takes and takes to the open list.
+
+To put several takes on the timeline:
+
+1. Drag a row by its grip onto a video lane and let go.
+2. Click in the time ruler to move the playhead.
+3. Open another row's **…** menu and click **Add at playhead**.
+
+The list in the Editor is the same list the Gallery shows. With the sort set to **Custom order**, drag a row up or down by its grip to reorder the list. The Gallery shows the new order too.
+
 ## Audio
 
 Add and control audio tracks alongside your clips.
+
+The **Audio** tab is beside the **Takes** tab in the left column of the Editor. It lists the production's audio files.
+
+- To add a file, click **Upload** at the top of the tab.
+- To use a file, drag its row onto an audio lane, or open its **…** menu and click **Add at playhead**.
+
+## Keyboard shortcuts
+
+Hover a button to see what it does. If the button has a keyboard shortcut, the tooltip shows the keys on the right. For example, the step back button in the clip viewer reads "Step back one frame" with the **←** key, and "Back one second" with **Shift** and **←**.
+
+The keys match your keyboard. On a Mac they show as ⌘, ⌥, ⇧, and ⌃. On Windows they show as Ctrl, Alt, and Shift.
 
 ## Export
 
