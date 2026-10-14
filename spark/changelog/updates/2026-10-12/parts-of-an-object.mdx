@@ -3,15 +3,15 @@ title: "Select, hide, and transform one part of an imported USD object"
 description: "Double-click a part inside an imported USD object to select it, then hide, move, rotate, or resize it"
 ---
 
-Feature · Web · Released [2026-10-02](/spark/changelog/changelog#2026-10-02)
+Feature · Web · Released [2026-10-12](/spark/changelog/changelog#2026-10-12)
 
 An imported USD object is often made of many parts, such as a character, a prop it holds, or one mesh of a vehicle. You can select one part and hide, move, rotate, or resize it without changing the rest of the object.
 
-You can also parent a camera to one part, so the camera follows a single character or vehicle inside a larger file. See [parenting a camera to a part](/spark/changelog/updates/2026-10-02/parent-a-camera-to-a-part).
+You can also select several parts and change them together. See [select and change several parts at once](/spark/changelog/updates/2026-10-12/select-several-parts).
 
 ## Selecting a part
 
-1. Click the object in the 3D canvas.
+1. Click the object in the 3D canvas. A hint at the bottom of the canvas shows the object's name and reads **Double-click a part to select it**.
 2. Move the pointer over the object. The part under the pointer fills light orange shortly after the pointer stops.
 3. Double-click the part. The part fills orange, and a path appears at the bottom of the canvas, such as `dinofight ▸ root ▸ Game_engine`. The path shows the object first and the part you selected last. In this example the object is `dinofight` and the part is the knight, which the file names `Game_engine`.
 4. To reach a smaller piece, double-click again on the selected part. This selects the exact mesh under the pointer, such as the knight's sword.
@@ -19,22 +19,22 @@ You can also parent a camera to one part, so the camera follows a single charact
 Before the double-click, the part under the pointer is filled light orange (marked 1):
 
 <img
-  src="/images/spark/updates/2026-10-02/part-hover.png"
+  src="/images/spark/updates/2026-10-12/part-hover.png"
   alt="An imported object in the 3D canvas. The pointer rests on a knight standing between the legs of a dinosaur, and the knight is filled light orange."
   style={{ borderRadius: '0.5rem' }}
 />
 
-After the double-click, the part is selected:
+After the double-click, the part fills orange. The path at the bottom of the canvas has an eye that hides the part, and two key hints: **Shift-click** add part, and **Esc** deselect. In the Outliner, the part gets a row under **Parts**.
 
 <img
-  src="/images/spark/updates/2026-10-02/part-selected.png"
-  alt="The 3D scene with one character of an imported object selected and filled orange. A path at the bottom of the canvas names the object and the part. The Outliner shows a Parts row with the selected part highlighted."
+  src="/images/spark/updates/2026-10-12/part-selected.png"
+  alt="The 3D scene with one dinosaur of an imported object selected and filled orange. A path at the bottom of the canvas names the object and the part. The Outliner shows the part's row under Parts, highlighted."
   style={{ borderRadius: '0.5rem' }}
 />
 
 1. The selected part, filled orange.
-2. The path to the part. The eye beside it hides the part, and **Esc** steps back to the whole object.
-3. The two buttons on the **Parts** row: pick a part in the viewport, and find a part.
+2. The path to the part, with the eye that hides it and the two key hints.
+3. **Find a part**, the one button on the **Parts** row.
 4. The selected part's row under **Parts**.
 
 The first double-click on a rigged character selects the whole character, not one piece of it.
@@ -49,19 +49,16 @@ A part can sit inside a larger part. Use the keyboard to move between these leve
 | **Alt+Down** | Go back down, as far as the part you double-clicked. |
 | **Esc** | Step back one level: from the part to the whole object, then to nothing selected. |
 
-While a part is selected, **Alt+Up** and **Alt+Down** do not zoom the timeline.
+These keys move between levels only while one part is selected. With two or more parts selected, **Alt+Up** and **Alt+Down** zoom the timeline in and out.
 
 ## The Parts row
 
 In the Outliner, each imported object has a **Parts** row. The number on the row is how many parts the object contains. The row starts with nothing under it. A part gets its own row there once you select it.
 
-The **Parts** row has two buttons:
-
-- **Find a part** (the magnifier) opens a search box that lists every part in the object. Type to filter the list, then click a result to select that part.
-- **Pick a part in the viewport** (the eyedropper) lets you click a part in the 3D canvas. This selects the exact mesh you click, not the whole character. Press **Esc** to cancel.
+The **Parts** row has one button, **Find a part** (the magnifier). It opens a search box that lists every part in the object. Type to filter the list, then click a result to select that part.
 
 <img
-  src="/images/spark/updates/2026-10-02/part-search.png"
+  src="/images/spark/updates/2026-10-12/part-search.png"
   alt="The Outliner with the Find a part search box open under the Parts row. The box reads Search 7 parts and lists seven part names, each marked moves."
   style={{ borderRadius: '0.5rem' }}
 />
@@ -84,7 +81,7 @@ The part disappears from the canvas, and its row under **Parts** turns dim. To s
 The part's row under **Parts** has an eye too. It does the same thing, and it is the way to show a hidden part that you can no longer click in the canvas.
 
 <img
-  src="/images/spark/updates/2026-10-02/part-hidden.png"
+  src="/images/spark/updates/2026-10-12/part-hidden.png"
   alt="The 3D scene after hiding the knight. The knight is gone from the canvas, the eye beside the path is crossed out, and the Game_engine row under Parts is dim with a crossed-out eye."
   style={{ borderRadius: '0.5rem' }}
 />
@@ -105,8 +102,8 @@ The gizmo is the only way to transform a part. While a part is selected, the pro
 Only that part changes. A message names the part and says it moved, and its row under **Parts** shows **moved**. The message and the row say **moved** for a rotation or a resize too. To put the part back, click **Reset transform** on its row.
 
 <img
-  src="/images/spark/updates/2026-10-02/part-moved.png"
-  alt="The 3D scene after moving the knight with the gizmo in Move mode. The knight stands to the right of the dinosaur with the transform gizmo on it, and the Game_engine row under Parts is marked moved."
+  src="/images/spark/updates/2026-10-12/part-moved.png"
+  alt="The 3D scene after moving the knight with the gizmo in Move mode. The knight stands to the left of the dinosaur with the transform gizmo on it, and the Game_engine row under Parts is marked moved."
   style={{ borderRadius: '0.5rem' }}
 />
 
@@ -114,7 +111,7 @@ Only that part changes. A message names the part and says it moved, and its row 
 2. The part's row, marked **moved**.
 
 <Note>
-One mesh of a rigged character cannot be transformed by itself, because a skeleton drives its shape. The gizmo does not appear, and a message tells you to step up. Press **Alt+Up** until the whole character is selected, then transform it.
+One mesh of a rigged character cannot be transformed by itself, because a skeleton drives its shape. The gizmo does not appear. The path at the bottom of the canvas reads **Follows a skeleton — can't be moved**, with a **Select** button that names the nearest level you can transform, such as **Select Game_engine**. Click that button, then transform that level.
 </Note>
 
 ## Putting a part back
@@ -122,7 +119,7 @@ One mesh of a rigged character cannot be transformed by itself, because a skelet
 To undo every change to a part at once, click the red trash button on its row under **Parts**. The button shows when the part is selected and the pointer is on its row. A window named **Remove Overrides** asks you to confirm. Click **Remove**.
 
 <img
-  src="/images/spark/updates/2026-10-02/part-remove-overrides.png"
+  src="/images/spark/updates/2026-10-12/part-remove-overrides.png"
   alt="The Remove Overrides window. It asks whether to remove overrides on Game_engine, says the mesh stays in the scene and returns to its original position and visibility, and has the buttons Cancel and Remove."
   style={{ borderRadius: '0.5rem' }}
 />
@@ -143,9 +140,11 @@ A change you make in **Base Setup** also shows in the other setups, as long as a
 
 Part changes are saved with the scene. Your teammates see them, and so does the Spark iOS app, within a few seconds. This is different from hiding a whole object with the eye on its Outliner row, which is saved only in your web browser. See [hiding an object in one setup](/spark/scene-editor/setups-and-cameras#hiding-an-object-in-one-setup).
 
+**Download USDZ** keeps a move you made to a part that has its own movement in the file. The part keeps its animation and plays it from the new place.
+
 ## Parenting a camera to a part
 
-A camera can follow one moving part instead of the whole object. You set this in the camera's **Parent** list, where each object's moving parts are listed under it. See [parenting a camera to a part](/spark/changelog/updates/2026-10-02/parent-a-camera-to-a-part).
+A camera can follow one moving part instead of the whole object. You set this in the camera's **Parent** list, where each object's moving parts are listed under it. See [parent a camera to one part of an object](/spark/changelog/updates/2026-10-12/parent-a-camera-to-a-part).
 
 ## In the Spark iOS app
 

@@ -1,0 +1,8 @@
+---
+title: "Letting go of the gizmo over another object keeps your selection"
+description: "A gizmo drag that ends over another object no longer changes what is selected"
+---
+
+Fix · Web · Released [2026-10-12](/spark/changelog/changelog#2026-10-12)
+
+When you drag the gizmo and let go while the pointer is over another object, everything you dragged stays selected. Before, if that object was also behind the gizmo where the drag started, letting go could select only that object, and the rest of a selection of several objects was dropped.

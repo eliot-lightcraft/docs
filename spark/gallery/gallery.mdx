@@ -13,7 +13,7 @@ Each setup appears as a card, whether or not it has been shot yet — an unshot 
 
 ## Cameras and takes
 
-A card is grouped by camera position: the camera's CG previz render and every take recorded from that position appear together on the same card as layers, not as separate cards. A take with no camera falls into an unattached bucket for its setup.
+A card is grouped by camera position: the camera's CG previz render and every take recorded from that position appear together on the same card as layers, not as separate cards. A take recorded with no scene camera selected on the phone is listed under **No camera**, inside its setup. This is about the camera position in the 3D scene. It is not about the phone's own camera being on or off.
 
 ## Layers and missing coverage
 
@@ -22,7 +22,54 @@ Each take's layer strip shows the artifacts that have arrived for it — composi
 - If the web app can produce it (the CG previz render), the slot carries a **Generate** action.
 - If it only comes from the phone (a captured layer), the slot is a passive gap — the prompt to go shoot it.
 
-A CG-only take (recorded with the camera off) shows its camera-dependent slots as unavailable rather than missing, since there's nothing to shoot for them.
+On a take card, the layers are the chips **Comp**, **BG**, **Camera**, **Matte**, and **Depth**. A solid chip is a layer that has arrived. A dashed chip is a layer that is missing. Point at a dashed chip to read why.
+
+| Tooltip on the dashed chip | What it means |
+|----------------------------|---------------|
+| **Comp is on the phone and hasn't uploaded yet — upload it from the phone's Takes list** | The phone has the file. Upload the take from the phone. The same text is used for the other layers, with the layer's name first. |
+| **BG is on the phone and hasn't uploaded yet — upload it from the phone, or render one here with Regenerate BG** | The phone has a background. You can upload it, or render one on the web. |
+| **No comp rendered yet — render this take on the phone** | The take has no composite yet. |
+| **No BG yet — render it with Regenerate BG from this card's menu** | The take has no background, and the web can render one. |
+| **No BG rendered yet — render this take on the phone** | The take has no background, and the web cannot render one for this take. |
+| **This take was recorded without a camera plate** | The take never had this layer, so no upload will bring it. The same text is used for a take recorded without matte or without depth. |
+| **Waiting for this take's details from the phone** | The phone has not yet reported which files the take has. |
+
+<img
+  src="/images/spark/gallery-chip-tooltip.png"
+  alt="A take card in the Gallery. The BG chip is solid. The Comp, Camera, Matte, and Depth chips are dashed. The pointer is on Matte, and a tooltip reads This take was recorded without matte. A Tracking download chip is under the layer chips."
+  style={{ borderRadius: '0.5rem' }}
+/>
+
+In this example **BG** has arrived, the other four layers are missing, and the pointer is on **Matte**.
+
+For a take recorded with the phone's camera off, **BG** is the only layer chip. The other layer chips are not drawn, since there is nothing to shoot for them.
+
+### A card with no picture
+
+A take card with no video yet says what it is waiting for:
+
+- A take recorded with the phone's camera on reads **The camera video and comp come from the phone. Upload this take there to see it here**.
+- A take recorded with the phone's camera off reads **No video yet. Render it with Regenerate BG from the menu**. See [regenerating a background](#regenerating-a-background).
+- A take recorded with the phone's camera off, whose background the web cannot render yet, reads the reason instead, such as **The phone hasn't uploaded this take's camera track yet**.
+
+<img
+  src="/images/spark/gallery-card-no-picture.png"
+  alt="A take card in the Gallery with no picture. It reads The camera video and comp come from the phone. Upload this take there to see it here. All five layer chips are dashed."
+  style={{ borderRadius: '0.5rem' }}
+/>
+
+### Download chips
+
+Some files of a take cannot be played in the browser. Once uploaded, each one has a chip after the layer chips. Click the chip to download the file. Its tooltip reads **Download** and the file's name.
+
+- **Tracking** is the take's camera tracking data.
+- **Depth (raw)** is the depth of a take whose depth was saved in the phone's raw format. Its tooltip ends with **16-bit depth, lossless**. Such a take has no **Depth** chip.
+
+<img
+  src="/images/spark/gallery-depth-raw-chip.png"
+  alt="A take card in the Gallery with the chips Tracking and Depth (raw). The pointer is on Depth (raw), and a tooltip reads Download depthraw.l16, 16-bit depth, lossless."
+  style={{ borderRadius: '0.5rem' }}
+/>
 
 ## View modes
 
@@ -49,18 +96,26 @@ Open the **…** menu on a card.
   style={{ borderRadius: '0.5rem' }}
 />
 
-1. **Regenerate BG** renders the take's background again in the browser, using the scene as it is now. The new background replaces the old one.
+1. **Regenerate BG** renders a background for a take that has none. The render runs in the browser and uses the scene as it is now.
 2. **Download** saves the card as one zip file.
 
 ### Regenerating a background
 
-Use **Regenerate BG** after you change the 3D scene, for example after you move or hide an object. The render uses the take's camera track, so the camera move stays the same.
+Use **Regenerate BG** on a take that has no background yet. Such a take shows a dashed **BG** chip. The render uses the take's camera track, so the camera move matches the take.
+
+The take's video does not need to be uploaded first. The Spark iOS app sends each take's camera track when recording stops, even with **Auto-upload video** turned off. See [the Takes page](/spark/spark-ios/compositing-and-recording#the-takes-page).
 
 1. Open the take card's **…** menu and click **Regenerate BG**.
 2. Wait while it renders. The top bar shows "Regenerating BG" with the take's name and the frames left. The menu item reads **Regenerating BG…** and is greyed out.
 3. When the message "Background updated" appears, click the **BG** chip on the card to see the new background.
 
-A take that has no background yet shows a grey **BG** chip. **Regenerate BG** creates its first background.
+**Regenerate BG** is greyed out when the web cannot render a background for the take. Its tooltip gives the reason:
+
+- **This take already has a background**
+- **The phone hasn't uploaded this take's camera track yet**
+- **This take isn't linked to a 3D scene**
+
+A background rendered later on the phone and uploaded replaces the one rendered on the web.
 
 ### Downloading a zip file
 
@@ -162,4 +217,4 @@ The zip file uses the same folders as a Gallery download. For a viewer, a take's
 
 ## Reviewing takes from the iPhone or iPad
 
-Takes recorded in compositing mode on the Spark iOS app appear in the Gallery once offloaded, organized by scene and setup, for the whole team to review. See [compositing and recording](/spark/spark-ios/compositing-and-recording) for the recording workflow and [Spark Desktop and takes](/spark/gallery/spark-desktop) for how takes get from the device into the browser.
+A take recorded on the Spark iOS app gets a card in the Gallery soon after recording stops, organized by scene and setup, for the whole team to review. Its video arrives when the phone uploads it. See [compositing and recording](/spark/spark-ios/compositing-and-recording) for the recording workflow and [Spark Desktop and takes](/spark/gallery/spark-desktop) for how takes get from the device into the browser.
