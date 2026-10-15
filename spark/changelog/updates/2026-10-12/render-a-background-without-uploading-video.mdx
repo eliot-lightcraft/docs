@@ -1,0 +1,26 @@
+---
+title: "Render a take's background without uploading video"
+description: "The phone now sends every take's data, so the web can render a background before any video is uploaded"
+---
+
+Feature · Web · Released [2026-10-12](/spark/changelog/changelog#2026-10-12)
+
+The Spark iOS app now sends each take's tracking data as soon as recording stops, even with **Auto-upload video** turned off. The take gets a card in the Gallery right away, and **Regenerate BG** can render its background on the web before any video is uploaded.
+
+## What you need
+
+Spark iOS 0.0.61 or later on the phone.
+
+## How it works
+
+1. On the phone, record a take. You do not need to tap **Upload**.
+2. On the web, open the Gallery and find the take's card. A take recorded with the phone's camera off reads **No video yet. Render it with Regenerate BG from the menu**.
+3. Open the card's **…** menu and click **Regenerate BG**.
+4. When the message "Background updated" appears, click the **BG** chip to play the background.
+
+On the phone's Takes page, the switch that read **Auto-upload new takes** now reads **Auto-upload video**. It covers video only.
+
+## Current guide
+
+{/* Remove this section when the guide no longer matches what this page describes. */}
+This page describes the feature as it was released. For how it works today, see [regenerating a background](/spark/gallery/gallery#regenerating-a-background).

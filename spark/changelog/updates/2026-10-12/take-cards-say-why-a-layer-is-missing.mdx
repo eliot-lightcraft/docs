@@ -1,0 +1,35 @@
+---
+title: "A take card says why a layer is missing"
+description: "A dashed chip on a take card now gives the reason, and a card with no picture says what it is waiting for"
+---
+
+Change · Web · Released [2026-10-12](/spark/changelog/changelog#2026-10-12)
+
+A dashed chip on a take card now says why the layer is missing when you point at it. Before, most missing layers gave the same text, which told you to record the take on the phone.
+
+## What changed
+
+- A layer that is on the phone reads, for example, **Comp is on the phone and hasn't uploaded yet — upload it from the phone's Takes list**.
+- A layer that was never rendered reads, for example, **No comp rendered yet — render this take on the phone**. A missing BG that Regenerate BG can render still reads **No BG yet — render it with Regenerate BG from this card's menu**, as before.
+- A layer the take never had reads, for example, **This take was recorded without a camera plate**.
+- A card with no picture says what it is waiting for. A take recorded with the phone's camera on reads **The camera video and comp come from the phone. Upload this take there to see it here**. A take recorded with the camera off reads **No video yet. Render it with Regenerate BG from the menu**.
+- A camera-off take whose background the web cannot render yet reads the reason instead, such as **The phone hasn't uploaded this take's camera track yet**.
+
+<img
+  src="/images/spark/updates/2026-10-12/gallery-chip-tooltip.png"
+  alt="A take card in the Gallery. The BG chip is solid. The Comp, Camera, Matte, and Depth chips are dashed. The pointer is on Matte, and a tooltip reads This take was recorded without matte. A Tracking download chip is under the layer chips."
+  style={{ borderRadius: '0.5rem' }}
+/>
+
+In this example **BG** has arrived, the other four layers are missing, and the pointer is on **Matte**.
+
+<img
+  src="/images/spark/updates/2026-10-12/gallery-card-no-picture.png"
+  alt="A take card in the Gallery with no picture. It reads The camera video and comp come from the phone. Upload this take there to see it here. All five layer chips are dashed."
+  style={{ borderRadius: '0.5rem' }}
+/>
+
+## Current guide
+
+{/* Remove this section when the guide no longer matches what this page describes. */}
+This page describes the change as it was released. For how it works today, see [layers and missing coverage](/spark/gallery/gallery#layers-and-missing-coverage).

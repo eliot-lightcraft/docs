@@ -1,0 +1,26 @@
+---
+title: "Use a modelled USD set as your location"
+description: "A location can now be a USD file, not only a Gaussian splat"
+---
+
+Feature · Web · Released [2026-09-30](/spark/changelog/changelog#2026-09-30)
+
+Your location no longer has to be a Gaussian splat. Upload a `.usd`, `.usda`, `.usdc` or `.usdz` set and it loads at the scale and orientation its file declares.
+
+## Adding a USD set
+
+A location does not have to be a splat. You can use a modelled set saved as `.usd`, `.usda`, `.usdc`, or `.usdz`.
+
+1. In the Outliner panel, click **+** on the **Locations** row.
+2. Click **Add to Library** and select the USD file.
+3. Check the hints in the upload window. Beside **Transformation**, it shows the up axis it read from the file, such as "Detected: Z-Up". Under **Select Scale Reference**, it shows the unit, such as "Detected: centimeters".
+4. Confirm. The set appears on the 3D canvas and is drawn the way an object is.
+
+The splat-only controls are hidden for a USD set: **Cull Y** in Top-Down View and the **Splat Quality** buttons in the location's properties.
+
+If the USD file has animation, the location has an **Animation** row in the Outliner. Click **Add to timeline at playhead** on that row to place the animation as a clip on the timeline. It then plays with the scene, like an object's animation.
+
+## Current guide
+
+{/* Remove this section when the guide no longer matches what this page describes. */}
+This page describes the feature as it was released. For how it works today, see [adding a USD set](/spark/scene-editor/importing-locations#adding-a-usd-set).
