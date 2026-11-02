@@ -13,7 +13,7 @@ Objects are the USD models you place in a location: props, vehicles and characte
 
 <div className="key">
 
-1. Transform gizmo: **Position**, **Rotation**, **Scale**
+1. Gizmo: **Position**, **Rotation**, **Scale**
 2. Object row, under its setup and kind
 3. **Remove from Scene**
 4. **Name**
@@ -72,7 +72,7 @@ Upload your own object with **Add to Library**. The **Object Settings** window a
 
 ## Move, rotate or scale
 
-Select the object, then drag the transform gizmo in the 3D canvas. Switch its mode with the buttons at the top right of the canvas.
+Select the object, then drag the gizmo in the 3D canvas. Switch the gizmo's mode with the buttons at the top right of the canvas.
 
 <img
   src="/images/spark/scene-editor/gizmo-buttons.jpg"
@@ -94,7 +94,7 @@ Select the object, then drag the transform gizmo in the 3D canvas. Switch its mo
 | **Rotation** | **Ctrl+2** |
 | **Scale** | **Ctrl+3** |
 
-To enter exact transform values, use **Position**, **Rotation** and **Scale** in **Object Properties**. Press **Enter** or **Tab** after each value.
+To enter exact values, use **Position**, **Rotation** and **Scale** in **Object Properties**. Press **Enter** or **Tab** after each value.
 
 ## Rename, replace or remove an object
 
@@ -125,7 +125,7 @@ The trash on the object's row does the same as **Remove from Scene**.
   style={{ borderRadius: '0.5rem', width: '100%', maxWidth: '440px' }}
 />
 
-Objects can't be parented to other objects. Only a camera can be parented to an object. See [Parent to an object or part](/spark/setups-cameras/cameras#parent-to-an-object-or-part).
+Objects can't be parented to other objects. Only a camera can follow an object. See [Parent to an object or part](/spark/setups-cameras/cameras#parent-to-an-object-or-part).
 
 <Note>
   ⚙ on the asset row edits the file in the library. The change applies to new placements only. Objects already in a scene keep their settings.
