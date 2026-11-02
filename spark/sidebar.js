@@ -50,8 +50,14 @@
     item.append(ul);
   }
 
+  // 100vw counts the scrollbar, which would make the column's gaps uneven.
+  function setWindowWidth() {
+    document.documentElement.style.setProperty('--spk-vw', document.documentElement.clientWidth + 'px');
+  }
+
   function reset() {
     delete document.documentElement.dataset.spark;
+    document.documentElement.style.removeProperty('--spk-vw');
     document.querySelectorAll('.spk-heads').forEach((ul) => ul.remove());
     document.querySelectorAll('[data-spk-group]').forEach((g) => {
       delete g.dataset.spkGroup;
@@ -72,6 +78,7 @@
       return;
     }
     document.documentElement.dataset.spark = '';
+    setWindowWidth();
     const moved = location.pathname !== lastPath;
     const list = heads();
     let found = false;
@@ -146,6 +153,10 @@
     ticking = true;
     requestAnimationFrame(mark);
   }, { passive: true });
+
+  window.addEventListener('resize', () => {
+    if (isSpark()) setWindowWidth();
+  });
 
   document.addEventListener('mintlify:navigate', schedule);
   new MutationObserver(schedule).observe(document.body, { childList: true, subtree: true });

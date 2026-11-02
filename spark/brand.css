@@ -62,13 +62,21 @@ html.dark #table-of-contents li:not([data-active="true"]) a:hover { color: #E8ED
 #sidebar-content > div:first-child { padding: 16px 6px 6px !important; }
 #sidebar-content :has(+ #navigation-items):empty { display: none; }
 
-/* Spark only: sidebar.js sets data-spark. The sidebar replaces "On this page", so images can widen and text stays readable (Agreement 42). */
+/* Spark only: sidebar.js sets data-spark and --spk-vw, the window width without its scrollbar. The sidebar replaces "On this page".
+   Text and images share one 720 px column, centred with equal gaps to the sidebar and the window edge (Kit, 2026-11-02). */
+html[data-spark] { --spk-width: 720px; }
 html[data-spark] #content-side-layout { display: none; }
-html[data-spark] #content-area { width: 100%; max-width: calc(1000px + 5.7rem); margin-right: auto; }
+html[data-spark] #content-area { width: 100%; max-width: calc(var(--spk-width) + 8px); margin-inline: auto; }
 html[data-spark] #content-area #header,
-html[data-spark] #content > span:not(.zoom-image-trigger),
-html[data-spark] #content > :is(h2, h3, ul, ol, .callout, .code-block, .accordion-group, .columns, .min-w-0),
-html[data-spark] #content .steps p { max-width: 720px; }
+html[data-spark] #content { max-width: var(--spk-width); }
+@media (min-width: 1024px) {
+  html[data-spark] {
+    --spk-rail: calc(max(32px, (var(--spk-vw, 100vw) - 1472px) / 2 + 32px) + 18rem);
+    --spk-column: min(var(--spk-width), calc(var(--spk-vw, 100vw) - var(--spk-rail) - 3rem));
+  }
+  html[data-spark] :has(> #content-area) { flex-direction: row; }
+  html[data-spark] #content-area { flex: none; width: var(--spk-column); max-width: none; padding-inline: 0; margin-left: calc((var(--spk-vw, 100vw) - var(--spk-rail) - var(--spk-column)) / 2); margin-right: auto; }
+}
 
 /* Collapsible groups and the open page's headings. */
 html[data-spark] [data-spk-group] .sidebar-group-header { cursor: pointer; margin-bottom: 0; padding-top: 6px; padding-bottom: 6px; border-radius: 10px; }
@@ -84,7 +92,7 @@ html.dark #sidebar-content .spk-heads a:not([aria-current]) { color: #8791AE; }
 html[data-spark] [data-spk-closed] > ul { display: none; }
 html[data-spark] [data-spk-group] > ul { margin: 2px 0 8px; }
 .spk-heads { margin: 2px 0 6px 2.6rem; padding: 0; list-style: none; border-left: 1px solid rgb(47 84 235 / 0.25); }
-.spk-heads a { display: block; padding: 6px 8px 6px 10px; margin-left: -1px; border-left: 1px solid transparent; font-size: 0.8125rem; line-height: 1.35; }
+.spk-heads a { display: block; padding: 9px 8px 9px 10px; margin-left: -1px; border-left: 1px solid transparent; font-size: 0.8125rem; line-height: 1.35; }
 #mobile-nav .spk-heads a { color: #4A5578; }
 html.dark #mobile-nav .spk-heads a { color: #A3ACC6; }
 #sidebar-content .spk-heads a[aria-current], #mobile-nav .spk-heads a[aria-current] { color: #2F54EB; border-left-color: #2F54EB; }
