@@ -3,9 +3,31 @@
   "theme": "mint",
   "name": "Lightcraft Docs",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#2F54EB",
+    "light": "#597EF7",
+    "dark": "#1D39C4"
+  },
+  "background": {
+    "color": {
+      "light": "#F0F5FF",
+      "dark": "#0C1013"
+    },
+    "image": {
+      "light": "/images/spark/theme/background-light.png",
+      "dark": "/images/spark/theme/background-dark.png"
+    }
+  },
+  "fonts": {
+    "family": "Manrope"
+  },
+  "icons": {
+    "library": "lucide"
+  },
+  "appearance": {
+    "default": "dark"
+  },
+  "styling": {
+    "eyebrows": "section"
   },
   "favicon": "/logo/lightcraft-logo-icon-black.png",
   "navigation": {
@@ -111,82 +133,100 @@
         "tab": "Spark",
         "groups": [
           {
-            "group": "Get Started",
+            "group": "Get started",
+            "icon": "rocket",
             "pages": [
-              "spark/get-started/introduction",
-              "spark/get-started/core-concepts",
+              "spark/get-started/how-spark-works",
+              "spark/get-started/install-and-sign-in",
               "spark/get-started/quickstart"
             ]
           },
           {
-            "group": "Organizations & Productions",
+            "group": "Set up your team",
+            "icon": "users",
             "pages": [
+              "spark/organizations-productions/overview",
               "spark/organizations-productions/organizations",
+              "spark/organizations-productions/members-and-seats",
               "spark/organizations-productions/productions"
             ]
           },
           {
-            "group": "Scripts",
+            "group": "Write the script",
+            "icon": "file-text",
             "pages": [
-              "spark/scripts/importing-scripts",
-              "spark/scripts/writing-scripts",
-              "spark/scripts/collaboration",
-              "spark/scripts/script-outline-and-3d-scene-list"
+              "spark/scripts/overview",
+              "spark/scripts/scripts-and-script-scenes",
+              "spark/scripts/script-editor",
+              "spark/scripts/versioning"
             ]
           },
           {
-            "group": "Scene Editor",
+            "group": "Build 3D scenes",
+            "icon": "box",
             "pages": [
-              "spark/scene-editor/scene-overview",
-              "spark/scene-editor/importing-locations",
-              "spark/scene-editor/importing-objects",
-              "spark/scene-editor/arranging-objects",
+              "spark/scene-editor/overview",
+              "spark/scene-editor/3d-scenes",
+              "spark/scene-editor/scene-editor",
+              "spark/scene-editor/move-around-a-scene",
+              "spark/scene-editor/asset-library",
+              "spark/scene-editor/locations",
+              "spark/scene-editor/objects",
               "spark/scene-editor/parts-of-an-object",
-              "spark/scene-editor/setups-and-cameras",
-              "spark/scene-editor/timeline",
+              "spark/scene-editor/audio-locators-and-rulers",
               "spark/scene-editor/lights-and-environment",
               "spark/scene-editor/importing-unreal-scenes"
             ]
           },
           {
-            "group": "Spark iOS",
+            "group": "Plan setups and cameras",
+            "icon": "layers",
             "pages": [
-              "spark/spark-ios/spark-ios-setup",
-              "spark/spark-ios/iphone-camera-controls",
-              "spark/spark-ios/mobile-setups-and-cameras",
-              "spark/spark-ios/live-camera-sharing",
-              "spark/spark-ios/compositing-and-recording"
+              "spark/setups-cameras/overview",
+              "spark/setups-cameras/setups",
+              "spark/setups-cameras/cameras",
+              "spark/setups-cameras/timeline-and-animation"
             ]
           },
           {
-            "group": "Gallery",
+            "group": "Shoot takes",
+            "icon": "smartphone",
             "pages": [
-              "spark/gallery/gallery",
+              "spark/spark-ios/overview",
+              "spark/spark-ios/spark-ios-app",
+              "spark/spark-ios/setups-and-cameras-on-iphone",
+              "spark/spark-ios/live-camera-sharing",
+              "spark/spark-ios/composite-and-record",
+              "spark/export-jetset/shoot-with-jetset",
               "spark/gallery/spark-desktop"
             ]
           },
           {
-            "group": "Editing",
+            "group": "Review and edit",
+            "icon": "clapperboard",
             "pages": [
-              "spark/editing/editing"
+              "spark/gallery/overview",
+              "spark/gallery/gallery",
+              "spark/editing/editor"
             ]
           },
           {
-            "group": "Export & Jetset",
+            "group": "Reference",
+            "icon": "book-open",
             "pages": [
-              "spark/export-jetset/exporting-to-jetset"
-            ]
-          },
-          {
-            "group": "Troubleshooting",
-            "pages": [
-              "spark/troubleshooting/common-pitfalls"
+              "spark/reference/glossary",
+              "spark/reference/faq",
+              "spark/reference/specs-and-limits",
+              "spark/reference/keyboard-shortcuts",
+              "spark/troubleshooting/troubleshooting"
             ]
           },
           {
             "group": "What's new",
+            "hidden": true,
             "pages": [
               "spark/changelog/changelog",
+              "spark/changelog/all-updates",
               {
                 "group": "Updates",
                 "pages": [
@@ -337,5 +377,91 @@
       "x": "https://x.com/LightcraftPro",
       "linkedin": "https://linkedin.com/company/lightcraft-technology"
     }
-  }
+  },
+  "redirects": [
+    {
+      "source": "/r",
+      "destination": "/spark/changelog/changelog"
+    },
+    {
+      "source": "/u",
+      "destination": "/spark/changelog/all-updates"
+    },
+    {
+      "source": "/spark/get-started/core-concepts",
+      "destination": "/spark/reference/glossary"
+    },
+    {
+      "source": "/spark/troubleshooting/common-pitfalls",
+      "destination": "/spark/troubleshooting/troubleshooting"
+    },
+    {
+      "source": "/spark/spark-ios/spark-ios-setup",
+      "destination": "/spark/spark-ios/spark-ios-app"
+    },
+    {
+      "source": "/spark/spark-ios/iphone-camera-controls",
+      "destination": "/spark/spark-ios/spark-ios-app"
+    },
+    {
+      "source": "/spark/spark-ios/mobile-setups-and-cameras",
+      "destination": "/spark/spark-ios/setups-and-cameras-on-iphone"
+    },
+    {
+      "source": "/spark/spark-ios/compositing-and-recording",
+      "destination": "/spark/spark-ios/composite-and-record"
+    },
+    {
+      "source": "/spark/export-jetset/exporting-to-jetset",
+      "destination": "/spark/export-jetset/shoot-with-jetset"
+    },
+    {
+      "source": "/spark/editing/editing",
+      "destination": "/spark/editing/editor"
+    },
+    {
+      "source": "/spark/scripts/importing-scripts",
+      "destination": "/spark/scripts/scripts-and-script-scenes"
+    },
+    {
+      "source": "/spark/scripts/writing-scripts",
+      "destination": "/spark/scripts/script-editor"
+    },
+    {
+      "source": "/spark/scripts/collaboration",
+      "destination": "/spark/scripts/versioning"
+    },
+    {
+      "source": "/spark/get-started/introduction",
+      "destination": "/spark/get-started/how-spark-works"
+    },
+    {
+      "source": "/spark/scripts/script-outline-and-3d-scene-list",
+      "destination": "/spark/scene-editor/3d-scenes"
+    },
+    {
+      "source": "/spark/scene-editor/scene-overview",
+      "destination": "/spark/scene-editor/scene-editor"
+    },
+    {
+      "source": "/spark/scene-editor/importing-locations",
+      "destination": "/spark/scene-editor/locations"
+    },
+    {
+      "source": "/spark/scene-editor/importing-objects",
+      "destination": "/spark/scene-editor/objects"
+    },
+    {
+      "source": "/spark/scene-editor/arranging-objects",
+      "destination": "/spark/scene-editor/objects"
+    },
+    {
+      "source": "/spark/scene-editor/setups-and-cameras",
+      "destination": "/spark/setups-cameras/setups"
+    },
+    {
+      "source": "/spark/scene-editor/timeline",
+      "destination": "/spark/setups-cameras/timeline-and-animation"
+    }
+  ]
 }
