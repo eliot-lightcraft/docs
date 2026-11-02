@@ -42,7 +42,7 @@ html.dark #table-of-contents li:not([data-active="true"]) a:hover { color: #E8ED
 
 /* Image key: a small caption (centred, or left under a narrow image: .left) under a screenshot, in even columns (cols-2 for 2 or 4 labels, cols-3 for 3 or 6,
    none for 5 or 7), one column on a phone. Numbers are magenta dots that match the screenshot's markers. */
-#content-area .key { margin-top: -0.5rem; font-size: 0.8rem; opacity: 0.85; }
+#content-area .key { margin-top: 0.75rem; font-size: 0.8rem; opacity: 0.85; }
 #content-area .key ol { list-style: none !important; counter-reset: k; margin: 0 !important; padding: 0 !important; display: grid; grid-template-columns: max-content; justify-content: center; gap: 0.35rem 2rem; }
 #content-area .key.cols-2 ol { grid-template-columns: repeat(2, max-content); }
 #content-area .key.cols-3 ol { grid-template-columns: repeat(3, max-content); }
