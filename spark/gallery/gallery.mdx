@@ -1,9 +1,9 @@
 ---
 title: 'Review and share takes'
-description: 'See every CG Take and Take in a production, collect them in lists, and share a list with a link.'
+description: 'Review every CG Take and Take in a production, collect them in lists, and share a list with a link.'
 ---
 
-The Gallery holds every take in a production. A CG Take is one camera's move through a 3D scene, rendered in the browser. A Take is a recording from the Spark iOS app.
+The Gallery is the production's single view of coverage, with every take. A CG Take is a browser-rendered previs of one camera's move through a 3D scene. A Take is a recording from the Spark iOS app.
 
 <img
   src="/images/spark/gallery/gallery-overview.jpg"
@@ -40,7 +40,7 @@ Every camera in a 3D scene gets a CG Take card, before you record anything. A ca
 
 The chips say what the card is:
 
-- **CG TAKE**: a camera's move through the 3D scene
+- **CG TAKE**: a previs render of a camera's move through the 3D scene
 - **TAKE**: a recording from the Spark iOS app
 - **STATIC**: the camera doesn't move, so the preview is a still
 - **BG ONLY**: recorded with the iPhone's camera off, so the CG background is all it has
@@ -64,7 +64,7 @@ Click a preview to play it in the **Player**. Hover a card for its select box at
 
 ## Take layers
 
-A Take card shows a chip for each video the take has: **Comp**, **BG**, **Camera**, **Matte** and **Depth**. Its download chips are **Tracking**, **Depth (raw)** and **G-matte**. A missing layer shows a dashed chip that says why.
+A Take card shows a chip for each layer the take has: **Comp**, **BG**, **Camera**, **Matte** and **Depth**. Its download chips are **Tracking**, **Depth (raw)** and **G-matte**. A missing layer shows a dashed chip that says why.
 
 Takes arrive once they're uploaded. See [Upload takes from iPhone](/spark/gallery/spark-desktop).
 
@@ -72,7 +72,7 @@ Takes arrive once they're uploaded. See [Upload takes from iPhone](/spark/galler
 
 A new CG Take card reads **Generate preview** until it's rendered. When you change the 3D scene, older previews go out of date, and a yellow chip counts them.
 
-1. In the toolbar, click **Generate N previews**. It renders the missing and out-of-date previews in the scene.
+1. In the toolbar, click **Generate N previews**. It renders the missing and out-of-date previews in the 3D scene.
 2. Wait. Two previews took about 30 seconds.
 
 <img
@@ -267,7 +267,7 @@ A link that's off or replaced shows **This link doesn't work**.
 
 <CardGroup cols={2}>
   <Card title="Editor" icon="scissors" href="/spark/editing/editor">
-    Cut takes together and export the edit.
+    Assemble a rough cut and export the edit.
   </Card>
   <Card title="Upload takes from iPhone" icon="upload" href="/spark/gallery/spark-desktop">
     Bring Takes from the iPhone into the Gallery.

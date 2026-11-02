@@ -1,6 +1,6 @@
 ---
 title: 'Scene editor'
-description: 'The parts of the 3D Scene tab: the canvas, the camera preview, the Outliner, the Properties panel and the Timeline.'
+description: 'The panel layout of the 3D Scene tab: the canvas, the camera preview, the Outliner, the Properties panel and the Timeline.'
 ---
 
 The scene editor is the **3D Scene** tab, where you build a 3D scene. The 3D canvas fills the middle, the Outliner and Properties panel sit on the right, and the Timeline runs along the bottom.
@@ -24,7 +24,7 @@ The scene editor is the **3D Scene** tab, where you build a 3D scene. The 3D can
 
 ## 3D canvas and toolbar
 
-The 3D canvas is the view you fly through and click in. Its toolbar runs along the top left.
+The 3D canvas is the main viewport you fly through and click in. Its toolbar runs along the top left.
 
 <img
   src="/images/spark/scene-editor/canvas-toolbar.png"
@@ -44,7 +44,7 @@ The 3D canvas is the view you fly through and click in. Its toolbar runs along t
 
 </div>
 
-- **Camera Controls** sets your flying speed. See [Fly through a 3D scene](/spark/scene-editor/move-around-a-scene#fly-through-a-3d-scene).
+- **Camera Controls** sets your move, look and boost speed. See [Fly through a 3D scene](/spark/scene-editor/move-around-a-scene#fly-through-a-3d-scene).
 - **Top-Down View** looks straight down.
 - **Reset view** brings the view back to where it started.
 
@@ -72,14 +72,14 @@ The camera preview shows the view through the selected camera, with its lens bel
 
 ## Outliner
 
-The Outliner lists everything in the 3D scene, in rows you can fold.
+The Outliner shows the 3D scene hierarchy, in rows you can fold.
 
 | Row | Holds |
 |-----|-------|
 | **Locations** | The scene's one location. |
 | **Base Setup** and other setups | The objects and cameras in each setup, grouped by kind, such as **VEHICLES**, **PROPS** and **CAMERAS**. |
-| **Locators** | Marked points. See [Audio, locators and rulers](/spark/scene-editor/audio-locators-and-rulers). |
-| **Audio** | Sound files added to the scene. |
+| **Locators** | Marked positions. See [Audio, locators and rulers](/spark/scene-editor/audio-locators-and-rulers). |
+| **Audio** | Audio files added to the scene. |
 | **Rulers** | Measurements, in meters or feet. |
 
 Hover an item's row to show its buttons: an eye to hide it, **Replace file**, and a trash to delete it. A setup row has three buttons: **Add an object to this setup**, **Add a camera to this setup** and **Clone this setup**.

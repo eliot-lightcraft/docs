@@ -56,7 +56,7 @@ Click **Help** at the bottom left of any page in Spark. To ask about access, wri
     **Auto-keyframe** is off by default, so the move added no keyframe. Select the item, turn on **Auto-keyframe**, then move it again. See [Timeline and animation](/spark/setups-cameras/timeline-and-animation#animate-with-keyframes).
   </Accordion>
   <Accordion title="A parented camera doesn't hold its position on the phone">
-    This is a known issue that comes and goes, most often in a new 3D scene. Reload the scene, or switch to another camera and back. Also check that no two objects share a name.
+    This is a known intermittent issue, most often in a new 3D scene. Reload the 3D scene, or switch to another camera and back. Also check for duplicate object names.
   </Accordion>
 </AccordionGroup>
 
@@ -64,19 +64,19 @@ Click **Help** at the bottom left of any page in Spark. To ask about access, wri
 
 <AccordionGroup>
   <Accordion title="A 3D scene loads on the web but not on the phone">
-    The location has more than about 5 million splats. Keep a smaller version for the app. See [Specs and limits](/spark/reference/specs-and-limits#size-limits).
+    The location has more than about 5 million splats. Keep a downsampled version for the app. See [Specs and limits](/spark/reference/specs-and-limits#size-limits).
   </Accordion>
   <Accordion title="Web Follow doesn't engage">
-    The link between the app and the browser sometimes needs a second try. Tap the lightning button again. See [Live camera sharing](/spark/spark-ios/live-camera-sharing).
+    The handshake between the app and the browser sometimes needs a second try. Tap the lightning button again. See [Live camera sharing](/spark/spark-ios/live-camera-sharing).
   </Accordion>
   <Accordion title="Driving across a large 3D scene is slow">
-    Add a camera at each place the action happens, then jump between them. See [Camera setups on iPhone](/spark/spark-ios/setups-and-cameras-on-iphone).
+    Add a stationary camera at each action point, then jump between them. See [Camera setups on iPhone](/spark/spark-ios/setups-and-cameras-on-iphone).
   </Accordion>
   <Accordion title="The chroma key looks weak">
     The cause is usually the lighting or the picked color. Use **Pick color** on a cleaner patch of the screen, adjust **Clip black** and **Clip white** in **Tools**, or switch to **Person**.
   </Accordion>
   <Accordion title="The phone gets hot">
-    Frame rate drops as the device heats up. Turn on **Fast splat preview** and **Idle render skip**, render takes after the shoot, or use a phone cooler.
+    Frame rate drops as the device heats up. Turn on **Fast splat preview** and **Idle render skip**, defer composite rendering until after the shoot, or use a phone cooler.
   </Accordion>
   <Accordion title="An older device keeps crashing">
     Older iPads have crashed repeatedly in the field. Use the newest iPhone or iPad you can for long shoots.

@@ -1,9 +1,9 @@
 ---
 title: 'Composite and record'
-description: 'Put a performer in a 3D scene, record a take, and render it.'
+description: 'Composite a performer into a 3D scene, record a take, and render it.'
 ---
 
-The app puts a real performer into your 3D scene live, with or without a green screen. Each take keeps its layers separate for the Gallery and the Editor.
+The app composites a real performer into your 3D scene in real time, with or without a green screen. Each take keeps its layers separate for the Gallery and the Editor.
 
 <iframe
   className="w-full aspect-video rounded-xl"
@@ -30,8 +30,8 @@ Tap **Off** at the top. The **CAMERA/KEY** menu opens.
 
 </div>
 
-- **Person**: cuts the performer out of the room, with no green screen
-- **Chroma**: keys out a green or blue screen, for a cleaner edge
+- **Person**: AI segmentation mattes the performer into the 3D scene, with no green screen
+- **Chroma**: keys out a green or blue screen, for a cleaner key than segmentation
 - **Off**: records the 3D scene with no camera
 
 With **Chroma**, tap **Pick color**, then tap the screen.
@@ -50,7 +50,7 @@ With **Chroma**, tap **Pick color**, then tap the screen.
 
 </div>
 
-- **Find Screen** finds the edges of a small screen, and the 3D scene fills everything outside it.
+- **Find Screen** builds a garbage matte from the edges of a small screen, and the 3D scene fills everything outside it.
 - **Clip black** and **Clip white** in **Tools** fine-tune the key.
 
 ## Views and switches
@@ -75,9 +75,9 @@ Tap **Tools** to switch views and set what shows on screen.
 
 | View | Shows |
 |---|---|
-| **Comp** | The performer over the 3D scene |
-| **Cam** | The raw camera |
-| **Depth** | Depth for each frame |
+| **Comp** | The performer keyed over the 3D scene |
+| **Cam** | The raw camera feed |
+| **Depth** | Per-frame depth map |
 | **Matte** | The matte used for the key |
 
 | Switch | Does |
@@ -149,8 +149,8 @@ Each take keeps its elements as separate files, sorted by production, then scrip
 |---|---|
 | `cam_*` | Raw camera footage |
 | `comp_*` | The live composite |
-| `depth_*` | Depth for each frame |
-| `tracking_*.json` | 3D camera tracking |
+| `depth_*` | Per-frame depth map |
+| `tracking_*.json` | 3D camera tracking data |
 | `meta_*.json` | Take metadata |
 
 <Warning>

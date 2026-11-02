@@ -1,6 +1,6 @@
 ---
 title: 'Locations'
-description: 'Add the world a 3D scene takes place in, replace it, and set how it looks.'
+description: 'Add the world a 3D scene takes place in, replace it, and set its orientation, scale and splat quality.'
 ---
 
 A location is the world a 3D scene takes place in, usually a Gaussian splat scan. Each 3D scene holds one location, and every setup in it shares that location.
@@ -41,7 +41,7 @@ A location is the world a 3D scene takes place in, usually a Gaussian splat scan
     />
   </Step>
   <Step title="Wait for it to load">
-    The location's row shows in the Outliner within seconds. The splat itself can take about 30 seconds to draw.
+    The location's row shows in the Outliner within seconds. The splat itself can take about 30 seconds to render.
   </Step>
 </Steps>
 
@@ -114,11 +114,11 @@ Select the location, then change **Position**, **Rotation** or **Scale** under *
   style={{ borderRadius: '0.5rem', width: '100%', maxWidth: '300px' }}
 />
 
-| Setting | What Spark draws |
+| Setting | What Spark renders |
 |---------|------------------|
 | **Low** | Skips faint and large splats. |
 | **Medium** | The default. |
-| **High** | Draws more of the faint and large splats. |
+| **High** | Renders more of the faint and large splats. |
 
 ## Hide a location
 

@@ -3,7 +3,7 @@ title: "Bring in an Unreal scene"
 description: "Export a scene from Unreal Engine as a Gaussian splat and a USD file for the Spark web app."
 ---
 
-Export a scene from Unreal Engine as a Gaussian splat for the environment and a USD file for foreground meshes. Then bring both into the Spark web app.
+Export a scene from Unreal Engine as a Gaussian splat for the environment and a USD file for foreground mesh geometry. Then bring both into the Spark web app.
 
 ## 1. Separate foreground elements
 
@@ -24,7 +24,7 @@ Decide which objects in your scene stay as mesh geometry. Keep anything with fin
 Scene locators mark where you place actors, and the spots you jump to during previs.
 
 1. Add an empty actor to the scene.
-2. Name it in the form `Scene_Lock_01`, replacing `01` with a descriptive name or number.
+2. Follow the naming convention `Scene_Lock_01`, replacing `01` with a descriptive name or number.
 3. Position it where you want the first locator.
 4. **Alt\+drag** the actor to duplicate it and create additional locators at other key positions.
 
@@ -96,7 +96,7 @@ Render a single panoramic frame from Unreal Engine to use as the source for your
 <video src="/images/spark/wl-import-image.mp4" controls style={{ borderRadius: '0.5rem' }} />
 
 2. Drag your panoramic render into World Labs.
-3. World Labs makes a Gaussian splat from the image and keeps the lighting from your Unreal scene.
+3. World Labs generates a Gaussian splat from the image and preserves the lighting from your Unreal scene.
 4. Download the result as a **PLY** file.
 
 <video src="/images/spark/wl-download.mp4" controls style={{ borderRadius: '0.5rem' }} />

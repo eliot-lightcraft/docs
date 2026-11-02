@@ -1,14 +1,14 @@
 ---
 title: 'How Spark works'
-description: 'The five stages of a Spark production, from script to finished cut.'
+description: 'The five stages of a Spark production, from script to rough cut.'
 ---
 
 export const STAGES = [
   { title: 'Write the script', line: 'Scene headings become script scenes.', img: '/images/spark/get-started/stage-script.jpg', href: '/spark/scripts/scripts-and-script-scenes' },
-  { title: 'Build 3D scenes', line: 'Add a location and objects to each 3D scene.', img: '/images/spark/get-started/stage-3d-scene.jpg', href: '/spark/scene-editor/3d-scenes' },
-  { title: 'Plan the cameras', line: 'Place cameras and set their lenses.', img: '/images/spark/get-started/stage-cameras.jpg', href: '/spark/setups-cameras/cameras' },
-  { title: 'Shoot takes', line: 'Film on iPhone inside the 3D scene.', img: '/images/spark/spark-ios/stage-shoot-takes.jpg', href: '/spark/spark-ios/composite-and-record' },
-  { title: 'Review and edit', line: 'Pick the best takes and cut them together.', img: '/images/spark/get-started/stage-review.jpg', href: '/spark/gallery/gallery' },
+  { title: 'Build 3D scenes', line: 'Assemble each 3D scene from a location and objects.', img: '/images/spark/get-started/stage-3d-scene.jpg', href: '/spark/scene-editor/3d-scenes' },
+  { title: 'Plan the cameras', line: 'Position virtual cameras and set their lenses.', img: '/images/spark/get-started/stage-cameras.jpg', href: '/spark/setups-cameras/cameras' },
+  { title: 'Shoot takes', line: 'Record real-time composites on iPhone inside the 3D scene.', img: '/images/spark/spark-ios/stage-shoot-takes.jpg', href: '/spark/spark-ios/composite-and-record' },
+  { title: 'Review and edit', line: 'Pick the best takes and assemble a rough cut.', img: '/images/spark/get-started/stage-review.jpg', href: '/spark/gallery/gallery' },
 ];
 
 export const StageStrip = () => {
@@ -65,7 +65,7 @@ export const StageStrip = () => {
   );
 };
 
-Spark is a web app where a film crew plans a shoot before anyone arrives on set. You turn a script into 3D scenes, plan the cameras, shoot with an iPhone or iPad, then review and cut the takes.
+Spark is a collaborative platform where filmmakers and storytellers plan a shoot before anyone arrives on set. You turn a script into 3D scenes, prototype virtual camera setups, shoot real-time composites on an iPhone or iPad, then review and cut the takes.
 
 <StageStrip />
 
@@ -82,13 +82,13 @@ The tabs at the bottom of a production follow the same order: **Scripts**, **Ass
 
 ## Spark, Jetset and Autoshot
 
-Spark is where a Lightcraft production starts. Jetset tracks the cinema camera on set, and Autoshot brings that tracking into Blender, Unreal, After Effects or Nuke. In the scene editor, click **Export** to send a 3D scene to Jetset.
+Spark is the starting point of the Lightcraft virtual production pipeline. Jetset tracks the cinema camera on set, and Autoshot brings that tracked data into Blender, Unreal, After Effects or Nuke for post-production. In the scene editor, click **Export** to send a 3D scene to Jetset.
 
 ## Where to go next
 
 <CardGroup cols={2}>
   <Card title="Quickstart" icon="zap" href="/spark/get-started/quickstart">
-    Make your first 3D scene in a few minutes.
+    Build your first 3D scene in a few minutes.
   </Card>
   <Card title="Set up your team" icon="users" href="/spark/organizations-productions/organizations">
     Create an organization, invite members, start a production.

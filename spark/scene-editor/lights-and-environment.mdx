@@ -3,13 +3,13 @@ title: 'Scene lighting'
 description: 'Every 3D scene uses the same fixed studio lighting. There are no lights to add.'
 ---
 
-Every 3D scene is lit by one fixed environment, Lightcraft's **Spark Studio** lighting. You can't add lights or pick another environment, so a scene looks the same in the Spark web app and the Spark iOS app.
+Every 3D scene is lit by one baked HDRI, Lightcraft's **Spark Studio** environment. You can't add lights or pick another environment, so a scene looks the same in the Spark web app and the Spark iOS app.
 
 ## The fixed studio lighting
 
 - The Outliner has no **Lights** row. You can't add a directional, spot or point light.
-- There's no environment picker and no brightness control.
-- The lighting falls on USD objects only. A Gaussian splat keeps the lighting it was scanned or rendered with.
+- There's no environment picker and no intensity control.
+- The image-based lighting falls on USD objects only. A Gaussian splat keeps the baked lighting from its scan or render.
 
 Lightcraft is working on adjustable lighting. Relighting splats is a fast-moving field, and Spark will add it once an approach is fast and easy enough.
 
@@ -21,7 +21,7 @@ Lightcraft is working on adjustable lighting. Relighting splats is a fast-moving
 
 <CardGroup cols={2}>
   <Card title="Locations" icon="mountain" href="/spark/scene-editor/locations">
-    Splats keep their own lighting.
+    Splats keep their baked lighting.
   </Card>
   <Card title="Objects" icon="box" href="/spark/scene-editor/objects">
     Give objects USD materials.
