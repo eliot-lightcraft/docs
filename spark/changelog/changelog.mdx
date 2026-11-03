@@ -14,6 +14,36 @@ app's version history.
 
 {/* RELEASE_NOTES_ANCHOR — the release-notes workflow inserts new entries directly below this line. Do not remove or reword. */}
 
+<Update label="2026-11-03" tags={["Web"]}>
+
+### Undo for setups and more of the editor
+
+You can now undo cloning, deleting and reverting a setup, removing an object from a setup, and Delete from Base Setup, which keeps the object in every other setup with its animation and parts. Renames, animation toggles and deleting a recording can be undone too. A camera parented to part of an object now follows it while you drag it.
+
+### Start a scene from the scene library
+
+Pick a ready-made 3D scene from the scene library and get your own copy of it, with its sets, objects, cameras and setups, to change however you like. Start from one in a new production, or use "Import from library" on any script.
+
+### Cull Y cuts the whole top-down view
+
+In the top-down view, Cull Y now cuts USD objects as well as splats, at the same height, and works on scenes without a splat. Press E / Q to raise or lower the cut, untick it to see everything, and open the keyboard button on the Cull Y bar for the top-down controls. Shot cameras above the cut are hidden too.
+
+### Autosave, revision colours and side-by-side compare for scripts
+
+Your script edits now save automatically as you type, and other open tabs stay in step. When you publish, you can tag the revision with a standard colour or your own, plus an optional name, and the script page shows the paper in that colour. Compare any two versions side by side and revert to the older one.
+
+### Press F to jump to the selection
+
+Select a camera, locator, object or part and press F, or click Jump to in its properties, to move the viewport there: to a camera's eye, standing at a locator, or framing an object. Keep F held and drag to orbit around the object you framed. 🤖 Generated with [Claude Code](https://claude.com/claude-code)
+
+### Orbit with F instead of Alt in the 3D scene
+
+Alt-drag no longer orbits the view in the 3D scene. Select an object, press F to frame it, and keep F held while you drag to orbit around it. 🤖 Generated with [Claude Code](https://claude.com/claude-code)
+
+Various bug fixes and improvements (4 changes).
+
+</Update>
+
 <Update label="2026-10-12" tags={["Web"]}>
 
 ## New
