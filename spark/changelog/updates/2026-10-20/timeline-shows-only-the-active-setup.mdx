@@ -1,0 +1,10 @@
+---
+title: "The timeline row for your selection shows only the active setup"
+description: "The row for the selected object or camera no longer mixes in keyframes and objects from other setups"
+---
+
+Fix · Web · Released [2026-10-20](/spark/changelog/changelog#2026-10-20)
+
+The row just below the timeline's ruler, for the selected object or camera, now shows only the active setup's keyframes and animation clips. Its list of objects and cameras names only the active setup's. Before, an object in two setups showed both setups' keyframes on that one row, and the list named objects and cameras from every setup. Playback in the 3D canvas also plays only the active setup's animation clips.
+
+When you open the **Position** and **Rotation** rows with **Channels**, their buttons for adding a keyframe at the playhead are greyed out while **Keyframes** is off for the object in the active setup. Their tooltip reads **Auto-keyframe is off here**. Before, the buttons wrote a keyframe that the timeline did not show.

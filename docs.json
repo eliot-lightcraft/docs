@@ -191,6 +191,18 @@
                 "group": "Updates",
                 "pages": [
                   {
+                    "group": "2026-10-20",
+                    "pages": [
+                      "spark/changelog/updates/2026-10-20/overview",
+                      "spark/changelog/updates/2026-10-20/uploads-refused-only-when-storage-is-full",
+                      "spark/changelog/updates/2026-10-20/timeline-shows-only-the-active-setup",
+                      "spark/changelog/updates/2026-10-20/undo-moving-a-camera-recording",
+                      "spark/changelog/updates/2026-10-20/preview-uses-the-active-setups-camera",
+                      "spark/changelog/updates/2026-10-20/keyframe-clicks-and-drags",
+                      "spark/changelog/updates/2026-10-20/security-fixes"
+                    ]
+                  },
+                  {
                     "group": "2026-10-12",
                     "pages": [
                       "spark/changelog/updates/2026-10-12/overview",
