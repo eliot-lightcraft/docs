@@ -1,0 +1,23 @@
+---
+title: "Open a take in its 3D scene from the Editor"
+description: "A take's menu in the Editor opens the 3D scene it was shot in, on its camera"
+---
+
+Feature · Web · Released [2026-11-03](/spark/changelog/changelog#2026-11-03)
+
+In the Editor, a take's menu now has **Open in 3D scene**. It opens the 3D scene the take was shot in, with the take's camera selected.
+
+## Opening the 3D scene
+
+1. In the Editor's left column, open the **…** menu on a take or a CG Take.
+2. Click **Open in 3D scene**. It is the first item in the menu.
+
+| Item | What opens |
+|---|---|
+| A CG Take | Its 3D scene, with its camera selected in the Outliner, in the camera preview, and in the properties panel. |
+| A take recorded on a camera | Its 3D scene, with that camera selected. |
+| A take recorded with no camera selected, or whose camera was deleted | Its 3D scene, in the setup the take was recorded in, with nothing selected. |
+
+For a take that is not linked to a 3D scene, **Open in 3D scene** is greyed out, with the tooltip **This take isn't linked to a 3D scene**.
+
+**Open in 3D scene** is a link, so a middle-click or **Ctrl**+click opens the 3D scene in a new browser tab and leaves the Editor where it was.

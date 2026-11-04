@@ -1,0 +1,18 @@
+---
+title: "Undo setup changes in the 3D scene"
+description: "Ctrl+Z now undoes cloning and deleting a setup, removing an object from a setup, and more"
+---
+
+Change · Web · Released [2026-11-03](/spark/changelog/changelog#2026-11-03)
+
+More changes in the 3D scene can now be undone with **Ctrl+Z** and brought back with **Ctrl+Shift+Z**. Before, these changes were saved at once and could not be undone.
+
+| Change | Where you make it |
+|---|---|
+| Cloning a setup | **Clone this setup** on the setup's row in the Outliner |
+| Deleting a setup | The **Delete Setup** window. An undo brings back the setup's cameras, the objects that exist only in it, and its changes to the scene. |
+| Removing an object from one setup | The **Remove from This Setup** window |
+| Putting an object back the way the scene has it | The arrow on the object's row, **Revert to the scene's version** or **Add back into this setup** |
+| Deleting an object from **Base Setup** while other setups still use it | The **Delete from Base Setup** window |
+| Renaming an object or a location | The name box in its properties panel |
+| Turning **Auto-keyframe** on or off for an object or a camera | The **Auto-keyframe** switch in its properties panel |

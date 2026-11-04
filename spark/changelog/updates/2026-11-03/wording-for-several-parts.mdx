@@ -1,0 +1,10 @@
+---
+title: "Right wording when several parts are selected"
+description: "The help text says rotate and scale work on several parts, and a count of one reads 1 part"
+---
+
+Fix · Web · Released [2026-11-03](/spark/changelog/changelog#2026-11-03)
+
+With two or more parts selected, the help text in the properties panel now reads **Shift-click a part to add or remove it. Drag the gizmo to move, rotate or scale them together.** Before, it said the gizmo could only move them, although **Rotate** and **Scale** worked too.
+
+The message after a drag now uses the right word for one part, such as **1 part moved**, **1 part rotated**, or **1 part scaled**. Before, it read **1 parts moved**. This happens when only one of the selected parts can move, for example when the other one follows a skeleton.
