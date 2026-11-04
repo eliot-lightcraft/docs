@@ -1,0 +1,36 @@
+---
+title: "Press F to jump to the selection"
+description: "Move the 3D view to a selected camera, locator, object, or part with F or the Jump to button"
+---
+
+Feature · Web · Released [2026-11-03](/spark/changelog/changelog#2026-11-03)
+
+Select a camera, a locator, an object, or a part of an object and press **F**. The 3D view jumps straight there. The **Jump to** button in the properties panel does the same.
+
+## Jumping to the selection
+
+1. Select a camera, a locator, or an object, in the Outliner or in the 3D canvas.
+2. Press **F**, or click **Jump to** at the top of its properties panel. The button's tooltip reads **Move the view to this**.
+
+| Selection | Where the view goes |
+|---|---|
+| A camera | To the camera's eye, at the playhead. The camera itself does not move, and no keyframe is added. |
+| A locator | 1.6 units above the locator, facing the way its arrow points. |
+| An object or a part | The view keeps its direction and backs off until the whole object or part fits in view. |
+
+The view jumps at once, with no animation. A jump is a move of your view, not an edit, so **Ctrl+Z** does not undo it.
+
+## Orbiting the object you framed
+
+After **F** frames an object or a part, keep **F** held and drag with the left mouse button. The view orbits around the middle of what you framed. Let go of **F** or the mouse button to stop.
+
+## When the view does not jump
+
+- **Jump to** is greyed out in the top-down view and while the camera preview is full screen.
+- For a hidden object, **Jump to** shows the message **It's hidden — show it to jump to it**.
+- For an object that has not finished loading, it shows **Nothing to jump to yet — it's still loading**.
+- **F** does nothing for a location, a splat, or a ruler.
+
+The keyboard legend (the **Keyboard shortcuts** button on the 3D canvas) lists both keys under **Viewport camera**: **Jump to the selection** and **Hold and drag to orbit the framed object**.
+
+See [Alt-drag no longer orbits the 3D view](/spark/changelog/updates/2026-11-03/alt-drag-no-longer-orbits) for the key this replaces.

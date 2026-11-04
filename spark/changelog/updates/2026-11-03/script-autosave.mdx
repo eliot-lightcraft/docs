@@ -1,0 +1,29 @@
+---
+title: "Scripts save as you type"
+description: "The script editor saves shortly after you stop typing, shows Saved, and keeps open tabs in step"
+---
+
+Change · Web · Released [2026-11-03](/spark/changelog/changelog#2026-11-03)
+
+The script editor now saves your edits about 1.5 seconds after you stop typing. While you keep typing, it saves at least every 5 seconds. Before, it saved only 10 seconds after you stopped, and showed no save status.
+
+## The save status
+
+The status sits beside **Versioning** in the right column, in Edit.
+
+| Status | Meaning |
+|---|---|
+| **Saving…**, with **Save now** | An edit is being saved. Click **Save now** to save at once. |
+| **Saved** | Every edit is saved. When the saved text differs from the published script, **Publish changes** shows beside it. |
+| **Couldn't save — retrying**, with **Retry now** | A save failed, and Spark tries again. |
+| **Saving stopped**, with **Reload** | The editor cannot save your latest edits. Copy anything you need before you reload, because it has not been saved. |
+
+Saving does not publish. The script everyone reads, and the 3D scenes, lists, and downloads that use it, change only when you publish.
+
+## Version cards
+
+Your saves share one card in **Versioning** until you pause for 5 minutes. The card shows how many saves it holds, such as **By Maya Chen · 8 saves**. After the pause, your next save starts a new card. A long run of saves with no pause also starts a new card after 30 minutes.
+
+## Two tabs
+
+When the same script is open in Edit in two browser tabs, typing in one shows in the other. After someone publishes in one tab, the other tab stops offering **Publish changes** for the same edits.

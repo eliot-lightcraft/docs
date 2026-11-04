@@ -191,6 +191,43 @@
                 "group": "Updates",
                 "pages": [
                   {
+                    "group": "2026-11-03",
+                    "pages": [
+                      "spark/changelog/updates/2026-11-03/overview",
+                      "spark/changelog/updates/2026-11-03/scene-library",
+                      "spark/changelog/updates/2026-11-03/script-revision-colours",
+                      "spark/changelog/updates/2026-11-03/jump-to-the-selection",
+                      "spark/changelog/updates/2026-11-03/replace-a-clip",
+                      "spark/changelog/updates/2026-11-03/open-a-take-in-its-3d-scene",
+                      "spark/changelog/updates/2026-11-03/render-quality-settings",
+                      "spark/changelog/updates/2026-11-03/script-autosave",
+                      "spark/changelog/updates/2026-11-03/compare-any-two-script-versions",
+                      "spark/changelog/updates/2026-11-03/scripts-with-no-scene-headings",
+                      "spark/changelog/updates/2026-11-03/scene-rows-when-the-script-is-collapsed",
+                      "spark/changelog/updates/2026-11-03/undo-setup-changes",
+                      "spark/changelog/updates/2026-11-03/top-down-cull-y",
+                      "spark/changelog/updates/2026-11-03/alt-drag-no-longer-orbits",
+                      "spark/changelog/updates/2026-11-03/collision-mesh-removed",
+                      "spark/changelog/updates/2026-11-03/gallery-opens-as-a-list-by-camera",
+                      "spark/changelog/updates/2026-11-03/gallery-player-layers-and-details",
+                      "spark/changelog/updates/2026-11-03/gallery-render-progress-on-items",
+                      "spark/changelog/updates/2026-11-03/sign-up-send-a-new-link",
+                      "spark/changelog/updates/2026-11-03/safari-asks-for-chrome",
+                      "spark/changelog/updates/2026-11-03/splat-quality-is-in-the-rendering-panel",
+                      "spark/changelog/updates/2026-11-03/canvas-gear-opens-a-menu",
+                      "spark/changelog/updates/2026-11-03/click-a-view-to-move-it",
+                      "spark/changelog/updates/2026-11-03/script-windows-line-endings-save",
+                      "spark/changelog/updates/2026-11-03/use-default-script-opens-in-edit",
+                      "spark/changelog/updates/2026-11-03/script-elements-on-their-own-lines",
+                      "spark/changelog/updates/2026-11-03/usd-upload-preview-matches-the-scene",
+                      "spark/changelog/updates/2026-11-03/refresh-preview-uses-the-latest-scene",
+                      "spark/changelog/updates/2026-11-03/scene-navigation-above-the-camera-preview",
+                      "spark/changelog/updates/2026-11-03/overlapping-coverage-lines",
+                      "spark/changelog/updates/2026-11-03/find-a-part-stays-open",
+                      "spark/changelog/updates/2026-11-03/wording-for-several-parts"
+                    ]
+                  },
+                  {
                     "group": "2026-10-12",
                     "pages": [
                       "spark/changelog/updates/2026-10-12/overview",
