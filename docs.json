@@ -115,7 +115,8 @@
             "pages": [
               "spark/get-started/introduction",
               "spark/get-started/core-concepts",
-              "spark/get-started/quickstart"
+              "spark/get-started/quickstart",
+              "spark/get-started/claude-code"
             ]
           },
           {
