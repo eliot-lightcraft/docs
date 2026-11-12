@@ -5,6 +5,8 @@ description: 'Install the Spark plugin for Claude Code and work in your Spark sc
 
 With the Spark plugin, [Claude Code](https://www.claude.com/product/claude-code) works in your Spark scenes for you. Describe what you want in plain words, and Claude places sets and props, adds cameras, animates them, and renders what a camera sees. Anyone with the scene open in the Spark web app sees the changes live.
 
+Claude Code runs on your own computer, with your own Claude account. The plugin gives it Spark's scene tools and the same renderer the Spark web app uses. Claude signs in to Spark as you, so it works only in the productions your account can open. You can change anything by hand in the Spark web app at any point, and Claude sees your changes.
+
 ## Prerequisites
 
 - One of these, installed and signed in. Both work the same way:
@@ -100,13 +102,38 @@ The follow camera:
   style={{ borderRadius: '0.5rem' }}
 />
 
-## Limits
+## What Claude can do
 
-Claude cannot change lighting, create productions or scripts, or record takes. Renders use a fixed studio light. Create productions and scripts in the Spark web app, and record takes in the [Spark iOS app](/spark/spark-ios/spark-ios-setup).
+- Build and edit a 3D scene: place, move, scale, and rotate objects
+- Find and place assets from your production's files or the Spark Library, by name or category
+- Make simple USD assets itself, such as stand-in props and characters, and upload them to your production
+- Add cameras with real lenses, aim them, and set focus
+- Animate objects and cameras with keys
+- Render what a camera sees, look at the frame, and fix its own mistakes, such as a prop that is too small
+- Render shot previews and cut them into an edit in the Editor, with audio
+- Pose the parts of an asset
 
-Ask Claude to undo any change you don't want. Library assets it places stay in your production's files.
+## What Claude can't do
 
-Library locations are sharp only near their centre. Keep the action and the cameras there.
+- Create organizations, productions, or scripts. Create them in the Spark web app.
+- Delete a scene. Delete it in the Spark web app.
+- Change lighting. Every render uses the same fixed studio light.
+- Record takes. Record them in the [Spark iOS app](/spark/spark-ios/spark-ios-setup).
+- Make a new Gaussian splat location. Claude uses the locations in your production's files and in the Library.
+
+## Things to know
+
+### Undo does not remove files
+
+Claude can undo any change it made to a scene. Ask it to, for example "undo the last change" or "remove the props you just added".
+
+Undo does not reach your production's files. When Claude places an asset from the Library, Spark copies that asset's file into your production. When Claude makes an asset itself, it uploads the file to your production. If Claude then removes the object from the scene, the file stays in your production's files.
+
+### Library locations look blurry away from their centre
+
+Locations in the Library are Gaussian splat captures. Each one is sharp near the middle of the location. Farther out, and from high above, the ground and buildings look blurry or smeared in a render.
+
+If a render looks smeared, ask Claude to move the action and the camera closer to the middle of the location. If the scene needs more room, ask Claude to scale the location up.
 
 ## Update the plugin
 
