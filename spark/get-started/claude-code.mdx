@@ -36,55 +36,77 @@ The first time you ask for Spark work, your browser opens the Spark sign-in page
 
 Claude is most useful for work that takes many repeated steps by hand. A single small change, such as moving one object, is faster to do yourself in the Spark web app.
 
-Paste a scene's link from the Spark web app so Claude knows where to work. These jobs can take 20 minutes or more, so each prompt asks Claude to show its plan first.
+Paste a scene's link from the Spark web app so Claude knows where to work. These jobs can take 20 minutes or more.
 
 ### Dress a set
 
 Claude picks a location and props from the Library, sizes them, and arranges them.
 
 ```text Set dressing prompt wrap
-Dress this scene as a busy night market. Choose a location from the Library that fits, then place about 30 props that belong there: stalls, crates, barrels, lanterns, benches. Arrange them the way a real set would look, with clear paths for the actors. Show me your plan before you build it.
+Dress this scene as a busy market. Choose a location from the Library that fits, then place about 30 props that belong there: stalls, crates, barrels, lanterns, benches. Arrange them the way a real set would look, with clear paths for the actors. Add two cameras and render what each one sees. Show me your plan before you build it.
 ```
+
+Claude placed 32 props in this scene and added both cameras:
+
+<img
+  src="/images/spark/claude-code-market-wide.jpg"
+  alt="A wide render of a courtyard dressed as a market, with two rows of stalls, barrels, crates and lanterns"
+  style={{ borderRadius: '0.5rem' }}
+/>
+
+<img
+  src="/images/spark/claude-code-market-aisle.jpg"
+  alt="A render from the market aisle looking back at a stone city gate, with stalls and carts on both sides"
+  style={{ borderRadius: '0.5rem' }}
+/>
 
 ### Animate complex movement
 
 Claude writes hundreds of keys, so a move can have detail that is slow to key by hand: weaving, body roll, braking, and banking.
 
 ```text Animation prompt wrap
-Animate a 15-second car chase with keyframes. A getaway car weaves through the set and takes a hard corner. A police car follows the same line one second behind and slides wide in the corner. Key both cars every 0.1 seconds, with body roll in the turns and the nose dipping under braking. Show me your plan before you build it.
+Animate a 12-second car chase with keyframes. A getaway car weaves through the set and takes a hard corner. A police car follows the same line one second behind and slides wide in the corner. Key both cars every 0.1 seconds, with body roll in the turns and the nose dipping under braking. Add one wide camera that keeps both cars in frame. Show me your plan before you build it.
 ```
 
-### Shoot coverage
+Each car in this shot has 121 keys:
 
-Claude adds a camera for each shot, with a real lens, and frames the subject at the shot size you name.
-
-```text Coverage prompt wrap
-Give me full coverage of this scene: a wide master, an over-the-shoulder and a close-up for each character, and two inserts on the props that matter. Use lenses a DP would choose for each shot size. Render every camera and show me the results side by side.
-```
+<video
+  src="/images/spark/claude-code-chase.mp4"
+  controls
+  style={{ borderRadius: '0.5rem' }}
+/>
 
 ### Add camera moves
 
+Claude keys a camera the same way, so it can rise on a crane or follow a moving object.
+
 ```text Camera move prompt wrap
-Add a camera that follows the lead car through the whole chase: low and close behind it on the straights, swinging wide on the corners, with a handheld feel. Then add a slow crane shot that rises to show the whole set. Show me your plan before you build it.
+Animate a car driving in through the gate and across the set over 20 seconds. Add a slow crane shot that starts at wheel height as the car passes, then rises to show the whole set. Then add a second camera that follows the car from behind and to one side, swinging wide on the corner, with a handheld feel. Show me your plan before you build it.
 ```
 
-### Set up a whole script
+The crane shot:
 
-```text Script prompt wrap
-Read my script and make a 3D scene for each scene heading. In each scene, place a location from the Library that fits the heading, and add a wide establishing camera. List the scenes you plan to make before you start.
-```
+<video
+  src="/images/spark/claude-code-crane-shot.mp4"
+  controls
+  style={{ borderRadius: '0.5rem' }}
+/>
 
-### Cut an animatic
+The follow camera:
 
-```text Animatic prompt wrap
-Cut an animatic of this scene in the Editor. Use every camera, in the order the script's lines run, and hold each shot for as long as its lines take to read.
-```
+<video
+  src="/images/spark/claude-code-follow-camera.mp4"
+  controls
+  style={{ borderRadius: '0.5rem' }}
+/>
 
 ## Limits
 
 Claude cannot change lighting, create productions or scripts, or record takes. Renders use a fixed studio light. Create productions and scripts in the Spark web app, and record takes in the [Spark iOS app](/spark/spark-ios/spark-ios-setup).
 
 Ask Claude to undo any change you don't want. Library assets it places stay in your production's files.
+
+Library locations are sharp only near their centre. Keep the action and the cameras there.
 
 ## Update the plugin
 
