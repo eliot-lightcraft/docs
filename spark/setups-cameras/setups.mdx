@@ -110,7 +110,7 @@ Hiding is saved in this browser only, so other browsers and other people still s
 ## Delete a setup
 
 1. On the setup's row, click **Delete this setup**.
-2. Click **Delete**. Its cameras, the objects only in it, and its changes go with it.
+2. Click **Delete**. Its cameras, the objects only in it and its changes go with it. Its takes and their videos go too. The window says how many.
 
 <img
   src="/images/spark/setups-cameras/delete-setup-trash.png"
@@ -123,6 +123,18 @@ Hiding is saved in this browser only, so other browsers and other people still s
   alt="The Delete Setup window: Delete Setup A? Its cameras, the objects that exist only in it, and everything it changes about the scene go with it. A box is on Delete."
   style={{ borderRadius: '0.5rem', width: '100%', maxWidth: '432px' }}
 />
+
+<Note>
+**Ctrl+Z** undoes these setup changes, and **Ctrl+Shift+Z** redoes them:
+
+- Cloning or deleting a setup. Undoing a delete brings back its cameras, its own objects and its changes.
+- Removing an object from one setup, or putting it back the way the scene has it.
+- Deleting an object from **Base Setup** while other setups still use it.
+- Renaming an object or a location.
+- Turning **Auto-keyframe** on or off.
+
+While a setup has takes, Spark won't undo its clone or redo its delete, because that would delete the takes.
+</Note>
 
 ## Related
 

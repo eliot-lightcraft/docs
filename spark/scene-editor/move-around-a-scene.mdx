@@ -1,9 +1,9 @@
 ---
 title: 'Move around a scene'
-description: 'Fly through the 3D canvas, select items or look down on the floor plan.'
+description: 'Fly through the 3D canvas, select and jump to items, or look down on the floor plan.'
 ---
 
-You move through the 3D canvas in fly mode, like a first-person camera: keys move you, and dragging turns your view. Click the canvas first, so it takes your key presses.
+You move through the 3D canvas in fly mode, like a first-person camera: keys move you, and dragging turns your view. Click the canvas first, so it takes your key presses. See [Choose which view the keys move](/spark/scene-editor/scene-editor#choose-which-view-the-keys-move).
 
 <img
   src="/images/spark/scene-editor/canvas-toolbar-move.jpg"
@@ -13,7 +13,7 @@ You move through the 3D canvas in fly mode, like a first-person camera: keys mov
 
 <div className="key cols-2">
 
-1. **Camera Controls**
+1. **Settings**
 2. **Top-Down View**
 
 </div>
@@ -26,20 +26,21 @@ You move through the 3D canvas in fly mode, like a first-person camera: keys mov
 | Move up or down | **E**, **Q** |
 | Move faster | Hold **Shift** while you move |
 | Look around | Drag on the canvas |
-| Orbit | **Alt**+drag |
 | Move forward or back in steps | Scroll |
+| Jump to the selection | **F** |
+| Orbit what you jumped to | Hold **F** and drag |
 
-To change how fast you fly, click **Camera Controls** (the gear) in the canvas toolbar.
+To change how fast you fly, click **Settings** (the gear) in the canvas toolbar, then **Camera & controls**.
 
 <img
   src="/images/spark/scene-editor/camera-controls.png"
-  alt="The Camera Controls panel under the gear. Box 1 is on the gear, 2 on Move 0.15, Look 0.0020 and Boost 2.0, and 3 on Reset to defaults."
+  alt="The camera and controls panel under the gear. Box 1 is on the gear, 2 on Move 0.15, Look 0.0020 and Boost 2.0, and 3 on Reset to defaults."
   style={{ borderRadius: '0.5rem', width: '100%', maxWidth: '400px' }}
 />
 
 <div className="key cols-3 left">
 
-1. **Camera Controls**
+1. **Settings**
 2. **Move**, **Look**, **Boost**
 3. **Reset to defaults**
 
@@ -65,17 +66,51 @@ Click the item's row in the Outliner. Its settings open in the Properties panel.
 - **Esc** clears the selection.
 - Double-click an object on the canvas to select one of its parts. See [Parts of an object](/spark/scene-editor/parts-of-an-object).
 
+## Jump to the selection
+
+Select a camera, a locator, an object or a part, then press **F**. You can also click **Jump to** at the top of its Properties panel. The view jumps there at once.
+
+| Selection | Where the view goes |
+|-----------|---------------------|
+| Camera | To the camera's eye, at the playhead. The camera doesn't move, and no keyframe is added. |
+| Locator | 1.6 units above the locator, facing the way its arrow points. |
+| Object or part | The view keeps its direction and backs off until the whole item fits. |
+
+After **F** frames an object or a part, keep **F** held and drag. The view orbits around the middle of what you framed. Let go of **F** or the mouse button to stop.
+
+A jump moves your view, not the scene, so **Ctrl+Z** doesn't undo it.
+
+The view doesn't jump in these cases:
+
+- In Top-Down View, or while the camera preview is full screen, **Jump to** is grayed out.
+- For a hidden object, it shows **It's hidden — show it to jump to it**.
+- For an object still loading, it shows **Nothing to jump to yet — it's still loading**.
+- **F** does nothing for a location, a splat or a ruler.
+
 ## Top-Down View
 
-Click **Top-Down View** to look straight down on the scene. Middle-drag to pan, and scroll to zoom.
+Click **Top-Down View** to look straight down on the scene. Middle-drag to pan, scroll to zoom, and use **W**, **A**, **S**, **D** to move.
 
 <img
   src="/images/spark/scene-editor/top-down-view.jpg"
-  alt="The Opulent Hall seen from straight above, with a box on the Cull Y box at the top left, ticked at 0.2."
+  alt="The Opulent Hall seen from straight above. Box 1 is on the Cull Y bar, ticked at 0.2, 2 on its keyboard button, and 3 on the controls list it opens."
   style={{ borderRadius: '0.5rem' }}
 />
 
-A **Cull Y** box shows at the top left, ticked, at 0.2. Spark hides the location above that height, so you see the floor plan instead of the ceiling. Change the number to cut higher or lower, or untick the box to show everything.
+<div className="key cols-3">
+
+1. **Cull Y**
+2. **Controls**
+3. Top-down controls
+
+</div>
+
+**Cull Y** cuts away everything above a height, so you see the floor plan instead of the ceiling. It cuts splats and USD objects at the same height. Cameras above the cut are hidden too, but their names still show.
+
+- Drag the value or type a height.
+- Click the canvas, then press **E** to raise the cut and **Q** to lower it, by 0.5 each time.
+- Untick the box to see the whole scene. Tick it again to go back to the last height.
+- **Reset view** centers the view again and keeps the **Cull Y** height.
 
 ## Related
 

@@ -1,13 +1,13 @@
 ---
-title: 'Review and share takes'
-description: 'Review every CG Take and setup in a production, then share them in lists.'
+title: 'Browse and play takes'
+description: 'Find every CG Take and Take in a production, and play them.'
 ---
 
 The Gallery holds every take in a production. A CG Take is a camera's CG previz render of its move through a 3D scene. A Take is a recording from the Spark iOS app.
 
 <img
   src="/images/spark/gallery/gallery-overview.jpg"
-  alt="The Gallery for the Rooftop Test script. Box 1 is on the All Takes and Lists tabs, 2 on the scene headings in the sidebar, 3 on the toolbar, 4 on the Setup B row, 5 on the Camera 2 card and 6 on the Player playing Camera 2."
+  alt="The Gallery for the Rooftop Test script. Box 1 is on the All Takes and Lists tabs, 2 on the scene headings in the sidebar, 3 on the toolbar, 4 on the Setup B row, 5 on the Camera 2 group with its CG Take, and 6 on the Player playing Camera 2, with Details below."
   style={{ borderRadius: '0.5rem' }}
 />
 
@@ -17,22 +17,40 @@ The Gallery holds every take in a production. A CG Take is a camera's CG previz 
 2. Scene headings
 3. Toolbar
 4. Setup row
-5. CG Take card
-6. **Player**
+5. Camera group
+6. **Player** and **Details**
 
 </div>
 
 ## All Takes and Lists
 
-**All Takes** shows the takes of the open script. Pick a scene heading in the sidebar to see its 3D scenes. Cards sit under each 3D scene, then under each setup, with one card per camera.
+**All Takes** shows the takes of the open script. Pick a scene heading in the sidebar to see its 3D scenes.
 
-The toolbar sets how cards show:
+The Gallery opens as a list with **Group by Camera**. Each camera has its own group: its CG Take first, then the takes recorded on that camera, indented under it.
+
+<img
+  src="/images/spark/gallery/list-by-camera.png"
+  alt="The Gallery list for INT. COFFEE SHOP - DAY. Box 1 is on the Grid and List switch and Group by Camera, 2 on the CG Take of Camera 1, and 3 on Take 1 and Take 2, indented under it."
+  style={{ borderRadius: '0.5rem' }}
+/>
+
+<div className="key cols-3">
+
+1. View and **Group by**
+2. A camera's CG Take
+3. Takes on that camera
+
+</div>
+
+The toolbar sets how takes show:
 
 - **Group by**: **No grouping**, **Group by 3D Scene**, **Group by Setup** or **Group by Camera**
 - Sort: **Default**, or **Date created**, newest or oldest first
 - Grid or list view
 
-**Lists** holds the lists you make. See [Create and edit a list](#create-and-edit-a-list).
+The Gallery remembers your grouping and view in this browser. A list you made opens with **No grouping**, in the order you arranged it.
+
+**Lists** holds the lists you make. See [Create and edit a list](/spark/gallery/lists-and-sharing#create-and-edit-a-list).
 
 ## Takes and CG Takes
 
@@ -45,7 +63,7 @@ The chips say what the card is:
 - **STATIC**: the camera doesn't move, so the preview is a still
 - **BG ONLY**: recorded with the iPhone's camera off, so the CG background is all it has
 
-Click a preview to play it in the **Player**. Hover a card for its select box at the top left and **…** at the top right.
+Click a preview to play it in the **Player**. See [Play a take](#play-a-take). Hover a card for its select box at the top left and **…** at the top right.
 
 <img
   src="/images/spark/gallery/gallery-card-menu.png"
@@ -68,208 +86,34 @@ A Take card shows a chip for each layer the take has: **Comp**, **BG**, **Camera
 
 Takes arrive once they're uploaded. See [Upload takes from iPhone](/spark/gallery/spark-desktop).
 
-## Generate a CG Take preview
+## Play a take
 
-A new CG Take card reads **Generate preview** until it's rendered. When you change the 3D scene, older previews go out of date, and a yellow chip counts them.
-
-1. In the toolbar, click **Generate N previews**. It renders the missing and out-of-date previews in the 3D scene.
-2. Wait. Two previews took about 30 seconds.
+Click a picture to play it in the **Player**. The Player shows the whole frame, with black bars where the shapes differ.
 
 <img
-  src="/images/spark/gallery/generate-previews.png"
-  alt="The Gallery toolbar, with the yellow out-of-date chip reading 1, and a box on Generate 2 previews."
-  style={{ borderRadius: '0.5rem', width: '100%', maxWidth: '440px' }}
-/>
-
-To render one card again, hover it and click the round arrow beside its **CG TAKE** chip.
-
-## Regenerate a background
-
-A Take recorded with the iPhone's camera off has no CG background. On its card's **…** menu, click **Regenerate BG**. The browser renders the background from the take's camera track and shows **Regenerating BG — frame N of M**.
-
-It doesn't run on a take that already has a background, isn't linked to a 3D scene, or hasn't uploaded its camera track yet.
-
-## Download takes
-
-On a card's **…** menu, click **Download**. To download several, select them first. See [Select takes](#select-takes).
-
-Every download is one zip named by date and time, such as `2026-10-29 20.05.04 Gallery Takes.zip`. Inside, folders go 3D scene, then setup, then camera. A CG Take is an MP4. A Take brings every layer file it has, with its tracking data.
-
-## Select takes
-
-1. In the toolbar, click **Select Takes**.
-2. Tick the box on each card you want.
-3. Pick what to do with them.
-
-<img
-  src="/images/spark/gallery/select-takes.png"
-  alt="Select mode with 1 selected. Box 1 is on the ticked box of the Camera 1 card, 2 on Add to a List, 3 on Download and 4 on Delete Permanently."
+  src="/images/spark/gallery/player-layers-details.png"
+  alt="The Player playing Take 1. Box 1 is on the layer chips Comp, BG, Camera and Matte, with Comp lit. Box 2 is on Details, which lists Scene, Camera, Note and Created."
   style={{ borderRadius: '0.5rem', width: '100%', maxWidth: '480px' }}
 />
 
 <div className="key cols-2 left">
 
-1. Select box
-2. **Add to a List**
-3. **Download**
-4. **Delete Permanently**
+1. Layer chips
+2. **Details**
 
 </div>
 
-## Delete a take
-
-On the card's **…** menu, click **Delete permanently**, then confirm. Deleting a CG Take removes its camera animation and any camera moves recorded against it.
-
-<Warning>
-You can't undo a delete. A CG Take that has recorded takes can't be deleted.
-</Warning>
-
-## Create and edit a list
-
-A list collects CG Takes and Takes from anywhere in the script.
-
-<Steps titleSize="h3">
-  <Step title="Make the list">
-    On the **Lists** tab, click **New Custom List**. Enter a name and, if you like, a description, then click **Create**.
-
-    <img
-      src="/images/spark/gallery/new-list.png"
-      alt="The New List window. Box 1 is on the Name field reading P6 test list, 2 on the Description field and 3 on Create."
-      style={{ borderRadius: '0.5rem', width: '100%', maxWidth: '540px' }}
-    />
-
-    <div className="key cols-3">
-
-    1. **Name**
-    2. **Description**
-    3. **Create**
-
-    </div>
-  </Step>
-  <Step title="Add takes">
-    Open the list and click **Add Takes**. Tick a card to add it right away. You can also use **Add to list** on any card.
-
-    <img
-      src="/images/spark/gallery/add-to-list.jpg"
-      alt="The Add to P6 test list window, with two CG Take added to list! messages. Box 1 is on the INT. STAIRWELL - DAWN heading and 2 on the ticked box of the Camera 1 card."
-      style={{ borderRadius: '0.5rem' }}
-    />
-
-    <div className="key cols-2">
-
-    1. Scene heading
-    2. Ticked card
-
-    </div>
-  </Step>
-</Steps>
-
-The list's page holds its takes and tools.
-
-<img
-  src="/images/spark/gallery/list-view.jpg"
-  alt="The P6 test list. Box 1 is on its row in the sidebar, 2 on its header, 3 on Share, 4 on Select Takes and Add Takes, and 5 on the comments button."
-  style={{ borderRadius: '0.5rem' }}
-/>
-
-<div className="key cols-3">
-
-1. List
-2. Header
-3. **Share**
-4. **Select Takes** and **Add Takes**
-5. Comments
-
-</div>
-
-- To rename the list or change its description, click the pencil beside it.
-- With **Custom order**, drag cards to reorder them.
-- To delete the list, click the trash on its sidebar row. The takes in it stay in the Gallery.
-
-## Comment
-
-Comments belong to a list.
-
-1. On the list, click the round blue button at the bottom right.
-2. Enter your comment in **Write a comment** and press **Enter**.
-
-<img
-  src="/images/spark/gallery/comments.png"
-  alt="The Comments panel with one comment, Test comment for the docs, and its author's name blurred. A box is on the Write a comment field and its send button."
-  style={{ borderRadius: '0.5rem', width: '100%', maxWidth: '485px' }}
-/>
-
-Each comment shows its author's name. To quote a take, click **Quote in comments** on its card's **…** menu while comments are open.
-
-## Share a list with a link
-
-Anyone with the link can open the list without a Spark account.
-
-<Steps titleSize="h3">
-  <Step title="Turn on the link">
-    On the list, click **Share**, then turn on **Web**.
-  </Step>
-  <Step title="Set a password and an expiry">
-    Turn on **Password** and enter one. Under **Expires**, pick **Never**, **1 day**, **7 days**, **30 days**, **3 months** or **1 year**, or a date.
-  </Step>
-  <Step title="Save and copy the link">
-    Click **Save**, then copy the link and send it.
-
-    <img
-      src="/images/spark/gallery/share-link.png"
-      alt="The Share panel of P6 test list, with the end of the link blurred. Box 1 is on Share, 2 on the Web switch, 3 on the link, 4 on Password, 5 on Expires with 1 day picked, and 6 on Save."
-      style={{ borderRadius: '0.5rem', width: '100%', maxWidth: '470px' }}
-    />
-
-    <div className="key cols-3 left">
-
-    1. **Share**
-    2. **Web**
-    3. Link
-    4. **Password**
-    5. **Expires**
-    6. **Save**
-
-    </div>
-  </Step>
-</Steps>
-
-To stop the link working, turn off **Web**. **Refresh link** makes a new link, and the old one stops working for everyone who has it.
-
-## Open a shared list
-
-Open the link. If the list has a password, enter it and click **Open list**.
-
-<img
-  src="/images/spark/gallery/shared-list-password.png"
-  alt="A shared list asking for its password: This list is password protected. Enter the password you were given to open it. Below are the Password field and Open list."
-  style={{ borderRadius: '0.5rem', width: '100%', maxWidth: '440px' }}
-/>
-
-The list opens read-only, with its takes, **Select Takes** and **Download all**. Comments, notes and card menus don't show.
-
-<img
-  src="/images/spark/gallery/shared-list.jpg"
-  alt="P6 test list opened from its link, with two CG Take cards. Box 1 is on Select Takes and 2 on Download all."
-  style={{ borderRadius: '0.5rem' }}
-/>
-
-<div className="key cols-2">
-
-1. **Select Takes**
-2. **Download all**
-
-</div>
-
-A link that's off or replaced shows **This link doesn't work**.
+- Click a layer chip to play that layer from the same moment. A CG Take has one picture and no chips.
+- **Details** lists **Scene**, **Camera**, **Action**, **Note** and **Created**. A line shows only when it has something to say.
+- Click **Details** to hide the section. The Player remembers that in this browser.
 
 ## Related
 
 <CardGroup cols={2}>
-  <Card title="Editor" icon="scissors" href="/spark/editing/editor">
-    Assemble a rough cut and export the edit.
+  <Card title="Render and download takes" icon="download" href="/spark/gallery/render-and-download">
+    Render previews, download files and delete takes.
   </Card>
-  <Card title="Upload takes from iPhone" icon="upload" href="/spark/gallery/spark-desktop">
-    Bring Takes from the iPhone into the Gallery.
+  <Card title="Share takes in lists" icon="share-2" href="/spark/gallery/lists-and-sharing">
+    Collect takes in a list and share its link.
   </Card>
 </CardGroup>

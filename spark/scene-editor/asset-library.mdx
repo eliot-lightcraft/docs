@@ -35,7 +35,7 @@ Default assets come with every production, such as the Opulent Hall location and
 
 <Steps titleSize="h3">
   <Step title="Click Add to Library">
-    From **All assets**, Spark asks what kind of file it is. Pick **Location**, **Object** or **Audio**. Inside a category, Spark skips this step.
+    From **All assets**, Spark asks for the file's category. Pick **Location**, **Object** or **Audio**. Inside a category, Spark skips this step.
 
     <img
       src="/images/spark/scene-editor/select-category.png"
@@ -87,6 +87,25 @@ You add files only by uploading them to the library. The old **Load Locally** op
 
 - One file can be up to 1 GB. Spark refuses an empty file.
 - **Add Multiple** takes up to 50 files of one kind. It skips duplicates, and refuses a file of the wrong kind.
+
+### Storage
+
+Spark accepts an upload while your organization's storage used is under its limit, even if that upload goes over it. Once the storage used reaches the limit, Spark refuses new uploads until you delete files or buy more storage. Spark then shows **Your organization is out of storage. Delete files or buy more storage from Organization → Settings → Billing.**
+
+The files of your takes and the preview pictures of your files count toward the storage used.
+
+**Add Multiple** checks the storage left before you start:
+
+- A red line means the organization is already out of storage. The upload button is grayed out.
+- An amber line, such as **Only 1.0 MB of storage left**, means this batch will upload, but uploads after it will be refused.
+
+<img
+  src="/images/spark/scene-editor/storage-warning.png"
+  alt="The Add Multiple Audio Files window with three files. A box is on the amber line: Only 1.0 MB of storage left. This batch will upload, but uploads after it will be refused until you free up space or buy more."
+  style={{ borderRadius: '0.5rem' }}
+/>
+
+If the limit is reached partway through a batch, the rest of the files aren't uploaded. Viewing, downloading, renaming and deleting files still work at the limit.
 
 ## Related
 

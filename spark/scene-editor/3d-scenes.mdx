@@ -7,7 +7,7 @@ A 3D scene is a set you build for one script scene. A script scene can hold seve
 
 <img
   src="/images/spark/scene-editor/3d-scenes-overview.jpg"
-  alt="A script open in Spark. Box 1 is on the script scene INT. STAIRWELL - DAWN with a count of 1, 2 on Create a new 3D scene, 3 on a 3D scene card and 4 on the card's menu with Settings, Clone and Delete."
+  alt="A script open in Spark. Box 1 is on the script scene INT. STAIRWELL - DAWN with a count of 2, 2 on Create a new 3D scene, 3 on Import from library, 4 on the P5 stairwell card and 5 on the card's menu with Settings, Clone and Delete."
   style={{ borderRadius: '0.5rem' }}
 />
 
@@ -15,8 +15,9 @@ A 3D scene is a set you build for one script scene. A script scene can hold seve
 
 1. Script scene and its 3D scene count
 2. **Create a new 3D scene**
-3. 3D scene card: setups, cameras, takes
-4. Card menu: **Settings**, **Clone**, **Delete**
+3. **Import from library**
+4. 3D scene card: setups, cameras, takes
+5. Card menu: **Settings**, **Clone**, **Delete**
 
 </div>
 
@@ -37,7 +38,7 @@ A 3D scene is a set you build for one script scene. A script scene can hold seve
 
     <img
       src="/images/spark/scene-editor/create-new-button.png"
-      alt="The right column of the script page, with a box on Create a new 3D scene."
+      alt="The right column of the script page, with a box on Create a new 3D scene, above Import from library."
       style={{ borderRadius: '0.5rem', width: '100%', maxWidth: '680px' }}
     />
   </Step>
@@ -62,7 +63,7 @@ A 3D scene is a set you build for one script scene. A script scene can hold seve
 
     <img
       src="/images/spark/scene-editor/scene-created.png"
-      alt="The script page after creating a 3D scene. Box 1 is on the Scene created! message and 2 on the new P5 park test card, with 1 setup, 1 camera and 1 take."
+      alt="The script page after creating a 3D scene. Box 1 is on the Scene created! message and 2 on the new INT. PARK - DAY card, with 1 setup, 1 camera and 1 take."
       style={{ borderRadius: '0.5rem' }}
     />
 
@@ -75,14 +76,44 @@ A 3D scene is a set you build for one script scene. A script scene can hold seve
   </Step>
 </Steps>
 
+## Start from a library scene
+
+The scene library holds 3D scenes shared with every Spark user. Import one to get your own copy, with its setups, cameras and objects.
+
+<Steps titleSize="h3">
+  <Step title="Click Import from library">
+    On the script page, pick the script scene, then click **Import from library** under **Create a new 3D scene**.
+
+    <img
+      src="/images/spark/scene-editor/import-from-library.png"
+      alt="The right column of the script page, with a box on Import from library, under Create a new 3D scene."
+      style={{ borderRadius: '0.5rem', width: '100%', maxWidth: '680px' }}
+    />
+  </Step>
+  <Step title="Pick a scene">
+    The **Scene Library** window opens. The first card, **Empty scene**, makes a new empty 3D scene. Click a library scene to copy it.
+  </Step>
+  <Step title="Wait for the copy">
+    The window reads **Copying the scene and its files**, with the size of the files. When it's done, **Imported** shows with the scene's name.
+
+    To keep working, click **Continue in background**. The copy carries on in the bottom bar, and Spark gives you a link to the scene when it's done.
+  </Step>
+</Steps>
+
+A production with no script offers **Start from a library scene**, beside **Upload a script** and **Use default script**. Spark makes a new script to hold the copy, then opens the copied 3D scene.
+
+<Note>
+  The copy is a new 3D scene in your production, and its files count toward your organization's storage. Your changes don't reach the library scene, and later library changes don't reach your copy.
+</Note>
+
 ## Open a 3D scene
 
 Click its card. The scene editor opens on the **3D Scene** tab. The card shows when you last opened it, such as **Opened 3 minutes ago**.
 
 <img
   src="/images/spark/scene-editor/open-3d-scene.png"
-  alt="The right column of the script page, with a box on the P5 stairwell 3D scene card."
-  style={{ borderRadius: '0.5rem', width: '100%', maxWidth: '520px' }}
+  alt="The P5 stairwell 3D scene card in the right column of the script page, with a box around it. It reads Opened 40 minutes ago."
+  style={{ borderRadius: '0.5rem', width: '100%', maxWidth: '360px' }}
 />
 
 ## Scene navigation
@@ -120,7 +151,7 @@ Hover the card, then click **⋯**.
 |------|--------------|
 | **Settings** | Opens **3D Scene Settings**: the name, the camera preset, and landscape or portrait. Click **Save**. |
 | **Clone** | Makes a copy named **Clone -** and the original name. Change the name, then confirm. |
-| **Delete** | Deletes the 3D scene, with its cameras, keyframes, audio clips and other data. It can't be undone. |
+| **Delete** | Deletes the 3D scene, with its cameras, keyframes, audio clips and other data. Its takes and their videos go too, and the window says how many. It can't be undone. |
 
 <img
   src="/images/spark/scene-editor/scene-settings.png"
@@ -171,7 +202,9 @@ Drag the card by its handle (⠿, top left) onto another script scene.
 
 </div>
 
-When you publish script edits that rename a heading, Spark asks where the 3D scenes go. The **Before publishing: where do these 3D scenes go?** window lists each changed heading and pre-picks the new one.
+When you publish script edits, 3D scenes stay with any scene that is unchanged, moved or edited. Spark asks only about renamed and removed scenes, in the **Before publishing: where do these 3D scenes go?** window.
+
+It pre-picks a renamed scene's new heading. For a removed scene, it pre-picks the one scene added in its place, if there is one. Click an old heading to read that scene as it was.
 
 <img
   src="/images/spark/scene-editor/publish-move-scenes.png"
