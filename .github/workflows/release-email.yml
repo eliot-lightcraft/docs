@@ -1,0 +1,122 @@
+# Emails a Spark release to the people who turned on release emails in Spark.
+# It runs when a pull request with the `release-email` label is merged, so the
+# person finishing the release docs decides: label means email, no label means
+# no email. It can also be run by hand for a merged pull request, for a
+# forgotten label.
+#
+# Spark does the sending. This only posts the changelog to Spark's
+# release-email_send function, which reads the newest release entry, refuses
+# one older than 14 days, and emails each subscriber.
+#
+# Secrets (repository settings, added once):
+#   SPARK_RELEASE_EMAIL_URL     https://<project>.supabase.co/functions/v1/release-email_send
+#   SPARK_RELEASE_EMAIL_SECRET  the same value as Spark's RELEASE_EMAIL_SEND_SECRET
+name: Release email
+
+on:
+  pull_request:
+    types: [closed]
+  workflow_dispatch:
+    inputs:
+      pr:
+        description: Number of the merged docs pull request
+        required: true
+      dry_run:
+        description: Show who would be emailed and with what, and send nothing
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: release-email
+  cancel-in-progress: false
+
+jobs:
+  send:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.pull_request.merged == true &&
+       contains(github.event.pull_request.labels.*.name, 'release-email'))
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      PR: ${{ github.event.pull_request.number || inputs.pr }}
+      DRY_RUN: ${{ inputs.dry_run || false }}
+      SPARK_RELEASE_EMAIL_URL: ${{ secrets.SPARK_RELEASE_EMAIL_URL }}
+      SPARK_RELEASE_EMAIL_SECRET: ${{ secrets.SPARK_RELEASE_EMAIL_SECRET }}
+    steps:
+      - name: Check the pull request
+        id: pr
+        run: |
+          set -euo pipefail
+          gh pr view "$PR" --json state,mergeCommit,labels > pr.json
+          if [ "$(jq -r .state pr.json)" != "MERGED" ]; then
+            echo "::error::Pull request #$PR is not merged."; exit 1
+          fi
+          if [ "$DRY_RUN" != "true" ] && jq -e '.labels | any(.name == "release-email-sent")' pr.json > /dev/null; then
+            echo "::error::Pull request #$PR already has the release-email-sent label. Remove the label to send again."; exit 1
+          fi
+          echo "sha=$(jq -r .mergeCommit.oid pr.json)" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.pr.outputs.sha }}
+          sparse-checkout: spark/changelog/changelog.mdx
+          sparse-checkout-cone-mode: false
+
+      - name: Send
+        id: send
+        run: |
+          set -euo pipefail
+          offset=0; sent=0; failed=0
+          while :; do
+            jq -n --rawfile changelog spark/changelog/changelog.mdx \
+              --argjson dryRun "$DRY_RUN" --argjson offset "$offset" \
+              '{changelog: $changelog, dryRun: $dryRun, offset: $offset}' > body.json
+            code=$(curl -sS -o answer.json -w '%{http_code}' -X POST "$SPARK_RELEASE_EMAIL_URL" \
+              -H "Authorization: Bearer $SPARK_RELEASE_EMAIL_SECRET" \
+              -H 'Content-Type: application/json' --data-binary @body.json)
+            cat answer.json; echo
+            if [ "$code" != "200" ]; then echo "::error::Spark answered $code."; exit 1; fi
+            status=$(jq -r .status answer.json)
+            sent=$((sent + $(jq -r .sent answer.json)))
+            failed=$((failed + $(jq -r .failed answer.json)))
+            [ "$status" = "more" ] || break
+            offset=$(jq -r .next answer.json)
+          done
+          {
+            echo "status=$status"
+            echo "sent=$sent"
+            echo "failed=$failed"
+            echo "label=$(jq -r .release.label answer.json)"
+            echo "recipients=$(jq -r .recipients answer.json)"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Report on the pull request
+        env:
+          STATUS: ${{ steps.send.outputs.status }}
+          SENT: ${{ steps.send.outputs.sent }}
+          FAILED: ${{ steps.send.outputs.failed }}
+          LABEL: ${{ steps.send.outputs.label }}
+          RECIPIENTS: ${{ steps.send.outputs.recipients }}
+        run: |
+          set -euo pipefail
+          case "$STATUS" in
+            dry_run)
+              echo "Dry run: release $LABEL would go to $RECIPIENTS subscribers. Nothing was sent."
+              exit 0 ;;
+            too_old)
+              gh pr comment "$PR" --body "Release email not sent: release $LABEL is more than 14 days old."
+              exit 0 ;;
+          esac
+          if [ "$FAILED" != "0" ]; then
+            gh pr comment "$PR" --body "Release email for $LABEL: sent to $SENT subscribers, $FAILED failed. Run the Release email workflow again for this pull request within 24 hours; people who already got it are skipped."
+            exit 1
+          fi
+          gh label create release-email-sent --color 0e8a16 --description "The release email went out" 2>/dev/null || true
+          gh pr edit "$PR" --add-label release-email-sent
+          gh pr comment "$PR" --body "Release email for $LABEL sent to $SENT subscribers."
