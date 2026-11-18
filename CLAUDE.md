@@ -185,6 +185,14 @@ import SnippetIntro from '/snippets/snippet-intro.mdx';
 - Commit frequently throughout development
 - NEVER skip or disable pre-commit hooks
 
+## Release emails
+- Spark can email a release to the people who turned on release emails in their Spark account.
+- Before a pull request that adds a release to `spark/changelog/changelog.mdx` is merged, ask whether the release should be emailed.
+- On a yes, add the `release-email` label: `gh pr edit <number> --add-label release-email`. Spark sends the email when the pull request is merged, and the workflow comments the count on the pull request.
+- Leave the label off for a release that is only fixes. No label means no email.
+- If the label was forgotten, run the "Release email" workflow by hand with the pull request number, within 14 days of the release date.
+- Details: `.github/workflows/release-email.yml`.
+
 ## Do not
 - Skip frontmatter on any MDX file
 - Use absolute URLs for internal links
