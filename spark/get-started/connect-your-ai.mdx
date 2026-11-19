@@ -1,44 +1,68 @@
 ---
-title: 'Claude Code'
-description: 'Install the Spark plugin for Claude Code and work in your Spark scenes by describing what you want.'
+title: 'Connect your AI'
+description: 'Work in your Spark scenes by describing what you want.'
 ---
+
+<Note>
+  The examples on this page were created using **Claude Code**. Other AI agents and models can follow the same prompts.
+</Note>
 
 [Claude Code](https://www.claude.com/product/claude-code) places sets and props, animates cameras, and renders what a camera sees. By using your Spark account, Claude can only work in productions you can open.
 
 ## Prerequisites
 
-- Claude Code installed and signed in, then run it on your own computer from either:
-  - Your [terminal](https://docs.claude.com/en/docs/claude-code/setup)
-  - The **Code** tab of [Claude Desktop](https://claude.com/download)
+- An AI agent installed on your computer and signed in, such as Claude Code in [Claude Desktop](https://claude.com/download) or a [terminal](https://code.claude.com/docs/en/terminal-guide).
 - System requirements:
   - Mac: Apple silicon, macOS 15 or later
-  - Windows: Windows 10 or 11, an x64 processor, a GPU, [Git for Windows](https://git-scm.com/downloads/win)
+  - Windows: Windows 10 or 11, an x64 processor
 - A Spark production with at least one script. See [Quickstart](/spark/get-started/quickstart).
+
+<Note>
+  Important: you need a coding agent installed on your computer. This guide will not work in claude.ai, chatgpt.com or similar browser chats.
+</Note>
 
 ## Set up
 
-1. In a terminal, run:
+To connect your agent to Spark, follow these steps:
 
-    ```bash
-    claude plugin marketplace add https://github.com/LightcraftTechnology/spark-claude.git
-    claude plugin install spark@lightcraft
+<Steps titleSize="h3">
+  <Step title="Open your agent">
+    For Claude Code:
+
+    - In Claude Desktop, click the **Code** tab. Under the prompt box, choose **Local**, then any folder for Claude to work in.
+    - In a terminal, type `claude`, then press **Enter**. If it asks to trust the folder, choose yes.
+
+    For Mac, open **Terminal** from Spotlight (**Cmd+Space**). For Windows, press **Win+X**, then select **Terminal** or **Windows PowerShell**.
+  </Step>
+  <Step title="Give your agent the setup prompt">
+    The install takes a minute or two.
+
+    ```text Setup prompt wrap
+    Set up Spark for me by following https://downloads.lightcraft.pro/sparkpy/start.md. You have my permission to download and run Spark's installer from https://downloads.lightcraft.pro/sparkpy/, and to run sparkpy login so I can sign in to Spark in my browser. Tell me what you are installing before you run anything, in clear, understandable words. When the install is done, tell me to start a new session.
     ```
 
-2. Start a new Claude Code session. The first one takes a minute or two to set up the plugin.
+    If your agent asks permission to run the installer, allow it.
+  </Step>
+  <Step title="Sign in and start a new session">
+    Your browser will open Spark. Sign in there. Never type your password into the chat.
 
-3. Paste this prompt:
+    When your agent suggests, start a new session: click **+ New** in Claude Desktop, or type `/exit`, then `claude` in a terminal.
+  </Step>
+  <Step title="Try your first prompt">
+    In the new session, paste:
 
-    ```text Starter prompt wrap
-    Show me my Spark productions. Then make a new 3D scene in the one I pick, place one prop from the Library, add a 35 mm camera looking at it, and render what the camera sees.
+    ```text First prompt wrap
+    Sign me in to Spark and suggest three simple scenes I could build.
     ```
-
-4. Your browser opens Spark. Sign in there, then return to Claude Code. Never type your Spark password into Claude Code.
+  </Step>
+</Steps>
 
 ## What to ask for
 
-Claude suits jobs with many repeated steps, though big ones can take 20 minutes or more. For a small change, such as moving one object, working by hand is faster.
-
-To start, paste a scene's link from the Spark web app so Claude knows where to work.
+- Paste a scene's link from the Spark web app, so Claude knows where to work.
+- Ask for a plan first. Each prompt below ends with "Show me your plan before you build it."
+- Use Claude for jobs with many repeated steps. Big ones can take 20 minutes or more.
+- Make small changes, such as moving one object, by hand. That's faster.
 
 ### Dress a set
 
@@ -119,18 +143,13 @@ The follow camera:
 - Record takes. Use the [Spark iOS app](/spark/spark-ios/spark-ios-app).
 - Make new Gaussian splat locations. It uses the ones in your files and the Library.
 
-## Update the plugin
+## Update Spark
 
-Run this in a terminal, then start a new session:
-
-```bash
-claude plugin update spark@lightcraft
-```
+Give your agent the [setup prompt](#set-up) again, then start a new session. The installer updates Spark each time it runs.
 
 ## Troubleshooting
 
-- **Setup error when a session starts on Windows.** Install [Git for Windows](https://git-scm.com/downloads/win), then start a new session.
-- **Renders fail on a Mac with Claude Code's sandbox on.** Follow the sandbox section of the [plugin's README](https://github.com/LightcraftTechnology/spark-claude#if-you-use-claude-codes-sandbox).
+- **Your agent asks you to run a command yourself.** A safety check blocked the installer or the sign-in. Paste the whole [setup prompt](#set-up) again, including the sentence that gives permission.
 - **The ground or buildings look smeared.** Library locations are sharp only near their middle. Ask Claude to move the action and camera closer to the middle. If the scene needs more room, ask it to scale the location up.
 
 ## Related

@@ -139,7 +139,7 @@
               "spark/get-started/how-spark-works",
               "spark/get-started/install-and-sign-in",
               "spark/get-started/quickstart",
-              "spark/get-started/claude-code"
+              "spark/get-started/connect-your-ai"
             ]
           },
           {
@@ -440,6 +440,10 @@
     }
   },
   "redirects": [
+    {
+      "source": "/spark/get-started/claude-code",
+      "destination": "/spark/get-started/connect-your-ai"
+    },
     {
       "source": "/r",
       "destination": "/spark/changelog/changelog"
