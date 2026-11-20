@@ -1,0 +1,99 @@
+---
+title: 'Add audio and export'
+description: 'Add audio to an edit, then export it as an MP4.'
+---
+
+## Add audio
+
+1. Click the **Audio** tab. To add a file, click **Upload**.
+2. On an audio file's **…** menu, click **Add at playhead**. It goes on the audio lane.
+
+<img
+  src="/images/spark/editing/editor-audio.png"
+  alt="The Audio tab with P5 tone. Box 1 is on Upload, 2 on the … button of P5 tone and 3 on Add at playhead."
+  style={{ borderRadius: '0.5rem', width: '100%', maxWidth: '320px' }}
+/>
+
+<div className="key cols-3 left">
+
+1. **Upload**
+2. **…**
+3. **Add at playhead**
+
+</div>
+
+## Export an edit
+
+<Steps titleSize="h3">
+  <Step title="Open the builds">
+    At the top, click **Export**, then **New export**.
+  </Step>
+  <Step title="Check the settings">
+    Set the name, aspect ratio, resolution and frame rate. These change the edit itself as well as this build. **This build** covers the whole timeline. To build part of it, drag a loop band on the ruler first.
+
+    <img
+      src="/images/spark/editing/editor-new-export.png"
+      alt="The New export window. Box 1 is on Name, 2 on Aspect ratio and Resolution, 3 on Frame rate, 4 on This build and 5 on Build."
+      style={{ borderRadius: '0.5rem', width: '100%', maxWidth: '500px' }}
+    />
+
+    <div className="key cols-3 left">
+
+    1. **Name**
+    2. **Aspect ratio** and **Resolution**
+    3. **Frame rate**
+    4. **This build**
+    5. **Build**
+
+    </div>
+  </Step>
+  <Step title="Build it">
+    Click **Build**. An 11-second edit took about 18 seconds. The build joins the **Builds** list.
+
+    <img
+      src="/images/spark/editing/editor-builds.png"
+      alt="The Export view of P6 test edit. Box 1 is on Export, 2 on New export and 3 on the finished build: 0:11, 1920 × 1080, 16:9, 24 fps, 3.9 MB, 4 clips."
+      style={{ borderRadius: '0.5rem', width: '100%', maxWidth: '980px' }}
+    />
+
+    <div className="key cols-3">
+
+    1. **Export**
+    2. **New export**
+    3. Build
+
+    </div>
+  </Step>
+  <Step title="Download it">
+    On the build's **…** menu, click **Download**. The file is an MP4.
+
+    <img
+      src="/images/spark/editing/editor-build-menu.png"
+      alt="The … menu of a build. Box 1 is on Download, 2 on Rename and 3 on Delete."
+      style={{ borderRadius: '0.5rem', width: '100%', maxWidth: '260px' }}
+    />
+
+    <div className="key left">
+
+    1. **Download**
+    2. **Rename**
+    3. **Delete**
+
+    </div>
+  </Step>
+</Steps>
+
+A build that fails or is canceled leaves nothing in the list.
+
+Spark checks your organization's storage before an export starts. If it's full, the export doesn't start. See [Storage](/spark/scene-editor/asset-library#storage).
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Build an edit" icon="scissors" href="/spark/editing/editor">
+    Cut takes into a rough cut.
+  </Card>
+  <Card title="Shoot with Jetset" icon="video" href="/spark/export-jetset/shoot-with-jetset">
+    Send a 3D scene to Jetset for the set.
+  </Card>
+</CardGroup>

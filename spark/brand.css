@@ -1,0 +1,104 @@
+/* Site-wide: Mintlify loads every .css file in the repo. Tints the left sidebar with the Spark brand blue (Agreement 22). */
+#sidebar-content {
+  background: linear-gradient(180deg, rgb(47 84 235 / 0.07), rgb(47 84 235 / 0.03) 55%, rgb(19 194 194 / 0.04));
+  border: 1px solid rgb(47 84 235 / 0.14);
+  border-radius: 14px;
+}
+html.dark #sidebar-content {
+  background: linear-gradient(180deg, rgb(47 84 235 / 0.14), rgb(47 84 235 / 0.05) 55%, rgb(19 194 194 / 0.05));
+  border-color: rgb(89 126 247 / 0.18);
+}
+
+/* Group icons in brand blue, group names in near-white blue, page links in grey-blue. */
+#sidebar-content .sidebar-group-header svg { background-color: #2F54EB; }
+#sidebar-content .sidebar-group-header { color: #0A1230; }
+#sidebar-content a:not([aria-current]) { color: #4A5578; }
+#sidebar-content a:not([aria-current]):hover { color: #0A1230; }
+html.dark #sidebar-content .sidebar-group-header svg { background-color: #597EF7; }
+html.dark #sidebar-content .sidebar-group-header { color: #E8EDFB; }
+html.dark #sidebar-content a:not([aria-current]) { color: #A3ACC6; }
+html.dark #sidebar-content a:not([aria-current]):hover { color: #E8EDFB; }
+
+/* Text hierarchy by lightness, weight and space, no extra colours (Material's high/medium emphasis idea).
+   Headings: brightest blue-white. Body: a step dimmer. Each H2 opens a section with 3rem of space above and a blue bar, no rule (Kit, 2026-10-29). */
+#content-area h1, #content-area h2, #content-area h3, #content-area h4 { color: #050B24; }
+#content-area .prose { color: #2D3A5C; }
+#content-area h2 { margin-top: 3rem; font-weight: 700; }
+html.dark #content-area h1, html.dark #content-area h2, html.dark #content-area h3, html.dark #content-area h4 { color: #F5F8FF; }
+html.dark #content-area .prose { color: #C8D0E6; }
+/* A short brand-blue bar marks each section heading (Kit picked it over a larger size, 2026-10-28). */
+#content-area h2 { position: relative; padding-left: 0.9rem; }
+#content-area h2::before { content: ""; position: absolute; left: 0; top: 0.15em; width: 4px; height: 1.05em; border-radius: 2px; background: #2F54EB; }
+html.dark #content-area h2::before { background: #597EF7; }
+#content-area .prose strong { color: inherit; filter: brightness(1.12); }
+
+/* Page description and "On this page" links in the same grey-blue as the sidebar links. */
+#content-area #header .prose { color: #4A5578; }
+#table-of-contents li:not([data-active="true"]) a { color: #4A5578; }
+#table-of-contents li:not([data-active="true"]) a:hover { color: #0A1230; }
+html.dark #content-area #header .prose { color: #A3ACC6; }
+html.dark #table-of-contents li:not([data-active="true"]) a { color: #A3ACC6; }
+html.dark #table-of-contents li:not([data-active="true"]) a:hover { color: #E8EDFB; }
+
+/* Image key: a small caption (centred, or left under a narrow image: .left) under a screenshot, in even columns (cols-2 for 2 or 4 labels, cols-3 for 3 or 6,
+   none for 5 or 7), one column on a phone. Numbers are magenta dots that match the screenshot's markers. */
+#content-area .key { margin-top: 0.75rem; font-size: 0.8rem; opacity: 0.85; }
+#content-area .key ol { list-style: none !important; counter-reset: k; margin: 0 !important; padding: 0 !important; display: grid; grid-template-columns: max-content; justify-content: center; gap: 0.35rem 2rem; }
+#content-area .key.cols-2 ol { grid-template-columns: repeat(2, max-content); }
+#content-area .key.cols-3 ol { grid-template-columns: repeat(3, max-content); }
+#content-area .key.left ol { justify-content: start; }
+@media (max-width: 640px) { #content-area .key ol, #content-area .key.cols-2 ol, #content-area .key.cols-3 ol { grid-template-columns: 1fr; justify-content: start; } }
+#content-area .key li { counter-increment: k; position: relative; margin: 0 !important; padding: 0.1rem 0 0.1rem 1.6rem !important; line-height: 1.4; }
+#content-area .key li::marker { content: none; }
+#content-area .key li::before { content: counter(k); position: absolute; left: 0; top: 0.15rem; width: 1.1rem; height: 1.1rem; border-radius: 50%; background: #E0107A; color: #fff; font: 800 0.62rem/1 Manrope, 'Segoe UI', sans-serif; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 0 0 1.25px #fff; }
+
+/* Top tabs: the active tab is a filled box, unlike the soft tint on the sidebar's active page (Jim, 2026-10-29). */
+.nav-tabs-item[aria-current] { color: #fff !important; isolation: isolate; }
+.nav-tabs-item[aria-current] > div { display: none; }
+.nav-tabs-item[aria-current]::before { content: ""; position: absolute; inset: 9px -10px; z-index: -1; border-radius: 8px; background: #2F54EB; }
+
+/* Sidebar: even padding on all sides (Agreement 42), and a gap under the top bar (Jim, 2026-10-30). */
+#sidebar-content { inset: 16px 0 !important; }
+#sidebar-content > div:first-child { padding: 16px 6px 6px !important; }
+#sidebar-content :has(+ #navigation-items):empty { display: none; }
+
+/* Spark only: sidebar.js sets data-spark and --spk-vw, the window width without its scrollbar. The sidebar replaces "On this page".
+   Text and images share one 720 px column, centred with equal gaps to the sidebar and the window edge (Kit, 2026-11-02). */
+html[data-spark] { --spk-width: 720px; }
+html[data-spark] #content-side-layout { display: none; }
+html[data-spark] #content-area { width: 100%; max-width: calc(var(--spk-width) + 8px); margin-inline: auto; }
+html[data-spark] #content-area #header,
+html[data-spark] #content { max-width: var(--spk-width); }
+@media (min-width: 1024px) {
+  html[data-spark] {
+    --spk-rail: calc(max(32px, (var(--spk-vw, 100vw) - 1472px) / 2 + 32px) + 18rem);
+    --spk-column: min(var(--spk-width), calc(var(--spk-vw, 100vw) - var(--spk-rail) - 3rem));
+  }
+  html[data-spark] :has(> #content-area) { flex-direction: row; }
+  html[data-spark] #content-area { flex: none; width: var(--spk-column); max-width: none; padding-inline: 0; margin-left: calc((var(--spk-vw, 100vw) - var(--spk-rail) - var(--spk-column)) / 2); margin-right: auto; }
+}
+
+/* Collapsible groups and the open page's headings. */
+html[data-spark] [data-spk-group] .sidebar-group-header { cursor: pointer; margin-bottom: 0; padding-top: 6px; padding-bottom: 6px; border-radius: 10px; }
+html[data-spark] [data-spk-group] .sidebar-group-header::after { content: ""; margin-left: auto; margin-right: 12px; width: 6px; height: 6px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg); opacity: 0.6; transition: transform 0.15s; }
+html[data-spark] [data-spk-closed] .sidebar-group-header::after { transform: rotate(-45deg); }
+html[data-spark] [data-spk-group] { margin-top: 6px !important; }
+html[data-spark] #navigation-items { margin-top: -14px; }
+/* Three levels: group titles are larger and bold, pages sit under the title text at regular weight, headings are smallest and dimmer. */
+html[data-spark] [data-spk-group] .sidebar-group-header { font-size: 0.9375rem; font-weight: 700; }
+html[data-spark] [data-spk-group] > ul > li > a { padding-left: 2.45rem !important; font-size: 0.875rem; font-weight: 400; }
+#sidebar-content .spk-heads a:not([aria-current]) { color: #66708F; }
+html.dark #sidebar-content .spk-heads a:not([aria-current]) { color: #8791AE; }
+html[data-spark] [data-spk-closed] > ul { display: none; }
+html[data-spark] [data-spk-group] > ul { margin: 2px 0 8px; }
+.spk-heads { margin: 2px 0 6px 2.6rem; padding: 0; list-style: none; border-left: 1px solid rgb(47 84 235 / 0.25); }
+.spk-heads a { display: block; padding: 9px 8px 9px 10px; margin-left: -1px; border-left: 1px solid transparent; font-size: 0.8125rem; line-height: 1.35; }
+#mobile-nav .spk-heads a { color: #4A5578; }
+html.dark #mobile-nav .spk-heads a { color: #A3ACC6; }
+#sidebar-content .spk-heads a[aria-current], #mobile-nav .spk-heads a[aria-current] { color: #2F54EB; border-left-color: #2F54EB; }
+html.dark #sidebar-content .spk-heads a[aria-current], html.dark #mobile-nav .spk-heads a[aria-current] { color: #A3BEFF; border-left-color: #597EF7; }
+
+/* Releases: a type tag and a small guide label before each update link. */
+.rel-type { font-size: 0.8125rem; font-weight: 600; opacity: 0.8; }
+#content-area a.rel-label { display: inline-block; margin: 0 0.15rem; padding: 0 0.45rem; border: 1px solid rgb(47 84 235 / 0.35); border-bottom: 1px solid rgb(47 84 235 / 0.35); border-radius: 6px; font-size: 0.75rem; line-height: 1.5; text-decoration: none; }
+html.dark #content-area a.rel-label { border-color: rgb(89 126 247 / 0.45); }
