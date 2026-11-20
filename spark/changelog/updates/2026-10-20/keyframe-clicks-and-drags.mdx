@@ -1,0 +1,10 @@
+---
+title: "Clicking and dragging keyframes on the timeline"
+description: "A click moves the playhead to the keyframe you clicked, Shift-click no longer drags, and moved keyframes stay selected"
+---
+
+Fix · Web · Released [2026-10-20](/spark/changelog/changelog#2026-10-20)
+
+- Clicking a keyframe that is one of several selected keyframes moves the playhead to the keyframe you clicked. Before, the playhead went to the first keyframe you had selected.
+- Shift-clicking a selected keyframe takes it out of the selection and does not move it. Before, if the pointer moved before you let go, the keyframe moved with the rest of the selection.
+- In a setup, an object's track marked **Inherited** shows the scene's keyframes. When you drag them, Spark copies the track into the setup. The moved keyframes now stay selected, so **Delete** removes them. Before, they were no longer selected after the drag.
