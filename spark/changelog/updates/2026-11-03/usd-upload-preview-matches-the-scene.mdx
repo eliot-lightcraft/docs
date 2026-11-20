@@ -1,0 +1,8 @@
+---
+title: "The upload preview matches the scene for files with a rotated root"
+description: "A USD file whose root carries a rotation, such as a Blender export, looks the same in the upload preview and in the scene"
+---
+
+Fix · Web · Released [2026-11-03](/spark/changelog/changelog#2026-11-03)
+
+A USD file can carry a rotation or a scale on its root, as many Blender exports do. The upload preview now applies it, so the file looks the same in the preview as it does in the scene, for an object and for a location. Before, the preview ignored it and showed such a file on its side. Ticking **Z-Up (Blender/3ds Max)** to straighten the preview then turned the file twice in the scene.

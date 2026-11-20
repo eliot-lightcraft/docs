@@ -1,0 +1,36 @@
+---
+title: "Cull Y cuts objects and splats in the top-down view"
+description: "In the top-down view, Cull Y sets one cut height for USD objects and splats, with keys to raise and lower it"
+---
+
+Change · Web · Released [2026-11-03](/spark/changelog/changelog#2026-11-03)
+
+In the top-down view, **Cull Y** now cuts USD objects and splats at the same height, and the value you set is the height of the top-down camera. Before, **Cull Y** cut only splats, and USD objects stayed cut at whatever height you had been flying. The **Cull Y** bar now also shows in a scene that has no splat.
+
+## Setting the cut
+
+1. Click **Top-Down View** in the toolbar of the 3D canvas.
+2. In the **Cull Y** bar, drag the value or type a height. Everything above that height is cut away. Shot cameras above the cut are hidden too; their names still show.
+
+- Untick the box beside **Cull Y** to see the whole scene. Tick it again to go back to the last height you used.
+- Click the 3D canvas, then press **E** to raise the cut and **Q** to lower it, by 0.5 each time. They do nothing while **Cull Y** is unticked. **W**, **A**, **S**, and **D** move the view.
+- **Reset view** centres the view again and keeps the **Cull Y** height.
+
+## The controls
+
+Click the keyboard button at the end of the **Cull Y** bar (tooltip **Controls**) to see the top-down controls:
+
+- **Middle-drag to pan the scene**
+- **Scroll to zoom in / out**
+- **Use W / A / S / D to move the view**
+- **Use E / Q to raise / lower Cull Y**
+
+<img
+  src="/images/spark/updates/2026-11-03/p1-top-down-cull-y.png"
+  alt="The 3D canvas in the top-down view. Cull Y is ticked at 2.5, and the splat room and the dinosaur object inside it are cut off at that height, so you look down into the room. The Controls popover lists pan, zoom, move, and raise or lower Cull Y, with the W, A, S, D, E and Q keys."
+  style={{ borderRadius: '0.5rem' }}
+/>
+
+1. The **Cull Y** box and value.
+2. The keyboard button, which opens the controls.
+3. The splat room and the USD object inside it, cut at the same height.

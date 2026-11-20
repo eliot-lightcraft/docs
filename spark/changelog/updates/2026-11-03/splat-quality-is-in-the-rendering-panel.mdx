@@ -1,0 +1,14 @@
+---
+title: "Splat Quality is now in the Rendering panel"
+description: "A splat location's Low, Medium, and High buttons are replaced by a button that opens the Rendering panel"
+---
+
+Change · Web · Released [2026-11-03](/spark/changelog/changelog#2026-11-03)
+
+The **Splat Quality** buttons, **Low**, **Medium**, and **High**, are gone from a splat location's properties. In their place, a **Rendering** section has a **Render quality settings** button that opens the Rendering panel, and a line that names the preset in use, such as **Medium preset · applies to every scene on this device**. See [render quality settings for splats](/spark/changelog/updates/2026-11-03/render-quality-settings).
+
+The preset you chose before this release stays chosen, but each preset now sets more than before:
+
+- Every preset has a lower **Opacity cutoff**, so fainter splats are drawn.
+- **Low** and **Medium** turn on **Level of detail**, which draws a lighter version of large locations. Before, Spark always drew every splat.
+- **Low** turns **Antialiasing** off. Before, it was always on.

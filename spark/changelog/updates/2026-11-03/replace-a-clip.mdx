@@ -1,0 +1,42 @@
+---
+title: "Replace a clip on the timeline"
+description: "Swap a clip for other material in the same place, by dragging onto it or with the Replace key"
+---
+
+Feature · Web · Released [2026-11-03](/spark/changelog/changelog#2026-11-03)
+
+In the Editor you can now replace a clip on the timeline with another take, CG Take, or audio file. The new clip starts where the old one did, and nothing else on the timeline moves.
+
+## Dragging onto a clip
+
+1. Drag a take from the left column over a clip on the timeline.
+2. The clip's place is outlined, with an amber **Replace** tag. The part of it that the new material will fill is tinted.
+3. Let go.
+
+The new clip takes the old clip's place. The clips before and after it stay where they are.
+
+{/* PICTURE TO TAKE (p1-editor-replace-drag): The Editor timeline of Scene 12 rough cut while a take is dragged over a longer clip, showing the amber Replace tag and the tinted part */}
+
+1. The amber **Replace** tag on the clip being replaced.
+2. The tinted part is how much of the place the new material fills.
+
+## Shorter or longer material
+
+- If the new material is shorter than the old clip, it ends early and leaves a gap. A message gives the length of the gap, such as **Shorter than the clip it replaced, leaving a gap of 6.71s.**
+- If it is longer, it is cut to the old clip's length.
+
+If you marked a stretch of the take, only the marked stretch is used. See [mark in and out on a take in the Editor](/spark/changelog/updates/2026-10-12/editor-mark-in-and-out).
+
+A picture clip replaces a picture clip, and a sound clip replaces a sound clip.
+
+## Replacing at the playhead
+
+1. Move the timeline playhead onto the clip you want to replace, on the target lane.
+2. Load the new material in the **Clip** pane.
+3. Press **R**, or click **Replace** beside **Insert** and **Overwrite**. Its tooltip reads **Replace the clip at the playhead on the target lane**.
+
+If no clip is under the playhead on the target lane, Spark shows **No clip under the playhead on the target lane. Park the playhead on the clip to replace.** and changes nothing.
+
+One **Ctrl+Z** puts the old clip back.
+
+For the target lane, see [where the clip goes](/spark/changelog/updates/2026-10-12/editor-insert-and-overwrite#where-the-clip-goes).
