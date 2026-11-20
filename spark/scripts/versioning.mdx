@@ -1,0 +1,213 @@
+---
+title: 'Drafts and versions'
+description: 'Publish script edits with a revision color, compare two versions or revert to an earlier one.'
+---
+
+Every edit saves as a draft version that only you see. The team reads the published version until you publish your draft.
+
+<img
+  src="/images/spark/scripts/versioning-column.png"
+  alt="The Versioning column in Edit mode. Box 1 is on Publish changes, 2 on the Saved status, 3 on Import Newer Version, 4 on a draft version and 5 on the CURRENT ribbon."
+  style={{ borderRadius: '0.5rem', maxWidth: '360px' }}
+/>
+
+<div className="key left">
+
+1. **Publish changes**
+2. Save status
+3. **Import Newer Version**
+4. Version: time, author
+5. **CURRENT**
+
+</div>
+
+- **CURRENT** marks the published version that everyone reads. **PUBLISHED** marks an earlier publish, and **IMPORTED** a version that came from a file.
+- For the save status, see [Script editor](/spark/scripts/script-editor#view-and-edit).
+
+## The Versioning column
+
+To see it, switch the script to **Edit** or press **Ctrl+E** (**Cmd+E** on a Mac). It lists every version of the script, newest first.
+
+Your saves share one card until you pause for 5 minutes, and the card counts them, such as **8 saves**. A run of saves with no pause starts a new card after 30 minutes.
+
+A published card shows a stripe in its revision color, the revision's name, and who published it. 3D scenes, lists and downloads use the current version.
+
+## Publish your edits
+
+<Steps titleSize="h3">
+  <Step title="Open your draft">
+    In View mode, a draft shows as **Unpublished edits**. Click **Review & publish** to open it in Edit mode.
+
+    <img
+      src="/images/spark/scripts/unpublished-edits.png"
+      alt="The top of a script in View mode. Box 1 is on Unpublished edits and 2 on Review and publish."
+      style={{ borderRadius: '0.5rem', width: '100%', maxWidth: '520px' }}
+    />
+
+    <div className="key cols-2 left">
+
+    1. **Unpublished edits**
+    2. **Review & publish**
+
+    </div>
+  </Step>
+  <Step title="Pick a color and a name">
+    Click **Publish changes**. Optional: in **Publish your edits?**, click a **Revision color** and enter a name, such as `Network notes`.
+
+    <img
+      src="/images/spark/scripts/publish-changes.png"
+      alt="The Publish your edits window. Box 1 is on the revision color swatches, 2 on No color under them and 3 on the name box."
+      style={{ borderRadius: '0.5rem', width: '100%', maxWidth: '480px' }}
+    />
+
+    <div className="key cols-3 left">
+
+    1. **Revision color**
+    2. Color Spark picks
+    3. Name
+
+    </div>
+  </Step>
+  <Step title="Publish it">
+    Click **Publish changes**. Spark shows **Changes published — everyone sees them now**.
+  </Step>
+</Steps>
+
+Your draft becomes the current version. New scene headings join **Script scenes**, and the earlier versions stay in the list.
+
+## Revision colors
+
+Colors follow the standard order for script revisions: White, Blue, Pink, Yellow, Green, Goldenrod, Buff, Salmon and Cherry. When the order starts again, the name says so, such as **Double White**.
+
+- The window starts on **No color** until the script has a colored publish. After that, it starts on the next color in the order.
+- **Your own color**, the last swatch, opens a color picker.
+
+When the current version has a color, a **Paper color** switch sits at the left of the toolbar. It tints the page in that color and is on unless you turn it off.
+
+<img
+  src="/images/spark/scripts/paper-color.png"
+  alt="A script on light blue paper. Box 1 is on the Paper color switch and 2 on its tooltip, Blue, Network notes, Published 11/4/2026 8:22PM."
+  style={{ borderRadius: '0.5rem' }}
+/>
+
+<div className="key cols-2 left">
+
+1. **Paper color**
+2. Revision name and publish date
+
+</div>
+
+## Import a newer version
+
+Use this when a new draft arrives from your screenwriting app. It adds the file as a new version, so the script keeps its history.
+
+<Steps titleSize="h3">
+  <Step title="Open the Versioning column">
+    Switch the script to **Edit**, then click **Import Newer Version**.
+
+    <img
+      src="/images/spark/scripts/import-newer-version.png"
+      alt="The top of the Versioning column. Box 1 is on the View and Edit switch and 2 on Import Newer Version."
+      style={{ borderRadius: '0.5rem', width: '100%', maxWidth: '436px' }}
+    />
+
+    <div className="key cols-2 left">
+
+    1. **Edit**
+    2. **Import Newer Version**
+
+    </div>
+  </Step>
+  <Step title="Choose the file">
+    Drag in a `.fountain`, `.txt`, `.fdx` or `.pdf` file. You can also click **Choose from browser**. A file with no scene headings shows a warning first.
+
+    <img
+      src="/images/spark/scripts/import-choose-file.png"
+      alt="The Import Version window, which fills the page, with a box on Choose from browser in the drop area."
+      style={{ borderRadius: '0.5rem', width: '100%', maxWidth: '560px' }}
+    />
+  </Step>
+  <Step title="Check the changes">
+    The review opens on **Preview**, the file's own pages. **Changes** sets the file beside the published version, or beside your latest draft if you have unpublished edits. **Compare with** picks another version.
+
+    **Scenes** lists the scenes that changed, each marked **Added**, **Removed**, **Edited**, **Renamed** or **Moved**. Click one to jump to it. Turn off **Changed only** to list every scene.
+
+    <img
+      src="/images/spark/scripts/import-review.png"
+      alt="The Import Version review on Changes, with the published script on the left and the file on the right. Box 1 is on the Scenes list with 1 added and 2 edited, 2 on Preview and Changes, and 3 on Compare with."
+      style={{ borderRadius: '0.5rem' }}
+    />
+
+    <div className="key cols-3 left">
+
+    1. **Scenes**
+    2. **Preview** and **Changes**
+    3. **Compare with**
+
+    </div>
+  </Step>
+  <Step title="Import and publish">
+    Click **Import** at the bottom right. The file becomes a draft marked **IMPORTED**. Publish it as you would any edit.
+
+    To pick another file instead, click **Back**. Nothing is saved until you click **Import**.
+  </Step>
+</Steps>
+
+## Compare two versions
+
+Click **Compare** in the title bar to see what changed since the last publish. To compare a version with the one before it, click its card in the **Versioning** column.
+
+In **Compare versions**, pick a version on each side. The older one shows in red and the newer one in green, whichever side it's on.
+
+<img
+  src="/images/spark/scripts/compare-versions.png"
+  alt="The Compare versions window. Box 1 is on both version pickers, 2 on the changed line in the older version, 3 on the same line in the newer version and 4 on Revert to this."
+  style={{ borderRadius: '0.5rem' }}
+/>
+
+<div className="key cols-2 left">
+
+1. Version pickers, with **Published** and **Drafts**
+2. Older version
+3. Newer version
+4. **Revert to this**
+
+</div>
+
+Click **Scenes** at the top left to list the scenes that changed, as in the import review. Click a scene to jump to it.
+
+## Go back to an earlier version
+
+<Steps titleSize="h3">
+  <Step title="Open the version">
+    Click **Compare**, then pick the version you want on the older side.
+  </Step>
+  <Step title="Revert to it">
+    Click **Revert to this** on the older side, then **Revert**. Spark saves it as a new draft.
+
+    <img
+      src="/images/spark/scripts/revert-confirm.png"
+      alt="The Revert to version 1 window, with Cancel and a box on Revert."
+      style={{ borderRadius: '0.5rem', width: '100%', maxWidth: '440px' }}
+    />
+  </Step>
+  <Step title="Publish it">
+    Click **Publish changes** to make it the current version.
+  </Step>
+</Steps>
+
+Every version stays in the list, so you can revert to any of them later.
+
+## Related
+
+<CardGroup cols={3}>
+  <Card title="Script editor" icon="pencil" href="/spark/scripts/script-editor">
+    Write and format the script.
+  </Card>
+  <Card title="Scripts and script scenes" icon="file-text" href="/spark/scripts/scripts-and-script-scenes">
+    Add, switch and rename scripts.
+  </Card>
+  <Card title="3D scenes" icon="box" href="/spark/scene-editor/3d-scenes">
+    Build 3D scenes for each script scene.
+  </Card>
+</CardGroup>
